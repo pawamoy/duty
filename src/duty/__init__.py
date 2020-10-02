@@ -6,4 +6,6 @@ A simple task runner.
 
 from typing import List
 
-__all__: List[str] = []  # noqa: WPS410 (the only __variable__ we use)
+from duty.logic import duty
+
+__all__: List[str] = ["duty"]  # noqa: WPS410 (the only __variable__ we use)

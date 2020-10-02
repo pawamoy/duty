@@ -12,7 +12,27 @@
 """Module that contains the command line application."""
 
 import argparse
-from typing import List, Optional
+import importlib.util
+from typing import Dict, List, Optional
+
+from duty import logic
+
+
+def load_duties(path: str) -> Dict[str, logic.Duty]:
+    """
+    Load duties from a Python file.
+
+    Arguments:
+        path: The path to the Python file to load.
+
+    Returns:
+        The loaded duties.
+    """
+    logic.duties.clear()
+    spec = importlib.util.spec_from_file_location("duty.loaded", path)
+    duties = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(duties)  # type: ignore
+    return logic.duties
 
 
 def get_parser() -> argparse.ArgumentParser:
@@ -22,7 +42,12 @@ def get_parser() -> argparse.ArgumentParser:
     Returns:
         An argparse parser.
     """
-    return argparse.ArgumentParser(prog="duty")
+    parser = argparse.ArgumentParser(prog="duty")
+    parser.add_argument(
+        "-d", "--duties-file", nargs=1, default="duties.py", help="Python file where the duties are defined."
+    )
+    parser.add_argument("DUTIES", metavar="DUTY", nargs="+")
+    return parser
 
 
 def main(args: Optional[List[str]] = None) -> int:
@@ -39,5 +64,25 @@ def main(args: Optional[List[str]] = None) -> int:
     """
     parser = get_parser()
     opts = parser.parse_args(args=args)
-    print(opts)  # noqa: WPS421 (side-effect in main is fine)
+
+    duties = load_duties(opts.duties_file)
+
+    selection = []
+    duty_name: str = ""
+    for arg in opts.DUTIES:
+        if "=" in arg:
+            duty_args.update(dict([arg.split("=", 1)]))
+        else:
+            if duty_name:
+                selection.append((duty_name, duty_args))
+            duty_args: Dict[str, str] = {}
+            duty_name = arg
+    selection.append((duty_name, duty_args))
+
+    for duty_name, duty_args in selection:
+        try:
+            duties[duty_name].run(**duty_args)
+        except logic.DutyFailure as failure:
+            return failure.code
+
     return 0
