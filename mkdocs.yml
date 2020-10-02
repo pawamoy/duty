@@ -1,0 +1,42 @@
+site_name: "Duty"
+site_description: "A simple task runner."
+site_url: "https://pawamoy.github.io/duty"
+repo_url: "https://github.com/pawamoy/duty"
+repo_name: "pawamoy/duty"
+
+nav:
+  - Overview: index.md
+  - API Reference:
+    - cli.py: reference/cli.md
+  - Contributing: contributing.md
+  - Code of Conduct: code_of_conduct.md
+  - Changelog: changelog.md
+  - Credits: credits.md
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: teal
+    accent: purple
+
+extra_css:
+  - css/mkdocstrings.css
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - pymdownx.emoji
+  - pymdownx.magiclink
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist
+  - toc:
+      permalink: "¤"
+
+plugins:
+  - search
+  - mkdocstrings:
+      watch:
+        - src/duty
