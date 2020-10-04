@@ -289,6 +289,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#duty.cli.print_duties" class="md-nav__link">
+    print_duties()
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -417,6 +424,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#duty.cli.print_duties" class="md-nav__link">
+    print_duties()
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -490,7 +504,14 @@ get_parser<span class="p">()</span>        </code>
         <span class="n">default</span><span class="o">=</span><span class="s2">"duties.py"</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">"Python file where the duties are defined."</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"DUTIES"</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">"DUTY"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">"+"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">"-l"</span><span class="p">,</span>
+        <span class="s2">"--list"</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">"store_true"</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s2">"list"</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"List the available duties."</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"DUTIES"</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">"DUTY"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">"*"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">parser</span>
 </code></pre>
 </div>
@@ -528,41 +549,20 @@ load_duties<span class="p">(</span><span class="n">path</span><span class="p">)<
 </tr>
 </tbody>
 </table>
-<p><strong>Returns:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Dict[str, duty.logic.Duty]</code></td>
-<td>
-<p>The loaded duties.</p>
-</td>
-</tr>
-</tbody>
-</table>
 <details class="quote">
           <summary>Source code in <code>duty/cli.py</code></summary>
           <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">load_duties</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">logic</span><span class="o">.</span><span class="n">Duty</span><span class="p">]:</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">load_duties</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Load duties from a Python file.</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        path: The path to the Python file to load.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        The loaded duties.</span>
 <span class="sd">    """</span>
     <span class="n">logic</span><span class="o">.</span><span class="n">duties</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib_util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">"duty.loaded"</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="n">duties</span> <span class="o">=</span> <span class="n">importlib_util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
     <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">duties</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
-    <span class="k">return</span> <span class="n">logic</span><span class="o">.</span><span class="n">duties</span>
 </code></pre>
 </div>
 </details>
@@ -620,7 +620,7 @@ main<span class="p">(</span><span class="n">args</span><span class="o">=</span><
 <details class="quote">
           <summary>Source code in <code>duty/cli.py</code></summary>
           <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>  <span class="c1"># noqa: WPS212 (return statements)</span>
     <span class="sd">"""</span>
 <span class="sd">    Run the main program.</span>
 
@@ -635,15 +635,23 @@ main<span class="p">(</span><span class="n">args</span><span class="o">=</span><
     <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser</span><span class="p">()</span>
     <span class="n">opts</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
 
-    <span class="n">duties</span> <span class="o">=</span> <span class="n">load_duties</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">duties_file</span><span class="p">)</span>
+    <span class="n">load_duties</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">duties_file</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
+        <span class="n">print_duties</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">selection</span> <span class="o">=</span> <span class="n">parse_selection</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">DUTIES</span><span class="p">,</span> <span class="n">duties</span><span class="p">)</span>
+        <span class="n">selection</span> <span class="o">=</span> <span class="n">parse_selection</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">DUTIES</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown duty: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
         <span class="k">return</span> <span class="mi">1</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Incorrect arguments: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">selection</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Please chose at least one duty"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
         <span class="k">return</span> <span class="mi">1</span>
 
     <span class="k">for</span> <span class="n">duty</span><span class="p">,</span> <span class="n">duty_args</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
@@ -662,7 +670,7 @@ main<span class="p">(</span><span class="n">args</span><span class="o">=</span><
 <h2 class="doc doc-heading" id="duty.cli.parse_selection">
 
         <code class="highlight language-python">
-parse_selection<span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">duties</span><span class="p">)</span>        </code>
+parse_selection<span class="p">(</span><span class="n">args</span><span class="p">)</span>        </code>
 
 
       <a class="headerlink" href="#duty.cli.parse_selection" title="Permanent link">¤</a></h2>
@@ -684,14 +692,6 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
 <td><code>List[str]</code></td>
 <td>
 <p>Arguments given on the command line.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-<tr>
-<td><code>duties</code></td>
-<td><code>Dict[str, duty.logic.Duty]</code></td>
-<td>
-<p>The user registered duties.</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -734,13 +734,12 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
 <details class="quote">
           <summary>Source code in <code>duty/cli.py</code></summary>
           <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">parse_selection</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">duties</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">logic</span><span class="o">.</span><span class="n">Duty</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">SelectionType</span><span class="p">:</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">parse_selection</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">SelectionType</span><span class="p">:</span>  <span class="c1"># noqa: WPS231 (not that complex)</span>
     <span class="sd">"""</span>
 <span class="sd">    Parse the arguments given on the command line to return a selection of actual duties.</span>
 
 <span class="sd">    Arguments:</span>
 <span class="sd">        args: Arguments given on the command line.</span>
-<span class="sd">        duties: The user registered duties.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: When the arguments are incorrect.</span>
@@ -748,8 +747,12 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
 <span class="sd">    Returns:</span>
 <span class="sd">        A selection of duties and their keyword arguments.</span>
 <span class="sd">    """</span>
-    <span class="n">selection</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">selection</span><span class="p">:</span> <span class="n">SelectionType</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">duty</span><span class="p">:</span> <span class="n">logic</span><span class="o">.</span><span class="n">Duty</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span>
+
     <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
         <span class="k">if</span> <span class="s2">"="</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">duty</span><span class="p">:</span>
@@ -759,9 +762,33 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
             <span class="k">if</span> <span class="n">duty</span><span class="p">:</span>  <span class="c1"># noqa: WPS513 (cannot replace by elif)</span>
                 <span class="n">selection</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">duty</span><span class="p">,</span> <span class="n">duty_args</span><span class="p">))</span>
             <span class="n">duty_args</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">duty</span> <span class="o">=</span> <span class="n">duties</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span>
+            <span class="n">duty</span> <span class="o">=</span> <span class="n">logic</span><span class="o">.</span><span class="n">get_duty</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
     <span class="n">selection</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">duty</span><span class="p">,</span> <span class="n">duty_args</span><span class="p">))</span>
+
     <span class="k">return</span> <span class="n">selection</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.cli.print_duties">
+
+        <code class="highlight language-python">
+print_duties<span class="p">()</span>        </code>
+
+
+      <a class="headerlink" href="#duty.cli.print_duties" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Print duties.</p>
+<details class="quote">
+          <summary>Source code in <code>duty/cli.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">print_duties</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""Print duties."""</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">duty</span> <span class="ow">in</span> <span class="n">logic</span><span class="o">.</span><span class="n">duties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">duty</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">20</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
 </code></pre>
 </div>
 </details>

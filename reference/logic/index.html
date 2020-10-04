@@ -329,6 +329,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#duty.logic.Duty.run_duties" class="md-nav__link">
+    run_duties()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -362,15 +369,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.logic.register_duty" class="md-nav__link">
-    register_duty()
+  <a href="#duty.logic.get_duty" class="md-nav__link">
+    get_duty()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.logic.run_duties" class="md-nav__link">
-    run_duties()
+  <a href="#duty.logic.register_duty" class="md-nav__link">
+    register_duty()
   </a>
   
 </li>
@@ -519,6 +526,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#duty.logic.Duty.run_duties" class="md-nav__link">
+    run_duties()
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -552,15 +566,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.logic.register_duty" class="md-nav__link">
-    register_duty()
+  <a href="#duty.logic.get_duty" class="md-nav__link">
+    get_duty()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.logic.run_duties" class="md-nav__link">
-    run_duties()
+  <a href="#duty.logic.register_duty" class="md-nav__link">
+    register_duty()
   </a>
   
 </li>
@@ -988,9 +1002,62 @@ run<span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
 <span class="sd">        args: Positional arguments passed to the function.</span>
 <span class="sd">        kwargs: Keyword arguments passed to the function.</span>
 <span class="sd">    """</span>
-    <span class="n">run_duties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pre</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">run_duties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pre</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">run_duties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">run_duties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="duty.logic.Duty.run_duties">
+
+        <code class="highlight language-python">
+run_duties<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duties_list</span><span class="p">)</span>        </code>
+
+
+      <a class="headerlink" href="#duty.logic.Duty.run_duties" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents ">
+<p>Run a list of duties.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>duties_list</code></td>
+<td><code>List[Union[str, Callable, Duty]]</code></td>
+<td>
+<p>The list of duties to run.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/logic.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">run_duties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duties_list</span><span class="p">:</span> <span class="n">DutyListType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Run a list of duties.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        duties_list: The list of duties to run.</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="n">duty_item</span> <span class="ow">in</span> <span class="n">duties_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">duty_item</span><span class="p">,</span> <span class="n">Duty</span><span class="p">):</span>
+            <span class="n">duty_item</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">duty_item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">get_duty</span><span class="p">(</span><span class="n">duty_item</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">callable</span><span class="p">(</span><span class="n">duty_item</span><span class="p">):</span>
+            <span class="n">duty_item</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context</span><span class="p">)</span>
 </code></pre>
 </div>
 </details>
@@ -1204,10 +1271,80 @@ duty<span class="p">(</span><span class="o">*</span><span class="n">args</span><
 </div>
 </div>
 <div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.logic.get_duty">
+
+        <code class="highlight language-python">
+get_duty<span class="p">(</span><span class="n">name_or_alias</span><span class="p">)</span>        </code>
+
+
+      <a class="headerlink" href="#duty.logic.get_duty" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Get a duty by its name or alias.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name_or_alias</code></td>
+<td><code>str</code></td>
+<td>
+<p>The name or alias of the duty.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Duty</code></td>
+<td>
+<p>A duty.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/logic.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_duty</span><span class="p">(</span><span class="n">name_or_alias</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Duty</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Get a duty by its name or alias.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        name_or_alias: The name or alias of the duty.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A duty.</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">duties</span><span class="p">[</span><span class="n">name_or_alias</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">duties_aliases</span><span class="p">[</span><span class="n">name_or_alias</span><span class="p">]</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="duty.logic.register_duty">
 
         <code class="highlight language-python">
-register_duty<span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span>        </code>
+register_duty<span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">aliases</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span>        </code>
 
 
       <a class="headerlink" href="#duty.logic.register_duty" title="Permanent link">¤</a></h2>
@@ -1237,6 +1374,14 @@ register_duty<span class="p">(</span><span class="n">func</span><span class="p">
 <td><code>Optional[str]</code></td>
 <td>
 <p>The duty name.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>aliases</code></td>
+<td><code>Optional[Iterable[str]]</code></td>
+<td>
+<p>A set of aliases for this duty.</p>
 </td>
 <td><code>None</code></td>
 </tr>
@@ -1289,6 +1434,7 @@ register_duty<span class="p">(</span><span class="n">func</span><span class="p">
 <pre><span></span><code><span class="k">def</span> <span class="nf">register_duty</span><span class="p">(</span>
     <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
     <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">aliases</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">pre</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DutyListType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">post</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DutyListType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">opts</span><span class="p">,</span>
@@ -1299,6 +1445,7 @@ register_duty<span class="p">(</span><span class="n">func</span><span class="p">
 <span class="sd">    Arguments:</span>
 <span class="sd">        func: The callable to register as a duty.</span>
 <span class="sd">        name: The duty name.</span>
+<span class="sd">        aliases: A set of aliases for this duty.</span>
 <span class="sd">        pre: Pre-duties.</span>
 <span class="sd">        post: Post-duties.</span>
 <span class="sd">        opts: Options passed to the context.</span>
@@ -1306,63 +1453,17 @@ register_duty<span class="p">(</span><span class="n">func</span><span class="p">
 <span class="sd">    Returns:</span>
 <span class="sd">        The registered duty.</span>
 <span class="sd">    """</span>
+    <span class="n">aliases</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">aliases</span><span class="p">)</span> <span class="k">if</span> <span class="n">aliases</span> <span class="k">else</span> <span class="nb">set</span><span class="p">()</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="n">dash_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"_"</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">!=</span> <span class="n">dash_name</span><span class="p">:</span>
+        <span class="n">aliases</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">dash_name</span>
     <span class="n">description</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getdoc</span><span class="p">(</span><span class="n">func</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">""</span>
     <span class="n">duties</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Duty</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">pre</span><span class="o">=</span><span class="n">pre</span><span class="p">,</span> <span class="n">post</span><span class="o">=</span><span class="n">post</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="n">opts</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">alias</span> <span class="ow">in</span> <span class="n">aliases</span><span class="p">:</span>
+        <span class="n">duties_aliases</span><span class="p">[</span><span class="n">alias</span><span class="p">]</span> <span class="o">=</span> <span class="n">duties</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">duties</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="duty.logic.run_duties">
-
-        <code class="highlight language-python">
-run_duties<span class="p">(</span><span class="n">duties_list</span><span class="p">)</span>        </code>
-
-
-      <a class="headerlink" href="#duty.logic.run_duties" title="Permanent link">¤</a></h2>
-<div class="doc doc-contents ">
-<p>Run a list of duties.</p>
-<p><strong>Parameters:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>duties_list</code></td>
-<td><code>List[Union[str, Callable, Duty]]</code></td>
-<td>
-<p>The list of duties to run.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
-</table>
-<details class="quote">
-          <summary>Source code in <code>duty/logic.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">run_duties</span><span class="p">(</span><span class="n">duties_list</span><span class="p">:</span> <span class="n">DutyListType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">"""</span>
-<span class="sd">    Run a list of duties.</span>
-
-<span class="sd">    Arguments:</span>
-<span class="sd">        duties_list: The list of duties to run.</span>
-<span class="sd">    """</span>
-    <span class="k">for</span> <span class="n">duty_item</span> <span class="ow">in</span> <span class="n">duties_list</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">duty_item</span><span class="p">,</span> <span class="n">Duty</span><span class="p">):</span>
-            <span class="n">duty_item</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">duty_item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">duties</span><span class="p">[</span><span class="n">duty_item</span><span class="p">]</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">callable</span><span class="p">(</span><span class="n">duty_item</span><span class="p">):</span>
-            <span class="n">duty_item</span><span class="p">()</span>
 </code></pre>
 </div>
 </details>
