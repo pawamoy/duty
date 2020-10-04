@@ -8,6 +8,7 @@ nav:
   - Overview: index.md
   - API Reference:
     - cli.py: reference/cli.md
+    - logic.py: reference/logic.md
   - Contributing: contributing.md
   - Code of Conduct: code_of_conduct.md
   - Changelog: changelog.md
