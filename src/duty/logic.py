@@ -108,7 +108,10 @@ class Context:
         """
         final_options = dict(self.options)
         final_options.update(options)
-        code = failprint_run(cmd, args=args, kwargs=kwargs, **final_options)
+        try:
+            code = failprint_run(cmd, args=args, kwargs=kwargs, **final_options)
+        except KeyboardInterrupt:
+            code = 130
         if code:
             raise DutyFailure(code)
 
