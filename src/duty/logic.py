@@ -47,6 +47,16 @@ class Duty:
         self.post = post or []
         self.context = Context(**(opts or self.default_options))
 
+    def __call__(self, *args, **kwargs) -> None:
+        """
+        Run the duty function.
+
+        Arguments:
+            args: Positional arguments passed to the function.
+            kwargs: Keyword arguments passed to the function.
+        """
+        self.run(*args, **kwargs)
+
     def run(self, *args, **kwargs) -> None:
         """
         Run the duty function.
