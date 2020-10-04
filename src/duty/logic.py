@@ -6,12 +6,20 @@ from typing import Any, Callable, Dict, List, Optional, Union
 from failprint.cli import run as failprint_run
 
 DutyListType = List[Union[str, Callable, "Duty"]]
+CmdType = Union[str, List[str], Callable]
 
 
 class DutyFailure(Exception):
     """An exception raised when a duty fails."""
 
     def __init__(self, code):
+        """
+        Initialize the object.
+
+        Arguments:
+            code: The exit code of a command.
+        """
+        super().__init__(self)
         self.code = code
 
 
@@ -67,24 +75,25 @@ class Duty:
             args: Positional arguments passed to the function.
             kwargs: Keyword arguments passed to the function.
         """
-        self.run_duties(self.pre)
+        run_duties(self.pre)
         self.function(self.context, *args, **kwargs)
-        self.run_duties(self.post)
+        run_duties(self.post)
 
-    def run_duties(self, duties_list: DutyListType) -> None:
-        """
-        Run a list of duties.
 
-        Arguments:
-            duties_list: The list of duties to run.
-        """
-        for duty in duties_list:
-            if isinstance(duty, Duty):
-                duty.run()
-            elif isinstance(duty, str):
-                duties[duty].run()
-            elif callable(duty):
-                duty()
+def run_duties(duties_list: DutyListType) -> None:
+    """
+    Run a list of duties.
+
+    Arguments:
+        duties_list: The list of duties to run.
+    """
+    for duty_item in duties_list:
+        if isinstance(duty_item, Duty):
+            duty_item.run()
+        elif isinstance(duty_item, str):
+            duties[duty_item].run()
+        elif callable(duty_item):
+            duty_item()
 
 
 class Context:
@@ -103,7 +112,7 @@ class Context:
         """
         self.options = options
 
-    def run(self, cmd: Union[str, List[str], Callable], args=None, kwargs=None, **options):
+    def run(self, cmd: CmdType, args=None, kwargs=None, **options):
         """
         Run a command in a subprocess or a Python callable.
 
@@ -134,12 +143,13 @@ def register_duty(
     name: Optional[str] = None,
     pre: Optional[DutyListType] = None,
     post: Optional[DutyListType] = None,
-    **opts
+    **opts,
 ) -> Duty:
     """
     Register a duty in the `duties` dictionary.
 
     Arguments:
+        func: The callable to register as a duty.
         name: The duty name.
         pre: Pre-duties.
         post: Post-duties.
@@ -149,17 +159,21 @@ def register_duty(
         The registered duty.
     """
     name = name or func.__name__
-    duty = duties[name] = Duty(name, inspect.getdoc(func), func, pre=pre, post=post, opts=opts)
-    return duty
+    description = inspect.getdoc(func) or ""
+    duties[name] = Duty(name, description, func, pre=pre, post=post, opts=opts)
+    return duties[name]
 
 
-def duty(*args, **kwargs):
+def duty(*args, **kwargs) -> Union[Callable, Duty]:
     """
-    The main `duty` decorator.
+    Decorate a callable to transform it and register it as a duty.
 
     Arguments:
         args: One callable.
         kwargs: Context options.
+
+    Raises:
+        ValueError: When the decorator is misused.
 
     Examples:
         Decorate a function:
@@ -183,15 +197,14 @@ def duty(*args, **kwargs):
     """
     if args and kwargs:
         raise ValueError("The duty decorator only accepts kwargs")
-    elif args:
+    if args:
         if len(args) > 1:
             raise ValueError(
                 "The duty decorator only accepts a function as first argument " "and no extra positional args",
             )
         return register_duty(args[0])
-    else:
 
-        def decorator(func):
-            return register_duty(func, **kwargs)
+    def decorator(func):
+        return register_duty(func, **kwargs)
 
-        return decorator
+    return decorator
