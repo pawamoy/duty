@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.3.1](https://github.com/pawamoy/duty/releases/tag/0.3.1) - 2020-10-04
+
+<small>[Compare with 0.3.0](https://github.com/pawamoy/duty/compare/0.3.0...0.3.1)</small>
+
+### Bug Fixes
+- Add missing `failprint` dependency ([5b1663c](https://github.com/pawamoy/duty/commit/5b1663ccacc12bcefe28ab2bcce5b43a5953f073) by Timothée Mazzucotelli).
+
+
 ## [0.3.0](https://github.com/pawamoy/duty/releases/tag/0.3.0) - 2020-10-04
 
 <small>[Compare with 0.2.0](https://github.com/pawamoy/duty/compare/0.2.0...0.3.0)</small>
