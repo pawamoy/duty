@@ -1,7 +1,7 @@
 """Module containing all the logic."""
 
 import inspect
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
 from failprint.cli import run as failprint_run
 
@@ -75,25 +75,24 @@ class Duty:
             args: Positional arguments passed to the function.
             kwargs: Keyword arguments passed to the function.
         """
-        run_duties(self.pre)
+        self.run_duties(self.pre)
         self.function(self.context, *args, **kwargs)
-        run_duties(self.post)
+        self.run_duties(self.post)
 
+    def run_duties(self, duties_list: DutyListType) -> None:
+        """
+        Run a list of duties.
 
-def run_duties(duties_list: DutyListType) -> None:
-    """
-    Run a list of duties.
-
-    Arguments:
-        duties_list: The list of duties to run.
-    """
-    for duty_item in duties_list:
-        if isinstance(duty_item, Duty):
-            duty_item.run()
-        elif isinstance(duty_item, str):
-            duties[duty_item].run()
-        elif callable(duty_item):
-            duty_item()
+        Arguments:
+            duties_list: The list of duties to run.
+        """
+        for duty_item in duties_list:
+            if isinstance(duty_item, Duty):
+                duty_item.run()
+            elif isinstance(duty_item, str):
+                get_duty(duty_item).run()
+            elif callable(duty_item):
+                duty_item(self.context)
 
 
 class Context:
@@ -136,11 +135,29 @@ class Context:
 
 
 duties: Dict[str, Duty] = {}
+duties_aliases: Dict[str, Duty] = {}
+
+
+def get_duty(name_or_alias: str) -> Duty:
+    """
+    Get a duty by its name or alias.
+
+    Arguments:
+        name_or_alias: The name or alias of the duty.
+
+    Returns:
+        A duty.
+    """
+    try:
+        return duties[name_or_alias]
+    except KeyError:
+        return duties_aliases[name_or_alias]
 
 
 def register_duty(
     func: Callable,
     name: Optional[str] = None,
+    aliases: Optional[Iterable[str]] = None,
     pre: Optional[DutyListType] = None,
     post: Optional[DutyListType] = None,
     **opts,
@@ -151,6 +168,7 @@ def register_duty(
     Arguments:
         func: The callable to register as a duty.
         name: The duty name.
+        aliases: A set of aliases for this duty.
         pre: Pre-duties.
         post: Post-duties.
         opts: Options passed to the context.
@@ -158,9 +176,16 @@ def register_duty(
     Returns:
         The registered duty.
     """
+    aliases = set(aliases) if aliases else set()
     name = name or func.__name__
+    dash_name = name.replace("_", "-")
+    if name != dash_name:
+        aliases.add(name)
+        name = dash_name
     description = inspect.getdoc(func) or ""
     duties[name] = Duty(name, description, func, pre=pre, post=post, opts=opts)
+    for alias in aliases:
+        duties_aliases[alias] = duties[name]
     return duties[name]
 
 

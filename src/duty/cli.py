@@ -21,30 +21,25 @@ from duty import logic
 SelectionType = List[Tuple[logic.Duty, Dict[str, str]]]
 
 
-def load_duties(path: str) -> Dict[str, logic.Duty]:
+def load_duties(path: str) -> None:
     """
     Load duties from a Python file.
 
     Arguments:
         path: The path to the Python file to load.
-
-    Returns:
-        The loaded duties.
     """
     logic.duties.clear()
     spec = importlib_util.spec_from_file_location("duty.loaded", path)
     duties = importlib_util.module_from_spec(spec)
     spec.loader.exec_module(duties)  # type: ignore
-    return logic.duties
 
 
-def parse_selection(args: List[str], duties: Dict[str, logic.Duty]) -> SelectionType:
+def parse_selection(args: List[str]) -> SelectionType:  # noqa: WPS231 (not that complex)
     """
     Parse the arguments given on the command line to return a selection of actual duties.
 
     Arguments:
         args: Arguments given on the command line.
-        duties: The user registered duties.
 
     Raises:
         ValueError: When the arguments are incorrect.
@@ -52,8 +47,12 @@ def parse_selection(args: List[str], duties: Dict[str, logic.Duty]) -> Selection
     Returns:
         A selection of duties and their keyword arguments.
     """
-    selection = []
+    if not args:
+        return []
+
+    selection: SelectionType = []
     duty: logic.Duty = None  # type: ignore
+
     for arg in args:
         if "=" in arg:
             if not duty:
@@ -63,9 +62,17 @@ def parse_selection(args: List[str], duties: Dict[str, logic.Duty]) -> Selection
             if duty:  # noqa: WPS513 (cannot replace by elif)
                 selection.append((duty, duty_args))
             duty_args: Dict[str, str] = {}
-            duty = duties[arg]
+            duty = logic.get_duty(arg)
     selection.append((duty, duty_args))
+
     return selection
+
+
+def print_duties() -> None:
+    """Print duties."""
+    for name, duty in logic.duties.items():
+        description = duty.description.split("\n")[0]
+        print(f"{name:20} - {description}")  # noqa: WPS421 (print)
 
 
 def get_parser() -> argparse.ArgumentParser:
@@ -83,11 +90,18 @@ def get_parser() -> argparse.ArgumentParser:
         default="duties.py",
         help="Python file where the duties are defined.",
     )
-    parser.add_argument("DUTIES", metavar="DUTY", nargs="+")
+    parser.add_argument(
+        "-l",
+        "--list",
+        action="store_true",
+        dest="list",
+        help="List the available duties.",
+    )
+    parser.add_argument("DUTIES", metavar="DUTY", nargs="*")
     return parser
 
 
-def main(args: Optional[List[str]] = None) -> int:
+def main(args: Optional[List[str]] = None) -> int:  # noqa: WPS212 (return statements)
     """
     Run the main program.
 
@@ -102,15 +116,23 @@ def main(args: Optional[List[str]] = None) -> int:
     parser = get_parser()
     opts = parser.parse_args(args=args)
 
-    duties = load_duties(opts.duties_file)
+    load_duties(opts.duties_file)
+
+    if opts.list:
+        print_duties()
+        return 0
 
     try:
-        selection = parse_selection(opts.DUTIES, duties)
+        selection = parse_selection(opts.DUTIES)
     except KeyError as error:
         print(f"Unknown duty: {error}", file=sys.stderr)  # noqa: WPS421 (print)
         return 1
     except ValueError as error:
         print(f"Incorrect arguments: {error}", file=sys.stderr)  # noqa: WPS421 (print)
+        return 1
+
+    if not selection:
+        print("Please chose at least one duty", file=sys.stderr)  # noqa: WPS421 (print)
         return 1
 
     for duty, duty_args in selection:

@@ -7,8 +7,7 @@ from duty import cli
 
 def test_main():
     """Basic CLI test."""
-    with pytest.raises(SystemExit):
-        cli.main([])
+    assert cli.main([]) == 1
 
 
 def test_show_help(capsys):
