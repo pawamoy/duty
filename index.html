@@ -237,6 +237,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    Quick start
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    Run
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    Todo
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -379,6 +413,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    Quick start
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    Run
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    Todo
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -404,6 +472,8 @@
 <a href="https://pawamoy.github.io/duty/"><img alt="documentation" src="https://img.shields.io/badge/docs-mkdocs%20material-blue.svg?style=flat" /></a>
 <a href="https://pypi.org/project/duty/"><img alt="pypi version" src="https://img.shields.io/pypi/v/duty.svg" /></a></p>
 <p>A simple task runner.</p>
+<p>Inspired by <a href="https://github.com/pyinvoke/invoke">Invoke</a>.</p>
+<p><img alt="demo" src="demo.svg" /></p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">¤</a></h2>
 <p>Duty requires Python 3.6 or above.</p>
 <details>
@@ -434,6 +504,188 @@ pyenv global system <span class="m">3</span>.6.12
 
 pipx install --python python3.6 duty
 </code></pre></div></p>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">¤</a></h2>
+<p>Proper documentation pages will soon be available.</p>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">¤</a></h3>
+<p>Create a <code>duties.py</code> file at the root of your repository.</p>
+<p>Each task is declared as a "duty", using the <code>duty.duty</code> decorator.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;mkdocs build&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>ctx</code> argument is the "context" of the duty.
+It is automatically created and passed to your function.</p>
+<p>It has only one purpose: running command with its <code>run</code> method.
+The <code>run</code> method accepts strings, list of strings, or even Python callables.</p>
+<p>The above duty can be rewritten as:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;mkdocs&quot;</span><span class="p">,</span> <span class="s2">&quot;build&quot;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
+    <span class="c1"># avoid the overhead of an extra shell process</span>
+</code></pre></div>
+
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+<span class="kn">from</span> <span class="nn">mkdocs</span> <span class="kn">import</span> <span class="n">build</span><span class="p">,</span> <span class="n">config</span>
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">build</span><span class="o">.</span><span class="n">build</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">load_config</span><span class="p">()],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
+    <span class="c1"># avoid the overhead of an extra Python process</span>
+</code></pre></div>
+
+<p>The <code>run</code> methods accepts various options,
+mostly coming from its underlying dependency:
+<a href="https://github.com/pawamoy/failprint"><code>failprint</code></a>.</p>
+<p><strong>Arguments of the <code>run</code> method:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd</td>
+<td><code>str</code>, <code>list of str</code>, or Python callable</td>
+<td>The command to run.</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td>args</td>
+<td><code>list</code></td>
+<td>Arguments to pass to the callable.</td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td>kwargs</td>
+<td><code>dict</code></td>
+<td>Keyword arguments to pass to the callable.</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td>number</td>
+<td><code>int</code></td>
+<td>The command number (useful for the <code>tap</code> format).</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td>output_type</td>
+<td><code>str</code></td>
+<td>The type of output: <code>stdout</code>, <code>stderr</code>, <code>combine</code> or <code>nocapture</code></td>
+<td><code>combine</code></td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>str</code></td>
+<td>The command title.</td>
+<td><em>cmd as a shell command or Python statement</em></td>
+</tr>
+<tr>
+<td>fmt</td>
+<td><code>str</code></td>
+<td>The output format as a Jinja template: <code>pretty</code>, <code>tap</code> or <code>custom=...</code></td>
+<td><code>pretty</code></td>
+</tr>
+<tr>
+<td>pty</td>
+<td><code>bool</code></td>
+<td>Whether to run in a PTY.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>progress</td>
+<td><code>bool</code></td>
+<td>Whether to show progress.</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td>nofail</td>
+<td><code>bool</code></td>
+<td>Whether to always succeed.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>quiet</td>
+<td><code>bool</code></td>
+<td>Don't print the command output, even if it failed.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>silent</td>
+<td><code>bool</code></td>
+<td>Don't print anything.</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage of the <code>silent</code> option:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -type d -name __pycache__ | xargs rm -rf&quot;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Now let's say you have more than one command, and you want to silence all of them:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf .coverage*&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf .mypy_cache&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf .pytest_cache&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf build&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf dist&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf pip-wheel-metadata&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf site&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -type d -name __pycache__ | xargs rm -rf&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -name &#39;*.rej&#39; -delete&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="run">Run<a class="headerlink" href="#run" title="Permanent link">¤</a></h3>
+<p>To run a duty, simply use:</p>
+<div class="highlight"><pre><span></span><code>duty clean
+</code></pre></div>
+
+<p>If you are using <a href="https://github.com/python-poetry/poetry">Poetry</a>:</p>
+<div class="highlight"><pre><span></span><code>poetry run duty clean
+</code></pre></div>
+
+<p>You can pass multiple duties in one command:</p>
+<div class="highlight"><pre><span></span><code>duty clean docs
+</code></pre></div>
+
+<p>If one of your duties accept arguments,
+you can pass them on the command line as well:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">serve</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;serve&quot;</span> <span class="k">if</span> <span class="n">serve</span> <span class="k">else</span> <span class="s2">&quot;build&quot;</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mkdocs </span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code>duty docs <span class="nv">serve</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that arguments are not type-casted:
+they are always passed as strings to the duties.</p>
+</div>
+<h2 id="todo">Todo<a class="headerlink" href="#todo" title="Permanent link">¤</a></h2>
+<ul>
+<li>CLI <code>--list</code> option, to list the available duties and their description.</li>
+<li>Aliases. I think I will replace <code>_</code> by <code>-</code> when registering a duty,
+  and add the original name as an alias.</li>
+<li>Better handling of missing duties arguments.
+  Maybe simply print the error without a traceback:
+  <code>release() missing 1 required positional argument: 'version'</code></li>
+<li>Arguments type casting, ideally based on type annotations!</li>
+</ul>
                 
               
               
