@@ -385,7 +385,7 @@ def coverage(ctx):
     ctx.run("coverage html --rcfile=config/coverage.ini")
 
 
-@duty(pre=[duty(lambda ctx: ctx.run("rm -f .coverage", silent=True))])
+@duty(pre=[lambda ctx: ctx.run("rm -f .coverage", silent=True)])
 def test(ctx, match=""):
     """
     Run the test suite.
