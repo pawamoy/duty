@@ -180,9 +180,6 @@ duty docs serve=1
 
 ## Todo
 
-- CLI `--list` option, to list the available duties and their description.
-- Aliases. I think I will replace `_` by `-` when registering a duty,
-  and add the original name as an alias.
 - Better handling of missing duties arguments.
   Maybe simply print the error without a traceback:
   `release() missing 1 required positional argument: 'version'`

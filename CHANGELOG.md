@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.4.0](https://github.com/pawamoy/duty/releases/tag/0.4.0) - 2020-10-05
+
+<small>[Compare with 0.3.1](https://github.com/pawamoy/duty/compare/0.3.1...0.4.0)</small>
+
+### Features
+- Add list options and aliases ([c238110](https://github.com/pawamoy/duty/commit/c23811013f92609907c934a1f54e65c209c6f7f0) by Timothée Mazzucotelli).
+
+
 ## [0.3.1](https://github.com/pawamoy/duty/releases/tag/0.3.1) - 2020-10-04
 
 <small>[Compare with 0.3.0](https://github.com/pawamoy/duty/compare/0.3.0...0.3.1)</small>
