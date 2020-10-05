@@ -132,7 +132,7 @@ def main(args: Optional[List[str]] = None) -> int:  # noqa: WPS212 (return state
         return 1
 
     if not selection:
-        print("Please chose at least one duty", file=sys.stderr)  # noqa: WPS421 (print)
+        print("Please choose at least one duty", file=sys.stderr)  # noqa: WPS421 (print)
         return 1
 
     for duty, duty_args in selection:
