@@ -86,7 +86,6 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "-d",
         "--duties-file",
-        nargs=1,
         default="duties.py",
         help="Python file where the duties are defined.",
     )
