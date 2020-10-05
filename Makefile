@@ -2,7 +2,6 @@
 SHELL := bash
 
 DUTY = $(shell [ -n "${VIRTUAL_ENV}" ] || echo poetry run) duty
-PYTHON_VERSIONS ?= 3.6 3.7 3.8
 
 BASIC_DUTIES = \
 	changelog \
@@ -30,7 +29,7 @@ help:
 
 .PHONY: setup
 setup:
-	@env PYTHON_VERSIONS="$(PYTHON_VERSIONS)" bash scripts/setup.sh
+	@bash scripts/setup.sh
 
 .PHONY: $(BASIC_DUTIES)
 $(BASIC_DUTIES):
@@ -38,5 +37,5 @@ $(BASIC_DUTIES):
 
 .PHONY: $(QUALITY_DUTIES)
 $(QUALITY_DUTIES):
-	@env PYTHON_VERSIONS="$(PYTHON_VERSIONS)" bash scripts/multirun.sh duty $@
+	@bash scripts/multirun.sh duty $@
 

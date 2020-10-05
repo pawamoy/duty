@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+PYTHON_VERSIONS="${PYTHON_VERSIONS:-3.6 3.7 3.8}"
+
 if [ -n "${PYTHON_VERSIONS}" ]; then
     for python_version in ${PYTHON_VERSIONS}; do
         if output=$(poetry env use "${python_version}" 2>&1); then

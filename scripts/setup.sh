@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+PYTHON_VERSIONS="${PYTHON_VERSIONS:-3.6 3.7 3.8}"
+
 install_with_pipx() {
     if ! command -v "$1" &>/dev/null; then
         if ! command -v pipx &>/dev/null; then
@@ -11,7 +13,6 @@ install_with_pipx() {
 }
 
 install_with_pipx poetry
-install_with_pipx invoke
 
 if [ -n "${PYTHON_VERSIONS}" ]; then
     for python_version in ${PYTHON_VERSIONS}; do
