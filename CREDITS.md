@@ -12,7 +12,6 @@ These projects were used to build `duty`. **Thank you!**
 ### Direct dependencies
 [`autoflake`](https://github.com/myint/autoflake) |
 [`black`](https://github.com/psf/black) |
-[`coverage`](https://github.com/nedbat/coveragepy) |
 [`failprint`](https://github.com/pawamoy/failprint) |
 [`flake8-black`](https://github.com/peterjc/flake8-black) |
 [`flake8-builtins`](https://github.com/gforcada/flake8-builtins) |
@@ -22,7 +21,6 @@ These projects were used to build `duty`. **Thank you!**
 [`flakehell`](None) |
 [`git-changelog`](https://github.com/pawamoy/git-changelog) |
 [`httpx`](https://github.com/encode/httpx) |
-[`invoke`](http://docs.pyinvoke.org) |
 [`ipython`](https://ipython.org) |
 [`isort`](https://github.com/timothycrosley/isort) |
 [`jinja2-cli`](https://github.com/mattrobenolt/jinja2-cli) |
@@ -36,8 +34,7 @@ These projects were used to build `duty`. **Thank you!**
 [`pytest-sugar`](http://pivotfinland.com/pytest-sugar/) |
 [`pytest-xdist`](https://github.com/pytest-dev/pytest-xdist) |
 [`toml`](https://github.com/uiri/toml) |
-[`wemake-python-styleguide`](https://wemake-python-stylegui.de) |
-[`wrapt`](https://github.com/GrahamDumpleton/wrapt)
+[`wemake-python-styleguide`](https://wemake-python-stylegui.de)
 
 ### Indirect dependencies
 [`ansimarkup`](https://github.com/gvalkov/python-ansimarkup) |
@@ -56,6 +53,7 @@ These projects were used to build `duty`. **Thank you!**
 [`click`](https://palletsprojects.com/p/click/) |
 [`colorama`](https://github.com/tartley/colorama) |
 [`contextvars`](http://github.com/MagicStack/contextvars) |
+[`coverage`](https://github.com/nedbat/coveragepy) |
 [`darglint`](None) |
 [`dataclasses`](https://github.com/ericvsmith/dataclasses) |
 [`decorator`](https://github.com/micheles/decorator) |
@@ -139,6 +137,7 @@ These projects were used to build `duty`. **Thank you!**
 [`typing-extensions`](https://github.com/python/typing/blob/master/typing_extensions/README.rst) |
 [`urllib3`](https://urllib3.readthedocs.io/) |
 [`wcwidth`](https://github.com/jquast/wcwidth) |
+[`wrapt`](https://github.com/GrahamDumpleton/wrapt) |
 [`zipp`](https://github.com/jaraco/zipp)
 
 **[More credits from the author](http://pawamoy.github.io/credits/)**
