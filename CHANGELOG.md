@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.4.1](https://github.com/pawamoy/duty/releases/tag/0.4.1) - 2020-10-05
+
+<small>[Compare with 0.4.0](https://github.com/pawamoy/duty/compare/0.4.0...0.4.1)</small>
+
+### Bug Fixes
+- Fix `-d` option parsing ([a004c7f](https://github.com/pawamoy/duty/commit/a004c7fb3d9849fe877d775738950b8e93934af2) by Timothée Mazzucotelli).
+
+### Code Refactoring
+- Accept args and kwargs in decorator ([567334f](https://github.com/pawamoy/duty/commit/567334f0a9e68a2592ca13ea7d43f7ab587359e6) by Timothée Mazzucotelli).
+
+
 ## [0.4.0](https://github.com/pawamoy/duty/releases/tag/0.4.0) - 2020-10-05
 
 <small>[Compare with 0.3.1](https://github.com/pawamoy/duty/compare/0.3.1...0.4.0)</small>
