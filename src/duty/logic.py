@@ -220,14 +220,12 @@ def duty(*args, **kwargs) -> Union[Callable, Duty]:
     Returns:
         A duty when used without parentheses, a decorator otherwise.
     """
-    if args and kwargs:
-        raise ValueError("The duty decorator only accepts kwargs")
     if args:
         if len(args) > 1:
             raise ValueError(
-                "The duty decorator only accepts a function as first argument " "and no extra positional args",
+                "The duty decorator accepts only one positional argument",
             )
-        return register_duty(args[0])
+        return register_duty(args[0], **kwargs)
 
     def decorator(func):
         return register_duty(func, **kwargs)
