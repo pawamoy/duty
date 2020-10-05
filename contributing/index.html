@@ -454,13 +454,12 @@ make setup
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If it fails for some reason,
-you'll need to install these tools manually:
-<a href="https://github.com/python-poetry/poetry">Poetry</a> and
-<a href="https://github.com/pyinvoke/invoke">Invoke</a>.</p>
-<p>You can install them with:</p>
+you'll need to install
+<a href="https://github.com/python-poetry/poetry">Poetry</a>
+manually.</p>
+<p>You can install it with:</p>
 <div class="highlight"><pre><span></span><code>python3 -m pip install --user pipx
 pipx install poetry
-pipx install invoke
 </code></pre></div>
 
 <p>Now you can try running <code>make setup</code> again,
@@ -470,15 +469,15 @@ or simply <code>poetry install</code>.</p>
 <p>You can run the application with <code>poetry run duty [ARGS...]</code>.</p>
 <p>Run <code>make help</code> to see all the available actions!</p>
 <h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">¤</a></h2>
-<p>This project uses <a href="https://github.com/pyinvoke/invoke">Invoke</a> to run tasks.
-A Makefile is also provided. The Makefile will try to run the task
+<p>This project uses <a href="https://github.com/pawamoy/duty">Duty</a> to run tasks.
+A Makefile is also provided. The Makefile will try to run certain tasks
 on multiple Python versions. If for some reason you don't want to run the task
 on multiple Python versions, you can do one of the following:</p>
 <ol>
 <li><code>export PYTHON_VERSIONS=</code>: this will run the task
    with only the current Python version</li>
-<li>run the task directly with <code>poetry run invoke TASK</code>,
-   or <code>invoke TASK</code> if the environment was already activated
+<li>run the task directly with <code>poetry run duty TASK</code>,
+   or <code>duty TASK</code> if the environment was already activated
    through <code>poetry shell</code></li>
 </ol>
 <p>The Makefile detects if the Poetry environment is activated,
