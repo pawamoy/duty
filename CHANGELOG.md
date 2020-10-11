@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 <small>[Compare with 0.4.1](https://github.com/pawamoy/duty/compare/0.4.1...0.5.0)</small>
 
-## Packaging
+### Packaging
 - Use `failprint` version 0.6.0 ([changelog](https://pawamoy.github.io/failprint/changelog/#060-2020-10-11)).
 
 
