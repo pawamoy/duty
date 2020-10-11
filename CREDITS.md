@@ -24,6 +24,7 @@ These projects were used to build `duty`. **Thank you!**
 [`ipython`](https://ipython.org) |
 [`isort`](https://github.com/timothycrosley/isort) |
 [`jinja2-cli`](https://github.com/mattrobenolt/jinja2-cli) |
+[`markdown-include`](https://github.com/cmacmackin/markdown-include/) |
 [`mkdocs`](https://www.mkdocs.org) |
 [`mkdocs-material`](https://squidfunk.github.io/mkdocs-material/) |
 [`mkdocstrings`](https://github.com/pawamoy/mkdocstrings) |

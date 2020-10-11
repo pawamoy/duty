@@ -37,6 +37,7 @@ ipython = "^7.2"
 # TODO: accept v5 once https://github.com/wemake-services/wemake-python-styleguide/issues/1584 is resolved
 isort = {version = "<5", extras = ["pyproject"]}
 jinja2-cli = "^0.7.0"
+markdown-include = "^0.6.0"
 mkdocs = "^1.1.2"
 mkdocs-material = "^5.5.12"
 mkdocstrings = "^0.13.1"
@@ -89,6 +90,7 @@ exclude = ["tests/fixtures"]
     "-C0301",  # line too long
     "-R0902",  # too many instance attributes
     "-R0903",  # too few public methods
+    "-R0904",  # too many public methods
     "-R0912",  # too many branches
     "-R0913",  # too many methods
     "-R0914",  # too many local variables
@@ -114,6 +116,7 @@ exclude = ["tests/fixtures"]
     "-WPS322",  # multi-line strings (incompatible with attributes docstrings)
     "-WPS326",  # implicit string concatenation
     "-WPS336",  # explicit string concatenation
+    "-WPS402",  # nosa overuse
     "-WPS412",  # __init__ modules with logic
     "-WPS428",  # statement with no effect (not compatible with attribute docstrings)
     "-WPS433",  # redundant with C0415 (not top-level import)
