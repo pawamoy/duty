@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.5.0](https://github.com/pawamoy/duty/releases/tag/0.5.0) - 2020-10-11
+
+<small>[Compare with 0.4.1](https://github.com/pawamoy/duty/compare/0.4.1...0.5.0)</small>
+
+## Packaging
+- Use `failprint` version 0.6.0 ([changelog](https://pawamoy.github.io/failprint/changelog/#060-2020-10-11)).
+
+
 ## [0.4.1](https://github.com/pawamoy/duty/releases/tag/0.4.1) - 2020-10-05
 
 <small>[Compare with 0.4.0](https://github.com/pawamoy/duty/compare/0.4.0...0.4.1)</small>
