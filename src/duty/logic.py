@@ -3,7 +3,7 @@
 import inspect
 from typing import Any, Callable, Dict, Iterable, List, Optional, Union
 
-from failprint.cli import run as failprint_run
+from failprint.runners import run as failprint_run
 
 DutyListType = List[Union[str, Callable, "Duty"]]
 CmdType = Union[str, List[str], Callable]

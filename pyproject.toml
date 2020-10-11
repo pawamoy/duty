@@ -20,7 +20,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-failprint = "^0.5.1"
+failprint = "^0.6.0"
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.4"
