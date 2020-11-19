@@ -107,9 +107,9 @@ cmd | `str`, `list of str`, or Python callable | The command to run. | *required
 args | `list` | Arguments to pass to the callable. | `[]`
 kwargs | `dict` | Keyword arguments to pass to the callable. | `{}`
 number | `int` | The command number (useful for the `tap` format). | `None`
-output_type | `str` | The type of output: `stdout`, `stderr`, `combine` or `nocapture` | `combine`
+capture | `str` | The type of output: `"stdout"`, `"stderr"`, `True` (or `"both"`) and `False` (or `"none"`) | `True`
 title | `str` | The command title. | *cmd as a shell command or Python statement*
-fmt | `str` | The output format as a Jinja template: `pretty`, `tap` or `custom=...` | `pretty`
+fmt | `str` | The output format as a Jinja template: `"pretty"`, `"tap"` or `"custom=..."` | `"pretty"`
 pty | `bool` | Whether to run in a PTY. | `False`
 progress | `bool` | Whether to show progress. | `True`
 nofail | `bool` | Whether to always succeed. | `False`
