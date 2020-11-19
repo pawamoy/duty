@@ -515,7 +515,6 @@ pipx install --python python3.6 duty
 <span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;mkdocs build&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <p>The <code>ctx</code> argument is the "context" of the duty.
 It is automatically created and passed to your function.</p>
 <p>It has only one purpose: running command with its <code>run</code> method.
@@ -528,7 +527,6 @@ The <code>run</code> method accepts strings, list of strings, or even Python cal
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;mkdocs&quot;</span><span class="p">,</span> <span class="s2">&quot;build&quot;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
     <span class="c1"># avoid the overhead of an extra shell process</span>
 </code></pre></div>
-
 <p>Or:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
 <span class="kn">from</span> <span class="nn">mkdocs</span> <span class="kn">import</span> <span class="n">build</span><span class="p">,</span> <span class="n">config</span>
@@ -538,7 +536,6 @@ The <code>run</code> method accepts strings, list of strings, or even Python cal
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">build</span><span class="o">.</span><span class="n">build</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">load_config</span><span class="p">()],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
     <span class="c1"># avoid the overhead of an extra Python process</span>
 </code></pre></div>
-
 <p>The <code>run</code> methods accepts various options,
 mostly coming from its underlying dependency:
 <a href="https://github.com/pawamoy/failprint"><code>failprint</code></a>.</p>
@@ -578,10 +575,10 @@ mostly coming from its underlying dependency:
 <td><code>None</code></td>
 </tr>
 <tr>
-<td>output_type</td>
+<td>capture</td>
 <td><code>str</code></td>
-<td>The type of output: <code>stdout</code>, <code>stderr</code>, <code>combine</code> or <code>nocapture</code></td>
-<td><code>combine</code></td>
+<td>The type of output: <code>"stdout"</code>, <code>"stderr"</code>, <code>True</code> (or <code>"both"</code>) and <code>False</code> (or <code>"none"</code>)</td>
+<td><code>True</code></td>
 </tr>
 <tr>
 <td>title</td>
@@ -592,8 +589,8 @@ mostly coming from its underlying dependency:
 <tr>
 <td>fmt</td>
 <td><code>str</code></td>
-<td>The output format as a Jinja template: <code>pretty</code>, <code>tap</code> or <code>custom=...</code></td>
-<td><code>pretty</code></td>
+<td>The output format as a Jinja template: <code>"pretty"</code>, <code>"tap"</code> or <code>"custom=..."</code></td>
+<td><code>"pretty"</code></td>
 </tr>
 <tr>
 <td>pty</td>
@@ -632,7 +629,6 @@ mostly coming from its underlying dependency:
 <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -type d -name __pycache__ | xargs rm -rf&quot;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-
 <p>Now let's say you have more than one command, and you want to silence all of them:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@duty</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
@@ -646,20 +642,16 @@ mostly coming from its underlying dependency:
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -type d -name __pycache__ | xargs rm -rf&quot;</span><span class="p">)</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -name &#39;*.rej&#39; -delete&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <h3 id="run">Run<a class="headerlink" href="#run" title="Permanent link">¤</a></h3>
 <p>To run a duty, simply use:</p>
 <div class="highlight"><pre><span></span><code>duty clean
 </code></pre></div>
-
 <p>If you are using <a href="https://github.com/python-poetry/poetry">Poetry</a>:</p>
 <div class="highlight"><pre><span></span><code>poetry run duty clean
 </code></pre></div>
-
 <p>You can pass multiple duties in one command:</p>
 <div class="highlight"><pre><span></span><code>duty clean docs
 </code></pre></div>
-
 <p>If one of your duties accept arguments,
 you can pass them on the command line as well:</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
@@ -667,10 +659,8 @@ you can pass them on the command line as well:</p>
     <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;serve&quot;</span> <span class="k">if</span> <span class="n">serve</span> <span class="k">else</span> <span class="s2">&quot;build&quot;</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mkdocs </span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 <div class="highlight"><pre><span></span><code>duty docs <span class="nv">serve</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Note that arguments are not type-casted:

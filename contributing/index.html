@@ -450,7 +450,6 @@ Every little bit helps, and credit will always be given.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> duty
 make setup
 </code></pre></div>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If it fails for some reason,
@@ -461,7 +460,6 @@ manually.</p>
 <div class="highlight"><pre><span></span><code>python3 -m pip install --user pipx
 pipx install poetry
 </code></pre></div>
-
 <p>Now you can try running <code>make setup</code> again,
 or simply <code>poetry install</code>.</p>
 </div>
@@ -512,7 +510,6 @@ and we will help you during review.</p>
 
 [Body]
 </code></pre></div>
-
 <p>Scope and body are optional. Type can be:</p>
 <ul>
 <li><code>build</code>: About packaging, building wheels, etc.</li>
@@ -533,22 +530,18 @@ If you write a body, please add issues references at the end:</p>
 References: #10, #11.
 Fixes #15.
 </code></pre></div>
-
 <h2 id="pull-requests-guidelines">Pull requests guidelines<a class="headerlink" href="#pull-requests-guidelines" title="Permanent link">¤</a></h2>
 <p>Link to any related issue in the Pull Request message.</p>
 <p>During review, we recommend using fixups:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># SHA is the SHA of the commit you want to fix</span>
 git commit --fixup<span class="o">=</span>SHA
 </code></pre></div>
-
 <p>Once all the changes are approved, you can squash your commits:</p>
 <div class="highlight"><pre><span></span><code>git rebase -i --autosquash master
 </code></pre></div>
-
 <p>And force-push:</p>
 <div class="highlight"><pre><span></span><code>git push -f
 </code></pre></div>
-
 <p>If this seems all too complicated, you can push or force-push each new commit,
 and we will squash them ourselves if needed, before merging.</p>
                 
