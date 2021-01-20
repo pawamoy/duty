@@ -20,9 +20,9 @@ PY_SRC_PATHS = (Path(_) for _ in ("src", "tests", "duties.py"))
 PY_SRC_LIST = tuple(str(_) for _ in PY_SRC_PATHS)
 PY_SRC = " ".join(PY_SRC_LIST)
 TESTING = os.environ.get("TESTING", "0") in {"1", "true"}
-CI = os.environ.get("CI", "0") in {"1", "true"}
+CI = os.environ.get("CI", "0") in {"1", "true", "yes", ""}
 WINDOWS = os.name == "nt"
-PTY = not WINDOWS
+PTY = not WINDOWS and not CI
 
 
 def latest(lines: List[str], regex: Pattern) -> Optional[str]:
@@ -317,7 +317,7 @@ def docs(ctx):
 
 
 @duty(pre=[docs_regen])
-def docs_serve(ctx, host="127.0.0.1", port=8000):
+def docs_serve(ctx, host: str = "127.0.0.1", port: int = 8000):
     """
     Serve the documentation (localhost:8000).
 
@@ -358,7 +358,7 @@ def format(ctx):  # noqa: W0622 (we don't mind shadowing the format builtin)
 
 
 @duty
-def release(ctx, version):
+def release(ctx, version: str):
     """
     Release a new Python package.
 
@@ -378,17 +378,6 @@ def release(ctx, version):
         ctx.run("mkdocs gh-deploy", title="Deploying documentation", pty=PTY)
 
 
-@duty
-def combine(ctx):
-    """
-    Combine coverage data from multiple runs.
-
-    Arguments:
-        ctx: The context instance (passed automatically).
-    """
-    ctx.run("coverage combine --rcfile=config/coverage.ini")
-
-
 @duty(silent=True)
 def coverage(ctx):
     """
@@ -402,7 +391,7 @@ def coverage(ctx):
 
 
 @duty(pre=[duty(lambda ctx: ctx.run("rm -f .coverage", silent=True))])
-def test(ctx, match=""):
+def test(ctx, match: str = ""):
     """
     Run the test suite.
 

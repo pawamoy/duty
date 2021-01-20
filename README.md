@@ -3,6 +3,7 @@
 [![ci](https://github.com/pawamoy/duty/workflows/ci/badge.svg)](https://github.com/pawamoy/duty/actions?query=workflow%3Aci)
 [![documentation](https://img.shields.io/badge/docs-mkdocs%20material-blue.svg?style=flat)](https://pawamoy.github.io/duty/)
 [![pypi version](https://img.shields.io/pypi/v/duty.svg)](https://pypi.org/project/duty/)
+[![gitter](https://badges.gitter.im/join%20chat.svg)](https://gitter.im/duty/community)
 
 A simple task runner.
 

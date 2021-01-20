@@ -1,20 +1,14 @@
-"""Tests for the `logic` module."""
+"""Tests about running duties."""
 
 from unittest.mock import NonCallableMock
 
 import pytest
 
-from duty.logic import Duty, DutyFailure
-from duty.logic import duty as decorate
-from duty.logic import get_duty
+from duty.collection import Collection, Duty
+from duty.decorator import duty as decorate
+from duty.exceptions import DutyFailure
 
 INTERRUPT_CODE = 130
-
-
-def test_instantiate_duty():
-    """Instantiate a duty."""
-    assert Duty("name", "description", lambda: None)
-    assert Duty("name", "description", lambda: None, pre=[0, 1], post=[2])
 
 
 def test_run_duty():
@@ -51,7 +45,13 @@ def test_run_pre_post_duties_instances():
     pre_duty = Duty("pre", "", lambda ctx: pre_calls.append(True))
     post_duty = Duty("post", "", lambda ctx: post_calls.append(True))
 
-    duty = Duty("name", "description", lambda ctx: None, pre=[pre_duty], post=[post_duty])
+    duty = Duty(
+        name="name",
+        description="description",
+        function=lambda ctx: None,
+        pre=[pre_duty],
+        post=[post_duty],
+    )
 
     duty.run()
 
@@ -64,11 +64,11 @@ def test_run_pre_post_duties_refs():
     pre_calls = []
     post_calls = []
 
-    decorate(lambda ctx: pre_calls.append(True), name="pre")
-    decorate(lambda ctx: post_calls.append(True), name="post")
+    collection = Collection()
+    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))
+    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))
 
-    duty = Duty("name", "description", lambda ctx: None, pre=["pre"], post=["post"])
-
+    duty = Duty("name", "description", lambda ctx: None, collection=collection, pre=["pre"], post=["post"])
     duty.run()
 
     assert pre_calls[0] is True
@@ -101,30 +101,3 @@ def test_code_when_keyboard_interrupt():
 def test_dont_raise_duty_failure():
     """Don't raise a duty failure on success."""
     assert not Duty("n", "d", lambda ctx: ctx.run(lambda: 0))()  # noqa: WPS430,WPS522 (lambdas)
-
-
-def test_dont_get_duty():
-    """Don't find a duty."""
-    with pytest.raises(KeyError):
-        get_duty("hello")
-
-
-def test_register_aliases():
-    """Register a duty and its aliases."""
-    decorate(lambda ctx: None, name="hello", aliases=["HELLO", "_hello_", ".hello."])
-    assert get_duty("hello")
-    assert get_duty("HELLO")
-    assert get_duty("_hello_")
-    assert get_duty(".hello.")
-
-
-def test_replace_name_and_set_alias():
-    """Replace underscores by dashes in duties names."""
-    decorate(lambda ctx: None, name="snake_case")
-    assert get_duty("snake_case") is get_duty("snake-case")
-
-
-def test_accept_one_posarg_when_decorating():
-    """Accept only one positional argument when decorating."""
-    with pytest.raises(ValueError, match="accepts only one positional argument"):
-        decorate(0, 1)
