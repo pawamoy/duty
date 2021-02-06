@@ -390,15 +390,18 @@ def coverage(ctx):
     ctx.run("coverage html --rcfile=config/coverage.ini")
 
 
-@duty(pre=[duty(lambda ctx: ctx.run("rm -f .coverage", silent=True))])
-def test(ctx, match: str = ""):
+@duty
+def test(ctx, clean: bool = True, match: str = ""):  # noqa: W0621,WPS442
     """
     Run the test suite.
 
     Arguments:
         ctx: The context instance (passed automatically).
+        clean: Whether to remove the `.coverage` file before running tests.
         match: A pytest expression to filter selected tests.
     """
+    if clean:
+        ctx.run("rm -f .coverage", silent=True)
     ctx.run(
         ["pytest", "-c", "config/pytest.ini", "-n", "auto", "-k", match, "tests"],
         title="Running tests",
