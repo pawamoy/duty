@@ -12,6 +12,7 @@ These projects were used to build `duty`. **Thank you!**
 ### Direct dependencies
 [`autoflake`](https://github.com/myint/autoflake) |
 [`black`](https://github.com/psf/black) |
+[`cached-property`](https://github.com/pydanny/cached-property) |
 [`failprint`](https://github.com/pawamoy/failprint) |
 [`flake8-black`](https://github.com/peterjc/flake8-black) |
 [`flake8-builtins`](https://github.com/gforcada/flake8-builtins) |
@@ -26,6 +27,7 @@ These projects were used to build `duty`. **Thank you!**
 [`jinja2-cli`](https://github.com/mattrobenolt/jinja2-cli) |
 [`markdown-include`](https://github.com/cmacmackin/markdown-include/) |
 [`mkdocs`](https://www.mkdocs.org) |
+[`mkdocs-coverage`](https://github.com/pawamoy/mkdocs-coverage) |
 [`mkdocs-material`](https://squidfunk.github.io/mkdocs-material/) |
 [`mkdocstrings`](https://github.com/pawamoy/mkdocstrings) |
 [`mypy`](http://www.mypy-lang.org/) |
@@ -48,7 +50,6 @@ These projects were used to build `duty`. **Thank you!**
 [`attrs`](https://www.attrs.org/) |
 [`backcall`](https://github.com/takluyver/backcall) |
 [`bandit`](https://bandit.readthedocs.io/en/latest/) |
-[`beautifulsoup4`](http://www.crummy.com/software/BeautifulSoup/bs4/) |
 [`certifi`](https://certifiio.readthedocs.io/en/latest/) |
 [`chardet`](https://github.com/chardet/chardet) |
 [`click`](https://palletsprojects.com/p/click/) |
@@ -84,7 +85,7 @@ These projects were used to build `duty`. **Thank you!**
 [`httpcore`](https://github.com/encode/httpcore) |
 [`idna`](https://github.com/kjd/idna) |
 [`immutables`](https://github.com/MagicStack/immutables) |
-[`importlib-metadata`](http://importlib-metadata.readthedocs.io/) |
+[`importlib-metadata`](https://github.com/python/importlib_metadata) |
 [`iniconfig`](http://github.com/RonnyPfannschmidt/iniconfig) |
 [`ipython-genutils`](http://ipython.org) |
 [`jedi`](https://github.com/davidhalter/jedi) |
@@ -119,7 +120,7 @@ These projects were used to build `duty`. **Thank you!**
 [`pyparsing`](https://github.com/pyparsing/pyparsing/) |
 [`pytest-forked`](https://github.com/pytest-dev/pytest-forked) |
 [`pytkdocs`](https://github.com/pawamoy/pytkdocs) |
-[`PyYAML`](https://github.com/yaml/pyyaml) |
+[`PyYAML`](https://pyyaml.org/) |
 [`regex`](https://bitbucket.org/mrabarnett/mrab-regex) |
 [`restructuredtext-lint`](https://github.com/twolfson/restructuredtext-lint) |
 [`rfc3986`](http://rfc3986.readthedocs.io) |
@@ -127,7 +128,6 @@ These projects were used to build `duty`. **Thank you!**
 [`smmap`](https://github.com/gitpython-developers/smmap) |
 [`sniffio`](https://github.com/python-trio/sniffio) |
 [`snowballstemmer`](https://github.com/snowballstem/snowball) |
-[`soupsieve`](https://github.com/facelessuser/soupsieve) |
 [`stevedore`](https://docs.openstack.org/stevedore/latest/) |
 [`termcolor`](http://pypi.python.org/pypi/termcolor) |
 [`testfixtures`](https://github.com/Simplistix/testfixtures) |
