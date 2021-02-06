@@ -9,6 +9,7 @@ nav:
   - Overview: index.md
   - Changelog: changelog.md
   - Credits: credits.md
+- Usage: usage.md
 - Code Reference:
   - cli.py: reference/cli.md
   - collection.py: reference/collection.md

@@ -4,7 +4,7 @@
 class DutyFailure(Exception):
     """An exception raised when a duty fails."""
 
-    def __init__(self, code):
+    def __init__(self, code: int):
         """
         Initialize the object.
 
