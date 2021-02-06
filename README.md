@@ -67,5 +67,5 @@ You can now use the command line tool to run it:
 duty docs
 ```
 
-See the [Usage](https://pawamoy.github.io/duty/usage)
+See the [Usage](https://pawamoy.github.io/duty/usage/)
 section in the documentation for more examples.
