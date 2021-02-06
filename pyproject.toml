@@ -92,12 +92,14 @@ exclude = ["tests/fixtures"]
     "-R0902",  # too many instance attributes
     "-R0903",  # too few public methods
     "-R0904",  # too many public methods
+    "-R0911",  # too many return statements
     "-R0912",  # too many branches
     "-R0913",  # too many methods
     "-R0914",  # too many local variables
     "-R0915",  # too many statements
     "-W0212",  # redundant with WPS437 (access to protected attribute)
     "-W0611",  # redundant with F401 (unused import)
+    "-W0612",  # redundant with F841 (unused variable)
     "-W1203",  # lazy formatting for logging calls
     "-WPS305",  # f-strings
     "-WPS110",  # common variable names (too annoying)
@@ -119,6 +121,7 @@ exclude = ["tests/fixtures"]
     "-WPS336",  # explicit string concatenation
     "-WPS402",  # noqa overuse
     "-WPS412",  # __init__ modules with logic
+    "-WPS421",  # print statements
     "-WPS428",  # statement with no effect (not compatible with attribute docstrings)
     "-WPS433",  # redundant with C0415 (not top-level import)
     "-WPS529",  # implicit dict.get usage (generally false-positive)
