@@ -172,16 +172,5 @@ def docs(ctx, serve=False):
 ```
 
 ```bash
-duty docs serve=1
+duty docs serve=true
 ```
-
-!!! note
-    Note that arguments are not type-casted:
-    they are always passed as strings to the duties.
-
-## Todo
-
-- Better handling of missing duties arguments.
-  Maybe simply print the error without a traceback:
-  `release() missing 1 required positional argument: 'version'`
-- Arguments type casting, ideally based on type annotations!

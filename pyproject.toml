@@ -21,6 +21,7 @@ include = [
 [tool.poetry.dependencies]
 python = "^3.6"
 failprint = "^0.6.2"
+cached-property = {version = "^1.5.2", python = "<3.8"}
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.4"

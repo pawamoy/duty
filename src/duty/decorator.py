@@ -13,7 +13,7 @@ def create_duty(
     pre: Optional[DutyListType] = None,
     post: Optional[DutyListType] = None,
     **opts,
-) -> "Duty":
+) -> Duty:
     """
     Register a duty in the collection.
 

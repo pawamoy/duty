@@ -16,14 +16,17 @@ class Context:
     Context instances are passed to functions decorated with `duty`.
     """
 
-    def __init__(self, **options) -> None:
+    def __init__(self, options, options_override=None) -> None:
         """
         Initialize the context.
 
         Arguments:
-            options: Options passed internally to `failprint` functions.
+            options: Base options specified in `@duty(**options)`.
+            options_override: Options that override `run` and `@duty` options.
+                This argument is used to allow users to override options from the CLI or environment.
         """
         self.options = options
+        self.options_override = options_override or {}
 
     def run(self, cmd: CmdType, args=None, kwargs=None, **options):
         """
@@ -40,6 +43,7 @@ class Context:
         """
         final_options = dict(self.options)
         final_options.update(options)
+        final_options.update(self.options_override)
         try:
             code = failprint_run(cmd, args=args, kwargs=kwargs, **final_options)
         except KeyboardInterrupt:

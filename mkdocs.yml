@@ -5,20 +5,27 @@ repo_url: "https://github.com/pawamoy/duty"
 repo_name: "pawamoy/duty"
 
 nav:
-- Overview: index.md
+- Home:
+  - Overview: index.md
+  - Changelog: changelog.md
+  - Credits: credits.md
 - Code Reference:
   - cli.py: reference/cli.md
   - collection.py: reference/collection.md
   - context.py: reference/context.md
   - decorator.py: reference/decorator.md
   - exceptions.py: reference/exceptions.md
-- Contributing: contributing.md
-- Code of Conduct: code_of_conduct.md
+  - validation.py: reference/validation.md
+- Development:
+  - Contributing: contributing.md
+  - Code of Conduct: code_of_conduct.md
 - Changelog: changelog.md
 - Credits: credits.md
 
 theme:
   name: material
+  features:
+  - navigation.tabs
   palette:
     scheme: slate
     primary: teal

@@ -61,11 +61,20 @@ class Collection:
         except KeyError:
             return self.aliases[name_or_alias]
 
-    def show(self) -> None:
-        """Show duties."""
+    def format_help(self) -> str:
+        """
+        Format a message listing the duties.
+
+        Returns:
+            A string listing the duties and their summary.
+        """
+        lines = []
+        # 20 makes the summary aligned with options description
+        longest_name = max(max(len(name) for name in self.duties), 20)  # noqa: WPS432 (magic number)
         for name, duty in self.duties.items():
             description = duty.description.split("\n")[0]
-            print(f"{name:20} - {description}")  # noqa: WPS421 (print)
+            lines.append(f"{name:{longest_name}}  {description}")
+        return "\n".join(lines)
 
     def load(self, path: Optional[str] = None) -> None:
         """
@@ -90,6 +99,8 @@ class Collection:
             duty: The duty to add.
         """
         if duty.collection is not None:
+            # we must copy the duty to be able to add it
+            # in multiple collections
             duty = deepcopy(duty)
         duty.collection = self  # type: ignore
         self.duties[duty.name] = duty
@@ -133,26 +144,24 @@ class Duty:
         self.pre = pre or []
         self.post = post or []
         self.options = opts or self.default_options
+        self.options_override: Dict = {}
 
         self.collection = None
         if collection:
             collection.add(self)
 
-    def __call__(self, *args, **kwargs) -> None:
+    def __call__(self, context, *args, **kwargs) -> None:
         """
         Run the duty function.
 
         Arguments:
+            context: The context to use.
             args: Positional arguments passed to the function.
             kwargs: Keyword arguments passed to the function.
         """
-        self.run(*args, **kwargs)
-
-    def __repr__(self):
-        return f"Duty(name={self.name!r}, options={self.options!r})"
-
-    def __str__(self):
-        return self.name
+        self.run_duties(context, self.pre)
+        self.function(context, *args, **kwargs)
+        self.run_duties(context, self.post)
 
     @property
     def context(self) -> Context:
@@ -162,27 +171,26 @@ class Duty:
         Returns:
             A new context instance.
         """
-        return Context(**self.options)
+        return Context(self.options, self.options_override)
 
     def run(self, *args, **kwargs) -> None:
         """
-        Run the duty function.
+        Run the duty.
 
-        This function also runs pre- and post-duties.
+        This is just a shortcut for `duty(duty.context, *args, **kwargs)`.
 
         Arguments:
             args: Positional arguments passed to the function.
             kwargs: Keyword arguments passed to the function.
         """
-        self.run_duties(self.pre)
-        self.function(self.context, *args, **kwargs)
-        self.run_duties(self.post)
+        self(self.context, *args, **kwargs)
 
-    def run_duties(self, duties_list: DutyListType) -> None:  # noqa: WPS231 (not complex)
+    def run_duties(self, context, duties_list: DutyListType) -> None:  # noqa: WPS231 (not complex)
         """
         Run a list of duties.
 
         Arguments:
+            context: The context to use.
             duties_list: The list of duties to run.
 
         Raises:
@@ -191,9 +199,9 @@ class Duty:
                 to find another duty by its name.
         """
         for duty_item in duties_list:
-            if isinstance(duty_item, Duty):
-                # Item is a proper duty, run it.
-                duty_item.run()
+            if callable(duty_item):
+                # Item is a proper duty, or a callable: run it.
+                duty_item(context)
             elif isinstance(duty_item, str):
                 # Item is a reference to a duty.
                 if self.collection is None:
@@ -201,7 +209,4 @@ class Duty:
                         f"Can't find duty by name without a collection ({duty_item})",
                     )
                 # Get the duty and run it.
-                self.collection.get(duty_item).run()
-            elif callable(duty_item):
-                # Item is a callable, call it.
-                duty_item(self.context)
+                self.collection.get(duty_item)(context)

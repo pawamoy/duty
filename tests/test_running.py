@@ -15,7 +15,7 @@ def test_run_duty():
     """Run a duty."""
     duty = Duty("name", "description", lambda ctx: None)
     assert duty.run() is None
-    assert duty() is None
+    assert duty(duty.context) is None
 
 
 def test_run_pre_post_duties_lambdas():
@@ -100,4 +100,12 @@ def test_code_when_keyboard_interrupt():
 
 def test_dont_raise_duty_failure():
     """Don't raise a duty failure on success."""
-    assert not Duty("n", "d", lambda ctx: ctx.run(lambda: 0))()  # noqa: WPS430,WPS522 (lambdas)
+    duty = Duty("n", "d", lambda ctx: ctx.run(lambda: 0))  # noqa: WPS430,WPS522 (lambdas)
+    assert not duty.run()
+
+
+def test_cant_find_duty_without_collection():
+    """Check that we can't find a duty with its name without a collection."""
+    duty = decorate(lambda ctx: None, name="duty1", post=["duty2"])
+    with pytest.raises(RuntimeError):
+        duty.run()

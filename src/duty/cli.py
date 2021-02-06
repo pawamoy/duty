@@ -14,12 +14,16 @@
 import argparse
 import inspect
 import sys
-from typing import Any, Callable, Dict, List, Optional, Tuple
+import textwrap
+from typing import Dict, List, Optional, Tuple
 
 from failprint.cli import ArgParser, add_flags
 
 from duty.collection import Collection, Duty
 from duty.exceptions import DutyFailure
+from duty.validation import validate
+
+empty = inspect.Signature.empty
 
 
 def get_parser() -> ArgParser:
@@ -29,7 +33,10 @@ def get_parser() -> ArgParser:
     Returns:
         An argparse parser.
     """
-    parser = ArgParser(prog="duty")
+    usage = "duty [GLOBAL_OPTS...] [DUTY [DUTY_OPTS...] [DUTY_PARAMS...]...]"
+    description = "A simple task runner."
+    parser = ArgParser(add_help=False, usage=usage, description=description)
+
     parser.add_argument(
         "-d",
         "--duties-file",
@@ -43,6 +50,20 @@ def get_parser() -> ArgParser:
         dest="list",
         help="List the available duties.",
     )
+    parser.add_argument(
+        "-h",
+        "--help",
+        dest="help",
+        nargs="*",
+        metavar="DUTY",
+        help="Show this help message and exit. Pass duties names to print their help.",
+    )
+
+    add_flags(parser, set_defaults=False)
+    parser.add_argument("remainder", nargs=argparse.REMAINDER)
+
+    parser._optionals.title = "Global options"  # noqa: WPS437
+
     return parser
 
 
@@ -86,7 +107,45 @@ def split_args(args: List[str], names: List[str]) -> List[List[str]]:  # noqa: W
     return arg_lists
 
 
-def parse_options(duty: Duty, args: List[str]) -> Tuple[argparse.Namespace, List[str]]:
+def get_duty_parser(duty: Duty) -> ArgParser:
+    """
+    Get a duty-specific options parser.
+
+    Arguments:
+        duty: The duty to parse for.
+
+    Returns:
+        A duty-specific parser.
+    """
+    parser = ArgParser(
+        prog=f"duty {duty.name}",
+        add_help=False,
+        description=duty.description,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    add_flags(parser, set_defaults=False)
+    return parser
+
+
+def specified_options(opts: argparse.Namespace, exclude=None) -> Dict:
+    """
+    Cast an argparse Namespace into a dictionary of options.
+
+    Remove all options that were not specified (equal to None).
+
+    Arguments:
+        opts: The namespace to cast.
+        exclude: Names of options to exclude from the result.
+
+    Returns:
+        A dictionary of specified-only options.
+    """
+    exclude = exclude or set()
+    options = opts.__dict__.items()  # noqa: WPS609
+    return {opt: value for opt, value in options if value is not None and opt not in exclude}  # noqa: WPS221
+
+
+def parse_options(duty: Duty, args: List[str]) -> Tuple[Dict, List[str]]:
     """
     Parse options for a duty.
 
@@ -97,71 +156,9 @@ def parse_options(duty: Duty, args: List[str]) -> Tuple[argparse.Namespace, List
     Returns:
         The parsed opts, and the remaining arguments.
     """
-    parser = add_flags(ArgParser(prog=f"duty {duty.name}"), set_defaults=False)
+    parser = get_duty_parser(duty)
     opts, remainder = parser.parse_known_args(args)
-    opts = opts.__dict__.items()  # noqa: WPS609
-    opts = {_: value for _, value in opts if value is not None}
-    return opts, remainder
-
-
-def to_bool(value: str) -> bool:
-    """
-    Convert a string to a boolean.
-
-    Arguments:
-        value: The string to convert.
-
-    Returns:
-        True or False.
-    """
-    return value.lower() not in {"0", "no", "n", "false"}
-
-
-def arg_type(annotation: Any) -> Callable:
-    """
-    Return a type-caster for the given annotation.
-
-    Arguments:
-        annotation: A typing annotation.
-
-    Returns:
-        A callable.
-    """
-    if annotation is bool:
-        return to_bool
-    return annotation
-
-
-def get_args_types(duty: Duty) -> Tuple[Any, Any, Dict[str, Any]]:
-    """
-    Get the type of each argument of the duty's function.
-
-    Arguments:
-        duty: The duty to get arguments types from.
-
-    Returns:
-        A tuple composed of:
-
-        - the type for positional arguments,
-        - the type for unknown keyword arguments,
-        - a dict containing the type for each known argument
-    """
-    empty = inspect.Signature.empty
-    signature = inspect.signature(duty.function)
-
-    posargs_type: Callable = empty  # type: ignore
-    kwargs_type: Callable = empty  # type: ignore
-    args_type: Dict[str, Any] = {}
-
-    for parameter in list(signature.parameters.values())[1:]:
-        if parameter.kind is parameter.VAR_POSITIONAL:
-            posargs_type = arg_type(parameter.annotation)
-        elif parameter.kind is parameter.VAR_KEYWORD:
-            kwargs_type = arg_type(parameter.annotation)
-        elif parameter.annotation is not empty:
-            args_type[parameter.name] = arg_type(parameter.annotation)
-
-    return posargs_type, kwargs_type, args_type
+    return specified_options(opts), remainder
 
 
 def parse_args(duty: Duty, args: List[str]) -> Tuple:  # noqa: WPS231 (complex)
@@ -177,40 +174,26 @@ def parse_args(duty: Duty, args: List[str]) -> Tuple:  # noqa: WPS231 (complex)
     """
     posargs = []
     kwargs = {}
-    posargs_type, kwargs_type, args_type = get_args_types(duty)
-    empty = inspect.Signature.empty
 
     for arg in args:
         if "=" in arg:
-            # We found a keyword argument.
+            # we found a keyword argument
             arg_name, arg_value = arg.split("=", 1)
-            if arg_name in args_type:
-                # The keyword argument is known,
-                # we have a type for it: cast it.
-                arg_value = args_type[arg_name](arg_value)
-            elif kwargs_type is not empty:
-                # The keyword argument is unkown.
-                # If we have a global kwargs type,
-                # use it to cast the argument value.
-                arg_value = kwargs_type(arg_value)
             kwargs[arg_name] = arg_value
         else:
-            # We found a positional argument.
-            # If we have a global posargs type,
-            # use it to cast the argument value.
-            if posargs_type is not empty:
-                arg = posargs_type(arg)
+            # we found a positional argument
             posargs.append(arg)
 
-    return posargs, kwargs
+    return validate(duty.function, *posargs, **kwargs)
 
 
-def parse_commands(arg_lists, collection) -> List[Tuple]:
+def parse_commands(arg_lists, global_opts, collection) -> List[Tuple]:
     """
     Parse argument lists into ready-to-run duties.
 
     Arguments:
         arg_lists: Lists of arguments lists.
+        global_opts: The global options.
         collection: The duties collection.
 
     Returns:
@@ -224,9 +207,32 @@ def parse_commands(arg_lists, collection) -> List[Tuple]:
     for arg_list in arg_lists:
         duty = collection.get(arg_list[0])
         opts, remainder = parse_options(duty, arg_list[1:])
-        duty.options.update(opts)
+        duty.options_override = {**global_opts, **opts}
         commands.append((duty, *parse_args(duty, remainder)))
     return commands
+
+
+def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collection) -> None:
+    """
+    Print general help or duties help.
+
+    Arguments:
+        parser: The main parser.
+        opts: The main parsed options.
+        collection: A collection of duties.
+    """
+    if opts.help:
+        for duty_name in opts.help:
+            try:
+                duty = collection.get(duty_name)
+            except KeyError:
+                print(f"> Unknown duty '{duty_name}'")
+            else:
+                print(get_duty_parser(duty).format_help())
+    else:
+        print(parser.format_help())
+        print("Available duties:")
+        print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
 def main(args: Optional[List[str]] = None) -> int:  # noqa: WPS212 (return statements)
@@ -242,26 +248,36 @@ def main(args: Optional[List[str]] = None) -> int:  # noqa: WPS212 (return state
         An exit code.
     """
     parser = get_parser()
-    opts, remainder = parser.parse_known_args(args=args)
+    opts = parser.parse_args(args=args)
+    remainder = opts.remainder
 
     collection = Collection(opts.duties_file)
     collection.load()
 
+    if opts.help is not None:
+        print_help(parser, opts, collection)
+        return 0
+
     if opts.list:
-        collection.show()
+        print(textwrap.indent(collection.format_help(), prefix="  "))
         return 0
 
     try:
         arg_lists = split_args(remainder, collection.names())
     except ValueError as error:
-        print(error, file=sys.stderr)  # noqa: WPS421 (print)
+        print(error, file=sys.stderr)
         return 1
 
     if not arg_lists:
-        print("> Please choose at least one duty", file=sys.stderr)  # noqa: WPS421 (print)
+        print("> Please choose at least one duty", file=sys.stderr)
         return 1
 
-    commands = parse_commands(arg_lists, collection)
+    global_opts = specified_options(opts, exclude={"duties_file", "list", "help", "remainder"})
+    try:
+        commands = parse_commands(arg_lists, global_opts, collection)
+    except TypeError as error:  # noqa: WPS440 (variable overlap)
+        print(f"> {error}", file=sys.stderr)
+        return 1
 
     for duty, posargs, kwargs in commands:
         try:
