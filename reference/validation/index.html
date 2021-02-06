@@ -1,0 +1,1542 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A simple task runner.">
+      
+      
+      
+      
+        <link rel="canonical" href="https://pawamoy.github.io/duty/reference/validation/">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>validation.py - Duty</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#duty.validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://pawamoy.github.io/duty" title="Duty" class="md-header-nav__button md-logo" aria-label="Duty">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Duty
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              validation.py
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/pawamoy/duty/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pawamoy/duty
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../usage/" class="md-tabs__link">
+      Usage
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cli/" class="md-tabs__link md-tabs__link--active">
+        Code Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://pawamoy.github.io/duty" title="Duty" class="md-nav__button md-logo" aria-label="Duty">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Duty
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pawamoy/duty/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pawamoy/duty
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+      
+      <label class="md-nav__link" for="nav-1">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="nav-1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credits/" class="md-nav__link">
+        Credits
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      
+      <label class="md-nav__link" for="nav-3">
+        Code Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code Reference" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Code Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        cli.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        collection.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/" class="md-nav__link">
+        context.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorator/" class="md-nav__link">
+        decorator.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exceptions/" class="md-nav__link">
+        exceptions.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          validation.py
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        validation.py
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation" class="md-nav__link">
+    duty.validation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster" class="md-nav__link">
+    ParamsCaster
+  </a>
+  
+    <nav class="md-nav" aria-label="ParamsCaster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.annotation_at_pos" class="md-nav__link">
+    annotation_at_pos()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.cast" class="md-nav__link">
+    cast()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.cast_kwarg" class="md-nav__link">
+    cast_kwarg()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.cast_posarg" class="md-nav__link">
+    cast_posarg()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.eaten_by_var_positional" class="md-nav__link">
+    eaten_by_var_positional()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.cast_arg" class="md-nav__link">
+    cast_arg()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.to_bool" class="md-nav__link">
+    to_bool()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.validate" class="md-nav__link">
+    validate()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code_of_conduct/" class="md-nav__link">
+        Code of Conduct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coverage/" class="md-nav__link">
+        Coverage report
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation" class="md-nav__link">
+    duty.validation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster" class="md-nav__link">
+    ParamsCaster
+  </a>
+  
+    <nav class="md-nav" aria-label="ParamsCaster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.annotation_at_pos" class="md-nav__link">
+    annotation_at_pos()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.cast" class="md-nav__link">
+    cast()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.cast_kwarg" class="md-nav__link">
+    cast_kwarg()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.cast_posarg" class="md-nav__link">
+    cast_posarg()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duty.validation.ParamsCaster.eaten_by_var_positional" class="md-nav__link">
+    eaten_by_var_positional()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.cast_arg" class="md-nav__link">
+    cast_arg()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.to_bool" class="md-nav__link">
+    to_bool()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.validation.validate" class="md-nav__link">
+    validate()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pawamoy/duty/edit/master/docs/reference/validation.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>validation.py</h1>
+                
+                <div class="doc doc-object doc-module">
+<h2 class="hidden-toc" id="duty.validation" style="visibility: hidden; position: absolute;">
+        <a class="headerlink" href="#duty.validation" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents first">
+<p>This module contains logic used to validate parameters passed to duties.</p>
+<p>We validate the parameters before running the duties,
+effectively checking all CLI arguments and failing early
+if they are incorrect.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="duty.validation.ParamsCaster">
+
+        <code>ParamsCaster</code>
+
+
+
+      <a class="headerlink" href="#duty.validation.ParamsCaster" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>A helper class to cast parameters based on a function's signature annotations.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="duty.validation.ParamsCaster.__init__">
+
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+      <a class="headerlink" href="#duty.validation.ParamsCaster.__init__" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents ">
+<p>Initialize the object.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>function</code></td>
+<td><code>Callable</code></td>
+<td>
+<p>The function to use to cast arguments.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Initialize the object.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        function: The function to use to cast arguments.</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">function</span> <span class="o">=</span> <span class="n">function</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">signature</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">params_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">signature</span><span class="o">.</span><span class="n">parameters</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">params_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">1</span><span class="p">:]</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="duty.validation.ParamsCaster.annotation_at_pos">
+
+<code class="highlight language-python"><span class="n">annotation_at_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.ParamsCaster.annotation_at_pos" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents ">
+<p>Give the annotation for the parameter at the given position.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pos</code></td>
+<td><code></code></td>
+<td>
+<p>The position of the parameter.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Any</code></td>
+<td>
+<p>The positional parameter annotation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">annotation_at_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Give the annotation for the parameter at the given position.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        pos: The position of the parameter.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The positional parameter annotation.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_list</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">annotation</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="duty.validation.ParamsCaster.cast">
+
+<code class="highlight language-python"><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.ParamsCaster.cast" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents ">
+<p>Cast all positional and keyword arguments.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*args</code></td>
+<td><code></code></td>
+<td>
+<p>The positional arguments.</p>
+</td>
+<td><code>()</code></td>
+</tr>
+<tr>
+<td><code>**kwargs</code></td>
+<td><code></code></td>
+<td>
+<p>The keyword arguments.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tuple[Sequence, Dict[str, Any]]</code></td>
+<td>
+<p>The cast arguments.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">cast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Cast all positional and keyword arguments.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        *args: The positional arguments.</span>
+<span class="sd">        **kwargs: The keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The cast arguments.</span>
+<span class="sd">    """</span>
+    <span class="n">positional</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cast_posarg</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>  <span class="c1"># noqa: WPS221</span>
+    <span class="n">keyword</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cast_kwarg</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>  <span class="c1"># noqa: WPS221</span>
+    <span class="k">return</span> <span class="n">positional</span><span class="p">,</span> <span class="n">keyword</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="duty.validation.ParamsCaster.cast_kwarg">
+
+<code class="highlight language-python"><span class="n">cast_kwarg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.ParamsCaster.cast_kwarg" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents ">
+<p>Cast a keyword argument.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code></code></td>
+<td>
+<p>The name of the argument in the signature.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td><code></code></td>
+<td>
+<p>The argument value.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Any</code></td>
+<td>
+<p>The cast value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">cast_kwarg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Cast a keyword argument.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        name: The name of the argument in the signature.</span>
+<span class="sd">        value: The argument value.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The cast value.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_dict</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">cast_arg</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">params_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">annotation</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cast_arg</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_keyword_annotation</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="duty.validation.ParamsCaster.cast_posarg">
+
+<code class="highlight language-python"><span class="n">cast_posarg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.ParamsCaster.cast_posarg" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents ">
+<p>Cast a positional argument.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pos</code></td>
+<td><code></code></td>
+<td>
+<p>The position of the argument in the signature.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>arg</code></td>
+<td><code></code></td>
+<td>
+<p>The argument value.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Any</code></td>
+<td>
+<p>The cast value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">cast_posarg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Cast a positional argument.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        pos: The position of the argument in the signature.</span>
+<span class="sd">        arg: The argument value.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The cast value.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">eaten_by_var_positional</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cast_arg</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_positional_annotation</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cast_arg</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">annotation_at_pos</span><span class="p">(</span><span class="n">pos</span><span class="p">))</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="duty.validation.ParamsCaster.eaten_by_var_positional">
+
+<code class="highlight language-python"><span class="n">eaten_by_var_positional</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.ParamsCaster.eaten_by_var_positional" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents ">
+<p>Tell if the parameter at this position is eaten by a variable positional parameter.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pos</code></td>
+<td><code></code></td>
+<td>
+<p>The position of the parameter.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p>Whether the parameter is eaten.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">eaten_by_var_positional</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Tell if the parameter at this position is eaten by a variable positional parameter.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        pos: The position of the parameter.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Whether the parameter is eaten.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_var_positional</span> <span class="ow">and</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_positional_position</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.validation.cast_arg">
+
+<code class="highlight language-python"><span class="n">cast_arg</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">annotation</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.cast_arg" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Cast an argument using a type annotation.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arg</code></td>
+<td><code></code></td>
+<td>
+<p>The argument value.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>annotation</code></td>
+<td><code></code></td>
+<td>
+<p>A type annotation.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Any</code></td>
+<td>
+<p>The cast value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">cast_arg</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">annotation</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Cast an argument using a type annotation.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        arg: The argument value.</span>
+<span class="sd">        annotation: A type annotation.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The cast value.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">annotation</span> <span class="ow">is</span> <span class="n">Parameter</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">arg</span>
+    <span class="k">if</span> <span class="n">annotation</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">annotation</span> <span class="o">=</span> <span class="n">to_bool</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">annotation</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: W0703 (catching all on purpose)</span>
+        <span class="k">return</span> <span class="n">arg</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.validation.to_bool">
+
+<code class="highlight language-python"><span class="n">to_bool</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.to_bool" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Convert a string to a boolean.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td><code>str</code></td>
+<td>
+<p>The string to convert.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p>True or False.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">to_bool</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Convert a string to a boolean.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        value: The string to convert.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        True or False.</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">""</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">,</span> <span class="s2">"no"</span><span class="p">,</span> <span class="s2">"n"</span><span class="p">,</span> <span class="s2">"false"</span><span class="p">,</span> <span class="s2">"off"</span><span class="p">}</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.validation.validate">
+
+<code class="highlight language-python"><span class="n">validate</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.validation.validate" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Validate positional and keyword arguments against a function.</p>
+<p>First we clone the function, removing the first parameter (the context)
+and the body, to fail early with a <code>TypeError</code> if the arguments
+are incorrect: not enough, too much, in the wrong order, etc.</p>
+<p>Then we cast all the arguments using the function's signature
+and we return them.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>func</code></td>
+<td><code>Callable</code></td>
+<td>
+<p>The function to copy.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>*args</code></td>
+<td><code></code></td>
+<td>
+<p>The positional arguments.</p>
+</td>
+<td><code>()</code></td>
+</tr>
+<tr>
+<td><code>**kwargs</code></td>
+<td><code></code></td>
+<td>
+<p>The keyword arguments.</p>
+</td>
+<td><code>{}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tuple[Sequence, Dict[str, Any]]</code></td>
+<td>
+<p>The casted arguments.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/validation.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Sequence</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Validate positional and keyword arguments against a function.</span>
+
+<span class="sd">    First we clone the function, removing the first parameter (the context)</span>
+<span class="sd">    and the body, to fail early with a `TypeError` if the arguments</span>
+<span class="sd">    are incorrect: not enough, too much, in the wrong order, etc.</span>
+
+<span class="sd">    Then we cast all the arguments using the function's signature</span>
+<span class="sd">    and we return them.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        func: The function to copy.</span>
+<span class="sd">        *args: The positional arguments.</span>
+<span class="sd">        **kwargs: The keyword arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The casted arguments.</span>
+<span class="sd">    """</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="c1"># don't keep first parameter: context</span>
+    <span class="n">params_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">signature</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">Parameter</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">param</span><span class="o">.</span><span class="n">default</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params_list</span><span class="p">]</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">Signature</span><span class="p">(</span><span class="n">parameters</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">trixx</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">exec</span><span class="p">(</span><span class="sa">f</span><span class="s2">"def </span><span class="si">{</span><span class="n">name</span><span class="si">}{</span><span class="n">sig</span><span class="si">}</span><span class="s2">: ...</span><span class="se">\n</span><span class="s2">trixx[0] = </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>  <span class="c1"># noqa: S102,W0122 (use of exec)</span>
+    <span class="n">trixx</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">caster</span> <span class="o">=</span> <span class="n">ParamsCaster</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">caster</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../exceptions/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                exceptions.py
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../contributing/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Contributing
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

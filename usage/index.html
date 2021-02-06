@@ -1,0 +1,1280 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A simple task runner.">
+      
+      
+      
+      
+        <link rel="canonical" href="https://pawamoy.github.io/duty/usage/">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Usage - Duty</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/mkdocstrings.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://pawamoy.github.io/duty" title="Duty" class="md-header-nav__button md-logo" aria-label="Duty">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Duty
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/pawamoy/duty/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pawamoy/duty
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Usage
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference/cli/" class="md-tabs__link">
+        Code Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing/" class="md-tabs__link">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://pawamoy.github.io/duty" title="Duty" class="md-nav__button md-logo" aria-label="Duty">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Duty
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/pawamoy/duty/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pawamoy/duty
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+      
+      <label class="md-nav__link" for="nav-1">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="nav-1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credits/" class="md-nav__link">
+        Credits
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Usage
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Usage
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writing-duties" class="md-nav__link">
+    Writing duties
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing duties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ctxrun-options" class="md-nav__link">
+    ctx.run() options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-options" class="md-nav__link">
+    Default options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-duties" class="md-nav__link">
+    Running duties
+  </a>
+  
+    <nav class="md-nav" aria-label="Running duties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passing-parameters" class="md-nav__link">
+    Passing parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-options" class="md-nav__link">
+    Passing options
+  </a>
+  
+    <nav class="md-nav" aria-label="Passing options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global-options" class="md-nav__link">
+    Global options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-options" class="md-nav__link">
+    Local options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capturing-commands-output" class="md-nav__link">
+    Capturing commands output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatting-duty-output" class="md-nav__link">
+    Formatting duty output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        Code Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code Reference" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Code Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/cli/" class="md-nav__link">
+        cli.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/collection/" class="md-nav__link">
+        collection.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/context/" class="md-nav__link">
+        context.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/decorator/" class="md-nav__link">
+        decorator.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/exceptions/" class="md-nav__link">
+        exceptions.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/validation/" class="md-nav__link">
+        validation.py
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_of_conduct/" class="md-nav__link">
+        Code of Conduct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coverage/" class="md-nav__link">
+        Coverage report
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#writing-duties" class="md-nav__link">
+    Writing duties
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing duties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ctxrun-options" class="md-nav__link">
+    ctx.run() options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-options" class="md-nav__link">
+    Default options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-duties" class="md-nav__link">
+    Running duties
+  </a>
+  
+    <nav class="md-nav" aria-label="Running duties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passing-parameters" class="md-nav__link">
+    Passing parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-options" class="md-nav__link">
+    Passing options
+  </a>
+  
+    <nav class="md-nav" aria-label="Passing options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global-options" class="md-nav__link">
+    Global options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-options" class="md-nav__link">
+    Local options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capturing-commands-output" class="md-nav__link">
+    Capturing commands output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formatting-duty-output" class="md-nav__link">
+    Formatting duty output
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pawamoy/duty/edit/master/docs/usage.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">¤</a></h1>
+<h2 id="writing-duties">Writing duties<a class="headerlink" href="#writing-duties" title="Permanent link">¤</a></h2>
+<p>Your tasks, or duties, are defined in a Python module.
+By default, <code>duty</code> will load these tasks
+from a <code>duties.py</code> file at the root of your repository.</p>
+<p>Each task is declared as a "duty", using the <code>duty.duty</code> decorator.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;mkdocs build&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The <code>ctx</code> argument is the "context" of the duty.
+It is automatically created and passed to your function.</p>
+<p>It has only one purpose: running command with its <code>run</code> method.
+The <code>run</code> method accepts strings, list of strings, or even Python callables.</p>
+<p>The above duty can be rewritten as:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;mkdocs&quot;</span><span class="p">,</span> <span class="s2">&quot;build&quot;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
+    <span class="c1"># avoid the overhead of an extra shell process</span>
+</code></pre></div>
+<p>Or:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+<span class="kn">from</span> <span class="nn">mkdocs</span> <span class="kn">import</span> <span class="n">build</span><span class="p">,</span> <span class="n">config</span>
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">build</span><span class="o">.</span><span class="n">build</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">config</span><span class="o">.</span><span class="n">load_config</span><span class="p">()],</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Building documentation&quot;</span><span class="p">)</span>
+    <span class="c1"># avoid the overhead of an extra Python process</span>
+</code></pre></div>
+<h3 id="ctxrun-options"><code>ctx.run()</code> options<a class="headerlink" href="#ctxrun-options" title="Permanent link">¤</a></h3>
+<p>The <code>run</code> methods accepts various options,
+mostly coming from its underlying dependency:
+<a href="https://github.com/pawamoy/failprint"><code>failprint</code></a>.</p>
+<p><strong>Arguments of the <code>run</code> method:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmd</td>
+<td><code>str</code>, <code>list of str</code>, or Python callable</td>
+<td>The command to run.</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td>args</td>
+<td><code>list</code></td>
+<td>Arguments to pass to the callable.</td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td>kwargs</td>
+<td><code>dict</code></td>
+<td>Keyword arguments to pass to the callable.</td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td>number</td>
+<td><code>int</code></td>
+<td>The command number (useful for the <code>tap</code> format).</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td>capture</td>
+<td><code>str</code></td>
+<td>The type of output: <code>"stdout"</code>, <code>"stderr"</code>, <code>True</code> (or <code>"both"</code>) and <code>False</code> (or <code>"none"</code>)</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>str</code></td>
+<td>The command title.</td>
+<td><em>cmd as a shell command or Python statement</em></td>
+</tr>
+<tr>
+<td>fmt</td>
+<td><code>str</code></td>
+<td>The output format as a Jinja template: <code>"pretty"</code>, <code>"tap"</code> or <code>"custom=..."</code></td>
+<td><code>"pretty"</code></td>
+</tr>
+<tr>
+<td>pty</td>
+<td><code>bool</code></td>
+<td>Whether to run in a PTY.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>progress</td>
+<td><code>bool</code></td>
+<td>Whether to show progress.</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td>nofail</td>
+<td><code>bool</code></td>
+<td>Whether to always succeed.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>quiet</td>
+<td><code>bool</code></td>
+<td>Don't print the command output, even if it failed.</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>silent</td>
+<td><code>bool</code></td>
+<td>Don't print anything.</td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Example usage of the <code>silent</code> option:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -type d -name __pycache__ | xargs rm -rf&quot;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="default-options">Default options<a class="headerlink" href="#default-options" title="Permanent link">¤</a></h3>
+<p>Let's say you have more than one command, and you want to silence all of them.
+Instead of passing <code>silent=True</code> to all <code>ctx.run()</code> calls,
+you can set this option as default in the decorator itself:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf .coverage*&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf .mypy_cache&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf .pytest_cache&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf build&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf dist&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf pip-wheel-metadata&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;rm -rf site&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -type d -name __pycache__ | xargs rm -rf&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;find . -name &#39;*.rej&#39; -delete&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>You can of course override the default options
+in the <code>ctx.run()</code> calls:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span><span class="p">(</span><span class="n">capture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script1.sh&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script2.sh&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script3.sh&quot;</span><span class="p">,</span> <span class="n">capture</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="running-duties">Running duties<a class="headerlink" href="#running-duties" title="Permanent link">¤</a></h2>
+<p>To run a duty, simply use:</p>
+<div class="highlight"><pre><span></span><code>duty clean
+</code></pre></div>
+<p>If you are using <a href="https://github.com/python-poetry/poetry">Poetry</a>
+or <a href="https://github.com/frostming/pdm">PDM</a>:</p>
+<div class="highlight"><pre><span></span><code>poetry run duty clean
+pdm run duty clean
+</code></pre></div>
+<p>You can pass multiple duties in one command:</p>
+<div class="highlight"><pre><span></span><code>duty clean docs
+</code></pre></div>
+<h3 id="passing-parameters">Passing parameters<a class="headerlink" href="#passing-parameters" title="Permanent link">¤</a></h3>
+<p>Duties can accept arguments (or parameters):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">docs</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">serve</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;serve&quot;</span> <span class="k">if</span> <span class="n">serve</span> <span class="k">else</span> <span class="s2">&quot;build&quot;</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mkdocs </span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>When passing the argument from the command line,
+it will be type-casted using the parameter annotation
+in the duty's signature.</p>
+<p>We only support types that are callable and accept
+one positional argument: a string.
+Examples of supported builtin types: <code>int</code>, <code>str</code>, <code>float</code>, <code>bool</code>, <code>list</code>, etc.</p>
+<p>The <code>bool</code> type uses a special conversion table:</p>
+<table>
+<thead>
+<tr>
+<th>Value (case-insensitive)</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>""</code> (empty string)</td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>"0"</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>"off"</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>"n"</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>"no"</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>"false"</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td>anything else (including <code>"-1"</code>)</td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p>To pass a parameter as a keyword argument,
+use the <code>name=value</code> form:</p>
+<div class="highlight"><pre><span></span><code>duty docs <span class="nv">serve</span><span class="o">=</span>yes  <span class="c1"># --&gt; serve = True</span>
+</code></pre></div>
+<p>You can use your own custom types as well:</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xy</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">xy</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">shoot</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;shoot -x </span><span class="si">{</span><span class="n">point</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2"> -y </span><span class="si">{</span><span class="n">point</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Then, when running the duty:</p>
+<div class="highlight"><pre><span></span><code>duty shoot <span class="nv">point</span><span class="o">=</span><span class="m">5</span>,15
+</code></pre></div>
+<p>You can also pass parameters as positional arguments:</p>
+<div class="highlight"><pre><span></span><code>duty shoot <span class="m">5</span>,15
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Limitation with positional arguments</p>
+<p>When passing positional arguments,
+make sure there is no overlap between other duties' names
+and the argument value, otherwise <code>duty</code> will not be able
+to parse the command correctly.</p>
+</div>
+<h3 id="passing-options">Passing options<a class="headerlink" href="#passing-options" title="Permanent link">¤</a></h3>
+<p>Usage summary:</p>
+<div class="highlight"><pre><span></span><code>duty [GLOBAL_OPTS...] [DUTY [DUTY_OPTS...] [DUTY_PARAMS...]...]
+</code></pre></div>
+<h4 id="global-options">Global options<a class="headerlink" href="#global-options" title="Permanent link">¤</a></h4>
+<p>The <code>duty</code> command line tool accepts global options
+that will affect all the duties selected to run.
+These options are the same you can use in <code>ctx.run()</code> calls,
+except for <code>number</code> and <code>title</code> (because it wouldn't make sense).</p>
+<p>The specified global options will <em>override</em> the default options
+of duties, as well as the options passed in <code>ctx.run()</code> calls!</p>
+<p>For example, with a duty declaring these options:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span><span class="p">(</span><span class="n">capture</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">play</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;play </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">nofail</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>...you can override both the <code>capture</code> and <code>nofail</code> options like this:</p>
+<div class="highlight"><pre><span></span><code>duty --capture<span class="o">=</span>none --strict play this-file.mp4
+<span class="c1"># or with the short options</span>
+duty -Zc none play this-file.mp4 
+</code></pre></div>
+<h4 id="local-options">Local options<a class="headerlink" href="#local-options" title="Permanent link">¤</a></h4>
+<p>Local options are the same as global options.
+Instead of passing them to <code>duty</code> directly,
+you can pass them to a specific duty on the command line.
+If we use the previous example again:</p>
+<div class="highlight"><pre><span></span><code>duty play -Zc none this-file.mp4 
+</code></pre></div>
+<p>It allows to use different options for different duties
+selected on the command line.
+In the following example, the <code>format</code> and <code>check</code> duties
+will have their output captured,
+while the <code>test</code> duty will not:</p>
+<div class="highlight"><pre><span></span><code>duty -cboth format check <span class="nb">test</span> -cnone
+</code></pre></div>
+<h3 id="capturing-commands-output">Capturing commands output<a class="headerlink" href="#capturing-commands-output" title="Permanent link">¤</a></h3>
+<p>When running a command through <code>ctx.run()</code>,
+you can choose to capture its standard output,
+its standard error, both, or none.</p>
+<p>Captured output is then available as an <code>output</code>
+variable when <a href="#formatting-duty-ouput">formatting duty's output</a>.</p>
+<ul>
+<li><code>capture=stdout</code> will capture <em>both</em> stdout and stderr,
+  but will only make <em>stdout</em> available while formatting</li>
+<li><code>capture=stderr</code> will capture <em>both</em> stdout and stderr,
+  but will only make <em>stderr</em> available while formatting</li>
+<li><code>capture=both</code> will capture both stdout and stderr as one single stream,
+  and will make it available while formatting</li>
+<li><code>capture=none</code> will not capture anything, and both stdout and stderr
+  <em>will be printed in real-time to the console</em></li>
+</ul>
+<p>It is not possible to capture only stdout, or only stderr,
+and let the other one be printed to the console.
+Capturing one is capturing both, but discarding the other.</p>
+<h3 id="formatting-duty-output">Formatting duty output<a class="headerlink" href="#formatting-duty-output" title="Permanent link">¤</a></h3>
+<p>Thanks to its underlying <a href="https://github.com/pawamoy/failprint"><code>failprint</code></a> dependency,
+it is possible to change the output of command runs.
+The output of a command is rendered using a Jinja template string.
+For example, the two builtin <code>failprint</code> formats are:</p>
+<ul>
+<li>
+<p><code>pretty</code> (default)
+  <div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">if</span> <span class="nv">success</span> <span class="cp">%}</span><span class="x">&lt;green&gt;✓&lt;/green&gt;</span>
+<span class="cp">{%</span> <span class="k">elif</span> <span class="nv">nofail</span> <span class="cp">%}</span><span class="x">&lt;yellow&gt;✗&lt;/yellow&gt;</span>
+<span class="cp">{%</span> <span class="k">else</span> <span class="cp">%}</span><span class="x">&lt;red&gt;✗&lt;/red&gt;</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"> </span>
+<span class="x">&lt;bold&gt;</span><span class="cp">{{</span> <span class="nv">title</span> <span class="k">or</span> <span class="nv">command</span> <span class="cp">}}</span><span class="x">&lt;/bold&gt;</span>
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">failure</span> <span class="cp">%}</span><span class="x"> (</span><span class="cp">{{</span> <span class="nv">code</span> <span class="cp">}}</span><span class="x">)</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">failure</span> <span class="k">and</span> <span class="nv">output</span> <span class="k">and</span> <span class="k">not</span> <span class="nv">quiet</span> <span class="cp">%}</span><span class="x">\n</span>
+<span class="cp">{{</span> <span class="o">(</span><span class="s1">&#39;  &gt; &#39;</span> <span class="o">+</span> <span class="nv">command</span> <span class="o">+</span> <span class="s1">&#39;\n&#39;</span><span class="o">)</span> <span class="k">if</span> <span class="nv">title</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{{</span> <span class="nv">output</span><span class="o">|</span><span class="nf">indent</span><span class="o">(</span><span class="m">2</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span><span class="o">)</span> <span class="cp">}}{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</code></pre></div>
+  Its "progress" template is <code>&gt; {{ title or command }}</code>.</p>
+</li>
+<li>
+<p><code>tap</code>
+  <div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">if</span> <span class="nv">failure</span> <span class="cp">%}</span><span class="x">not </span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x">ok </span><span class="cp">{{</span> <span class="nv">number</span> <span class="cp">}}</span><span class="x"> - </span><span class="cp">{{</span> <span class="nv">title</span> <span class="k">or</span> <span class="nv">command</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">failure</span> <span class="k">and</span> <span class="nv">output</span> <span class="cp">%}</span><span class="x">\n  ---</span>
+<span class="x">\n  </span><span class="cp">{{</span> <span class="o">(</span><span class="s1">&#39;command: &#39;</span> <span class="o">+</span> <span class="nv">command</span> <span class="o">+</span> <span class="s1">&#39;\n  &#39;</span><span class="o">)</span> <span class="k">if</span> <span class="nv">title</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">output: |\n</span><span class="cp">{{</span> <span class="nv">output</span><span class="o">|</span><span class="nf">indent</span><span class="o">(</span><span class="m">4</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x">\n  ...</span><span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+</code></pre></div></p>
+</li>
+</ul>
+<p>As you can see there are variables
+you can use in your format template:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>command</code></td>
+<td>A stringified version of the command.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>The title passed with the <code>title</code> option.</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>The command exit status.</td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td>A boolean indicating if the command succeeded.</td>
+</tr>
+<tr>
+<td><code>failure</code></td>
+<td>A boolean indicating if the command failed.</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td>The command number passed with the <code>number</code> option.</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>The command output (stdout, stderr, both or none, depending on the <code>capture</code> option).</td>
+</tr>
+<tr>
+<td><code>nofail</code></td>
+<td>A boolean indicating if the command was allowed to fail.</td>
+</tr>
+<tr>
+<td><code>quiet</code></td>
+<td>A boolean instructing to be quiet, i.e. don't print the command output even if it failed.</td>
+</tr>
+<tr>
+<td><code>silent</code></td>
+<td>A boolean indicating to be silent, i.e. don't print anything.</td>
+</tr>
+</tbody>
+</table>
+<p>There is also one Jinja filter available</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>indent</code></td>
+<td>The <a href="https://docs.python.org/3/library/textwrap.html#textwrap.indent"><code>textwrap.indent</code></a> function</td>
+</tr>
+</tbody>
+</table>
+<p>To select a different format than the default one,
+or to provide your own, you can use the <code>fmt</code> option
+of <code>ctx.run()</code>, the <code>--format</code> CLI option (global and local),
+and the <code>FAILPRINT_FORMAT</code> environment variable.</p>
+<p>For example, here is how to use the <code>tap</code> format:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># in the ctx.run() call</span>
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">task1</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo failed &amp;&amp; false&quot;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;tap&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># or as a default duty option</span>
+<span class="nd">@duty</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;tap&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">task2</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo failed &amp;&amp; false&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo failed &amp;&amp; false&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># or with the CLI global option</span>
+duty --format tap task1 task2
+
+<span class="c1"># or with a CLI local option</span>
+duty task1 -ftap task2
+
+<span class="c1"># or with an environment variable</span>
+<span class="nv">FAILPRINT_FORMAT</span><span class="o">=</span>tap duty task1 task2
+</code></pre></div>
+<p>To use your own format template,
+just make the value of the <code>fmt</code> option
+start with <code>custom=</code>. For example,
+with an environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">FAILPRINT_FORMAT</span><span class="o">=</span><span class="s2">&quot;custom={{output}}&quot;</span>
+<span class="c1"># always print the captured output, nothing else</span>
+
+duty task1 task2
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../credits/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Credits
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../reference/cli/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                cli.py
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

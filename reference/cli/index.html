@@ -1,7 +1,4 @@
 
-
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -12,11 +9,12 @@
         <meta name="description" content="A simple task runner.">
       
       
+      
+      
         <link rel="canonical" href="https://pawamoy.github.io/duty/reference/cli/">
       
-      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
@@ -24,20 +22,22 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.d3202873.min.css">
-      
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ff0a5ce4.min.css">
-      
+      <link rel="stylesheet" href="../../assets/stylesheets/main.cb6bc1d0.min.css">
       
         
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.39b8e14a.min.css">
         
-        <meta name="theme-color" content="#009485">
+          
+          
+          <meta name="theme-color" content="#009485">
+        
       
     
     
     
       
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
@@ -56,7 +56,10 @@
     
     
     
+    
+    
     <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="purple">
+      
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -74,7 +77,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="https://pawamoy.github.io/duty" title="Duty" class="md-header-nav__button md-logo" aria-label="Duty">
       
@@ -86,18 +91,20 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             Duty
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
             
               cli.py
             
           </span>
         </div>
-      
+      </div>
     </div>
     
       <label class="md-header-nav__button md-icon" for="__search">
@@ -108,7 +115,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -149,19 +156,96 @@
     
     <div class="md-container" data-md-component="container">
       
+      
         
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
       
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
       
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../usage/" class="md-tabs__link">
+      Usage
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Code Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        Development
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
         
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="https://pawamoy.github.io/duty" title="Duty" class="md-nav__button md-logo" aria-label="Duty">
       
@@ -191,59 +275,132 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../.." title="Overview" class="md-nav__link">
-      Overview
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  
+  
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
-    
-    <label class="md-nav__link" for="nav-2">
-      API Reference
-      <span class="md-nav__icon md-icon"></span>
-    </label>
-    <nav class="md-nav" aria-label="API Reference" data-md-level="1">
-      <label class="md-nav__title" for="nav-2">
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+      
+      <label class="md-nav__link" for="nav-1">
+        Home
         <span class="md-nav__icon md-icon"></span>
-        API Reference
       </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="nav-1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
           
-          
-
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
   
 
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item md-nav__item--active">
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credits/" class="md-nav__link">
+        Credits
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
     
+      
+      
+      
+
+  
+  
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      
+      <label class="md-nav__link" for="nav-3">
+        Code Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Code Reference" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Code Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          cli.py
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         cli.py
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" title="cli.py" class="md-nav__link md-nav__link--active">
-      cli.py
-    </a>
-    
+      </a>
       
+        
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -262,15 +419,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.get_parser" class="md-nav__link">
-    get_parser()
+  <a href="#duty.cli.get_duty_parser" class="md-nav__link">
+    get_duty_parser()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.load_duties" class="md-nav__link">
-    load_duties()
+  <a href="#duty.cli.get_parser" class="md-nav__link">
+    get_parser()
   </a>
   
 </li>
@@ -283,15 +440,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.parse_selection" class="md-nav__link">
-    parse_selection()
+  <a href="#duty.cli.parse_args" class="md-nav__link">
+    parse_args()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.print_duties" class="md-nav__link">
-    print_duties()
+  <a href="#duty.cli.parse_commands" class="md-nav__link">
+    parse_commands()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.parse_options" class="md-nav__link">
+    parse_options()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.print_help" class="md-nav__link">
+    print_help()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.specified_options" class="md-nav__link">
+    specified_options()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.split_args" class="md-nav__link">
+    split_args()
   </a>
   
 </li>
@@ -299,73 +484,142 @@
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
-        
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collection/" class="md-nav__link">
+        collection.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context/" class="md-nav__link">
+        context.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decorator/" class="md-nav__link">
+        decorator.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exceptions/" class="md-nav__link">
+        exceptions.py
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        validation.py
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Development" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code_of_conduct/" class="md-nav__link">
+        Code of Conduct
+      </a>
+    </li>
+  
 
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coverage/" class="md-nav__link">
+        Coverage report
+      </a>
+    </li>
+  
 
-  <li class="md-nav__item">
-    <a href="../logic/" title="logic.py" class="md-nav__link">
-      logic.py
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../contributing/" title="Contributing" class="md-nav__link">
-      Contributing
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../code_of_conduct/" title="Code of Conduct" class="md-nav__link">
-      Code of Conduct
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../changelog/" title="Changelog" class="md-nav__link">
-      Changelog
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../credits/" title="Credits" class="md-nav__link">
-      Credits
-    </a>
-  </li>
+          
+        </ul>
+      </nav>
+    </li>
+  
 
     
   </ul>
@@ -375,7 +629,8 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -397,15 +652,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.get_parser" class="md-nav__link">
-    get_parser()
+  <a href="#duty.cli.get_duty_parser" class="md-nav__link">
+    get_duty_parser()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.load_duties" class="md-nav__link">
-    load_duties()
+  <a href="#duty.cli.get_parser" class="md-nav__link">
+    get_parser()
   </a>
   
 </li>
@@ -418,15 +673,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.parse_selection" class="md-nav__link">
-    parse_selection()
+  <a href="#duty.cli.parse_args" class="md-nav__link">
+    parse_args()
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.cli.print_duties" class="md-nav__link">
-    print_duties()
+  <a href="#duty.cli.parse_commands" class="md-nav__link">
+    parse_commands()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.parse_options" class="md-nav__link">
+    parse_options()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.print_help" class="md-nav__link">
+    print_help()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.specified_options" class="md-nav__link">
+    specified_options()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.cli.split_args" class="md-nav__link">
+    split_args()
   </a>
   
 </li>
@@ -448,22 +731,91 @@
                   </a>
                 
                 
-                  
-                
-                
                   <h1>cli.py</h1>
                 
                 <div class="doc doc-object doc-module">
-<h2 class="hidden-toc" href="#duty.cli" id="duty.cli" style="visibility: hidden; position: absolute;">
+<h2 class="hidden-toc" id="duty.cli" style="visibility: hidden; position: absolute;">
         <a class="headerlink" href="#duty.cli" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents first">
 <p>Module that contains the command line application.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.cli.get_duty_parser">
+
+<code class="highlight language-python"><span class="n">get_duty_parser</span><span class="p">(</span><span class="n">duty</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.cli.get_duty_parser" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Get a duty-specific options parser.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>duty</code></td>
+<td><code>Duty</code></td>
+<td>
+<p>The duty to parse for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ArgParser</code></td>
+<td>
+<p>A duty-specific parser.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/cli.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_duty_parser</span><span class="p">(</span><span class="n">duty</span><span class="p">:</span> <span class="n">Duty</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArgParser</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Get a duty-specific options parser.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        duty: The duty to parse for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A duty-specific parser.</span>
+<span class="sd">    """</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgParser</span><span class="p">(</span>
+        <span class="n">prog</span><span class="o">=</span><span class="sa">f</span><span class="s2">"duty </span><span class="si">{</span><span class="n">duty</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">duty</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+        <span class="n">formatter_class</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">RawDescriptionHelpFormatter</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">add_flags</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">set_defaults</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="duty.cli.get_parser">
 
-        <code class="highlight language-python">
-get_parser<span class="p">()</span>        </code>
+<code class="highlight language-python"><span class="n">get_parser</span><span class="p">()</span></code>
 
 
       <a class="headerlink" href="#duty.cli.get_parser" title="Permanent link">¤</a></h2>
@@ -479,7 +831,7 @@ get_parser<span class="p">()</span>        </code>
 </thead>
 <tbody>
 <tr>
-<td><code>ArgumentParser</code></td>
+<td><code>ArgParser</code></td>
 <td>
 <p>An argparse parser.</p>
 </td>
@@ -489,14 +841,17 @@ get_parser<span class="p">()</span>        </code>
 <details class="quote">
           <summary>Source code in <code>duty/cli.py</code></summary>
           <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">get_parser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">:</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_parser</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ArgParser</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Return the CLI argument parser.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        An argparse parser.</span>
 <span class="sd">    """</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">prog</span><span class="o">=</span><span class="s2">"duty"</span><span class="p">)</span>
+    <span class="n">usage</span> <span class="o">=</span> <span class="s2">"duty [GLOBAL_OPTS...] [DUTY [DUTY_OPTS...] [DUTY_PARAMS...]...]"</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">"A simple task runner."</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ArgParser</span><span class="p">(</span><span class="n">add_help</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">usage</span><span class="o">=</span><span class="n">usage</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
         <span class="s2">"-d"</span><span class="p">,</span>
         <span class="s2">"--duties-file"</span><span class="p">,</span>
@@ -510,58 +865,21 @@ get_parser<span class="p">()</span>        </code>
         <span class="n">dest</span><span class="o">=</span><span class="s2">"list"</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">"List the available duties."</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"DUTIES"</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">"DUTY"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">"*"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">"-h"</span><span class="p">,</span>
+        <span class="s2">"--help"</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s2">"help"</span><span class="p">,</span>
+        <span class="n">nargs</span><span class="o">=</span><span class="s2">"*"</span><span class="p">,</span>
+        <span class="n">metavar</span><span class="o">=</span><span class="s2">"DUTY"</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">"Show this help message and exit. Pass duties names to print their help."</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">add_flags</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">set_defaults</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">"remainder"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">REMAINDER</span><span class="p">)</span>
+
+    <span class="n">parser</span><span class="o">.</span><span class="n">_optionals</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">"Global options"</span>  <span class="c1"># noqa: WPS437</span>
+
     <span class="k">return</span> <span class="n">parser</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="duty.cli.load_duties">
-
-        <code class="highlight language-python">
-load_duties<span class="p">(</span><span class="n">path</span><span class="p">)</span>        </code>
-
-
-      <a class="headerlink" href="#duty.cli.load_duties" title="Permanent link">¤</a></h2>
-<div class="doc doc-contents ">
-<p>Load duties from a Python file.</p>
-<p><strong>Parameters:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>path</code></td>
-<td><code>str</code></td>
-<td>
-<p>The path to the Python file to load.</p>
-</td>
-<td><em>required</em></td>
-</tr>
-</tbody>
-</table>
-<details class="quote">
-          <summary>Source code in <code>duty/cli.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">load_duties</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">"""</span>
-<span class="sd">    Load duties from a Python file.</span>
-
-<span class="sd">    Arguments:</span>
-<span class="sd">        path: The path to the Python file to load.</span>
-<span class="sd">    """</span>
-    <span class="n">logic</span><span class="o">.</span><span class="n">duties</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-    <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib_util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span><span class="s2">"duty.loaded"</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-    <span class="n">duties</span> <span class="o">=</span> <span class="n">importlib_util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
-    <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span><span class="n">duties</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 </code></pre>
 </div>
 </details>
@@ -570,8 +888,7 @@ load_duties<span class="p">(</span><span class="n">path</span><span class="p">)<
 <div class="doc doc-object doc-function">
 <h2 class="doc doc-heading" id="duty.cli.main">
 
-        <code class="highlight language-python">
-main<span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
       <a class="headerlink" href="#duty.cli.main" title="Permanent link">¤</a></h2>
@@ -633,30 +950,40 @@ main<span class="p">(</span><span class="n">args</span><span class="o">=</span><
 <span class="sd">    """</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">get_parser</span><span class="p">()</span>
     <span class="n">opts</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+    <span class="n">remainder</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">remainder</span>
 
-    <span class="n">load_duties</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">duties_file</span><span class="p">)</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="n">Collection</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">duties_file</span><span class="p">)</span>
+    <span class="n">collection</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">help</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">print_help</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">collection</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
     <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">list</span><span class="p">:</span>
-        <span class="n">print_duties</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">format_help</span><span class="p">(),</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">"  "</span><span class="p">))</span>
         <span class="k">return</span> <span class="mi">0</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">selection</span> <span class="o">=</span> <span class="n">parse_selection</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">DUTIES</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unknown duty: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
-        <span class="k">return</span> <span class="mi">1</span>
+        <span class="n">arg_lists</span> <span class="o">=</span> <span class="n">split_args</span><span class="p">(</span><span class="n">remainder</span><span class="p">,</span> <span class="n">collection</span><span class="o">.</span><span class="n">names</span><span class="p">())</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Incorrect arguments: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">1</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">selection</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Please choose at least one duty"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">arg_lists</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"&gt; Please choose at least one duty"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
         <span class="k">return</span> <span class="mi">1</span>
 
-    <span class="k">for</span> <span class="n">duty</span><span class="p">,</span> <span class="n">duty_args</span> <span class="ow">in</span> <span class="n">selection</span><span class="p">:</span>
+    <span class="n">global_opts</span> <span class="o">=</span> <span class="n">specified_options</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">"duties_file"</span><span class="p">,</span> <span class="s2">"list"</span><span class="p">,</span> <span class="s2">"help"</span><span class="p">,</span> <span class="s2">"remainder"</span><span class="p">})</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">commands</span> <span class="o">=</span> <span class="n">parse_commands</span><span class="p">(</span><span class="n">arg_lists</span><span class="p">,</span> <span class="n">global_opts</span><span class="p">,</span> <span class="n">collection</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>  <span class="c1"># noqa: WPS440 (variable overlap)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&gt; </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">duty</span><span class="p">,</span> <span class="n">posargs</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">duty</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">duty_args</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">logic</span><span class="o">.</span><span class="n">DutyFailure</span> <span class="k">as</span> <span class="n">failure</span><span class="p">:</span>
+            <span class="n">duty</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">posargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">DutyFailure</span> <span class="k">as</span> <span class="n">failure</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">failure</span><span class="o">.</span><span class="n">code</span>
 
     <span class="k">return</span> <span class="mi">0</span>
@@ -666,15 +993,432 @@ main<span class="p">(</span><span class="n">args</span><span class="o">=</span><
 </div>
 </div>
 <div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="duty.cli.parse_selection">
+<h2 class="doc doc-heading" id="duty.cli.parse_args">
 
-        <code class="highlight language-python">
-parse_selection<span class="p">(</span><span class="n">args</span><span class="p">)</span>        </code>
+<code class="highlight language-python"><span class="n">parse_args</span><span class="p">(</span><span class="n">duty</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span></code>
 
 
-      <a class="headerlink" href="#duty.cli.parse_selection" title="Permanent link">¤</a></h2>
+      <a class="headerlink" href="#duty.cli.parse_args" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents ">
-<p>Parse the arguments given on the command line to return a selection of actual duties.</p>
+<p>Parse the positional and keyword arguments of a duty.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>duty</code></td>
+<td><code>Duty</code></td>
+<td>
+<p>The duty to parse for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>args</code></td>
+<td><code>List[str]</code></td>
+<td>
+<p>The list of arguments.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tuple</code></td>
+<td>
+<p>The positional and keyword arguments.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/cli.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">parse_args</span><span class="p">(</span><span class="n">duty</span><span class="p">:</span> <span class="n">Duty</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">:</span>  <span class="c1"># noqa: WPS231 (complex)</span>
+    <span class="sd">"""</span>
+<span class="sd">    Parse the positional and keyword arguments of a duty.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        duty: The duty to parse for.</span>
+<span class="sd">        args: The list of arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The positional and keyword arguments.</span>
+<span class="sd">    """</span>
+    <span class="n">posargs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">"="</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
+            <span class="c1"># we found a keyword argument</span>
+            <span class="n">arg_name</span><span class="p">,</span> <span class="n">arg_value</span> <span class="o">=</span> <span class="n">arg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"="</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">arg_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">arg_value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># we found a positional argument</span>
+            <span class="n">posargs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">validate</span><span class="p">(</span><span class="n">duty</span><span class="o">.</span><span class="n">function</span><span class="p">,</span> <span class="o">*</span><span class="n">posargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.cli.parse_commands">
+
+<code class="highlight language-python"><span class="n">parse_commands</span><span class="p">(</span><span class="n">arg_lists</span><span class="p">,</span> <span class="n">global_opts</span><span class="p">,</span> <span class="n">collection</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.cli.parse_commands" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Parse argument lists into ready-to-run duties.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arg_lists</code></td>
+<td><code></code></td>
+<td>
+<p>Lists of arguments lists.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>global_opts</code></td>
+<td><code></code></td>
+<td>
+<p>The global options.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>collection</code></td>
+<td><code></code></td>
+<td>
+<p>The duties collection.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>List[Tuple]</code></td>
+<td>
+<p>A list of tuples composed of:</p>
+<ul>
+<li>a duty</li>
+<li>its positional arguments</li>
+<li>its keyword arguments</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/cli.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">parse_commands</span><span class="p">(</span><span class="n">arg_lists</span><span class="p">,</span> <span class="n">global_opts</span><span class="p">,</span> <span class="n">collection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Parse argument lists into ready-to-run duties.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        arg_lists: Lists of arguments lists.</span>
+<span class="sd">        global_opts: The global options.</span>
+<span class="sd">        collection: The duties collection.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of tuples composed of:</span>
+
+<span class="sd">        - a duty</span>
+<span class="sd">        - its positional arguments</span>
+<span class="sd">        - its keyword arguments</span>
+<span class="sd">    """</span>
+    <span class="n">commands</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">arg_list</span> <span class="ow">in</span> <span class="n">arg_lists</span><span class="p">:</span>
+        <span class="n">duty</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">arg_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">opts</span><span class="p">,</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">parse_options</span><span class="p">(</span><span class="n">duty</span><span class="p">,</span> <span class="n">arg_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">duty</span><span class="o">.</span><span class="n">options_override</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">global_opts</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">}</span>
+        <span class="n">commands</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">duty</span><span class="p">,</span> <span class="o">*</span><span class="n">parse_args</span><span class="p">(</span><span class="n">duty</span><span class="p">,</span> <span class="n">remainder</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">commands</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.cli.parse_options">
+
+<code class="highlight language-python"><span class="n">parse_options</span><span class="p">(</span><span class="n">duty</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.cli.parse_options" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Parse options for a duty.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>duty</code></td>
+<td><code>Duty</code></td>
+<td>
+<p>The duty to parse for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>args</code></td>
+<td><code>List[str]</code></td>
+<td>
+<p>The CLI args passed for this duty.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tuple[Dict, List[str]]</code></td>
+<td>
+<p>The parsed opts, and the remaining arguments.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/cli.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">parse_options</span><span class="p">(</span><span class="n">duty</span><span class="p">:</span> <span class="n">Duty</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Parse options for a duty.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        duty: The duty to parse for.</span>
+<span class="sd">        args: The CLI args passed for this duty.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The parsed opts, and the remaining arguments.</span>
+<span class="sd">    """</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">get_duty_parser</span><span class="p">(</span><span class="n">duty</span><span class="p">)</span>
+    <span class="n">opts</span><span class="p">,</span> <span class="n">remainder</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">specified_options</span><span class="p">(</span><span class="n">opts</span><span class="p">),</span> <span class="n">remainder</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.cli.print_help">
+
+<code class="highlight language-python"><span class="n">print_help</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="n">opts</span><span class="p">,</span> <span class="n">collection</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.cli.print_help" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Print general help or duties help.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>parser</code></td>
+<td><code>ArgParser</code></td>
+<td>
+<p>The main parser.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>opts</code></td>
+<td><code>Namespace</code></td>
+<td>
+<p>The main parsed options.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>collection</code></td>
+<td><code>Collection</code></td>
+<td>
+<p>A collection of duties.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/cli.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">print_help</span><span class="p">(</span><span class="n">parser</span><span class="p">:</span> <span class="n">ArgParser</span><span class="p">,</span> <span class="n">opts</span><span class="p">:</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">,</span> <span class="n">collection</span><span class="p">:</span> <span class="n">Collection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Print general help or duties help.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        parser: The main parser.</span>
+<span class="sd">        opts: The main parsed options.</span>
+<span class="sd">        collection: A collection of duties.</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">help</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">duty_name</span> <span class="ow">in</span> <span class="n">opts</span><span class="o">.</span><span class="n">help</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">duty</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duty_name</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&gt; Unknown duty '</span><span class="si">{</span><span class="n">duty_name</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">get_duty_parser</span><span class="p">(</span><span class="n">duty</span><span class="p">)</span><span class="o">.</span><span class="n">format_help</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">format_help</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Available duties:"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">format_help</span><span class="p">(),</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">"  "</span><span class="p">))</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.cli.specified_options">
+
+<code class="highlight language-python"><span class="n">specified_options</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.cli.specified_options" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Cast an argparse Namespace into a dictionary of options.</p>
+<p>Remove all options that were not specified (equal to None).</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>opts</code></td>
+<td><code>Namespace</code></td>
+<td>
+<p>The namespace to cast.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>exclude</code></td>
+<td><code></code></td>
+<td>
+<p>Names of options to exclude from the result.</p>
+</td>
+<td><code>None</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Dict</code></td>
+<td>
+<p>A dictionary of specified-only options.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+          <summary>Source code in <code>duty/cli.py</code></summary>
+          <div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">specified_options</span><span class="p">(</span><span class="n">opts</span><span class="p">:</span> <span class="n">argparse</span><span class="o">.</span><span class="n">Namespace</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Cast an argparse Namespace into a dictionary of options.</span>
+
+<span class="sd">    Remove all options that were not specified (equal to None).</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        opts: The namespace to cast.</span>
+<span class="sd">        exclude: Names of options to exclude from the result.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A dictionary of specified-only options.</span>
+<span class="sd">    """</span>
+    <span class="n">exclude</span> <span class="o">=</span> <span class="n">exclude</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>  <span class="c1"># noqa: WPS609</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">opt</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">opt</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">options</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">opt</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">}</span>  <span class="c1"># noqa: WPS221</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="duty.cli.split_args">
+
+<code class="highlight language-python"><span class="n">split_args</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span></code>
+
+
+      <a class="headerlink" href="#duty.cli.split_args" title="Permanent link">¤</a></h2>
+<div class="doc doc-contents ">
+<p>Split command line arguments into duty commands.</p>
 <p><strong>Parameters:</strong></p>
 <table>
 <thead>
@@ -690,7 +1434,15 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
 <td><code>args</code></td>
 <td><code>List[str]</code></td>
 <td>
-<p>Arguments given on the command line.</p>
+<p>The CLI arguments.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>names</code></td>
+<td><code>List[str]</code></td>
+<td>
+<p>The known duty names.</p>
 </td>
 <td><em>required</em></td>
 </tr>
@@ -708,7 +1460,8 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
 <tr>
 <td><code>ValueError</code></td>
 <td>
-<p>When the arguments are incorrect.</p>
+<p>When a duty name is missing before an argument,
+or when the duty name is unknown.</p>
 </td>
 </tr>
 </tbody>
@@ -723,9 +1476,9 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
 </thead>
 <tbody>
 <tr>
-<td><code>List[Tuple[duty.logic.Duty, Dict[str, str]]]</code></td>
+<td><code>List[List[str]]</code></td>
 <td>
-<p>A selection of duties and their keyword arguments.</p>
+<p>The split commands.</p>
 </td>
 </tr>
 </tbody>
@@ -733,61 +1486,44 @@ parse_selection<span class="p">(</span><span class="n">args</span><span class="p
 <details class="quote">
           <summary>Source code in <code>duty/cli.py</code></summary>
           <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">parse_selection</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">SelectionType</span><span class="p">:</span>  <span class="c1"># noqa: WPS231 (not that complex)</span>
+<pre><span></span><code><span class="k">def</span> <span class="nf">split_args</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>  <span class="c1"># noqa: WPS231 (complex)</span>
     <span class="sd">"""</span>
-<span class="sd">    Parse the arguments given on the command line to return a selection of actual duties.</span>
+<span class="sd">    Split command line arguments into duty commands.</span>
 
 <span class="sd">    Arguments:</span>
-<span class="sd">        args: Arguments given on the command line.</span>
+<span class="sd">        args: The CLI arguments.</span>
+<span class="sd">        names: The known duty names.</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        ValueError: When the arguments are incorrect.</span>
+<span class="sd">        ValueError: When a duty name is missing before an argument,</span>
+<span class="sd">            or when the duty name is unknown.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        A selection of duties and their keyword arguments.</span>
+<span class="sd">        The split commands.</span>
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">[]</span>
-
-    <span class="n">selection</span><span class="p">:</span> <span class="n">SelectionType</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">duty</span><span class="p">:</span> <span class="n">logic</span><span class="o">.</span><span class="n">Duty</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># type: ignore</span>
+    <span class="n">arg_lists</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_arg_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s2">"="</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">duty</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"argument without a duty: </span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-            <span class="n">duty_args</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="n">arg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"="</span><span class="p">,</span> <span class="mi">1</span><span class="p">),))</span>  <span class="c1"># type: ignore  # this is correct</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="c1"># We found a duty name.</span>
+            <span class="k">if</span> <span class="n">current_arg_list</span><span class="p">:</span>
+                <span class="c1"># Append the previous arg list to the result and reset it.</span>
+                <span class="n">arg_lists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_arg_list</span><span class="p">)</span>
+                <span class="n">current_arg_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">current_arg_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">current_arg_list</span><span class="p">:</span>
+            <span class="c1"># We found an argument.</span>
+            <span class="n">current_arg_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">duty</span><span class="p">:</span>  <span class="c1"># noqa: WPS513 (cannot replace by elif)</span>
-                <span class="n">selection</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">duty</span><span class="p">,</span> <span class="n">duty_args</span><span class="p">))</span>
-            <span class="n">duty_args</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">duty</span> <span class="o">=</span> <span class="n">logic</span><span class="o">.</span><span class="n">get_duty</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-    <span class="n">selection</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">duty</span><span class="p">,</span> <span class="n">duty_args</span><span class="p">))</span>
+            <span class="c1"># We found an argument but no duty name.</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"&gt; Missing duty name before argument '</span><span class="si">{</span><span class="n">arg</span><span class="si">}</span><span class="s2">', or unknown duty name"</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">selection</span>
-</code></pre>
-</div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h2 class="doc doc-heading" id="duty.cli.print_duties">
+    <span class="c1"># Don't forget the last arg list.</span>
+    <span class="k">if</span> <span class="n">current_arg_list</span><span class="p">:</span>
+        <span class="n">arg_lists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_arg_list</span><span class="p">)</span>
 
-        <code class="highlight language-python">
-print_duties<span class="p">()</span>        </code>
-
-
-      <a class="headerlink" href="#duty.cli.print_duties" title="Permanent link">¤</a></h2>
-<div class="doc doc-contents ">
-<p>Print duties.</p>
-<details class="quote">
-          <summary>Source code in <code>duty/cli.py</code></summary>
-          <div class="highlight">
-<pre><span></span><code><span class="k">def</span> <span class="nf">print_duties</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">"""Print duties."""</span>
-    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">duty</span> <span class="ow">in</span> <span class="n">logic</span><span class="o">.</span><span class="n">duties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">description</span> <span class="o">=</span> <span class="n">duty</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">20</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>  <span class="c1"># noqa: WPS421 (print)</span>
+    <span class="k">return</span> <span class="n">arg_lists</span>
 </code></pre>
 </div>
 </details>
@@ -814,7 +1550,7 @@ print_duties<span class="p">()</span>        </code>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../.." title="Overview" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../usage/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -823,19 +1559,19 @@ print_duties<span class="p">()</span>        </code>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Overview
+                Usage
               </div>
             </div>
           </a>
         
         
-          <a href="../logic/" title="logic.py" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../collection/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                logic.py
+                collection.py
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
@@ -862,15 +1598,15 @@ print_duties<span class="p">()</span>        </code>
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
-      <script src="../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../..",
-          features: [],
+          features: ['navigation.tabs'],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../../assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
