@@ -5,6 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.6.0](https://github.com/pawamoy/duty/releases/tag/0.6.0) - 2021-02-06
+
+<small>[Compare with 0.5.0](https://github.com/pawamoy/duty/compare/0.5.0...0.6.0)</small>
+
+This release greatly improves usability on the command line!
+You will now be able to override `silent`, `capture` and other options
+with arguments like `--silent`, `--no-silent`, `--capture=both`, etc.
+See [Usage](https://pawamoy.github.io/duty/usage/) in the docs for details!
+
+### Features
+- Implement type casting based on annotations ([52ea614](https://github.com/pawamoy/duty/commit/52ea614f1ff1186651f22e9322b5e5ad0e23d66c) by Timothée Mazzucotelli).
+- Improve CLI usage ([93e10cd](https://github.com/pawamoy/duty/commit/93e10cdaaace17c7422bb128ef2d5278187d02a9) by Timothée Mazzucotelli).
+
+
 ## [0.5.0](https://github.com/pawamoy/duty/releases/tag/0.5.0) - 2020-10-11
 
 <small>[Compare with 0.4.1](https://github.com/pawamoy/duty/compare/0.4.1...0.5.0)</small>
