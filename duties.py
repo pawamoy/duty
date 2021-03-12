@@ -2,6 +2,7 @@
 
 import os
 import re
+import sys
 from pathlib import Path
 from shutil import which
 from typing import List, Optional, Pattern
@@ -196,6 +197,8 @@ def check_docs(ctx):
     Arguments:
         ctx: The context instance (passed automatically).
     """
+    Path("build/coverage").mkdir(parents=True, exist_ok=True)
+    Path("build/coverage/index.html").touch(exist_ok=True)
     ctx.run("mkdocs build -s", title="Building documentation", pty=PTY)
 
 
@@ -221,6 +224,7 @@ def clean(ctx):
     ctx.run("rm -rf .coverage*")
     ctx.run("rm -rf .mypy_cache")
     ctx.run("rm -rf .pytest_cache")
+    ctx.run("rm -rf tests/.pytest_cache")
     ctx.run("rm -rf build")
     ctx.run("rm -rf dist")
     ctx.run("rm -rf pip-wheel-metadata")
@@ -299,7 +303,7 @@ def release(ctx, version: str):
         ctx.run("git push --tags", title="Pushing tags", pty=False)
         ctx.run("poetry build", title="Building dist/wheel", pty=PTY)
         ctx.run("poetry publish", title="Publishing version", pty=PTY)
-        ctx.run("mkdocs gh-deploy", title="Deploying documentation", pty=PTY)
+        docs_deploy.run()
 
 
 @duty(silent=True)
@@ -310,22 +314,22 @@ def coverage(ctx):
     Arguments:
         ctx: The context instance (passed automatically).
     """
+    ctx.run("coverage combine .coverage-*", nofail=True)
     ctx.run("coverage report --rcfile=config/coverage.ini", capture=False)
     ctx.run("coverage html --rcfile=config/coverage.ini")
 
 
 @duty
-def test(ctx, cleancov: bool = True, match: str = ""):
+def test(ctx, match: str = ""):
     """
     Run the test suite.
 
     Arguments:
         ctx: The context instance (passed automatically).
-        cleancov: Whether to remove the `.coverage` file before running the tests.
         match: A pytest expression to filter selected tests.
     """
-    if cleancov:
-        ctx.run("rm -f .coverage", silent=True)
+    py_version = f"{sys.version_info.major}{sys.version_info.minor}"
+    os.environ["COVERAGE_FILE"] = f".coverage-{py_version}"
     ctx.run(
         ["pytest", "-c", "config/pytest.ini", "-n", "auto", "-k", match, "tests"],
         title="Running tests",

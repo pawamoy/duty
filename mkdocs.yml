@@ -3,6 +3,7 @@ site_description: "A simple task runner."
 site_url: "https://pawamoy.github.io/duty"
 repo_url: "https://github.com/pawamoy/duty"
 repo_name: "pawamoy/duty"
+site_dir: "site"
 
 nav:
 - Home:
