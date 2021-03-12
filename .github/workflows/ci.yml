@@ -16,7 +16,7 @@ env:
   LANG: en_US.utf-8
   LC_ALL: en_US.utf-8
   PYTHONIOENCODING: UTF-8
-  POETRY_CACHE_DIR: .poetry_cache
+  POETRY_CACHE_DIR: ${{ github.workspace }}/.poetry_cache
 
 jobs:
 
