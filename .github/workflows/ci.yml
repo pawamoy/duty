@@ -15,7 +15,6 @@ defaults:
 env:
   LANG: "en_US.utf-8"
   LC_ALL: "en_US.utf-8"
-  POETRY_VIRTUALENVS_IN_PROJECT: "true"
   PYTHONIOENCODING: "UTF-8"
 
 jobs:
@@ -33,17 +32,21 @@ jobs:
       with:
         python-version: 3.8
 
+    - name: Set up Poetry
+      run: pip install poetry
+
+    - name: Get Poetry cache directory
+      id: get-cache-dir
+      run: echo "::set-output name=cachedir::$(poetry config cache-dir)"
+
     - name: Set up the cache
       uses: actions/cache@v1
       with:
-        path: .venv
+        path: ${{ steps.get-cache-dir.outputs.cachedir }}
         key: quality-venv-cache
 
     - name: Set up the project
-      run: |
-        pip install poetry
-        poetry install -vvv || { rm -rf .venv; poetry install -vvv; }
-        poetry update
+      run: poetry install -vv
 
     - name: Check if the documentation builds correctly
       run: poetry run duty check-docs
@@ -77,17 +80,21 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Set up Poetry
+      run: pip install poetry
+
+    - name: Get Poetry cache directory
+      id: get-cache-dir
+      run: echo "::set-output name=cachedir::$(poetry config cache-dir)"
+
     - name: Set up the cache
       uses: actions/cache@v1
       with:
-        path: .venv
+        path: ${{ steps.get-cache-dir.outputs.cachedir }}
         key: tests-venv-cache-${{ matrix.os }}-py${{ matrix.python-version }}
 
     - name: Set up the project
-      run: |
-        pip install poetry
-        poetry install -vvv || { rm -rf .venv; poetry install -vvv; }
-        poetry update
+      run: poetry install -vv
 
     - name: Run the test suite
       run: poetry run duty test
