@@ -13,9 +13,10 @@ defaults:
     shell: bash
 
 env:
-  LANG: "en_US.utf-8"
-  LC_ALL: "en_US.utf-8"
-  PYTHONIOENCODING: "UTF-8"
+  LANG: en_US.utf-8
+  LC_ALL: en_US.utf-8
+  PYTHONIOENCODING: UTF-8
+  POETRY_CACHE_DIR: .poetry_cache
 
 jobs:
 
@@ -35,15 +36,11 @@ jobs:
     - name: Set up Poetry
       run: pip install poetry
 
-    - name: Get Poetry cache directory
-      id: get-cache-dir
-      run: echo "::set-output name=cachedir::$(poetry config cache-dir)"
-
     - name: Set up the cache
       uses: actions/cache@v1
       with:
-        path: ${{ steps.get-cache-dir.outputs.cachedir }}
-        key: quality-venv-cache
+        path: .poetry_cache
+        key: quality-poetry-cache
 
     - name: Set up the project
       run: poetry install -vv
@@ -83,18 +80,14 @@ jobs:
     - name: Set up Poetry
       run: pip install poetry
 
-    - name: Get Poetry cache directory
-      id: get-cache-dir
-      run: echo "::set-output name=cachedir::$(poetry config cache-dir)"
-
     - name: Set up the cache
       uses: actions/cache@v1
       with:
-        path: ${{ steps.get-cache-dir.outputs.cachedir }}
-        key: tests-venv-cache-${{ matrix.os }}-py${{ matrix.python-version }}
+        path: .poetry_cache
+        key: tests-poetry-cache-${{ matrix.os }}-py${{ matrix.python-version }}
 
     - name: Set up the project
-      run: poetry install -vv
+      run: poetry install -vv || { rm -rf .poetry_cache/virtualenvs/*; poetry install -vv; }
 
     - name: Run the test suite
       run: poetry run duty test
