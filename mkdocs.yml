@@ -9,6 +9,7 @@ nav:
   - Overview: index.md
   - Changelog: changelog.md
   - Credits: credits.md
+  - License: license.md
 - Usage: usage.md
 - Code Reference:
   - cli.py: reference/cli.md
@@ -36,9 +37,10 @@ extra_css:
 
 markdown_extensions:
 - admonition
-- markdown_include.include
 - pymdownx.emoji
 - pymdownx.magiclink
+- pymdownx.snippets:
+    check_paths: true
 - pymdownx.superfences
 - pymdownx.tabbed
 - pymdownx.tasklist
@@ -52,4 +54,5 @@ plugins:
 - mkdocstrings:
     watch:
     - src/duty
-    - build/coverage
+- macros:
+    module_name: docs/macros
