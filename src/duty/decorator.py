@@ -35,7 +35,11 @@ def create_duty(
         aliases.add(name)
         name = dash_name
     description = inspect.getdoc(func) or ""
-    return Duty(name, description, func, aliases=aliases, pre=pre, post=post, opts=opts)
+    duty = Duty(name, description, func, aliases=aliases, pre=pre, post=post, opts=opts)
+    duty.__name__ = name  # type: ignore
+    duty.__doc__ = description
+    duty.__wrapped__ = func  # type: ignore  # noqa: WPS609
+    return duty
 
 
 def duty(*args, **kwargs) -> Union[Callable, Duty]:
