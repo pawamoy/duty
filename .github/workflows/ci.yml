@@ -44,7 +44,10 @@ jobs:
         path: |
           ${{ steps.set_variables.outputs.PIP_CACHE }}
           ${{ steps.set_variables.outputs.PDM_CACHE }}
-        key: ${{ runner.os }}-pip-${{ matrix.python-version }}
+        key: checks-cache
+
+    - name: Resolving dependencies
+      run: pdm lock
 
     - name: Check if the documentation builds correctly
       run: |
@@ -97,7 +100,7 @@ jobs:
         path: |
           ${{ steps.set_variables.outputs.PIP_CACHE }}
           ${{ steps.set_variables.outputs.PDM_CACHE }}
-        key: ${{ runner.os }}-pip-${{ matrix.python-version }}
+        key: tests-cache-${{ runner.os }}-${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
