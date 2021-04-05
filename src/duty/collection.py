@@ -88,7 +88,8 @@ class Collection:
         spec = importlib_util.spec_from_file_location("duty.duties", path)
         duties = importlib_util.module_from_spec(spec)
         spec.loader.exec_module(duties)  # type: ignore
-        for _, duty in inspect.getmembers(duties, lambda member: isinstance(member, Duty)):
+        declared_duties = inspect.getmembers(duties, lambda member: isinstance(member, Duty))
+        for _, duty in declared_duties:
             self.add(duty)
 
     def add(self, duty: "Duty") -> None:
