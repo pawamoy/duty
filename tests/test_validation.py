@@ -4,9 +4,9 @@ import sys
 from inspect import Parameter
 
 import pytest
-from tests.fixtures import validation as validation_fixture
 
 from duty.validation import ParamsCaster, cast_arg, to_bool  # noqa: WPS347
+from tests.fixtures import validation as validation_fixture
 
 if sys.version_info >= (3, 8, 0):
     from tests.fixtures import validation_38 as validation_fixture_38  # noqa: C0412,E0611,WPS114
