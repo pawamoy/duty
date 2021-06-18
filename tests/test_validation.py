@@ -62,8 +62,7 @@ class CustomType2:
     """Dummy type to test type-casting."""
 
     def __init__(self, value, extra):  # noqa: D107
-        self.value = value
-        self.extra = extra
+        ...  # pragma: no cover
 
 
 @pytest.mark.parametrize(

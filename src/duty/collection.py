@@ -86,7 +86,7 @@ class Collection:
         """
         path = path or self.path
         spec = importlib_util.spec_from_file_location("duty.duties", path)
-        duties = importlib_util.module_from_spec(spec)
+        duties = importlib_util.module_from_spec(spec)  # type: ignore
         spec.loader.exec_module(duties)  # type: ignore
         declared_duties = inspect.getmembers(duties, lambda member: isinstance(member, Duty))
         for _, duty in declared_duties:

@@ -1,30 +1,30 @@
 def no_params(ctx):
-    pass
+    pass  # pragma: no cover
 
 
 def pos_or_kw_param(ctx, a: int):
-    pass
+    pass  # pragma: no cover
 
 
 def pos_or_kw_params(ctx, a: int, b: int):
-    pass
+    pass  # pragma: no cover
 
 
 def varpos_param(ctx, *a: int):
-    pass
+    pass  # pragma: no cover
 
 
 def pos_and_varpos_param(ctx, a: int, *b: int):
-    pass
+    pass  # pragma: no cover
 
 
 def kwonly_param(ctx, *a: int, b: int):
-    pass
+    pass  # pragma: no cover
 
 
 def varkw_param(ctx, a: int, **b: int):
-    pass
+    pass  # pragma: no cover
 
 
 def varkw_no_annotation(ctx, **a):
-    pass
+    pass  # pragma: no cover
