@@ -59,7 +59,7 @@ cmd | `str`, `list of str`, or Python callable | The command to run. | *required
 args | `list` | Arguments to pass to the callable. | `[]`
 kwargs | `dict` | Keyword arguments to pass to the callable. | `{}`
 number | `int` | The command number (useful for the `tap` format). | `None`
-capture | `str` | The type of output: `"stdout"`, `"stderr"`, `True` (or `"both"`) and `False` (or `"none"`) | `True`
+capture | `str` | The type of output: `"stdout"`, `"stderr"`, `"both"` (or `True`) and `"none"` (or `False`) | `True`
 title | `str` | The command title. | *cmd as a shell command or Python statement*
 fmt | `str` | The output format as a Jinja template: `"pretty"`, `"tap"` or `"custom=..."` | `"pretty"`
 pty | `bool` | Whether to run in a PTY. | `False`
@@ -67,6 +67,8 @@ progress | `bool` | Whether to show progress. | `True`
 nofail | `bool` | Whether to always succeed. | `False`
 quiet | `bool` | Don't print the command output, even if it failed. | `False`
 silent | `bool` | Don't print anything. | `False`
+workdir | `str` | Change the working directory. | `None`
+allow_overrides | `bool` | Allow options overrides via CLI arguments. | `True`.
 
 Example usage of the `silent` option:
 
@@ -105,6 +107,118 @@ def run_scripts(ctx):
     ctx.run("bash script1.sh")
     ctx.run("bash script2.sh")
     ctx.run("bash script3.sh", capture=False)
+```
+
+### Options as a context manager
+
+You can temporarily change options for several `run` calls with `ctx.options()`:
+
+```python
+@duty
+def run_scripts(ctx):
+    with ctx.options(nofail=True):
+        ctx.run("bash script1.sh")
+        ctx.run("bash script2.sh")
+    ctx.run("bash script3.sh")
+```
+
+Such temporary changes will stack above the previous ones
+each time you enter the `with` clause,
+and unstack each time you leave it:
+
+```python
+@duty
+def run_scripts(ctx):
+    ctx.run("bash script0.sh")  # defaults
+
+    with ctx.options(nofail=True):
+        ctx.run("bash script1.sh")  # nofail=True
+
+        with ctx.options(quiet=True):
+            ctx.run("bash script2.sh")  # nofail=True, quiet=True
+
+            with ctx.options(silent=True, nofail=False):
+                ctx.run("bash script3.sh")  # nofail=False, quiet=True, silent=True
+
+            ctx.run("bash script4.sh")  # nofail=True, quiet=True
+
+        ctx.run("bash script5.sh")  # nofail=True
+
+    ctx.run("bash script6.sh")  # defaults
+```
+
+### Changing the working directory
+
+You can change the working directory for a specific `run`:
+
+```python
+@duty
+def run_scripts(ctx):
+    ctx.run("bash script3.sh", workdir="subfolder")
+```
+
+Or for a group of `run` calls, using the `options` context manager:
+
+```python
+@duty
+def run_scripts(ctx):
+    ctx.run("echo in .")
+    ctx.run("ls")
+    with ctx.options(workdir="subfolder"):
+        ctx.run("echo in subfolder")
+        ctx.run("ls")
+```
+
+!!! warning "The change of directory is not immediate."
+    When using the `workdir` option through the context manager,
+    the actual change of directory is deferred to each of the `run` calls
+    within that context.
+
+    A nesting of `ctx.options(workdir=...)` will each time override the previous one:
+
+    ```python
+    @duty
+    def run_scripts(ctx):
+        ctx.run("echo in .")  # run in ./
+        with ctx.options(workdir="A"):
+            ctx.run("echo in A")  # run in ./A
+            with ctx.options(workdir="B"):
+                ctx.run("echo in...")  # run in ./B, not ./A/B!
+    ```
+
+    It also means instructions other than `ctx.run` still run in the original directory!
+
+    ```python
+    @duty
+    def run_scripts(ctx):
+        ctx.run("echo in .")  # run in ./
+        with ctx.options(workdir="A"):
+            ctx.run("echo in A")  # run in ./A
+            l = os.listdir()  # run in ./, not ./A!
+    ```
+
+    If you want to immediately enter the directory,
+    or to nest multiple directory changes, use the `cd` context manager.
+
+Another way to change the working directory
+is to use the `ctx.cd(directory)` context manager:
+
+```python
+@duty
+def run_scripts(ctx):
+    ctx.run("echo in .")  # run in ./
+
+    with ctx.cd("A"):
+        ctx.run("echo in A")  # run in ./A
+        l = os.listdir()  # run in ./A as well
+
+        with ctx.cd("B"):
+            ctx.run("echo in A/B")  # run in ./A/B
+            ctx.run("echo in A/B/C", workdir="C")  # run in ./A/B/C
+
+        ctx.run("echo in A")  # back to ./A
+
+    ctx.run("echo in .")  # back to ./
 ```
 
 ## Running duties
@@ -250,6 +364,25 @@ while the `test` duty will not:
 
 ```bash
 duty -cboth format check test -cnone
+```
+
+#### Preventing options overrides from the CLI
+
+If for some reason you would like to prevent the ability
+to override an option with the command line global or local options,
+pass `allow_overrides=False` to your `ctx.run()` call,
+or even to your `ctx.options()` context manager:
+
+```python
+@duty
+def run_scripts(ctx):
+    # no option can be changed from the CLI for the following run
+    ctx.run("bash script1.sh", quiet=False, allow_overrides=False)
+
+    # not for these runs either
+    with ctx.options(nofail=True, allow_overrides=False):
+        ctx.run("bash script2.sh")
+        ctx.run("bash script3.sh")
 ```
 
 ### Capturing commands output

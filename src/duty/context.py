@@ -1,6 +1,8 @@
 """Module containing the context definition."""
 
-from typing import Callable, List, Union
+import os
+from contextlib import contextmanager
+from typing import Any, Callable, Dict, List, Union
 
 from failprint.runners import run as failprint_run
 
@@ -25,28 +27,76 @@ class Context:
             options_override: Options that override `run` and `@duty` options.
                 This argument is used to allow users to override options from the CLI or environment.
         """
-        self.options = options
-        self.options_override = options_override or {}
+        self._options = options
+        self._option_stack: List[Dict[str, Any]] = []
+        self._options_override = options_override or {}
 
-    def run(self, cmd: CmdType, args=None, kwargs=None, **options):
+    def run(self, cmd: CmdType, **options):
         """
         Run a command in a subprocess or a Python callable.
 
         Arguments:
             cmd: A command or a Python callable.
-            args: Positional arguments passed to the Python callable.
-            kwargs: Keyword arguments passed to the Python callable.
             options: Options passed to `failprint` functions.
 
         Raises:
             DutyFailure: When the exit code / function result is greather than 0.
         """
-        final_options = dict(self.options)
+        final_options = dict(self._options)
         final_options.update(options)
-        final_options.update(self.options_override)
-        try:
-            code = failprint_run(cmd, args=args, kwargs=kwargs, **final_options)
-        except KeyboardInterrupt:
-            code = 130
+
+        allow_overrides = final_options.pop("allow_overrides", True)
+        workdir = final_options.pop("workdir", None)
+
+        if allow_overrides:
+            final_options.update(self._options_override)
+
+        with self.cd(workdir):
+            try:
+                code = failprint_run(cmd, **final_options)
+            except KeyboardInterrupt:
+                code = 130
+
         if code:
             raise DutyFailure(code)
+
+    @contextmanager
+    def options(self, **opts):
+        """
+        Change options as a context manager.
+
+        Can be nested as will, previous options will pop once out of the with clause.
+
+        Arguments:
+            **opts: Options used in `run`.
+
+        Yields:
+            Nothing.
+        """
+        self._option_stack.append(self._options)
+        self._options = {**self._options, **opts}
+        try:
+            yield
+        finally:
+            self._options = self._option_stack.pop()
+
+    @contextmanager
+    def cd(self, directory: str):
+        """
+        Change working directory as a context manager.
+
+        Arguments:
+            directory: The directory to go into.
+
+        Yields:
+            Nothing.
+        """
+        if not directory:
+            yield
+            return
+        old_wd = os.getcwd()
+        os.chdir(directory)
+        try:
+            yield
+        finally:
+            os.chdir(old_wd)
