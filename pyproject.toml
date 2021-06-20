@@ -14,7 +14,7 @@ keywords = ["task-runner", "task", "runner", "cross-platform"]
 dynamic = ["version", "classifiers"]
 classifiers = ["Development Status :: 4 - Beta"]
 dependencies = [
-    "failprint~=0.6",
+    "failprint~=0.7",
     "cached-property~=1.5; python_version < '3.8'",
 ]
 

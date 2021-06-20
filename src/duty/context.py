@@ -31,7 +31,7 @@ class Context:
         self._option_stack: List[Dict[str, Any]] = []
         self._options_override = options_override or {}
 
-    def run(self, cmd: CmdType, **options):
+    def run(self, cmd: CmdType, **options) -> str:
         """
         Run a command in a subprocess or a Python callable.
 
@@ -41,6 +41,9 @@ class Context:
 
         Raises:
             DutyFailure: When the exit code / function result is greather than 0.
+
+        Returns:
+            The output of the command.
         """
         final_options = dict(self._options)
         final_options.update(options)
@@ -53,12 +56,14 @@ class Context:
 
         with self.cd(workdir):
             try:
-                code = failprint_run(cmd, **final_options)
+                result = failprint_run(cmd, **final_options)
             except KeyboardInterrupt:
-                code = 130
+                raise DutyFailure(130)  # noqa: WPS432 (ctrl-c)
 
-        if code:
-            raise DutyFailure(code)
+        if result.code:
+            raise DutyFailure(result.code)
+
+        return result.output
 
     @contextmanager
     def options(self, **opts):

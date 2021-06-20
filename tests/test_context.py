@@ -1,12 +1,15 @@
 """Tests for the `context` module."""
 
 import os
+from collections import namedtuple
 from pathlib import Path
 
 import pytest
 
 from duty import context
 from duty.exceptions import DutyFailure
+
+_RunResult = namedtuple("RunResult", "code output")
 
 
 def test_allow_overrides(monkeypatch):
@@ -18,7 +21,7 @@ def test_allow_overrides(monkeypatch):
     """
     ctx = context.Context({"a": 1}, {"a": 2})
     records = []
-    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: records.append(opts))
+    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: _RunResult(records.append(opts), ""))
     ctx.run("")
     ctx.run("", allow_overrides=False)
     ctx.run("", allow_overrides=True)
@@ -38,7 +41,7 @@ def test_options_context_manager(monkeypatch):
     """
     ctx = context.Context({"a": 1}, {"a": 2})
     records = []
-    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: records.append(opts))
+    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: _RunResult(records.append(opts), ""))
 
     with ctx.options(a=3):
         ctx.run("")  # should be overridden by 2
@@ -61,7 +64,7 @@ def test_workdir(monkeypatch):
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({})
-    monkeypatch.setattr(context, "failprint_run", lambda _: len(Path(os.getcwd()).parts))
+    monkeypatch.setattr(context, "failprint_run", lambda _: _RunResult(len(Path(os.getcwd()).parts), ""))
     records = []
     with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
         ctx.run("")
@@ -80,7 +83,7 @@ def test_workdir_as_context_manager(monkeypatch):
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({})
-    monkeypatch.setattr(context, "failprint_run", lambda _: len(Path(os.getcwd()).parts))
+    monkeypatch.setattr(context, "failprint_run", lambda _: _RunResult(len(Path(os.getcwd()).parts), ""))
     records = []
     with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
         with ctx.options(workdir=".."):
