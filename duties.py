@@ -5,7 +5,6 @@ import re
 import sys
 from functools import wraps
 from pathlib import Path
-from shutil import which
 from typing import List, Optional, Pattern
 from urllib.request import urlopen
 
@@ -135,20 +134,16 @@ def check_dependencies(ctx):
     Arguments:
         ctx: The context instance (passed automatically).
     """
-    nofail = False
-    safety = which("safety")
-    if not safety:
-        pipx = which("pipx")
-        if pipx:
-            safety = f"{pipx} run safety"
-        else:
-            safety = "safety"
-            nofail = True
+    requirements = ctx.run(
+        "pdm export -f requirements --without-hashes",
+        title="Exporting dependencies as requirements",
+        allow_overrides=False,
+    )
     ctx.run(
-        f"pdm export -f requirements --without-hashes | {safety} check --stdin --full-report --ignore 41002",
+        "safety check --stdin --full-report --ignore 41002",
+        stdin=requirements,
         title="Checking dependencies",
         pty=PTY,
-        nofail=nofail,
     )
 
 
