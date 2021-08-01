@@ -5,6 +5,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.7.0](https://github.com/pawamoy/duty/releases/tag/0.7.0) - 2021-08-01
+
+<small>[Compare with 0.6.0](https://github.com/pawamoy/duty/compare/0.6.0...0.7.0)</small>
+
+### Features
+- Make `ctx.run` return the command output ([1810623](https://github.com/pawamoy/duty/commit/1810623a67bd102aceb56b3285064753d58d464e) by Timothée Mazzucotelli). [Issue #4](https://github.com/pawamoy/duty/issues/4)
+- Add `allow_overrides` and `workdir` options ([ddbf7a2](https://github.com/pawamoy/duty/commit/ddbf7a260dc0bcb06603400197d514e63e77253d) by Timothée Mazzucotelli). [Issue #1](https://github.com/pawamoy/duty/issues/1)
+- Allow passing standard input to a command (thanks to [*failprint* 0.8](https://pawamoy.github.io/failprint/changelog/#080-2021-07-31)). [Issue #3](https://github.com/pawamoy/duty/issues/3)
+
+### Bug Fixes
+- Make duties unwrappable ([c96325a](https://github.com/pawamoy/duty/commit/c96325a302ca52670bf33c8950c24d1fd441280f) by Timothée Mazzucotelli).
+
+
 ## [0.6.0](https://github.com/pawamoy/duty/releases/tag/0.6.0) - 2021-02-06
 
 <small>[Compare with 0.5.0](https://github.com/pawamoy/duty/compare/0.5.0...0.6.0)</small>
