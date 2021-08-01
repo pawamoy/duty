@@ -14,7 +14,7 @@
         <link rel="canonical" href="https://pawamoy.github.io/duty/usage/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2, mkdocs-material-7.1.7">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -22,10 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ca7ac06f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.1118c9be.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -46,6 +46,8 @@
     
     
       
+
+
     
     
   </head>
@@ -140,14 +142,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -453,6 +459,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#options-as-a-context-manager" class="md-nav__link">
+    Options as a context manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-working-directory" class="md-nav__link">
+    Changing the working directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-the-output-of-a-command" class="md-nav__link">
+    Saving the output of a command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-standard-input-to-a-command" class="md-nav__link">
+    Passing standard input to a command
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -491,6 +525,13 @@
           <li class="md-nav__item">
   <a href="#local-options" class="md-nav__link">
     Local options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-options-overrides-from-the-cli" class="md-nav__link">
+    Preventing options overrides from the CLI
   </a>
   
 </li>
@@ -808,6 +849,34 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#options-as-a-context-manager" class="md-nav__link">
+    Options as a context manager
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-the-working-directory" class="md-nav__link">
+    Changing the working directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saving-the-output-of-a-command" class="md-nav__link">
+    Saving the output of a command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-standard-input-to-a-command" class="md-nav__link">
+    Passing standard input to a command
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -846,6 +915,13 @@
           <li class="md-nav__item">
   <a href="#local-options" class="md-nav__link">
     Local options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preventing-options-overrides-from-the-cli" class="md-nav__link">
+    Preventing options overrides from the CLI
   </a>
   
 </li>
@@ -966,7 +1042,7 @@ mostly coming from its underlying dependency:
 <tr>
 <td>capture</td>
 <td><code>str</code></td>
-<td>The type of output: <code>"stdout"</code>, <code>"stderr"</code>, <code>True</code> (or <code>"both"</code>) and <code>False</code> (or <code>"none"</code>)</td>
+<td>The type of output: <code>"stdout"</code>, <code>"stderr"</code>, <code>"both"</code> (or <code>True</code>) and <code>"none"</code> (or <code>False</code>)</td>
 <td><code>True</code></td>
 </tr>
 <tr>
@@ -1011,6 +1087,24 @@ mostly coming from its underlying dependency:
 <td>Don't print anything.</td>
 <td><code>False</code></td>
 </tr>
+<tr>
+<td>stdin</td>
+<td><code>str</code></td>
+<td>Pass text to a command as standard input.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td>workdir</td>
+<td><code>str</code></td>
+<td>Change the working directory.</td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td>allow_overrides</td>
+<td><code>bool</code></td>
+<td>Allow options overrides via CLI arguments.</td>
+<td><code>True</code>.</td>
+</tr>
 </tbody>
 </table>
 <p>Example usage of the <code>silent</code> option:</p>
@@ -1041,6 +1135,187 @@ in the <code>ctx.run()</code> calls:</p>
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script1.sh&quot;</span><span class="p">)</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script2.sh&quot;</span><span class="p">)</span>
     <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script3.sh&quot;</span><span class="p">,</span> <span class="n">capture</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="options-as-a-context-manager">Options as a context manager<a class="headerlink" href="#options-as-a-context-manager" title="Permanent link">¤</a></h3>
+<p>You can temporarily change options for several <code>run</code> calls with <code>ctx.options()</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">nofail</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script1.sh&quot;</span><span class="p">)</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script2.sh&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script3.sh&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Such temporary changes will stack above the previous ones
+each time you enter the <code>with</code> clause,
+and unstack each time you leave it:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script0.sh&quot;</span><span class="p">)</span>  <span class="c1"># defaults</span>
+
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">nofail</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script1.sh&quot;</span><span class="p">)</span>  <span class="c1"># nofail=True</span>
+
+        <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script2.sh&quot;</span><span class="p">)</span>  <span class="c1"># nofail=True, quiet=True</span>
+
+            <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nofail</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script3.sh&quot;</span><span class="p">)</span>  <span class="c1"># nofail=False, quiet=True, silent=True</span>
+
+            <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script4.sh&quot;</span><span class="p">)</span>  <span class="c1"># nofail=True, quiet=True</span>
+
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script5.sh&quot;</span><span class="p">)</span>  <span class="c1"># nofail=True</span>
+
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script6.sh&quot;</span><span class="p">)</span>  <span class="c1"># defaults</span>
+</code></pre></div>
+<h3 id="changing-the-working-directory">Changing the working directory<a class="headerlink" href="#changing-the-working-directory" title="Permanent link">¤</a></h3>
+<p>You can change the working directory for a specific <code>run</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script3.sh&quot;</span><span class="p">,</span> <span class="n">workdir</span><span class="o">=</span><span class="s2">&quot;subfolder&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Or for a group of <code>run</code> calls, using the <code>options</code> context manager:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in .&quot;</span><span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;ls&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">workdir</span><span class="o">=</span><span class="s2">&quot;subfolder&quot;</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in subfolder&quot;</span><span class="p">)</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;ls&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">The change of directory is not immediate.</p>
+<p>When using the <code>workdir</code> option through the context manager,
+the actual change of directory is deferred to each of the <code>run</code> calls
+within that context.</p>
+<p>A nesting of <code>ctx.options(workdir=...)</code> will each time override the previous one:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in .&quot;</span><span class="p">)</span>  <span class="c1"># run in ./</span>
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">workdir</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in A&quot;</span><span class="p">)</span>  <span class="c1"># run in ./A</span>
+        <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">workdir</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">):</span>
+            <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in...&quot;</span><span class="p">)</span>  <span class="c1"># run in ./B, not ./A/B!</span>
+</code></pre></div>
+<p>It also means instructions other than <code>ctx.run</code> still run in the original directory!</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in .&quot;</span><span class="p">)</span>  <span class="c1"># run in ./</span>
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">workdir</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in A&quot;</span><span class="p">)</span>  <span class="c1"># run in ./A</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>  <span class="c1"># run in ./, not ./A!</span>
+</code></pre></div>
+<p>If you want to immediately enter the directory,
+or to nest multiple directory changes, use the <code>cd</code> context manager.</p>
+</div>
+<p>Another way to change the working directory
+is to use the <code>ctx.cd(directory)</code> context manager:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in .&quot;</span><span class="p">)</span>  <span class="c1"># run in ./</span>
+
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">cd</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in A&quot;</span><span class="p">)</span>  <span class="c1"># run in ./A</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">()</span>  <span class="c1"># run in ./A as well</span>
+
+        <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">cd</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">):</span>
+            <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in A/B&quot;</span><span class="p">)</span>  <span class="c1"># run in ./A/B</span>
+            <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in A/B/C&quot;</span><span class="p">,</span> <span class="n">workdir</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>  <span class="c1"># run in ./A/B/C</span>
+
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in A&quot;</span><span class="p">)</span>  <span class="c1"># back to ./A</span>
+
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;echo in .&quot;</span><span class="p">)</span>  <span class="c1"># back to ./</span>
+</code></pre></div>
+<h3 id="saving-the-output-of-a-command">Saving the output of a command<a class="headerlink" href="#saving-the-output-of-a-command" title="Permanent link">¤</a></h3>
+<p>In <em>duty</em> 0.7 (thanks to <em>failprint</em> 0.8),
+the <code>run</code> method of the context objects always returns
+the captured output of the command
+(even when it also prints it on the standard output).
+If nothing was captured, the returned output will be empty.</p>
+<p>You can therefore use <code>ctx.run</code> as a shortcut to get
+the output of a command.</p>
+<p>Before <em>duty</em> 0.7:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;freeze&quot;</span><span class="p">],</span>
+        <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+        <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">output</span>
+    <span class="o">...</span>
+</code></pre></div>
+<p>With <em>duty</em> 0.7:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">duty</span> <span class="kn">import</span> <span class="n">duty</span>
+
+
+<span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;pip&quot;</span><span class="p">,</span> <span class="s2">&quot;freeze&quot;</span><span class="p">])</span>
+    <span class="o">...</span>
+</code></pre></div>
+<h3 id="passing-standard-input-to-a-command">Passing standard input to a command<a class="headerlink" href="#passing-standard-input-to-a-command" title="Permanent link">¤</a></h3>
+<p><em>failprint</em> 0.8 introduced the ability to pass text as standard input to a command.
+<em>duty</em> 0.7 takes advantage of this new <em>failprint</em> version,
+and therefore allows you to do the same in your duties.</p>
+<p>Before <em>duty</em> 0.7, to pass standard input to a command,
+you had to write a shell command, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">check_dependencies</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="s2">&quot;pdm export -f requirements --without-hashes | safety check --stdin --full-report&quot;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Checking dependencies&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>This had a few issues:</p>
+<ul>
+<li>you had to use a shell command, which brings its lot of platform-and-shell-dependent issues, such as:<ul>
+<li>shell might not be the same everywhere</li>
+<li>on Windows, there were high chances the <code>safety</code> executable would not be found</li>
+</ul>
+</li>
+</ul>
+<p>To fix the latter, you had to compute the absolute paths of all exectuables in the command before-hand
+(except the first one, which <em>failprint</em> handles itself):</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">check_dependencies</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">safety</span> <span class="o">=</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;safety&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;safety&quot;</span>  <span class="c1"># hope for the best</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;pdm export -f requirements --without-hashes | </span><span class="si">{</span><span class="n">safety</span><span class="si">}</span><span class="s2"> check --stdin --full-report&quot;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Checking dependencies&quot;</span><span class="p">,</span>
+        <span class="n">pty</span><span class="o">=</span><span class="n">PTY</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+<p>With <em>duty</em> 0.7, everything is easier and more robust
+since you can save the output of a command in a variable,
+and then pass this variable as standard input to another command!
+This allows to write commands as lists of strings
+(better cross-platform support, less resource-consuming),
+and reuse the output of one command as input of several others:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">check_dependencies</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;pdm&quot;</span><span class="p">,</span> <span class="s2">&quot;export&quot;</span><span class="p">,</span> <span class="s2">&quot;-f&quot;</span><span class="p">,</span> <span class="s2">&quot;requirements&quot;</span><span class="p">,</span> <span class="s2">&quot;--without-hashes&quot;</span><span class="p">],</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Exporting dependencies as requirements&quot;</span><span class="p">,</span>
+        <span class="n">allow_overrides</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="c1"># this is a preparation command that must not be altered</span>
+        <span class="c1"># by CLI options targetted at the next commands,</span>
+        <span class="c1"># see &quot;Preventing options overrides&quot;</span>
+    <span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;safety&quot;</span><span class="p">,</span> <span class="s2">&quot;check&quot;</span><span class="p">,</span> <span class="s2">&quot;--stdin&quot;</span><span class="p">,</span> <span class="s2">&quot;--full-report&quot;</span><span class="p">],</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Checking dependencies&quot;</span><span class="p">,</span>
+        <span class="n">stdin</span><span class="o">=</span><span class="n">requirements</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">&quot;other&quot;</span><span class="p">,</span> <span class="s2">&quot;command&quot;</span><span class="p">,</span> <span class="s2">&quot;using&quot;</span><span class="p">,</span> <span class="s2">&quot;requirements&quot;</span><span class="p">],</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Checking one more thing&quot;</span><span class="p">,</span>
+        <span class="n">stdin</span><span class="o">=</span><span class="n">requirements</span><span class="p">,</span>
+    <span class="p">)</span>
 </code></pre></div>
 <h2 id="running-duties">Running duties<a class="headerlink" href="#running-duties" title="Permanent link">¤</a></h2>
 <p>To run a duty, simply use:</p>
@@ -1166,6 +1441,21 @@ In the following example, the <code>format</code> and <code>check</code> duties
 will have their output captured,
 while the <code>test</code> duty will not:</p>
 <div class="highlight"><pre><span></span><code>duty -cboth format check <span class="nb">test</span> -cnone
+</code></pre></div>
+<h4 id="preventing-options-overrides-from-the-cli">Preventing options overrides from the CLI<a class="headerlink" href="#preventing-options-overrides-from-the-cli" title="Permanent link">¤</a></h4>
+<p>If for some reason you would like to prevent the ability
+to override an option with the command line global or local options,
+pass <code>allow_overrides=False</code> to your <code>ctx.run()</code> call,
+or even to your <code>ctx.options()</code> context manager:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@duty</span>
+<span class="k">def</span> <span class="nf">run_scripts</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
+    <span class="c1"># no option can be changed from the CLI for the following run</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script1.sh&quot;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allow_overrides</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># not for these runs either</span>
+    <span class="k">with</span> <span class="n">ctx</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">nofail</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_overrides</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script2.sh&quot;</span><span class="p">)</span>
+        <span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;bash script3.sh&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="capturing-commands-output">Capturing commands output<a class="headerlink" href="#capturing-commands-output" title="Permanent link">¤</a></h3>
 <p>When running a command through <code>ctx.run()</code>,
@@ -1327,8 +1617,9 @@ duty task1 task2
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" title="Back to top" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
           </a>
         
       </main>
@@ -1412,10 +1703,10 @@ duty task1 task2
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.76f349be.min.js"></script>
+      <script src="../assets/javascripts/bundle.2b46852b.min.js"></script>
       
     
   </body>
