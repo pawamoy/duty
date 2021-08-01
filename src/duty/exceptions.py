@@ -1,7 +1,7 @@
 """Module containing the project's exceptions."""
 
 
-class DutyFailure(Exception):
+class DutyFailure(Exception):  # noqa: N818
     """An exception raised when a duty fails."""
 
     def __init__(self, code: int):
