@@ -145,7 +145,7 @@ def check_dependencies(ctx):
             safety = "safety"
             nofail = True
     ctx.run(
-        f"pdm export -f requirements --without-hashes | {safety} check --stdin --full-report",
+        f"pdm export -f requirements --without-hashes | {safety} check --stdin --full-report --ignore 41002",
         title="Checking dependencies",
         pty=PTY,
         nofail=nofail,
