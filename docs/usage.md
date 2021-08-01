@@ -67,6 +67,7 @@ progress | `bool` | Whether to show progress. | `True`
 nofail | `bool` | Whether to always succeed. | `False`
 quiet | `bool` | Don't print the command output, even if it failed. | `False`
 silent | `bool` | Don't print anything. | `False`
+stdin | `str` | Pass text to a command as standard input. | `None`
 workdir | `str` | Change the working directory. | `None`
 allow_overrides | `bool` | Allow options overrides via CLI arguments. | `True`.
 
@@ -219,6 +220,116 @@ def run_scripts(ctx):
         ctx.run("echo in A")  # back to ./A
 
     ctx.run("echo in .")  # back to ./
+```
+
+### Saving the output of a command
+
+In *duty* 0.7 (thanks to *failprint* 0.8),
+the `run` method of the context objects always returns
+the captured output of the command
+(even when it also prints it on the standard output).
+If nothing was captured, the returned output will be empty.
+
+You can therefore use `ctx.run` as a shortcut to get
+the output of a command.
+
+Before *duty* 0.7:
+
+```python
+import subprocess
+
+from duty import duty
+
+
+@duty
+def action(ctx):
+    requirements = subprocess.run(
+        ["pip", "freeze"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    ).output
+    ...
+```
+
+With *duty* 0.7:
+
+```python
+from duty import duty
+
+
+@duty
+def action(ctx):
+    requirements = ctx.run(["pip", "freeze"])
+    ...
+```
+
+### Passing standard input to a command
+
+*failprint* 0.8 introduced the ability to pass text as standard input to a command.
+*duty* 0.7 takes advantage of this new *failprint* version,
+and therefore allows you to do the same in your duties.
+
+Before *duty* 0.7, to pass standard input to a command,
+you had to write a shell command, for example:
+
+```python
+@duty
+def check_dependencies(ctx):
+    ctx.run(
+        "pdm export -f requirements --without-hashes | safety check --stdin --full-report",
+        title="Checking dependencies",
+    )
+```
+
+This had a few issues:
+
+- you had to use a shell command, which brings its lot of platform-and-shell-dependent issues, such as:
+    - shell might not be the same everywhere
+    - on Windows, there were high chances the `safety` executable would not be found
+
+To fix the latter, you had to compute the absolute paths of all exectuables in the command before-hand
+(except the first one, which *failprint* handles itself):
+
+```python
+@duty
+def check_dependencies(ctx):
+    safety = which("safety") or "safety"  # hope for the best
+    ctx.run(
+        f"pdm export -f requirements --without-hashes | {safety} check --stdin --full-report",
+        title="Checking dependencies",
+        pty=PTY,
+    )
+```
+
+With *duty* 0.7, everything is easier and more robust
+since you can save the output of a command in a variable,
+and then pass this variable as standard input to another command!
+This allows to write commands as lists of strings
+(better cross-platform support, less resource-consuming),
+and reuse the output of one command as input of several others:
+
+```python
+@duty
+def check_dependencies(ctx):
+    requirements = ctx.run(
+        ["pdm", "export", "-f", "requirements", "--without-hashes"],
+        title="Exporting dependencies as requirements",
+        allow_overrides=False,
+        # this is a preparation command that must not be altered
+        # by CLI options targetted at the next commands,
+        # see "Preventing options overrides"
+    )
+    ctx.run(
+        ["safety", "check", "--stdin", "--full-report"],
+        title="Checking dependencies",
+        stdin=requirements,
+    )
+    ctx.run(
+        ["other", "command", "using", "requirements"],
+        title="Checking one more thing",
+        stdin=requirements,
+    )
 ```
 
 ## Running duties
