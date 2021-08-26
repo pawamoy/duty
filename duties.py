@@ -1,9 +1,11 @@
 """Development tasks."""
 
+import importlib
 import os
 import re
 import sys
 from functools import wraps
+from io import StringIO
 from pathlib import Path
 from typing import List, Optional, Pattern
 from urllib.request import urlopen
@@ -134,13 +136,36 @@ def check_dependencies(ctx):
     Arguments:
         ctx: The context instance (passed automatically).
     """
+    # undo the patching
+    for module in sys.modules:  # noqa: WPS528
+        if module.startswith("safety.") or module == "safety":
+            del sys.modules[module]  # noqa: WPS420
+
+    # didn't dig deep enough to ensure it's never needed
+    importlib.invalidate_caches()
+
+    # reload original, unpatched safety
+    from safety import safety
+    from safety.formatter import report
+    from safety.util import read_requirements
+
+    # get requirements from PDM
     requirements = ctx.run(
         "pdm export -f requirements --without-hashes",
         title="Exporting dependencies as requirements",
         allow_overrides=False,
     )
+
+    def check_vulns():  # noqa: WPS430
+        # check using safety as a library
+        packages = list(read_requirements(StringIO(requirements)))
+        vulns = safety.check(packages=packages, ignore_ids="41002", key="", db_mirror="", cached=False, proxy={})
+        output_report = report(vulns=vulns, full=True, checked_packages=len(packages))
+        if vulns:
+            print(output_report)
+
     ctx.run(
-        "safety check --stdin --full-report --ignore 41002",
+        check_vulns,
         stdin=requirements,
         title="Checking dependencies",
         pty=PTY,

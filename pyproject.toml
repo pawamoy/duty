@@ -76,6 +76,9 @@ tests = [
     "pytest-xdist~=2.2",
 ]
 typing = ["mypy~=0.812"]
+security = [
+    "safety~=1.10",
+]
 
 [tool.black]
 line-length = 120
