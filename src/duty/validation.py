@@ -5,13 +5,15 @@ We validate the parameters before running the duties,
 effectively checking all CLI arguments and failing early
 if they are incorrect.
 """
+from __future__ import annotations
 
 try:
-    from functools import cached_property  # type: ignore
+    from functools import cached_property
 except ImportError:
     from cached_property import cached_property  # type: ignore  # noqa: WPS440
+
 from inspect import Parameter, Signature, signature
-from typing import Any, Callable, Dict, Sequence, Tuple
+from typing import Any, Callable, Sequence
 
 
 def to_bool(value: str) -> bool:
@@ -27,7 +29,7 @@ def to_bool(value: str) -> bool:
     return value.lower() not in {"", "0", "no", "n", "false", "off"}
 
 
-def cast_arg(arg, annotation) -> Any:
+def cast_arg(arg: Any, annotation: Any) -> Any:
     """
     Cast an argument using a type annotation.
 
@@ -111,7 +113,7 @@ class ParamsCaster:
                 return param.annotation
         return Parameter.empty
 
-    def annotation_at_pos(self, pos) -> Any:
+    def annotation_at_pos(self, pos: int) -> Any:
         """
         Give the annotation for the parameter at the given position.
 
@@ -123,7 +125,7 @@ class ParamsCaster:
         """
         return self.params_list[pos].annotation
 
-    def eaten_by_var_positional(self, pos) -> bool:
+    def eaten_by_var_positional(self, pos: int) -> bool:
         """
         Tell if the parameter at this position is eaten by a variable positional parameter.
 
@@ -135,7 +137,7 @@ class ParamsCaster:
         """
         return self.has_var_positional and pos >= self.var_positional_position
 
-    def cast_posarg(self, pos, arg) -> Any:
+    def cast_posarg(self, pos: int, arg: Any) -> Any:
         """
         Cast a positional argument.
 
@@ -150,7 +152,7 @@ class ParamsCaster:
             return cast_arg(arg, self.var_positional_annotation)
         return cast_arg(arg, self.annotation_at_pos(pos))
 
-    def cast_kwarg(self, name, value) -> Any:
+    def cast_kwarg(self, name: str, value: Any) -> Any:
         """
         Cast a keyword argument.
 
@@ -165,7 +167,7 @@ class ParamsCaster:
             return cast_arg(value, self.params_dict[name].annotation)
         return cast_arg(value, self.var_keyword_annotation)
 
-    def cast(self, *args, **kwargs) -> Tuple[Sequence, Dict[str, Any]]:
+    def cast(self, *args: Any, **kwargs: Any) -> tuple[Sequence, dict[str, Any]]:
         """
         Cast all positional and keyword arguments.
 
@@ -183,9 +185,9 @@ class ParamsCaster:
 
 def validate(
     func: Callable,
-    *args,
-    **kwargs,
-) -> Tuple[Sequence, Dict[str, Any]]:
+    *args: Any,
+    **kwargs: Any,
+) -> tuple[Sequence, dict[str, Any]]:
     """
     Validate positional and keyword arguments against a function.
 

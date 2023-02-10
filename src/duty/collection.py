@@ -1,9 +1,10 @@
 """Module containing all the logic."""
+from __future__ import annotations
 
 import inspect
 from copy import deepcopy
 from importlib import util as importlib_util
-from typing import Any, Callable, Dict, List, Optional, Union
+from typing import Any, Callable, List, Union
 
 from duty.context import Context
 
@@ -29,15 +30,15 @@ class Collection:
             path: The path to the duties file.
         """
         self.path = path
-        self.duties: Dict[str, Duty] = {}
-        self.aliases: Dict[str, Duty] = {}
+        self.duties: dict[str, Duty] = {}
+        self.aliases: dict[str, Duty] = {}
 
     def clear(self) -> None:
         """Clear the collection."""
         self.duties.clear()
         self.aliases.clear()
 
-    def names(self) -> List[str]:
+    def names(self) -> list[str]:
         """
         Return the list of duties names and aliases.
 
@@ -46,7 +47,7 @@ class Collection:
         """
         return list(self.duties.keys()) + list(self.aliases.keys())
 
-    def get(self, name_or_alias: str) -> "Duty":
+    def get(self, name_or_alias: str) -> Duty:
         """
         Get a duty by its name or alias.
 
@@ -76,7 +77,7 @@ class Collection:
             lines.append(f"{name:{longest_name}}  {description}")
         return "\n".join(lines)
 
-    def load(self, path: Optional[str] = None) -> None:
+    def load(self, path: str | None = None) -> None:
         """
         Load duties from a Python file.
 
@@ -92,7 +93,7 @@ class Collection:
         for _, duty in declared_duties:
             self.add(duty)
 
-    def add(self, duty: "Duty") -> None:
+    def add(self, duty: Duty) -> None:
         """
         Add a duty to the collection.
 
@@ -112,18 +113,18 @@ class Collection:
 class Duty:
     """The main duty class."""
 
-    default_options: Dict[str, Any] = {}
+    default_options: dict[str, Any] = {}
 
     def __init__(
         self,
         name: str,
         description: str,
         function: Callable,
-        collection: Optional[Collection] = None,
-        aliases: Optional[set] = None,
-        pre: Optional[DutyListType] = None,
-        post: Optional[DutyListType] = None,
-        opts: Dict[str, Any] = None,
+        collection: Collection | None = None,
+        aliases: set | None = None,
+        pre: DutyListType | None = None,
+        post: DutyListType | None = None,
+        opts: dict[str, Any] | None = None,
     ) -> None:
         """
         Initialize the duty.
@@ -145,13 +146,13 @@ class Duty:
         self.pre = pre or []
         self.post = post or []
         self.options = opts or self.default_options
-        self.options_override: Dict = {}
+        self.options_override: dict = {}
 
         self.collection = None
         if collection:
             collection.add(self)
 
-    def __call__(self, context, *args, **kwargs) -> None:
+    def __call__(self, context: Context, *args: Any, **kwargs: Any) -> None:
         """
         Run the duty function.
 
@@ -174,7 +175,7 @@ class Duty:
         """
         return Context(self.options, self.options_override)
 
-    def run(self, *args, **kwargs) -> None:
+    def run(self, *args: Any, **kwargs: Any) -> None:
         """
         Run the duty.
 
@@ -186,7 +187,7 @@ class Duty:
         """
         self(self.context, *args, **kwargs)
 
-    def run_duties(self, context, duties_list: DutyListType) -> None:  # noqa: WPS231 (not complex)
+    def run_duties(self, context: Context, duties_list: DutyListType) -> None:  # noqa: WPS231 (not complex)
         """
         Run a list of duties.
 

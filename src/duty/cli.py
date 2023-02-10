@@ -1,3 +1,5 @@
+"""Module that contains the command line application."""
+
 # Why does this file exist, and why not put this in `__main__`?
 #
 # You might be tempted to import things from `__main__` later,
@@ -9,13 +11,13 @@
 # - When you import `__main__` it will get executed again (as a module) because
 #   there's no `duty.__main__` in `sys.modules`.
 
-"""Module that contains the command line application."""
+from __future__ import annotations
 
 import argparse
 import inspect
 import sys
 import textwrap
-from typing import Dict, List, Optional, Tuple
+from typing import Any
 
 from failprint.cli import ArgParser, add_flags
 
@@ -66,7 +68,7 @@ def get_parser() -> ArgParser:
     return parser
 
 
-def split_args(args: List[str], names: List[str]) -> List[List[str]]:  # noqa: WPS231 (complex)
+def split_args(args: list[str], names: list[str]) -> list[list[str]]:  # noqa: WPS231 (complex)
     """Split command line arguments into duty commands.
 
     Parameters:
@@ -81,7 +83,7 @@ def split_args(args: List[str], names: List[str]) -> List[List[str]]:  # noqa: W
         The split commands.
     """
     arg_lists = []
-    current_arg_list: List[str] = []
+    current_arg_list: list[str] = []
 
     for arg in args:
         if arg in names:
@@ -124,7 +126,7 @@ def get_duty_parser(duty: Duty) -> ArgParser:
     return parser
 
 
-def specified_options(opts: argparse.Namespace, exclude=None) -> Dict:
+def specified_options(opts: argparse.Namespace, exclude: set[str] | None = None) -> dict:
     """Cast an argparse Namespace into a dictionary of options.
 
     Remove all options that were not specified (equal to None).
@@ -141,7 +143,7 @@ def specified_options(opts: argparse.Namespace, exclude=None) -> Dict:
     return {opt: value for opt, value in options if value is not None and opt not in exclude}  # noqa: WPS221
 
 
-def parse_options(duty: Duty, args: List[str]) -> Tuple[Dict, List[str]]:
+def parse_options(duty: Duty, args: list[str]) -> tuple[dict, list[str]]:
     """Parse options for a duty.
 
     Parameters:
@@ -156,7 +158,7 @@ def parse_options(duty: Duty, args: List[str]) -> Tuple[Dict, List[str]]:
     return specified_options(opts), remainder
 
 
-def parse_args(duty: Duty, args: List[str]) -> Tuple:  # noqa: WPS231 (complex)
+def parse_args(duty: Duty, args: list[str]) -> tuple:  # noqa: WPS231 (complex)
     """Parse the positional and keyword arguments of a duty.
 
     Parameters:
@@ -181,7 +183,7 @@ def parse_args(duty: Duty, args: List[str]) -> Tuple:  # noqa: WPS231 (complex)
     return validate(duty.function, *posargs, **kwargs)
 
 
-def parse_commands(arg_lists, global_opts, collection) -> List[Tuple]:
+def parse_commands(arg_lists: list[list[str]], global_opts: dict[str, Any], collection: Collection) -> list[tuple]:
     """Parse argument lists into ready-to-run duties.
 
     Parameters:
@@ -192,9 +194,9 @@ def parse_commands(arg_lists, global_opts, collection) -> List[Tuple]:
     Returns:
         A list of tuples composed of:
 
-        - a duty
-        - its positional arguments
-        - its keyword arguments
+            - a duty
+            - its positional arguments
+            - its keyword arguments
     """
     commands = []
     for arg_list in arg_lists:
@@ -227,7 +229,7 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
-def main(args: Optional[List[str]] = None) -> int:  # noqa: WPS212 (return statements)
+def main(args: list[str] | None = None) -> int:  # noqa: WPS212 (return statements)
     """Run the main program.
 
     This function is executed when you type `duty` or `python -m duty`.

@@ -1,8 +1,9 @@
 """Module containing the context definition."""
+from __future__ import annotations
 
 import os
 from contextlib import contextmanager
-from typing import Any, Callable, Dict, List, Union
+from typing import Any, Callable, Iterator, List, Union
 
 from failprint.runners import run as failprint_run
 
@@ -18,7 +19,7 @@ class Context:
     Context instances are passed to functions decorated with `duty`.
     """
 
-    def __init__(self, options, options_override=None) -> None:
+    def __init__(self, options: dict[str, Any], options_override: dict[str, Any] | None = None) -> None:
         """
         Initialize the context.
 
@@ -28,10 +29,10 @@ class Context:
                 This argument is used to allow users to override options from the CLI or environment.
         """
         self._options = options
-        self._option_stack: List[Dict[str, Any]] = []
+        self._option_stack: list[dict[str, Any]] = []
         self._options_override = options_override or {}
 
-    def run(self, cmd: CmdType, **options) -> str:
+    def run(self, cmd: CmdType, **options: Any) -> str:
         """
         Run a command in a subprocess or a Python callable.
 
@@ -66,7 +67,7 @@ class Context:
         return result.output
 
     @contextmanager
-    def options(self, **opts):
+    def options(self, **opts: Any) -> Iterator:
         """
         Change options as a context manager.
 
@@ -86,7 +87,7 @@ class Context:
             self._options = self._option_stack.pop()
 
     @contextmanager
-    def cd(self, directory: str):
+    def cd(self, directory: str) -> Iterator:
         """
         Change working directory as a context manager.
 

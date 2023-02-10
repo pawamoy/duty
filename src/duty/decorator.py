@@ -1,18 +1,19 @@
 """Module containing the decorator provided to users."""
+from __future__ import annotations
 
 import inspect
-from typing import Callable, Iterable, Optional, Union
+from typing import Any, Callable, Iterable, overload
 
 from duty.collection import Duty, DutyListType
 
 
 def create_duty(
     func: Callable,
-    name: Optional[str] = None,
-    aliases: Optional[Iterable[str]] = None,
-    pre: Optional[DutyListType] = None,
-    post: Optional[DutyListType] = None,
-    **opts,
+    name: str | None = None,
+    aliases: Iterable[str] | None = None,
+    pre: DutyListType | None = None,
+    post: DutyListType | None = None,
+    **opts: Any,
 ) -> Duty:
     """
     Register a duty in the collection.
@@ -42,7 +43,17 @@ def create_duty(
     return duty
 
 
-def duty(*args, **kwargs) -> Union[Callable, Duty]:
+@overload
+def duty(**kwargs: Any) -> Callable[[Callable], Duty]:  # type: ignore[misc]
+    ...
+
+
+@overload
+def duty(func: Callable) -> Duty:
+    ...
+
+
+def duty(*args: Any, **kwargs: Any) -> Callable | Duty:
     """
     Decorate a callable to transform it and register it as a duty.
 
