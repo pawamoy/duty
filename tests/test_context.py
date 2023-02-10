@@ -16,7 +16,7 @@ def test_allow_overrides(monkeypatch):
     """
     Test the `allow_overrides` option.
 
-    Arguments:
+    Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({"a": 1}, {"a": 2})
@@ -36,7 +36,7 @@ def test_options_context_manager(monkeypatch):
     """
     Test changing options using the context manager.
 
-    Arguments:
+    Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({"a": 1}, {"a": 2})
@@ -60,7 +60,7 @@ def test_workdir(monkeypatch):
     """
     Test the `workdir` option.
 
-    Arguments:
+    Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({})
@@ -79,7 +79,7 @@ def test_workdir_as_context_manager(monkeypatch):
     """
     Test the `workdir` option as a context manager, and the `cd` context manager.
 
-    Arguments:
+    Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({})

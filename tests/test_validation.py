@@ -41,7 +41,7 @@ def test_bool_casting(value, expected):
     """
     Check that we correctly cast string values to booleans.
 
-    Arguments:
+    Parameters:
         value: The value to cast.
         expected: The expected result.
     """
@@ -82,7 +82,7 @@ def test_cast_arg(arg, annotation, expected):
     """
     Check that arguments are properly casted given an annotation.
 
-    Arguments:
+    Parameters:
         arg: The argument value to cast.
         annotation: The annotation to use.
         expected: The expected result.
@@ -156,7 +156,7 @@ def test_params_caster(func, args, kwargs, expected_args, expected_kwargs):
     """
     Test the whole parameters casting helper class.
 
-    Arguments:
+    Parameters:
         func: The function to work with.
         args: The positional arguments to cast.
         kwargs: The keyword arguments to cast.

@@ -17,7 +17,7 @@ def create_duty(
     """
     Register a duty in the collection.
 
-    Arguments:
+    Parameters:
         func: The callable to register as a duty.
         name: The duty name.
         aliases: A set of aliases for this duty.
@@ -46,7 +46,7 @@ def duty(*args, **kwargs) -> Union[Callable, Duty]:
     """
     Decorate a callable to transform it and register it as a duty.
 
-    Arguments:
+    Parameters:
         args: One callable.
         kwargs: Context options.
 

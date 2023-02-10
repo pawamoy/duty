@@ -22,7 +22,7 @@ class Context:
         """
         Initialize the context.
 
-        Arguments:
+        Parameters:
             options: Base options specified in `@duty(**options)`.
             options_override: Options that override `run` and `@duty` options.
                 This argument is used to allow users to override options from the CLI or environment.
@@ -35,7 +35,7 @@ class Context:
         """
         Run a command in a subprocess or a Python callable.
 
-        Arguments:
+        Parameters:
             cmd: A command or a Python callable.
             options: Options passed to `failprint` functions.
 
@@ -72,7 +72,7 @@ class Context:
 
         Can be nested as will, previous options will pop once out of the with clause.
 
-        Arguments:
+        Parameters:
             **opts: Options used in `run`.
 
         Yields:
@@ -90,7 +90,7 @@ class Context:
         """
         Change working directory as a context manager.
 
-        Arguments:
+        Parameters:
             directory: The directory to go into.
 
         Yields:

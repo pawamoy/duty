@@ -18,7 +18,7 @@ def to_bool(value: str) -> bool:
     """
     Convert a string to a boolean.
 
-    Arguments:
+    Parameters:
         value: The string to convert.
 
     Returns:
@@ -31,7 +31,7 @@ def cast_arg(arg, annotation) -> Any:
     """
     Cast an argument using a type annotation.
 
-    Arguments:
+    Parameters:
         arg: The argument value.
         annotation: A type annotation.
 
@@ -55,7 +55,7 @@ class ParamsCaster:
         """
         Initialize the object.
 
-        Arguments:
+        Parameters:
             function: The function to use to cast arguments.
         """
         self.function = function
@@ -115,7 +115,7 @@ class ParamsCaster:
         """
         Give the annotation for the parameter at the given position.
 
-        Arguments:
+        Parameters:
             pos: The position of the parameter.
 
         Returns:
@@ -127,7 +127,7 @@ class ParamsCaster:
         """
         Tell if the parameter at this position is eaten by a variable positional parameter.
 
-        Arguments:
+        Parameters:
             pos: The position of the parameter.
 
         Returns:
@@ -139,7 +139,7 @@ class ParamsCaster:
         """
         Cast a positional argument.
 
-        Arguments:
+        Parameters:
             pos: The position of the argument in the signature.
             arg: The argument value.
 
@@ -154,7 +154,7 @@ class ParamsCaster:
         """
         Cast a keyword argument.
 
-        Arguments:
+        Parameters:
             name: The name of the argument in the signature.
             value: The argument value.
 
@@ -169,7 +169,7 @@ class ParamsCaster:
         """
         Cast all positional and keyword arguments.
 
-        Arguments:
+        Parameters:
             *args: The positional arguments.
             **kwargs: The keyword arguments.
 
@@ -196,7 +196,7 @@ def validate(
     Then we cast all the arguments using the function's signature
     and we return them.
 
-    Arguments:
+    Parameters:
         func: The function to copy.
         *args: The positional arguments.
         **kwargs: The keyword arguments.

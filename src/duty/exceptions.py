@@ -8,7 +8,7 @@ class DutyFailure(Exception):  # noqa: N818
         """
         Initialize the object.
 
-        Arguments:
+        Parameters:
             code: The exit code of a command.
         """
         super().__init__(self)

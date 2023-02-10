@@ -9,7 +9,7 @@ def test_no_duty(capsys):
     """
     Run no duties.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main([]) == 1
@@ -32,7 +32,7 @@ def test_show_help_for_given_duties(capsys):
     """
     Show help for given duties.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/basic.py", "-h", "hello"]) == 0
@@ -44,7 +44,7 @@ def test_show_help_unknown_duty(capsys):
     """
     Show help for an unknown duty.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/basic.py", "-h", "not-here"]) == 0
@@ -73,7 +73,7 @@ def test_duty_failure(code):
     """
     Check exit code.
 
-    Arguments:
+    Parameters:
         code: Code to match.
     """
     assert cli.main(["-d", "tests/fixtures/code.py", "exit_with", f"code={code}"]) == code
@@ -83,7 +83,7 @@ def test_multiple_duties(capsys):
     """
     Run multiple duties.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/multiple.py", "first_duty", "second_duty"]) == 0
@@ -96,7 +96,7 @@ def test_duty_arguments(capsys):  # noqa: WPS218 (too many assert statements)
     """
     Run duty with arguments.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/arguments.py", "say_hello", "cat=fabric"]) == 0
@@ -114,7 +114,7 @@ def test_list_duties(capsys):
     """
     List duties.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/list.py", "-l"]) == 0
@@ -204,7 +204,7 @@ def test_cast_bool_parameter(param, expected):
     """
     Test parameters casting as boolean.
 
-    Arguments:
+    Parameters:
         param: Pytest parametrization fixture.
         expected: Pytest parametrization fixture.
     """
@@ -215,7 +215,7 @@ def test_invalid_params(capsys):
     """
     Check that invalid parameters are early and correctly detected.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/booleans.py", "boolean", "zore=off"]) == 1

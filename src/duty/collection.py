@@ -25,7 +25,7 @@ class Collection:
         """
         Initialize the collection.
 
-        Arguments:
+        Parameters:
             path: The path to the duties file.
         """
         self.path = path
@@ -50,7 +50,7 @@ class Collection:
         """
         Get a duty by its name or alias.
 
-        Arguments:
+        Parameters:
             name_or_alias: The name or alias of the duty.
 
         Returns:
@@ -80,7 +80,7 @@ class Collection:
         """
         Load duties from a Python file.
 
-        Arguments:
+        Parameters:
             path: The path to the Python file to load.
                 Uses the collection's path by default.
         """
@@ -96,7 +96,7 @@ class Collection:
         """
         Add a duty to the collection.
 
-        Arguments:
+        Parameters:
             duty: The duty to add.
         """
         if duty.collection is not None:
@@ -128,7 +128,7 @@ class Duty:
         """
         Initialize the duty.
 
-        Arguments:
+        Parameters:
             name: The duty name.
             description: The duty description.
             function: The duty function.
@@ -155,7 +155,7 @@ class Duty:
         """
         Run the duty function.
 
-        Arguments:
+        Parameters:
             context: The context to use.
             args: Positional arguments passed to the function.
             kwargs: Keyword arguments passed to the function.
@@ -180,7 +180,7 @@ class Duty:
 
         This is just a shortcut for `duty(duty.context, *args, **kwargs)`.
 
-        Arguments:
+        Parameters:
             args: Positional arguments passed to the function.
             kwargs: Keyword arguments passed to the function.
         """
@@ -190,7 +190,7 @@ class Duty:
         """
         Run a list of duties.
 
-        Arguments:
+        Parameters:
             context: The context to use.
             duties_list: The list of duties to run.
 
