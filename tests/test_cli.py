@@ -18,10 +18,9 @@ def test_no_duty(capsys):
 
 
 def test_show_help(capsys):
-    """
-    Show help.
+    """Show help.
 
-    Arguments:
+    Parameters:
         capsys: Pytest fixture to capture output.
     """
     assert cli.main(["-h"]) == 0
