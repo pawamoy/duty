@@ -12,19 +12,222 @@
 """Module that contains the command line application."""
 
 import argparse
-from typing import List, Optional
+import inspect
+import sys
+import textwrap
+from typing import Dict, List, Optional, Tuple
+
+from failprint.cli import ArgParser, add_flags
+
+from duty.collection import Collection, Duty
+from duty.exceptions import DutyFailure
+from duty.validation import validate
+
+empty = inspect.Signature.empty
 
 
-def get_parser() -> argparse.ArgumentParser:
+def get_parser() -> ArgParser:
     """Return the CLI argument parser.
 
     Returns:
         An argparse parser.
     """
-    return argparse.ArgumentParser(prog="duty")
+    usage = "duty [GLOBAL_OPTS...] [DUTY [DUTY_OPTS...] [DUTY_PARAMS...]...]"
+    description = "A simple task runner."
+    parser = ArgParser(add_help=False, usage=usage, description=description)
+
+    parser.add_argument(
+        "-d",
+        "--duties-file",
+        default="duties.py",
+        help="Python file where the duties are defined.",
+    )
+    parser.add_argument(
+        "-l",
+        "--list",
+        action="store_true",
+        dest="list",
+        help="List the available duties.",
+    )
+    parser.add_argument(
+        "-h",
+        "--help",
+        dest="help",
+        nargs="*",
+        metavar="DUTY",
+        help="Show this help message and exit. Pass duties names to print their help.",
+    )
+
+    add_flags(parser, set_defaults=False)
+    parser.add_argument("remainder", nargs=argparse.REMAINDER)
+
+    parser._optionals.title = "Global options"  # noqa: WPS437
+
+    return parser
 
 
-def main(args: Optional[List[str]] = None) -> int:
+def split_args(args: List[str], names: List[str]) -> List[List[str]]:  # noqa: WPS231 (complex)
+    """Split command line arguments into duty commands.
+
+    Parameters:
+        args: The CLI arguments.
+        names: The known duty names.
+
+    Raises:
+        ValueError: When a duty name is missing before an argument,
+            or when the duty name is unknown.
+
+    Returns:
+        The split commands.
+    """
+    arg_lists = []
+    current_arg_list: List[str] = []
+
+    for arg in args:
+        if arg in names:
+            # We found a duty name.
+            if current_arg_list:
+                # Append the previous arg list to the result and reset it.
+                arg_lists.append(current_arg_list)
+                current_arg_list = []
+            current_arg_list.append(arg)
+        elif current_arg_list:
+            # We found an argument.
+            current_arg_list.append(arg)
+        else:
+            # We found an argument but no duty name.
+            raise ValueError(f"> Missing duty name before argument '{arg}', or unknown duty name")
+
+    # Don't forget the last arg list.
+    if current_arg_list:
+        arg_lists.append(current_arg_list)
+
+    return arg_lists
+
+
+def get_duty_parser(duty: Duty) -> ArgParser:
+    """Get a duty-specific options parser.
+
+    Parameters:
+        duty: The duty to parse for.
+
+    Returns:
+        A duty-specific parser.
+    """
+    parser = ArgParser(
+        prog=f"duty {duty.name}",
+        add_help=False,
+        description=duty.description,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    add_flags(parser, set_defaults=False)
+    return parser
+
+
+def specified_options(opts: argparse.Namespace, exclude=None) -> Dict:
+    """Cast an argparse Namespace into a dictionary of options.
+
+    Remove all options that were not specified (equal to None).
+
+    Parameters:
+        opts: The namespace to cast.
+        exclude: Names of options to exclude from the result.
+
+    Returns:
+        A dictionary of specified-only options.
+    """
+    exclude = exclude or set()
+    options = opts.__dict__.items()  # noqa: WPS609
+    return {opt: value for opt, value in options if value is not None and opt not in exclude}  # noqa: WPS221
+
+
+def parse_options(duty: Duty, args: List[str]) -> Tuple[Dict, List[str]]:
+    """Parse options for a duty.
+
+    Parameters:
+        duty: The duty to parse for.
+        args: The CLI args passed for this duty.
+
+    Returns:
+        The parsed opts, and the remaining arguments.
+    """
+    parser = get_duty_parser(duty)
+    opts, remainder = parser.parse_known_args(args)
+    return specified_options(opts), remainder
+
+
+def parse_args(duty: Duty, args: List[str]) -> Tuple:  # noqa: WPS231 (complex)
+    """Parse the positional and keyword arguments of a duty.
+
+    Parameters:
+        duty: The duty to parse for.
+        args: The list of arguments.
+
+    Returns:
+        The positional and keyword arguments.
+    """
+    posargs = []
+    kwargs = {}
+
+    for arg in args:
+        if "=" in arg:
+            # we found a keyword argument
+            arg_name, arg_value = arg.split("=", 1)
+            kwargs[arg_name] = arg_value
+        else:
+            # we found a positional argument
+            posargs.append(arg)
+
+    return validate(duty.function, *posargs, **kwargs)
+
+
+def parse_commands(arg_lists, global_opts, collection) -> List[Tuple]:
+    """Parse argument lists into ready-to-run duties.
+
+    Parameters:
+        arg_lists: Lists of arguments lists.
+        global_opts: The global options.
+        collection: The duties collection.
+
+    Returns:
+        A list of tuples composed of:
+
+        - a duty
+        - its positional arguments
+        - its keyword arguments
+    """
+    commands = []
+    for arg_list in arg_lists:
+        duty = collection.get(arg_list[0])
+        opts, remainder = parse_options(duty, arg_list[1:])
+        duty.options_override = {**global_opts, **opts}
+        commands.append((duty, *parse_args(duty, remainder)))
+    return commands
+
+
+def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collection) -> None:
+    """Print general help or duties help.
+
+    Parameters:
+        parser: The main parser.
+        opts: The main parsed options.
+        collection: A collection of duties.
+    """
+    if opts.help:
+        for duty_name in opts.help:
+            try:
+                duty = collection.get(duty_name)
+            except KeyError:
+                print(f"> Unknown duty '{duty_name}'")
+            else:
+                print(get_duty_parser(duty).format_help())
+    else:
+        print(parser.format_help())
+        print("Available duties:")
+        print(textwrap.indent(collection.format_help(), prefix="  "))
+
+
+def main(args: Optional[List[str]] = None) -> int:  # noqa: WPS212 (return statements)
     """Run the main program.
 
     This function is executed when you type `duty` or `python -m duty`.
