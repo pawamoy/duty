@@ -4,7 +4,6 @@ import importlib
 import os
 import re
 import sys
-from functools import wraps
 from io import StringIO
 from pathlib import Path
 from typing import List, Optional, Pattern
@@ -41,7 +40,6 @@ def update_changelog(
     marker: str,
     version_regex: str,
     template_url: str,
-    commit_style: str,
 ) -> None:
     """
     Update the given changelog file in place.
@@ -51,15 +49,16 @@ def update_changelog(
         marker: The line after which to insert new contents.
         version_regex: A regular expression to find currently documented versions in the file.
         template_url: The URL to the Jinja template used to render contents.
-        commit_style: The style of commit messages to parse.
     """
     from git_changelog.build import Changelog
+    from git_changelog.commit import AngularStyle
     from jinja2.sandbox import SandboxedEnvironment
 
+    AngularStyle.DEFAULT_RENDER.insert(0, AngularStyle.TYPES["build"])
     env = SandboxedEnvironment(autoescape=False)
     template_text = urlopen(template_url).read().decode("utf8")  # noqa: S310
     template = env.from_string(template_text)
-    changelog = Changelog(".", style=commit_style)
+    changelog = Changelog(".", style="angular")
 
     if len(changelog.versions_list) == 1:
         last_version = changelog.versions_list[0]
@@ -99,15 +98,14 @@ def changelog(ctx):
             "marker": "<!-- insertion marker -->",
             "version_regex": r"^## \[v?(?P<version>[^\]]+)",
             "template_url": template_url,
-            "commit_style": "angular",
         },
         title="Updating changelog",
         pty=PTY,
     )
 
 
-@duty(pre=["check_code_quality", "check_types", "check_docs", "check_dependencies"])
-def check(ctx):  # noqa: W0613 (no use for the context argument)
+@duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies"])
+def check(ctx):
     """
     Check it all!
 
@@ -117,7 +115,7 @@ def check(ctx):  # noqa: W0613 (no use for the context argument)
 
 
 @duty
-def check_code_quality(ctx, files=PY_SRC):
+def check_quality(ctx, files=PY_SRC):
     """
     Check the code quality.
 
@@ -136,68 +134,46 @@ def check_dependencies(ctx):
     Arguments:
         ctx: The context instance (passed automatically).
     """
-    # undo the patching
+    # undo possible patching
+    # see https://github.com/pyupio/safety/issues/348
     for module in sys.modules:  # noqa: WPS528
         if module.startswith("safety.") or module == "safety":
             del sys.modules[module]  # noqa: WPS420
 
-    # didn't dig deep enough to ensure it's never needed
     importlib.invalidate_caches()
 
     # reload original, unpatched safety
-    from safety import safety
-    from safety.formatter import report
+    from safety.formatter import SafetyFormatter
+    from safety.safety import calculate_remediations
+    from safety.safety import check as safety_check
     from safety.util import read_requirements
 
-    # get requirements from PDM
+    # retrieve the list of dependencies
     requirements = ctx.run(
-        "pdm export -f requirements --without-hashes",
+        ["pdm", "export", "-f", "requirements", "--without-hashes"],
         title="Exporting dependencies as requirements",
         allow_overrides=False,
     )
 
-    def check_vulns():  # noqa: WPS430
-        # check using safety as a library
+    # check using safety as a library
+    def safety():  # noqa: WPS430
         packages = list(read_requirements(StringIO(requirements)))
-        vulns = safety.check(packages=packages, ignore_ids="41002", key="", db_mirror="", cached=False, proxy={})
-        output_report = report(vulns=vulns, full=True, checked_packages=len(packages))
+        vulns, db_full = safety_check(packages=packages, ignore_vulns="")
+        remediations = calculate_remediations(vulns, db_full)
+        output_report = SafetyFormatter("text").render_vulnerabilities(
+            announcements=[],
+            vulnerabilities=vulns,
+            remediations=remediations,
+            full=True,
+            packages=packages,
+        )
         if vulns:
             print(output_report)
 
-    ctx.run(
-        check_vulns,
-        stdin=requirements,
-        title="Checking dependencies",
-        pty=PTY,
-    )
-
-
-def no_docs_py36(nofail=True):
-    """
-    Decorate a duty that builds docs to warn that it's not possible on Python 3.6.
-
-    Arguments:
-        nofail: Whether to fail or not.
-
-    Returns:
-        The decorated function.
-    """
-
-    def decorator(func):
-        @wraps(func)
-        def wrapper(ctx):
-            if sys.version_info <= (3, 7, 0):
-                ctx.run(["false"], title="Docs can't be built on Python 3.6", nofail=nofail, quiet=True)
-            else:
-                func(ctx)
-
-        return wrapper
-
-    return decorator
+    ctx.run(safety, title="Checking dependencies")
 
 
 @duty
-@no_docs_py36()
 def check_docs(ctx):
     """
     Check if the documentation builds correctly.
@@ -210,8 +186,8 @@ def check_docs(ctx):
     ctx.run("mkdocs build -s", title="Building documentation", pty=PTY)
 
 
-@duty
-def check_types(ctx):
+@duty  # noqa: WPS231
+def check_types(ctx):  # noqa: WPS231
     """
     Check that the code is correctly typed.
 
@@ -243,7 +219,6 @@ def clean(ctx):
 
 
 @duty
-@no_docs_py36(nofail=False)
 def docs(ctx):
     """
     Build the documentation locally.
@@ -255,7 +230,6 @@ def docs(ctx):
 
 
 @duty
-@no_docs_py36(nofail=False)
 def docs_serve(ctx, host="127.0.0.1", port=8000):
     """
     Serve the documentation (localhost:8000).
@@ -269,7 +243,6 @@ def docs_serve(ctx, host="127.0.0.1", port=8000):
 
 
 @duty
-@no_docs_py36(nofail=False)
 def docs_deploy(ctx):
     """
     Deploy the documentation on GitHub pages.
@@ -314,7 +287,7 @@ def release(ctx, version: str):
         ctx.run("git push --tags", title="Pushing tags", pty=False)
         ctx.run("pdm build", title="Building dist/wheel", pty=PTY)
         ctx.run("twine upload --skip-existing dist/*", title="Publishing version", pty=PTY)
-        docs_deploy.run()  # type: ignore
+        docs_deploy.run()
 
 
 @duty(silent=True)
