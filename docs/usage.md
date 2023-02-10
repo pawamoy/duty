@@ -69,7 +69,8 @@ quiet | `bool` | Don't print the command output, even if it failed. | `False`
 silent | `bool` | Don't print anything. | `False`
 stdin | `str` | Pass text to a command as standard input. | `None`
 workdir | `str` | Change the working directory. | `None`
-allow_overrides | `bool` | Allow options overrides via CLI arguments. | `True`.
+command | `str` | The shell command equivalent to `cmd`, to show how to run it without duty (useful when passing Python callables). | stringified `cmd`
+allow_overrides | `bool` | Allow options overrides via CLI arguments. | `True`
 
 Example usage of the `silent` option:
 
@@ -332,6 +333,91 @@ def check_dependencies(ctx):
     )
 ```
 
+### Pre/post duties
+
+Each duty can be configured to run other duties before or after itself,
+with the `pre` and `post` decorator options.
+
+The `pre` and `post` options accept a list of other duties to run.
+These other duties can be passed directly, or can be looked up
+using their names. You can also pass any callable that accepts
+a context argument, just like any duty.
+
+For example, you can create a composite duty `check` that calls other,
+more specific checking duties:
+
+```python
+# looking up duties thanks to their names, allowing to reference duties
+# that have not yet been declared in the collection
+@duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies"])
+def check(ctx):
+    """Check it all!"""
+```
+
+Or you can make sure to always run the `clean` duty before running your tests,
+and print a coverage report after running them:
+
+```python
+@duty
+def clean(ctx):
+    ctx.run("rm -rf tests/tmp")
+
+
+@duty
+def coverage(ctx):
+    ctx.run("coverage combine", nofail=True)
+    ctx.run("coverage report", capture=False)
+
+
+@duty(pre=[clean], post=[coverage])
+def test(ctx):
+    ctx.run("pytest tests")
+```
+
+> IMPORTANT: The pre/post duties will be passed the context of the running duty.
+> This allows to alter the behavior in both the running duties, as well as its pre/post duties.
+> If you wish to run the pre/post duties with unaltered context, you can pass a lambda
+> that calls their `run` method:
+>
+> ```python
+> @duty(nofail=True, capture=False)
+> def coverage(ctx):
+>     ctx.run("coverage combine")
+>     ctx.run("coverage report")
+>
+>
+> @duty(post=[lambda ctx: coverage.run()])
+> def test(ctx):
+>     ctx.run("pytest tests")
+> ```
+
+### Defining aliases
+
+Duties can have aliases. By default, duty will create an alias
+for each duty by replacing underscores with dashes.
+It means that, even if you duty is called `check_docs`,
+you can call it with `duty check-docs` on the command line,
+or reference it using `check-docs` in pre/post duties.
+
+If you wish to add more aliases to a duty (for example to provide shorter names),
+use the decorator `aliases` option:
+
+```python
+@duty(aliases=["start", "up"])
+def start_backend(ctx):
+    ctx.run("docker-compose up")
+```
+
+With this example, you'll be able to start the backend with
+any of the four equivalent commands:
+
+```bash
+duty start_backend
+duty start-backend
+duty start
+duty up
+```
+
 ## Running duties
 
 To run a duty, simply use:
@@ -416,11 +502,11 @@ You can also pass parameters as positional arguments:
 duty shoot 5,15
 ```
 
-!!! warning "Limitation with positional arguments"
-    When passing positional arguments,
-    make sure there is no overlap between other duties' names
-    and the argument value, otherwise `duty` will not be able
-    to parse the command correctly.
+WARNING: **Limitation with positional arguments.**  
+When passing positional arguments,
+make sure there is no overlap between other duties' names
+and the argument value, otherwise `duty` will not be able
+to parse the command correctly.
 
 ### Passing options
 
