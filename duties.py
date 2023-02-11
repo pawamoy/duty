@@ -3,7 +3,6 @@
 import importlib
 import os
 import sys
-from functools import wraps
 from io import StringIO
 from pathlib import Path
 
@@ -24,30 +23,6 @@ def pyprefix(title: str) -> str:  # noqa: D103
         prefix = f"(python{sys.version_info.major}.{sys.version_info.minor})"
         return f"{prefix:14}{title}"
     return title
-
-
-def skip_if(condition: bool, reason: str):
-    """Decorator allowing to skip a duty if a condition is met.
-
-    Parameters:
-        condition: The condition to meet.
-        reason: The reason to skip.
-
-    Returns:
-        A decorator.
-    """
-
-    def decorator(func):
-        @wraps(func)
-        def wrapper(ctx, *args, **kwargs):
-            if condition:
-                ctx.run(["true"], title=reason)
-            else:
-                func(ctx, *args, **kwargs)
-
-        return wrapper
-
-    return decorator
 
 
 @duty
@@ -156,15 +131,13 @@ def check_docs(ctx):
     ctx.run("mkdocs build -s", title=pyprefix("Building documentation"), pty=PTY)
 
 
-@duty  # noqa: WPS231
-@skip_if(
-    sys.version_info < (3, 8),
-    reason=pyprefix(
-        "Checking types is not supported on Python 3.7 because of a mypy issue, "
-        "see https://github.com/python/mypy/issues/14670"
+@duty(
+    skip_if=sys.version_info < (3, 8),
+    skip_reason=pyprefix(
+        "Type-checking: skipped: not supported on Python 3.7, see https://github.com/python/mypy/issues/14670"
     ),
 )
-def check_types(ctx):  # noqa: WPS231
+def check_types(ctx):
     """
     Check that the code is correctly typed.
 
