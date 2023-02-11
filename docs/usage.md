@@ -1,3 +1,8 @@
+---
+hide:
+- navigation
+---
+
 # Usage
 
 ## Writing duties
@@ -417,6 +422,23 @@ duty start-backend
 duty start
 duty up
 ```
+
+### Skipping duties
+
+You can tell duty to always skip a duty if a certain condition is met.
+This feature is inspired by pytest's `skip_if` marker.
+
+```python
+@duty(
+    skip_if=sys.version_info < (3, 8),
+    skip_reason="Building docs is not supported on Python 3.7",
+)
+def docs(ctx):
+    ctx.run("mkdocs build")
+```
+
+By default, `skip_reason` will be "duty: skipped" where "duty" is replaced
+by the name of the duty.
 
 ## Running duties
 

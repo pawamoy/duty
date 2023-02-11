@@ -2,9 +2,18 @@
 from __future__ import annotations
 
 import inspect
+from functools import wraps
 from typing import Any, Callable, Iterable, overload
 
 from duty.collection import Duty, DutyListType
+
+
+def _skip(func: Callable, reason: str):
+    @wraps(func)
+    def wrapper(ctx, *args, **kwargs):
+        ctx.run(lambda: True, title=reason)
+
+    return wrapper
 
 
 def create_duty(
@@ -13,6 +22,8 @@ def create_duty(
     aliases: Iterable[str] | None = None,
     pre: DutyListType | None = None,
     post: DutyListType | None = None,
+    skip_if: bool = False,
+    skip_reason: str | None = None,
     **opts: Any,
 ) -> Duty:
     """
@@ -24,6 +35,8 @@ def create_duty(
         aliases: A set of aliases for this duty.
         pre: Pre-duties.
         post: Post-duties.
+        skip_if: Skip running the duty if the given condition is met.
+        skip_reason: Custom message when skipping.
         opts: Options passed to the context.
 
     Returns:
@@ -36,6 +49,8 @@ def create_duty(
         aliases.add(name)
         name = dash_name
     description = inspect.getdoc(func) or ""
+    if skip_if:
+        func = _skip(func, skip_reason or f"{dash_name}: skipped")
     duty = Duty(name, description, func, aliases=aliases, pre=pre, post=post, opts=opts)
     duty.__name__ = name  # type: ignore
     duty.__doc__ = description
@@ -45,12 +60,12 @@ def create_duty(
 
 @overload
 def duty(**kwargs: Any) -> Callable[[Callable], Duty]:  # type: ignore[misc]
-    ...
+    ...  # pragma: no cover
 
 
 @overload
 def duty(func: Callable) -> Duty:
-    ...
+    ...  # pragma: no cover
 
 
 def duty(*args: Any, **kwargs: Any) -> Callable | Duty:
