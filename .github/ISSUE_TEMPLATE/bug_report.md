@@ -24,7 +24,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **System (please complete the following information):**
-- `Duty` version: [e.g. 0.2.1]
+- `duty` version: [e.g. 0.2.1]
 - Python version: [e.g. 3.8]
 - OS: [Windows/Linux]
 
