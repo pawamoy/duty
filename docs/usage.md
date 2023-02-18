@@ -68,6 +68,25 @@ def docs(ctx):
     ctx.run(mkdocs.build, kwargs={"strict": True}, title="Building documentation")
 ```
 
+> TIP: **Our callables are lazy!**  
+> Not only imports to third-party modules are deferred when the callables run,
+> but the callables themselves are lazy, meaning you can call them directly,
+> without passing arguments and keyword arguments
+> with the `args` and `kwargs` parameters of `ctx.run()`:
+>
+> ```python
+> from duty import duty
+> from duty.callables import mkdocs
+>
+>
+> @duty
+> def docs(ctx):
+>     ctx.run(mkdocs.build(strict=True), title="Building documentation")
+> ```
+>
+> The main benefit is that it enables IDE features like help tooltips and auto-completion,
+> as well as improving readability and writability.
+
 **[See all our callables in the Code reference][duty.callables].**
 
 ### `ctx.run()` options
