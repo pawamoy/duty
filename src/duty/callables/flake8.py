@@ -4,9 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from flake8.main import main as flake8
-
-from duty.callables import _named
+from duty.callables import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -15,7 +13,7 @@ else:
     from typing import Literal
 
 
-@_named("flake8")
+@lazy("flake8")
 def run(
     *paths: str,
     config: str | None = None,
@@ -96,6 +94,8 @@ def run(
     Returns:
         Success/failure.
     """
+    from flake8.main import main as flake8
+
     cli_args = list(paths)
 
     if verbose:
@@ -167,7 +167,9 @@ def run(
 
     if per_file_ignores:
         cli_args.append("--per-file-ignores")
-        cli_args.append(" ".join(f"{path}:{','.join(codes)}" for path, codes in per_file_ignores.items()))
+        cli_args.append(
+            " ".join(f"{path}:{','.join(codes)}" for path, codes in per_file_ignores.items()),
+        )
 
     if max_line_length:
         cli_args.append("--max-line-length")

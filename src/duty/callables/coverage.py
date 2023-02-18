@@ -4,9 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from coverage.cmdline import main as coverage
-
-from duty.callables import _named
+from duty.callables import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -15,7 +13,13 @@ else:
     from typing import Literal
 
 
-@_named("coverage.annotate")
+def _run(args: list[str]) -> None:
+    from coverage.cmdline import main as coverage
+
+    coverage(args)
+
+
+@lazy("coverage.annotate")
 def annotate(
     *,
     rcfile: str | None = None,
@@ -71,10 +75,10 @@ def annotate(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.combine")
+@lazy("coverage.combine")
 def combine(
     *paths: str,
     rcfile: str | None = None,
@@ -125,10 +129,10 @@ def combine(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.debug")
+@lazy("coverage.debug")
 def debug(
     topic: Literal["data", "sys", "config", "premain", "pybehave"],
     *,
@@ -159,10 +163,10 @@ def debug(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.erase")
+@lazy("coverage.erase")
 def erase(
     *,
     rcfile: str | None = None,
@@ -192,10 +196,10 @@ def erase(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.html")
+@lazy("coverage.html")
 def html(
     *,
     rcfile: str | None = None,
@@ -298,10 +302,10 @@ def html(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.json")
+@lazy("coverage.json")
 def json(
     *,
     rcfile: str | None = None,
@@ -382,10 +386,10 @@ def json(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.lcov")
+@lazy("coverage.lcov")
 def lcov(
     *,
     rcfile: str | None = None,
@@ -449,10 +453,10 @@ def lcov(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.report")
+@lazy("coverage.report")
 def report(
     *,
     rcfile: str | None = None,
@@ -546,10 +550,10 @@ def report(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.run")
+@lazy("coverage.run")
 def run(
     pyfile: str,
     *,
@@ -643,10 +647,10 @@ def run(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)
 
 
-@_named("coverage.xml")
+@lazy("coverage.xml")
 def xml(
     *,
     rcfile: str | None = None,
@@ -715,4 +719,4 @@ def xml(
         cli_args.append("--rcfile")
         cli_args.append(rcfile)
 
-    coverage(cli_args)
+    _run(cli_args)

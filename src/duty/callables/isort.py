@@ -4,15 +4,14 @@ from __future__ import annotations
 
 import sys
 
-from isort.main import main as isort
-
-from duty.callables import _named
+from duty.callables import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
     from typing_extensions import Literal
 else:
     from typing import Literal
+
 Multiline = Literal[
     "GRID",
     "VERTICAL",
@@ -41,7 +40,7 @@ Multiline = Literal[
 ]
 
 
-@_named("isort")
+@lazy("isort")
 def run(
     *files: str,
     settings: str | None = None,
@@ -246,6 +245,8 @@ def run(
         conda_env: Conda environment to use for determining whether a package is third-party
         python_version: Tells isort to set the known standard library based on the specified Python version. Default is to assume any Python 3 version could be the target, and use a union of all stdlib modules across versions. If auto is specified, the version of the interpreter used to run isort (currently: 311) will be used.
     """
+    from isort.main import main as isort
+
     cli_args = list(files)
 
     if verbose:

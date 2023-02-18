@@ -4,9 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from pytest import main as pytest  # noqa: PT013
-
-from duty.callables import _named
+from duty.callables import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -15,7 +13,7 @@ else:
     from typing import Literal
 
 
-@_named("pytest")
+@lazy("pytest")
 def run(
     *paths: str,
     config_file: str | None = None,
@@ -186,6 +184,8 @@ def run(
         log_file_date_format: Log date format used by the logging module.
         log_auto_indent: Auto-indent multiline messages passed to the logging module. Accepts true|on, false|off or an integer.
     """
+    from pytest import main as pytest  # noqa: PT013
+
     cli_args = list(paths)
 
     if select:

@@ -3,25 +3,20 @@
 from __future__ import annotations
 
 import re
-from typing import TYPE_CHECKING, Pattern, Sequence
+from pathlib import Path
+from typing import Pattern, Sequence
 
-import black
-from blacken_docs import format_file
-
-from duty.callables import _named
-
-if TYPE_CHECKING:
-    from pathlib import Path
+from duty.callables import lazy
 
 
-@_named("blacken_docs")
+@lazy("blacken_docs")
 def run(
-    *paths: Path,
+    *paths: str | Path,
     exts: Sequence[str] | None = None,
     exclude: Sequence[str | Pattern] | None = None,
     skip_errors: bool = False,
     rst_literal_blocks: bool = False,
-    line_length: int = black.DEFAULT_LINE_LENGTH,
+    line_length: int | None = None,
     string_normalization: bool = True,
     is_pyi: bool = False,
     is_ipynb: bool = False,
@@ -53,11 +48,15 @@ def run(
     Returns:
         Success/failure.
     """
+    import black
+    from blacken_docs import format_file
+
     exts = ("md", "py") if exts is None else tuple(ext.lstrip(".") for ext in exts)
     if exclude:
         exclude = tuple(re.compile(regex, re.I) if isinstance(regex, str) else regex for regex in exclude)
     filepaths = set()
     for path in paths:
+        path = Path(path)
         if path.is_file():
             filepaths.add(path.as_posix())
         else:
@@ -65,7 +64,7 @@ def run(
                 filepaths |= {filepath.as_posix() for filepath in path.rglob(f"*.{ext}")}
 
     black_mode = black.Mode(
-        line_length=line_length,
+        line_length=line_length or black.DEFAULT_LINE_LENGTH,
         string_normalization=string_normalization,
         is_pyi=is_pyi,
         is_ipynb=is_ipynb,

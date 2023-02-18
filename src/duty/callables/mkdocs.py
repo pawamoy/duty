@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from mkdocs.__main__ import cli as mkdocs
-
-from duty.callables import _named
+from duty.callables import lazy
 
 
 def run(*args: str, quiet: bool = False, verbose: bool = False) -> None:
@@ -15,6 +13,8 @@ def run(*args: str, quiet: bool = False, verbose: bool = False) -> None:
         quiet: Silence warnings.
         verbose: Enable verbose output.
     """
+    from mkdocs.__main__ import cli as mkdocs
+
     cli_args = list(args)
 
     if quiet and "-q" not in cli_args:
@@ -26,7 +26,7 @@ def run(*args: str, quiet: bool = False, verbose: bool = False) -> None:
     mkdocs(cli_args)
 
 
-@_named("mkdocs.build")
+@lazy("mkdocs.build")
 def build(
     *,
     config_file: str | None = None,
@@ -80,7 +80,7 @@ def build(
     run("build", *cli_args, quiet=quiet, verbose=verbose)
 
 
-@_named("mkdocs.gh_deploy")
+@lazy("mkdocs.gh_deploy")
 def gh_deploy(
     *,
     config_file: str | None = None,
@@ -173,7 +173,7 @@ def gh_deploy(
     run("gh-deploy", *cli_args, quiet=quiet, verbose=verbose)
 
 
-@_named("mkdocs.new")
+@lazy("mkdocs.new")
 def new(project_directory: str, *, quiet: bool = False, verbose: bool = False) -> None:
     """Create a new MkDocs project.
 
@@ -185,7 +185,7 @@ def new(project_directory: str, *, quiet: bool = False, verbose: bool = False) -
     run("new", project_directory, quiet=quiet, verbose=verbose)
 
 
-@_named("mkdocs.serve")
+@lazy("mkdocs.serve")
 def serve(
     *,
     config_file: str | None = None,

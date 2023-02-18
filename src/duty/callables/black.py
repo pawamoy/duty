@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from black import main as black
-
-from duty.callables import _named
+from duty.callables import lazy
 
 
-@_named("black")
+@lazy("black")
 def run(
     *src: str,
     config: str | None = None,
@@ -82,6 +80,8 @@ def run(
             --force-exclude option on some editors that rely on using stdin.
         workers: Number of parallel workers [default: number CPUs in the system].
     """
+    from black import main as black
+
     cli_args = list(src)
 
     if config:

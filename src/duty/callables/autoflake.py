@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from autoflake import _main as autoflake
-
-from duty.callables import _io, _named
+from duty.callables import _io, lazy
 
 
-@_named("autoflake")
+@lazy("autoflake")
 def run(
     *files: str,
     config: str | None = None,
@@ -56,6 +54,8 @@ def run(
         in_place: Make changes to files instead of printing diffs.
         stdout: Print changed text to stdout. defaults to true when formatting stdin, or to false otherwise.
     """
+    from autoflake import _main as autoflake
+
     cli_args = list(files)
 
     if check:
@@ -123,4 +123,8 @@ def run(
     if stdout:
         cli_args.append("--stdout")
 
-    return autoflake(cli_args, standard_out=_io._LazyStdout(), standard_error=_io._LazyStderr())  # noqa: SLF001
+    return autoflake(
+        cli_args,
+        standard_out=_io._LazyStdout(),  # noqa: SLF001
+        standard_error=_io._LazyStderr(),  # noqa: SLF001
+    )

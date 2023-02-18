@@ -4,9 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from mypy.main import main as mypy
-
-from duty.callables import _named
+from duty.callables import lazy
 from duty.callables._io import _LazyStderr, _LazyStdout
 
 # TODO: remove once support for Python 3.7 is dropped
@@ -16,7 +14,7 @@ else:
     from typing import Literal
 
 
-@_named("mypy")
+@lazy("mypy")
 def run(
     *paths: str,
     config_file: str | None = None,
@@ -211,6 +209,8 @@ def run(
         package: Type-check package recursively; can be repeated.
         command: Type-check program passed in as string.
     """
+    from mypy.main import main as mypy
+
     cli_args = list(paths)
 
     if enable_incomplete_feature:

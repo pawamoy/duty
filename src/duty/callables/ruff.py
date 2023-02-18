@@ -7,13 +7,13 @@ import subprocess
 import sys
 from functools import lru_cache
 
-from ruff.__main__ import find_ruff_bin
-
-from duty.callables import _named
+from duty.callables import lazy
 
 
 @lru_cache(maxsize=None)
 def _find_ruff() -> str:
+    from ruff.__main__ import find_ruff_bin
+
     try:
         return find_ruff_bin()
     except FileNotFoundError:
@@ -30,7 +30,12 @@ def _find_ruff() -> str:
     return "ruff"
 
 
-def _run(*args: str, verbose: bool = False, quiet: bool = False, silent: bool = False) -> int:
+def _run(
+    *args: str,
+    verbose: bool = False,
+    quiet: bool = False,
+    silent: bool = False,
+) -> int:
     cli_args = list(args)
 
     if verbose:
@@ -47,7 +52,7 @@ def _run(*args: str, verbose: bool = False, quiet: bool = False, silent: bool = 
     return process.returncode
 
 
-@_named("ruff.check")
+@lazy("ruff.check")
 def check(
     *files: str,
     config: str | None = None,
@@ -171,7 +176,9 @@ def check(
 
     if per_file_ignores:
         cli_args.append("--per-file-ignores")
-        cli_args.append(" ".join(f"{path}:{','.join(codes)}" for path, codes in per_file_ignores.items()))
+        cli_args.append(
+            " ".join(f"{path}:{','.join(codes)}" for path, codes in per_file_ignores.items()),
+        )
 
     if fixable:
         cli_args.append("--fixable")
@@ -218,7 +225,7 @@ def check(
     return _run("check", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
 
 
-@_named("ruff.rule")
+@lazy("ruff.rule")
 def rule(
     *,
     output_format: str | None = None,
@@ -243,7 +250,7 @@ def rule(
     return _run("rule", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
 
 
-@_named("ruff.config")
+@lazy("ruff.config")
 def config(
     *,
     verbose: bool = False,
@@ -260,7 +267,7 @@ def config(
     return _run("config", verbose=verbose, quiet=quiet, silent=silent)
 
 
-@_named("ruff.linter")
+@lazy("ruff.linter")
 def linter(
     *,
     output_format: str | None = None,
@@ -285,7 +292,7 @@ def linter(
     return _run("linter", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
 
 
-@_named("ruff.clean")
+@lazy("ruff.clean")
 def clean(
     *,
     verbose: bool = False,
