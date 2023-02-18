@@ -8,8 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from duty import duty
-from duty.callables import black, blacken_docs, lazy, mkdocs, mypy, pytest, ruff, safety
-from duty.callables import coverage as cov
+from duty.callables import black, blacken_docs, coverage, lazy, mkdocs, mypy, pytest, ruff, safety
 
 if TYPE_CHECKING:
     from duty.context import Context
@@ -75,9 +74,7 @@ def check_quality(ctx: Context) -> None:
     """
     ctx.run(
         ruff.check(*PY_SRC_LIST, config="config/ruff.toml"),
-        title=pyprefix(
-            "Checking code quality",
-        ),
+        title=pyprefix("Checking code quality"),
     )
 
 
@@ -107,10 +104,7 @@ def check_docs(ctx: Context) -> None:
     """
     Path("htmlcov").mkdir(parents=True, exist_ok=True)
     Path("htmlcov/index.html").touch(exist_ok=True)
-    ctx.run(
-        mkdocs.build(strict=True),
-        title=pyprefix("Building documentation"),
-    )
+    ctx.run(mkdocs.build(strict=True), title=pyprefix("Building documentation"))
 
 
 @duty(
@@ -225,16 +219,16 @@ def release(ctx: Context, version: str) -> None:
         docs_deploy.run()
 
 
-@duty(silent=True)
-def coverage(ctx: Context) -> None:
+@duty(silent=True, aliases=["coverage"])
+def cov(ctx: Context) -> None:
     """Report coverage as text and HTML.
 
     Parameters:
         ctx: The context instance (passed automatically).
     """
-    ctx.run(cov.combine, nofail=True)
-    ctx.run(cov.report(rcfile="config/coverage.ini"), capture=False)
-    ctx.run(cov.html(rcfile="config/coverage.ini"))
+    ctx.run(coverage.combine, nofail=True)
+    ctx.run(coverage.report(rcfile="config/coverage.ini"), capture=False)
+    ctx.run(coverage.html(rcfile="config/coverage.ini"))
 
 
 @duty

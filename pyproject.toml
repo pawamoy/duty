@@ -68,7 +68,7 @@ docs = [
 ]
 maintain = [
     "black>=23.1",
-    "blacken-docs>=1.13.0",
+    "blacken-docs>=1.13",
     "git-changelog>=1.0",
 ]
 quality = [
