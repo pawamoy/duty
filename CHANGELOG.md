@@ -5,6 +5,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.8.0](https://github.com/pawamoy/duty/releases/tag/0.8.0) - 2023-02-18
+
+<small>[Compare with 0.7.0](https://github.com/pawamoy/duty/compare/0.7.0...0.8.0)</small>
+
+### Features
+
+- Make all callables lazy, allowing to call them directly ([a499e4b](https://github.com/pawamoy/duty/commit/a499e4b42a26eee28d921d818f92b7747a8f3cad) by Timothée Mazzucotelli).
+- Provide callables for popular tools ([0e065e2](https://github.com/pawamoy/duty/commit/0e065e2be722d26d8c2f0e38f4d593f140da1f5d) by Timothée Mazzucotelli). [Issue #7](https://github.com/pawamoy/duty/issues/7)
+- Add option to skip duties based on condition ([629b988](https://github.com/pawamoy/duty/commit/629b988880de8b7c3f5b42fcbdb2ec9018c29dbc) by Timothée Mazzucotelli). [Issue #6](https://github.com/pawamoy/duty/issues/6)
+
 ## [0.7.0](https://github.com/pawamoy/duty/releases/tag/0.7.0) - 2021-08-01
 
 <small>[Compare with 0.6.0](https://github.com/pawamoy/duty/compare/0.6.0...0.7.0)</small>
