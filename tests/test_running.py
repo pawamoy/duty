@@ -27,8 +27,8 @@ def test_run_pre_post_duties_lambdas():
         "name",
         "description",
         lambda ctx: None,
-        pre=[lambda ctx: pre_calls.append(True)],
-        post=[lambda ctx: post_calls.append(True)],
+        pre=[lambda ctx: pre_calls.append(True)],  # noqa: FBT003
+        post=[lambda ctx: post_calls.append(True)],  # noqa: FBT003
     )
 
     duty.run()
@@ -42,8 +42,8 @@ def test_run_pre_post_duties_instances():
     pre_calls = []
     post_calls = []
 
-    pre_duty = Duty("pre", "", lambda ctx: pre_calls.append(True))
-    post_duty = Duty("post", "", lambda ctx: post_calls.append(True))
+    pre_duty = Duty("pre", "", lambda ctx: pre_calls.append(True))  # noqa: FBT003
+    post_duty = Duty("post", "", lambda ctx: post_calls.append(True))  # noqa: FBT003
 
     duty = Duty(
         name="name",
@@ -65,8 +65,8 @@ def test_run_pre_post_duties_refs():
     post_calls = []
 
     collection = Collection()
-    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))
-    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))
+    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))  # noqa: FBT003
+    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))  # noqa: FBT003
 
     duty = Duty("name", "description", lambda ctx: None, collection=collection, pre=["pre"], post=["post"])
     duty.run()
@@ -88,19 +88,19 @@ def test_dont_run_other_pre_post_duties():
 
 
 def test_code_when_keyboard_interrupt():
-    """Return a code 130 on keyboard interruption."""  # noqa: DAR401,D202 (ctrl-c not raised, black)
+    """Return a code 130 on keyboard interruption."""
 
-    def interrupt():  # noqa: WPS430 (nested function)
+    def interrupt():
         raise KeyboardInterrupt
 
     with pytest.raises(DutyFailure) as excinfo:
         Duty("name", "description", lambda ctx: ctx.run(interrupt)).run()
-    assert excinfo.value.code == INTERRUPT_CODE  # noqa: WPS441 (after block)
+    assert excinfo.value.code == INTERRUPT_CODE
 
 
 def test_dont_raise_duty_failure():
     """Don't raise a duty failure on success."""
-    duty = Duty("n", "d", lambda ctx: ctx.run(lambda: 0))  # noqa: WPS430,WPS522 (lambdas)
+    duty = Duty("n", "d", lambda ctx: ctx.run(lambda: 0))
     assert not duty.run()
 
 

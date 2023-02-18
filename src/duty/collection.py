@@ -13,8 +13,7 @@ default_duties_file = "duties.py"
 
 
 class Collection:
-    """
-    A collection of duties.
+    """A collection of duties.
 
     Attributes:
         path: The path to the duties file.
@@ -22,9 +21,8 @@ class Collection:
         aliases: A dictionary of aliases pointing to their respective duties.
     """
 
-    def __init__(self, path: str = default_duties_file):
-        """
-        Initialize the collection.
+    def __init__(self, path: str = default_duties_file) -> None:
+        """Initialize the collection.
 
         Parameters:
             path: The path to the duties file.
@@ -39,8 +37,7 @@ class Collection:
         self.aliases.clear()
 
     def names(self) -> list[str]:
-        """
-        Return the list of duties names and aliases.
+        """Return the list of duties names and aliases.
 
         Returns:
             The list of duties names and aliases.
@@ -48,8 +45,7 @@ class Collection:
         return list(self.duties.keys()) + list(self.aliases.keys())
 
     def get(self, name_or_alias: str) -> Duty:
-        """
-        Get a duty by its name or alias.
+        """Get a duty by its name or alias.
 
         Parameters:
             name_or_alias: The name or alias of the duty.
@@ -63,23 +59,21 @@ class Collection:
             return self.aliases[name_or_alias]
 
     def format_help(self) -> str:
-        """
-        Format a message listing the duties.
+        """Format a message listing the duties.
 
         Returns:
             A string listing the duties and their summary.
         """
         lines = []
         # 20 makes the summary aligned with options description
-        longest_name = max(max(len(name) for name in self.duties), 20)  # noqa: WPS432 (magic number)
+        longest_name = max(max(len(name) for name in self.duties), 20)
         for name, duty in self.duties.items():
             description = duty.description.split("\n")[0]
             lines.append(f"{name:{longest_name}}  {description}")
         return "\n".join(lines)
 
     def load(self, path: str | None = None) -> None:
-        """
-        Load duties from a Python file.
+        """Load duties from a Python file.
 
         Parameters:
             path: The path to the Python file to load.
@@ -87,15 +81,15 @@ class Collection:
         """
         path = path or self.path
         spec = importlib_util.spec_from_file_location("duty.duties", path)
-        duties = importlib_util.module_from_spec(spec)  # type: ignore
-        spec.loader.exec_module(duties)  # type: ignore
-        declared_duties = inspect.getmembers(duties, lambda member: isinstance(member, Duty))
-        for _, duty in declared_duties:
-            self.add(duty)
+        if spec:
+            duties = importlib_util.module_from_spec(spec)
+            spec.loader.exec_module(duties)  # type: ignore[union-attr]
+            declared_duties = inspect.getmembers(duties, lambda member: isinstance(member, Duty))
+            for _, duty in declared_duties:
+                self.add(duty)
 
     def add(self, duty: Duty) -> None:
-        """
-        Add a duty to the collection.
+        """Add a duty to the collection.
 
         Parameters:
             duty: The duty to add.
@@ -104,7 +98,7 @@ class Collection:
             # we must copy the duty to be able to add it
             # in multiple collections
             duty = deepcopy(duty)
-        duty.collection = self  # type: ignore
+        duty.collection = self
         self.duties[duty.name] = duty
         for alias in duty.aliases:
             self.aliases[alias] = duty
@@ -126,8 +120,7 @@ class Duty:
         post: DutyListType | None = None,
         opts: dict[str, Any] | None = None,
     ) -> None:
-        """
-        Initialize the duty.
+        """Initialize the duty.
 
         Parameters:
             name: The duty name.
@@ -148,13 +141,12 @@ class Duty:
         self.options = opts or self.default_options
         self.options_override: dict = {}
 
-        self.collection = None
+        self.collection: Collection | None = None
         if collection:
             collection.add(self)
 
     def __call__(self, context: Context, *args: Any, **kwargs: Any) -> None:
-        """
-        Run the duty function.
+        """Run the duty function.
 
         Parameters:
             context: The context to use.
@@ -167,8 +159,7 @@ class Duty:
 
     @property
     def context(self) -> Context:
-        """
-        Return a new context instance.
+        """Return a new context instance.
 
         Returns:
             A new context instance.
@@ -176,8 +167,7 @@ class Duty:
         return Context(self.options, self.options_override)
 
     def run(self, *args: Any, **kwargs: Any) -> None:
-        """
-        Run the duty.
+        """Run the duty.
 
         This is just a shortcut for `duty(duty.context, *args, **kwargs)`.
 
@@ -187,9 +177,8 @@ class Duty:
         """
         self(self.context, *args, **kwargs)
 
-    def run_duties(self, context: Context, duties_list: DutyListType) -> None:  # noqa: WPS231 (not complex)
-        """
-        Run a list of duties.
+    def run_duties(self, context: Context, duties_list: DutyListType) -> None:
+        """Run a list of duties.
 
         Parameters:
             context: The context to use.
@@ -207,8 +196,6 @@ class Duty:
             elif isinstance(duty_item, str):
                 # Item is a reference to a duty.
                 if self.collection is None:
-                    raise RuntimeError(
-                        f"Can't find duty by name without a collection ({duty_item})",
-                    )
+                    raise RuntimeError(f"Can't find duty by name without a collection ({duty_item})")
                 # Get the duty and run it.
                 self.collection.get(duty_item)(context)

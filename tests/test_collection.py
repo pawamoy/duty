@@ -6,7 +6,7 @@ from duty.collection import Collection, Duty
 from duty.decorator import duty as decorate
 
 
-def none(*args, **kwargs):  # noqa: D103
+def none(*args, **kwargs):  # noqa: ARG001,D103
     ...  # pragma: no cover
 
 

@@ -1,6 +1,5 @@
 """Tests for the `context` module."""
 
-import os
 from collections import namedtuple
 from pathlib import Path
 
@@ -13,8 +12,7 @@ RunResult = namedtuple("RunResult", "code output")
 
 
 def test_allow_overrides(monkeypatch):
-    """
-    Test the `allow_overrides` option.
+    """Test the `allow_overrides` option.
 
     Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
@@ -33,8 +31,7 @@ def test_allow_overrides(monkeypatch):
 
 
 def test_options_context_manager(monkeypatch):
-    """
-    Test changing options using the context manager.
+    """Test changing options using the context manager.
 
     Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
@@ -57,51 +54,44 @@ def test_options_context_manager(monkeypatch):
 
 
 def test_workdir(monkeypatch):
-    """
-    Test the `workdir` option.
+    """Test the `workdir` option.
 
     Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({})
-    monkeypatch.setattr(context, "failprint_run", lambda _: RunResult(len(Path(os.getcwd()).parts), ""))
+    monkeypatch.setattr(context, "failprint_run", lambda _: RunResult(len(Path.cwd().parts), ""))
     records = []
-    with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
+    with pytest.raises(DutyFailure) as failure:
         ctx.run("")
-    records.append(failure.value.code)  # noqa: WPS441
-    with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
+    records.append(failure.value.code)
+    with pytest.raises(DutyFailure) as failure:
         ctx.run("", workdir="..")
-    records.append(failure.value.code)  # noqa: WPS441
+    records.append(failure.value.code)
     assert records[0] == records[1] + 1
 
 
 def test_workdir_as_context_manager(monkeypatch):
-    """
-    Test the `workdir` option as a context manager, and the `cd` context manager.
+    """Test the `workdir` option as a context manager, and the `cd` context manager.
 
     Parameters:
         monkeypatch: A Pytest fixture to monkeypatch objects.
     """
     ctx = context.Context({})
-    monkeypatch.setattr(context, "failprint_run", lambda _: RunResult(len(Path(os.getcwd()).parts), ""))
+    monkeypatch.setattr(context, "failprint_run", lambda _: RunResult(len(Path.cwd().parts), ""))
     records = []
-    with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
-        with ctx.options(workdir=".."):
-            ctx.run("")
-    records.append(failure.value.code)  # noqa: WPS441
-    with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
-        with ctx.cd("../.."):
-            ctx.run("")
-    records.append(failure.value.code)  # noqa: WPS441
-    with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
-        with ctx.cd(".."):
-            with ctx.options(workdir="../.."):
-                ctx.run("")
-    records.append(failure.value.code)  # noqa: WPS441
-    with pytest.raises(DutyFailure) as failure:  # noqa: WPS440,PT012
-        with ctx.cd("../../.."):
-            ctx.run("", workdir="..")
-    records.append(failure.value.code)  # noqa: WPS441
+    with pytest.raises(DutyFailure) as failure, ctx.options(workdir=".."):
+        ctx.run("")
+    records.append(failure.value.code)
+    with pytest.raises(DutyFailure) as failure, ctx.cd("../.."):
+        ctx.run("")
+    records.append(failure.value.code)
+    with pytest.raises(DutyFailure) as failure, ctx.cd(".."), ctx.options(workdir="../.."):
+        ctx.run("")
+    records.append(failure.value.code)
+    with pytest.raises(DutyFailure) as failure, ctx.cd("../../.."):
+        ctx.run("", workdir="..")
+    records.append(failure.value.code)
 
     base = records[0]
     assert records == [base, base - 1, base - 2, base - 3]

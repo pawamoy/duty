@@ -3,14 +3,17 @@ from __future__ import annotations
 
 import inspect
 from functools import wraps
-from typing import Any, Callable, Iterable, overload
+from typing import TYPE_CHECKING, Any, Callable, Iterable, overload
 
 from duty.collection import Duty, DutyListType
 
+if TYPE_CHECKING:
+    from duty.context import Context
 
-def _skip(func: Callable, reason: str):
+
+def _skip(func: Callable, reason: str) -> Callable:
     @wraps(func)
-    def wrapper(ctx, *args, **kwargs):
+    def wrapper(ctx: Context, *args, **kwargs) -> None:  # noqa: ARG001,ANN002,ANN003
         ctx.run(lambda: True, title=reason)
 
     return wrapper
@@ -18,6 +21,7 @@ def _skip(func: Callable, reason: str):
 
 def create_duty(
     func: Callable,
+    *,
     name: str | None = None,
     aliases: Iterable[str] | None = None,
     pre: DutyListType | None = None,
@@ -26,8 +30,7 @@ def create_duty(
     skip_reason: str | None = None,
     **opts: Any,
 ) -> Duty:
-    """
-    Register a duty in the collection.
+    """Register a duty in the collection.
 
     Parameters:
         func: The callable to register as a duty.
@@ -52,9 +55,9 @@ def create_duty(
     if skip_if:
         func = _skip(func, skip_reason or f"{dash_name}: skipped")
     duty = Duty(name, description, func, aliases=aliases, pre=pre, post=post, opts=opts)
-    duty.__name__ = name  # type: ignore
+    duty.__name__ = name  # type: ignore[attr-defined]
     duty.__doc__ = description
-    duty.__wrapped__ = func  # type: ignore  # noqa: WPS609
+    duty.__wrapped__ = func  # type: ignore[attr-defined]
     return duty
 
 
@@ -69,8 +72,7 @@ def duty(func: Callable) -> Duty:
 
 
 def duty(*args: Any, **kwargs: Any) -> Callable | Duty:
-    """
-    Decorate a callable to transform it and register it as a duty.
+    """Decorate a callable to transform it and register it as a duty.
 
     Parameters:
         args: One callable.
@@ -101,12 +103,10 @@ def duty(*args: Any, **kwargs: Any) -> Callable | Duty:
     """
     if args:
         if len(args) > 1:
-            raise ValueError(
-                "The duty decorator accepts only one positional argument",
-            )
+            raise ValueError("The duty decorator accepts only one positional argument")
         return create_duty(args[0], **kwargs)
 
-    def decorator(func):
+    def decorator(func: Callable) -> Duty:
         return create_duty(func, **kwargs)
 
     return decorator

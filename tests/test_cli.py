@@ -6,8 +6,7 @@ from duty import cli
 
 
 def test_no_duty(capsys):
-    """
-    Run no duties.
+    """Run no duties.
 
     Parameters:
         capsys: Pytest fixture to capture output.
@@ -29,8 +28,7 @@ def test_show_help(capsys):
 
 
 def test_show_help_for_given_duties(capsys):
-    """
-    Show help for given duties.
+    """Show help for given duties.
 
     Parameters:
         capsys: Pytest fixture to capture output.
@@ -41,8 +39,7 @@ def test_show_help_for_given_duties(capsys):
 
 
 def test_show_help_unknown_duty(capsys):
-    """
-    Show help for an unknown duty.
+    """Show help for an unknown duty.
 
     Parameters:
         capsys: Pytest fixture to capture output.
@@ -68,10 +65,9 @@ def test_incorrect_arguments():
 
 
 # we use 300 because it's slightly above the valid maximum 255
-@pytest.mark.parametrize("code", range(-100, 300, 7))  # noqa: WPS432 (magic number 300)
+@pytest.mark.parametrize("code", range(-100, 300, 7))
 def test_duty_failure(code):
-    """
-    Check exit code.
+    """Check exit code.
 
     Parameters:
         code: Code to match.
@@ -80,8 +76,7 @@ def test_duty_failure(code):
 
 
 def test_multiple_duties(capsys):
-    """
-    Run multiple duties.
+    """Run multiple duties.
 
     Parameters:
         capsys: Pytest fixture to capture output.
@@ -92,9 +87,8 @@ def test_multiple_duties(capsys):
     assert "second" in captured.out
 
 
-def test_duty_arguments(capsys):  # noqa: WPS218 (too many assert statements)
-    """
-    Run duty with arguments.
+def test_duty_arguments(capsys):
+    """Run duty with arguments.
 
     Parameters:
         capsys: Pytest fixture to capture output.
@@ -111,8 +105,7 @@ def test_duty_arguments(capsys):  # noqa: WPS218 (too many assert statements)
 
 
 def test_list_duties(capsys):
-    """
-    List duties.
+    """List duties.
 
     Parameters:
         capsys: Pytest fixture to capture output.
@@ -201,8 +194,7 @@ def test_options_precedence():
     ],
 )
 def test_cast_bool_parameter(param, expected):
-    """
-    Test parameters casting as boolean.
+    """Test parameters casting as boolean.
 
     Parameters:
         param: Pytest parametrization fixture.
@@ -212,8 +204,7 @@ def test_cast_bool_parameter(param, expected):
 
 
 def test_invalid_params(capsys):
-    """
-    Check that invalid parameters are early and correctly detected.
+    """Check that invalid parameters are early and correctly detected.
 
     Parameters:
         capsys: Pytest fixture to capture output.

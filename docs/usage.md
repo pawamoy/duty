@@ -16,6 +16,7 @@ Each task is declared as a "duty", using the `duty.duty` decorator.
 ```python
 from duty import duty
 
+
 @duty
 def docs(ctx):
     ctx.run("mkdocs build", title="Building documentation")
@@ -33,6 +34,7 @@ To avoid using a shell, pass a list of strings instead:
 ```python
 from duty import duty
 
+
 @duty
 def docs(ctx):
     ctx.run(["mkdocs", "build"], title="Building documentation")
@@ -44,6 +46,7 @@ And to avoid using a subprocess completely, pass a Python callable:
 ```python
 from duty import duty
 from mkdocs import build, config
+
 
 @duty
 def docs(ctx):
@@ -58,6 +61,7 @@ For example, the `mkdocs build` command can be called like this:
 ```python
 from duty import duty
 from duty.callables import mkdocs
+
 
 @duty
 def docs(ctx):
@@ -522,6 +526,7 @@ You can use your own custom types as well:
 class Point:
     def __init__(self, xy: str):
         self.x, self.y = xy.split(",")
+
 
 @duty
 def shoot(ctx, point: Point):

@@ -13,15 +13,13 @@ CmdType = Union[str, List[str], Callable]
 
 
 class Context:
-    """
-    A simple context class.
+    """A simple context class.
 
     Context instances are passed to functions decorated with `duty`.
     """
 
     def __init__(self, options: dict[str, Any], options_override: dict[str, Any] | None = None) -> None:
-        """
-        Initialize the context.
+        """Initialize the context.
 
         Parameters:
             options: Base options specified in `@duty(**options)`.
@@ -33,8 +31,7 @@ class Context:
         self._options_override = options_override or {}
 
     def run(self, cmd: CmdType, **options: Any) -> str:
-        """
-        Run a command in a subprocess or a Python callable.
+        """Run a command in a subprocess or a Python callable.
 
         Parameters:
             cmd: A command or a Python callable.
@@ -58,8 +55,8 @@ class Context:
         with self.cd(workdir):
             try:
                 result = failprint_run(cmd, **final_options)
-            except KeyboardInterrupt:
-                raise DutyFailure(130)  # noqa: WPS432 (ctrl-c)
+            except KeyboardInterrupt as ki:
+                raise DutyFailure(130) from ki
 
         if result.code:
             raise DutyFailure(result.code)
@@ -68,8 +65,7 @@ class Context:
 
     @contextmanager
     def options(self, **opts: Any) -> Iterator:
-        """
-        Change options as a context manager.
+        """Change options as a context manager.
 
         Can be nested as will, previous options will pop once out of the with clause.
 
@@ -88,8 +84,7 @@ class Context:
 
     @contextmanager
     def cd(self, directory: str) -> Iterator:
-        """
-        Change working directory as a context manager.
+        """Change working directory as a context manager.
 
         Parameters:
             directory: The directory to go into.

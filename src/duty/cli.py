@@ -63,12 +63,12 @@ def get_parser() -> ArgParser:
     add_flags(parser, set_defaults=False)
     parser.add_argument("remainder", nargs=argparse.REMAINDER)
 
-    parser._optionals.title = "Global options"  # noqa: WPS437
+    parser._optionals.title = "Global options"  # noqa: SLF001
 
     return parser
 
 
-def split_args(args: list[str], names: list[str]) -> list[list[str]]:  # noqa: WPS231 (complex)
+def split_args(args: list[str], names: list[str]) -> list[list[str]]:
     """Split command line arguments into duty commands.
 
     Parameters:
@@ -139,8 +139,8 @@ def specified_options(opts: argparse.Namespace, exclude: set[str] | None = None)
         A dictionary of specified-only options.
     """
     exclude = exclude or set()
-    options = opts.__dict__.items()  # noqa: WPS609
-    return {opt: value for opt, value in options if value is not None and opt not in exclude}  # noqa: WPS221
+    options = opts.__dict__.items()
+    return {opt: value for opt, value in options if value is not None and opt not in exclude}
 
 
 def parse_options(duty: Duty, args: list[str]) -> tuple[dict, list[str]]:
@@ -158,7 +158,7 @@ def parse_options(duty: Duty, args: list[str]) -> tuple[dict, list[str]]:
     return specified_options(opts), remainder
 
 
-def parse_args(duty: Duty, args: list[str]) -> tuple:  # noqa: WPS231 (complex)
+def parse_args(duty: Duty, args: list[str]) -> tuple:
     """Parse the positional and keyword arguments of a duty.
 
     Parameters:
@@ -229,7 +229,7 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
-def main(args: list[str] | None = None) -> int:  # noqa: WPS212 (return statements)
+def main(args: list[str] | None = None) -> int:
     """Run the main program.
 
     This function is executed when you type `duty` or `python -m duty`.
@@ -268,7 +268,7 @@ def main(args: list[str] | None = None) -> int:  # noqa: WPS212 (return statemen
     global_opts = specified_options(opts, exclude={"duties_file", "list", "help", "remainder"})
     try:
         commands = parse_commands(arg_lists, global_opts, collection)
-    except TypeError as error:  # noqa: WPS440 (variable overlap)
+    except TypeError as error:
         print(f"> {error}", file=sys.stderr)
         return 1
 

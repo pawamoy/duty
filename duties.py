@@ -199,7 +199,11 @@ def format(ctx: Context) -> None:
         title="Auto-fixing code",
     )
     ctx.run(black.run(*PY_SRC_LIST, config="config/black.toml"), title="Formatting code")
-    ctx.run(blacken_docs.run(*PY_SRC_LIST, exts=["py", "md"], line_length=120), title="Formatting docs")
+    ctx.run(
+        blacken_docs.run(*PY_SRC_LIST, "docs", exts=["py", "md"], line_length=120),
+        title="Formatting docs",
+        nofail=True,
+    )
 
 
 @duty

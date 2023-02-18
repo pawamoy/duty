@@ -1,24 +1,25 @@
-"""
-This module contains logic used to validate parameters passed to duties.
+"""This module contains logic used to validate parameters passed to duties.
 
 We validate the parameters before running the duties,
 effectively checking all CLI arguments and failing early
 if they are incorrect.
 """
+
 from __future__ import annotations
 
-try:
-    from functools import cached_property
-except ImportError:
-    from cached_property import cached_property  # type: ignore  # noqa: WPS440
-
+import sys
 from inspect import Parameter, Signature, signature
 from typing import Any, Callable, Sequence
 
+# TODO: remove once support for Python 3.7 is dropped
+if sys.version_info < (3, 8):
+    from cached_property import cached_property
+else:
+    from functools import cached_property
+
 
 def to_bool(value: str) -> bool:
-    """
-    Convert a string to a boolean.
+    """Convert a string to a boolean.
 
     Parameters:
         value: The string to convert.
@@ -30,8 +31,7 @@ def to_bool(value: str) -> bool:
 
 
 def cast_arg(arg: Any, annotation: Any) -> Any:
-    """
-    Cast an argument using a type annotation.
+    """Cast an argument using a type annotation.
 
     Parameters:
         arg: The argument value.
@@ -46,7 +46,7 @@ def cast_arg(arg: Any, annotation: Any) -> Any:
         annotation = to_bool
     try:
         return annotation(arg)
-    except Exception:  # noqa: W0703 (catching all on purpose)
+    except Exception:  # noqa: BLE001
         return arg
 
 
@@ -54,8 +54,7 @@ class ParamsCaster:
     """A helper class to cast parameters based on a function's signature annotations."""
 
     def __init__(self, function: Callable) -> None:
-        """
-        Initialize the object.
+        """Initialize the object.
 
         Parameters:
             function: The function to use to cast arguments.
@@ -67,8 +66,7 @@ class ParamsCaster:
 
     @cached_property
     def has_var_positional(self) -> bool:
-        """
-        Tell if there is a variable positional parameter.
+        """Tell if there is a variable positional parameter.
 
         Returns:
             True or False.
@@ -77,8 +75,7 @@ class ParamsCaster:
 
     @cached_property
     def var_positional_position(self) -> int:
-        """
-        Give the position of the variable positional parameter in the signature.
+        """Give the position of the variable positional parameter in the signature.
 
         Returns:
             The position of the variable positional parameter.
@@ -92,8 +89,7 @@ class ParamsCaster:
 
     @cached_property
     def var_positional_annotation(self) -> Any:
-        """
-        Give the variable positional parameter (`*args`) annotation if any.
+        """Give the variable positional parameter (`*args`) annotation if any.
 
         Returns:
             The variable positional parameter annotation.
@@ -102,8 +98,7 @@ class ParamsCaster:
 
     @cached_property
     def var_keyword_annotation(self) -> Any:
-        """
-        Give the variable keyword parameter (`**kwargs`) annotation if any.
+        """Give the variable keyword parameter (`**kwargs`) annotation if any.
 
         Returns:
             The variable keyword parameter annotation.
@@ -114,8 +109,7 @@ class ParamsCaster:
         return Parameter.empty
 
     def annotation_at_pos(self, pos: int) -> Any:
-        """
-        Give the annotation for the parameter at the given position.
+        """Give the annotation for the parameter at the given position.
 
         Parameters:
             pos: The position of the parameter.
@@ -126,8 +120,7 @@ class ParamsCaster:
         return self.params_list[pos].annotation
 
     def eaten_by_var_positional(self, pos: int) -> bool:
-        """
-        Tell if the parameter at this position is eaten by a variable positional parameter.
+        """Tell if the parameter at this position is eaten by a variable positional parameter.
 
         Parameters:
             pos: The position of the parameter.
@@ -138,8 +131,7 @@ class ParamsCaster:
         return self.has_var_positional and pos >= self.var_positional_position
 
     def cast_posarg(self, pos: int, arg: Any) -> Any:
-        """
-        Cast a positional argument.
+        """Cast a positional argument.
 
         Parameters:
             pos: The position of the argument in the signature.
@@ -153,8 +145,7 @@ class ParamsCaster:
         return cast_arg(arg, self.annotation_at_pos(pos))
 
     def cast_kwarg(self, name: str, value: Any) -> Any:
-        """
-        Cast a keyword argument.
+        """Cast a keyword argument.
 
         Parameters:
             name: The name of the argument in the signature.
@@ -168,8 +159,7 @@ class ParamsCaster:
         return cast_arg(value, self.var_keyword_annotation)
 
     def cast(self, *args: Any, **kwargs: Any) -> tuple[Sequence, dict[str, Any]]:
-        """
-        Cast all positional and keyword arguments.
+        """Cast all positional and keyword arguments.
 
         Parameters:
             *args: The positional arguments.
@@ -178,8 +168,8 @@ class ParamsCaster:
         Returns:
             The cast arguments.
         """
-        positional = tuple(self.cast_posarg(pos, arg) for pos, arg in enumerate(args))  # noqa: WPS221
-        keyword = {name: self.cast_kwarg(name, value) for name, value in kwargs.items()}  # noqa: WPS221
+        positional = tuple(self.cast_posarg(pos, arg) for pos, arg in enumerate(args))
+        keyword = {name: self.cast_kwarg(name, value) for name, value in kwargs.items()}
         return positional, keyword
 
 
@@ -188,8 +178,7 @@ def validate(
     *args: Any,
     **kwargs: Any,
 ) -> tuple[Sequence, dict[str, Any]]:
-    """
-    Validate positional and keyword arguments against a function.
+    """Validate positional and keyword arguments against a function.
 
     First we clone the function, removing the first parameter (the context)
     and the body, to fail early with a `TypeError` if the arguments
@@ -213,7 +202,7 @@ def validate(
     params = [Parameter(param.name, param.kind, default=param.default) for param in params_list]
     sig = Signature(parameters=params)
     trixx: dict = {}
-    exec(f"def {name}{sig}: ...\ntrixx[0] = {name}")  # noqa: S102,W0122 (use of exec)
+    exec(f"def {name}{sig}: ...\ntrixx[0] = {name}")  # noqa: S102
     trixx[0](*args, **kwargs)
     caster = ParamsCaster(func)
     return caster.cast(*args, **kwargs)
