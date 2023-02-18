@@ -27,7 +27,8 @@ It is automatically created and passed to your function.
 It has only one purpose: running command with its `run` method.
 The `run` method accepts strings, list of strings, or even Python callables.
 
-The above duty can be rewritten as:
+The above duty runs the command in a shell process.
+To avoid using a shell, pass a list of strings instead:
 
 ```python
 from duty import duty
@@ -38,7 +39,7 @@ def docs(ctx):
     # avoid the overhead of an extra shell process
 ```
 
-Or:
+And to avoid using a subprocess completely, pass a Python callable:
 
 ```python
 from duty import duty
@@ -49,6 +50,21 @@ def docs(ctx):
     ctx.run(build.build, args=[config.load_config()], title="Building documentation")
     # avoid the overhead of an extra Python process
 ```
+
+For convenience, `duty` provides callables for many popular Python tools,
+so that you don't have to read their source and learn how to call them.
+For example, the `mkdocs build` command can be called like this:
+
+```python
+from duty import duty
+from duty.callables import mkdocs
+
+@duty
+def docs(ctx):
+    ctx.run(mkdocs.build, kwargs={"strict": True}, title="Building documentation")
+```
+
+**[See all our callables in the Code reference][duty.callables].**
 
 ### `ctx.run()` options
 
