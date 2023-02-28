@@ -50,8 +50,8 @@ def run(
         quiet: Do not print output.
         fail_under: Fail when coverage % is less than a given amount.
         exclude: Exclude PATHs of files and/or directories.
-        ignore_init_method: Ignore __init__ method of classes.
-        ignore_init_module: Ignore __init__.py modules.
+        ignore_init_method: Ignore `__init__` method of classes.
+        ignore_init_module: Ignore `__init__.py` modules.
         ignore_magic: Ignore all magic methods of classes.
         ignore_module: Ignore module-level docstrings.
         ignore_nested_functions: Ignore nested functions and methods.
