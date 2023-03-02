@@ -56,7 +56,7 @@ def run(
         exclude = tuple(re.compile(regex, re.I) if isinstance(regex, str) else regex for regex in exclude)
     filepaths = set()
     for path in paths:
-        path = Path(path)
+        path = Path(path)  # noqa: PLW2901
         if path.is_file():
             filepaths.add(path.as_posix())
         else:
