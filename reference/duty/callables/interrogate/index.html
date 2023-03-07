@@ -10,20 +10,20 @@
       
       
       
-        <link rel="canonical" href="https://pawamoy.github.io/duty/reference/duty/callables/autoflake/">
+        <link rel="canonical" href="https://pawamoy.github.io/duty/reference/duty/callables/interrogate/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../flake8/">
       
       
-        <link rel="next" href="../black/">
+        <link rel="next" href="../isort/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
     
     
       
-        <title>autoflake - duty</title>
+        <title>interrogate - duty</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#duty.callables.autoflake" class="md-skip">
+        <a href="#duty.callables.interrogate" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              autoflake
+              interrogate
             
           </span>
         </div>
@@ -538,55 +538,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          autoflake
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../autoflake/" class="md-nav__link">
         autoflake
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#duty.callables.autoflake" class="md-nav__link">
-    duty.callables.autoflake
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#duty.callables.autoflake.run" class="md-nav__link">
-    run()
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -652,11 +608,55 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../interrogate/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          interrogate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         interrogate
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#duty.callables.interrogate" class="md-nav__link">
+    duty.callables.interrogate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.callables.interrogate.run" class="md-nav__link">
+    run()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -967,14 +967,14 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#duty.callables.autoflake" class="md-nav__link">
-    duty.callables.autoflake
+  <a href="#duty.callables.interrogate" class="md-nav__link">
+    duty.callables.interrogate
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#duty.callables.autoflake.run" class="md-nav__link">
+  <a href="#duty.callables.interrogate.run" class="md-nav__link">
     run()
   </a>
   
@@ -998,15 +998,15 @@
   
 
 
-  <h1>autoflake</h1>
+  <h1>interrogate</h1>
 
 <div class="doc doc-object doc-module">
 
 
-<a id="duty.callables.autoflake"></a>
+<a id="duty.callables.interrogate"></a>
   <div class="doc doc-contents first">
   
-      <p>Callable for <a href="https://github.com/PyCQA/autoflake">autoflake</a>.</p>
+      <p>Callable for <a href="https://github.com/econchick/interrogate">Interrogate</a>.</p>
 
   
 
@@ -1024,39 +1024,42 @@
 
 
 
-<h2 id="duty.callables.autoflake.run" class="doc doc-heading">
+<h2 id="duty.callables.interrogate.run" class="doc doc-heading">
         <span class="doc doc-object-name doc-function-name">run</span>
 
 
-<a href="#duty.callables.autoflake.run" class="headerlink" title="Permanent link">¤</a></h2>
+<a href="#duty.callables.interrogate.run" class="headerlink" title="Permanent link">¤</a></h2>
 <div class="highlight"><pre><span></span><code><span class="n">run</span><span class="p">(</span>
-    <span class="o">*</span><span class="n">files</span><span class="p">,</span>
-    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">check</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">check_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">imports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_all_unused_imports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">recursive</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">expand_star_imports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">ignore_init_module_imports</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_duplicate_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_unused_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_rhs_for_unused_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">ignore_pass_statements</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">ignore_pass_after_docstring</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">quiet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">src</span><span class="p">,</span>
     <span class="n">verbose</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">stdin_display_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">in_place</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">stdout</span><span class="o">=</span><span class="kc">None</span>
+    <span class="n">quiet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fail_under</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_init_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_init_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_magic</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_module</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_nested_functions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_nested_classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_private</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_property_decorators</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_setters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_semiprivate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">whitelist_regex</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">omit_covered_files</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">generate_badge</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">badge_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">badge_style</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">)</span>
 </code></pre></div>
 
   <div class="doc doc-contents ">
   
-      <p>Run <code>autoflake</code>.</p>
+      <p>Run <code>interrogate</code>.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1070,161 +1073,21 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>*files</code></td>
+          <td><code>src</code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
           </td>
-          <td><p>Files to format.</p></td>
+          <td><p>Format the directories and file paths.</p></td>
           <td>
                 <code>()</code>
           </td>
         </tr>
         <tr>
-          <td><code>config</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
-          </td>
-          <td><p>Explicitly set the config file instead of auto determining based on file location.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>check</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Return error code if changes are needed.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>check_diff</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Return error code if changes are needed, also display file diffs.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>imports</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>] | None</code>
-          </td>
-          <td><p>By default, only unused standard library imports are removed; specify a comma-separated list of additional modules/packages.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>remove_all_unused_imports</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Remove all unused imports (not just those from the standard library).</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>recursive</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Drill down directories recursively.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>jobs</code></td>
+          <td><code>verbose</code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a> | None</code>
           </td>
-          <td><p>Number of parallel jobs; match CPU count if value is 0 (default: 0).</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>exclude</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#list">list</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a>] | None</code>
-          </td>
-          <td><p>Exclude file/directory names that match these comma-separated globs.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>expand_star_imports</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Expand wildcard star imports with undefined names; this only triggers if there is only one star import in the file; this is skipped if there are any uses of <code>__all__</code> or <code>del</code> in the file.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>ignore_init_module_imports</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Exclude <code>__init__.py</code> when removing unused imports.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>remove_duplicate_keys</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Remove all duplicate keys in objects.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>remove_unused_variables</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Remove unused variables.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>remove_rhs_for_unused_variables</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Remove RHS of statements when removing unused variables (unsafe).</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>ignore_pass_statements</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Ignore all pass statements.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>ignore_pass_after_docstring</code></td>
-          <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
-          </td>
-          <td><p>Ignore pass statements after a newline ending on <code>\"\"\"</code>.</p></td>
+          <td><p>Level of verbosity.</p></td>
           <td>
                 <code>None</code>
           </td>
@@ -1234,47 +1097,217 @@
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
           </td>
-          <td><p>Suppress output if there are no issues.</p></td>
+          <td><p>Do not print output.</p></td>
           <td>
                 <code>None</code>
           </td>
         </tr>
         <tr>
-          <td><code>verbose</code></td>
+          <td><code>fail_under</code></td>
           <td>
-                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#float">float</a> | None</code>
           </td>
-          <td><p>Print more verbose logs (you can repeat <code>-v</code> to make it more verbose).</p></td>
+          <td><p>Fail when coverage % is less than a given amount.</p></td>
           <td>
                 <code>None</code>
           </td>
         </tr>
         <tr>
-          <td><code>stdin_display_name</code></td>
+          <td><code>exclude</code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
           </td>
-          <td><p>The name used when processing input from stdin.</p></td>
+          <td><p>Exclude PATHs of files and/or directories.</p></td>
           <td>
                 <code>None</code>
           </td>
         </tr>
         <tr>
-          <td><code>in_place</code></td>
+          <td><code>ignore_init_method</code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
           </td>
-          <td><p>Make changes to files instead of printing diffs.</p></td>
+          <td><p>Ignore <code>__init__</code> method of classes.</p></td>
           <td>
                 <code>None</code>
           </td>
         </tr>
         <tr>
-          <td><code>stdout</code></td>
+          <td><code>ignore_init_module</code></td>
           <td>
                 <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
           </td>
-          <td><p>Print changed text to stdout. defaults to true when formatting stdin, or to false otherwise.</p></td>
+          <td><p>Ignore <code>__init__.py</code> modules.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_magic</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore all magic methods of classes.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_module</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore module-level docstrings.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_nested_functions</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore nested functions and methods.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_nested_classes</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore nested classes.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_private</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore private classes, methods, and functions starting with two underscores.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_property_decorators</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore methods with property setter/getter decorators.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_setters</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore methods with property setter decorators.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_semiprivate</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Ignore semiprivate classes, methods, and functions starting with a single underscore.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_regex</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
+          </td>
+          <td><p>Regex identifying class, method, and function names to ignore.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>whitelist_regex</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
+          </td>
+          <td><p>Regex identifying class, method, and function names to include.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>output</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
+          </td>
+          <td><p>Write output to a given FILE.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>config</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
+          </td>
+          <td><p>Read configuration from pyproject.toml or setup.cfg.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>color</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Toggle color output on/off when printing to stdout.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>omit_covered_files</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Omit reporting files that have 100% documentation coverage.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>generate_badge</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a> | None</code>
+          </td>
+          <td><p>Generate a shields.io status badge (an SVG image) in at a given file or directory.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>badge_format</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" title="typing.Literal" href="https://docs.python.org/3/library/typing.html#typing.Literal">Literal</a>[&#39;png&#39;, &#39;svg&#39;] | None</code>
+          </td>
+          <td><p>File format for the generated badge.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>badge_style</code></td>
+          <td>
+                <code><span title="duty.callables.interrogate._BADGE_STYLE">_BADGE_STYLE</span> | None</code>
+          </td>
+          <td><p>Desired style of shields.io badge.</p></td>
           <td>
                 <code>None</code>
           </td>
@@ -1283,18 +1316,8 @@
   </table>
 
       <details class="quote">
-        <summary>Source code in <code>duty/callables/autoflake.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  8</span>
-<span class="normal">  9</span>
-<span class="normal"> 10</span>
-<span class="normal"> 11</span>
-<span class="normal"> 12</span>
-<span class="normal"> 13</span>
-<span class="normal"> 14</span>
-<span class="normal"> 15</span>
-<span class="normal"> 16</span>
-<span class="normal"> 17</span>
-<span class="normal"> 18</span>
+        <summary>Source code in <code>duty/callables/interrogate.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 18</span>
 <span class="normal"> 19</span>
 <span class="normal"> 20</span>
 <span class="normal"> 21</span>
@@ -1406,129 +1429,175 @@
 <span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@lazy</span><span class="p">(</span><span class="s2">&quot;autoflake&quot;</span><span class="p">)</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@lazy</span><span class="p">(</span><span class="s2">&quot;interrogate&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
-    <span class="o">*</span><span class="n">files</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">config</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">check</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">check_diff</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">imports</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_all_unused_imports</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">recursive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">jobs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">exclude</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">expand_star_imports</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">ignore_init_module_imports</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_duplicate_keys</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_unused_variables</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">remove_rhs_for_unused_variables</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">ignore_pass_statements</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">ignore_pass_after_docstring</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">src</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">quiet</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">stdin_display_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">in_place</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">stdout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Run `autoflake`.</span>
+    <span class="n">fail_under</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">exclude</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_init_method</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_init_module</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_magic</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_module</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_nested_functions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_nested_classes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_private</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_property_decorators</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_setters</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_semiprivate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ignore_regex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">whitelist_regex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">color</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">omit_covered_files</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">generate_badge</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">badge_format</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="s2">&quot;svg&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">badge_style</span><span class="p">:</span> <span class="n">_BADGE_STYLE</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run `interrogate`.</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        *files: Files to format.</span>
-<span class="sd">        config: Explicitly set the config file instead of auto determining based on file location.</span>
-<span class="sd">        check: Return error code if changes are needed.</span>
-<span class="sd">        check_diff: Return error code if changes are needed, also display file diffs.</span>
-<span class="sd">        imports: By default, only unused standard library imports are removed; specify a comma-separated list of additional modules/packages.</span>
-<span class="sd">        remove_all_unused_imports: Remove all unused imports (not just those from the standard library).</span>
-<span class="sd">        recursive: Drill down directories recursively.</span>
-<span class="sd">        jobs: Number of parallel jobs; match CPU count if value is 0 (default: 0).</span>
-<span class="sd">        exclude: Exclude file/directory names that match these comma-separated globs.</span>
-<span class="sd">        expand_star_imports: Expand wildcard star imports with undefined names; this only triggers if there is only one star import in the file; this is skipped if there are any uses of `__all__` or `del` in the file.</span>
-<span class="sd">        ignore_init_module_imports: Exclude `__init__.py` when removing unused imports.</span>
-<span class="sd">        remove_duplicate_keys: Remove all duplicate keys in objects.</span>
-<span class="sd">        remove_unused_variables: Remove unused variables.</span>
-<span class="sd">        remove_rhs_for_unused_variables: Remove RHS of statements when removing unused variables (unsafe).</span>
-<span class="sd">        ignore_pass_statements: Ignore all pass statements.</span>
-<span class="sd">        ignore_pass_after_docstring: Ignore pass statements after a newline ending on `\&quot;\&quot;\&quot;`.</span>
-<span class="sd">        quiet: Suppress output if there are no issues.</span>
-<span class="sd">        verbose: Print more verbose logs (you can repeat `-v` to make it more verbose).</span>
-<span class="sd">        stdin_display_name: The name used when processing input from stdin.</span>
-<span class="sd">        in_place: Make changes to files instead of printing diffs.</span>
-<span class="sd">        stdout: Print changed text to stdout. defaults to true when formatting stdin, or to false otherwise.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        src: Format the directories and file paths.</span>
+<span class="sd">        verbose: Level of verbosity.</span>
+<span class="sd">        quiet: Do not print output.</span>
+<span class="sd">        fail_under: Fail when coverage % is less than a given amount.</span>
+<span class="sd">        exclude: Exclude PATHs of files and/or directories.</span>
+<span class="sd">        ignore_init_method: Ignore `__init__` method of classes.</span>
+<span class="sd">        ignore_init_module: Ignore `__init__.py` modules.</span>
+<span class="sd">        ignore_magic: Ignore all magic methods of classes.</span>
+<span class="sd">        ignore_module: Ignore module-level docstrings.</span>
+<span class="sd">        ignore_nested_functions: Ignore nested functions and methods.</span>
+<span class="sd">        ignore_nested_classes: Ignore nested classes.</span>
+<span class="sd">        ignore_private: Ignore private classes, methods, and functions starting with two underscores.</span>
+<span class="sd">        ignore_property_decorators: Ignore methods with property setter/getter decorators.</span>
+<span class="sd">        ignore_setters: Ignore methods with property setter decorators.</span>
+<span class="sd">        ignore_semiprivate: Ignore semiprivate classes, methods, and functions starting with a single underscore.</span>
+<span class="sd">        ignore_regex: Regex identifying class, method, and function names to ignore.</span>
+<span class="sd">        whitelist_regex: Regex identifying class, method, and function names to include.</span>
+<span class="sd">        output: Write output to a given FILE.</span>
+<span class="sd">        config: Read configuration from pyproject.toml or setup.cfg.</span>
+<span class="sd">        color: Toggle color output on/off when printing to stdout.</span>
+<span class="sd">        omit_covered_files: Omit reporting files that have 100% documentation coverage.</span>
+<span class="sd">        generate_badge: Generate a shields.io status badge (an SVG image) in at a given file or directory.</span>
+<span class="sd">        badge_format: File format for the generated badge.</span>
+<span class="sd">        badge_style: Desired style of shields.io badge.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">autoflake</span> <span class="kn">import</span> <span class="n">_main</span> <span class="k">as</span> <span class="n">autoflake</span>
+    <span class="kn">from</span> <span class="nn">interrogate.cli</span> <span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">interrogate</span>
 
-    <span class="n">cli_args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+    <span class="n">cli_args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--check&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">check_diff</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--check-diff&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">imports</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--imports&quot;</span><span class="p">)</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imports</span><span class="p">))</span>
-
-    <span class="k">if</span> <span class="n">remove_all_unused_imports</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--remove-all-unused-imports&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">recursive</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--recursive&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">jobs</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--jobs&quot;</span><span class="p">)</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">jobs</span><span class="p">))</span>
-
-    <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--exclude&quot;</span><span class="p">)</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">exclude</span><span class="p">))</span>
-
-    <span class="k">if</span> <span class="n">expand_star_imports</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--expand-star-imports&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">ignore_init_module_imports</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-init-module-imports&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">remove_duplicate_keys</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--remove-duplicate-keys&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">remove_unused_variables</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--remove-unused-variables&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">remove_rhs_for_unused_variables</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;remove-rhs-for-unused-variables&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">ignore_pass_statements</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-pass-statements&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">ignore_pass_after_docstring</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-pass-after-docstring&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--verbose&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">verbose</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">quiet</span><span class="p">:</span>
         <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--quiet&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--verbose&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fail_under</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--fail-under&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">fail_under</span><span class="p">))</span>
 
-    <span class="k">if</span> <span class="n">stdin_display_name</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--stdin-display-name&quot;</span><span class="p">)</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stdin_display_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--exclude&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">exclude</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_init_method</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-init-method&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_init_module</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-init-module&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_magic</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-magic&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_module</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-module&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_nested_functions</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-nested-functions&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_nested_classes</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-nested-classes&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_private</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-private&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_property_decorators</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-property-decorators&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_setters</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-setters&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_semiprivate</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-semiprivate&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignore_regex</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--ignore-regex&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ignore_regex</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">whitelist_regex</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--whitelist-regex&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">whitelist_regex</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--output&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">omit_covered_files</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--omit-covered-files&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">generate_badge</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--generate-badge&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">generate_badge</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">badge_format</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--badge-format&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">badge_format</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">badge_style</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--badge-style&quot;</span><span class="p">)</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">badge_style</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
         <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--config&quot;</span><span class="p">)</span>
         <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">in_place</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--in-place&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--color&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">color</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--no-color&quot;</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">stdout</span><span class="p">:</span>
-        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--stdout&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">autoflake</span><span class="p">(</span>
-        <span class="n">cli_args</span><span class="p">,</span>
-        <span class="n">standard_out</span><span class="o">=</span><span class="n">_io</span><span class="o">.</span><span class="n">_LazyStdout</span><span class="p">(),</span>  <span class="c1"># noqa: SLF001</span>
-        <span class="n">standard_error</span><span class="o">=</span><span class="n">_io</span><span class="o">.</span><span class="n">_LazyStderr</span><span class="p">(),</span>  <span class="c1"># noqa: SLF001</span>
-    <span class="p">)</span>
+    <span class="n">interrogate</span><span class="p">(</span><span class="n">cli_args</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>

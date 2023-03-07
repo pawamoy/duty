@@ -5,6 +5,7 @@
         * [blacken_docs](duty/callables/blacken_docs.md)
         * [coverage](duty/callables/coverage.md)
         * [flake8](duty/callables/flake8.md)
+        * [interrogate](duty/callables/interrogate.md)
         * [isort](duty/callables/isort.md)
         * [mkdocs](duty/callables/mkdocs.md)
         * [mypy](duty/callables/mypy.md)
