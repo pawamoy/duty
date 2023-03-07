@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.9.0](https://github.com/pawamoy/duty/releases/tag/0.9.0) - 2023-03-07
+
+<small>[Compare with 0.8.0](https://github.com/pawamoy/duty/compare/0.8.0...0.9.0)</small>
+
+### Features
+
+- Add callable for Interrogate ([9be8068](https://github.com/pawamoy/duty/commit/9be80680c0d0ab5fbe62e6a117ed655d68da7967) by jexio). [PR #8](https://github.com/pawamoy/duty/pull/8)
+
 ## [0.8.0](https://github.com/pawamoy/duty/releases/tag/0.8.0) - 2023-02-18
 
 <small>[Compare with 0.7.0](https://github.com/pawamoy/duty/compare/0.7.0...0.8.0)</small>
