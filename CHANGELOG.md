@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.10.0](https://github.com/pawamoy/duty/releases/tag/0.10.0) - 2023-04-10
+
+<small>[Compare with 0.9.0](https://github.com/pawamoy/duty/compare/0.9.0...0.10.0)</small>
+
+### Features
+
+- Support updated lazy decorator from `failprint` ([a0446ac](https://github.com/pawamoy/duty/commit/a0446ac20672344ab9508d661e21ff5b5132742b) by Timothée Mazzucotelli).
+
 ## [0.9.0](https://github.com/pawamoy/duty/releases/tag/0.9.0) - 2023-03-07
 
 <small>[Compare with 0.8.0](https://github.com/pawamoy/duty/compare/0.8.0...0.9.0)</small>
