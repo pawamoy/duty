@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
-from duty.callables import _io, lazy
+from failprint.lazy import lazy
+
+from duty.callables import _io
 
 
-@lazy("autoflake")
+@lazy(name="autoflake")
 def run(
     *files: str,
     config: str | None = None,

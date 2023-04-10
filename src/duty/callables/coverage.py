@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -19,7 +19,7 @@ def _run(args: list[str]) -> None:
     coverage(args)
 
 
-@lazy("coverage.annotate")
+@lazy(name="coverage.annotate")
 def annotate(
     *,
     rcfile: str | None = None,
@@ -78,7 +78,7 @@ def annotate(
     _run(cli_args)
 
 
-@lazy("coverage.combine")
+@lazy(name="coverage.combine")
 def combine(
     *paths: str,
     rcfile: str | None = None,
@@ -132,7 +132,7 @@ def combine(
     _run(cli_args)
 
 
-@lazy("coverage.debug")
+@lazy(name="coverage.debug")
 def debug(
     topic: Literal["data", "sys", "config", "premain", "pybehave"],
     *,
@@ -166,7 +166,7 @@ def debug(
     _run(cli_args)
 
 
-@lazy("coverage.erase")
+@lazy(name="coverage.erase")
 def erase(
     *,
     rcfile: str | None = None,
@@ -199,7 +199,7 @@ def erase(
     _run(cli_args)
 
 
-@lazy("coverage.html")
+@lazy(name="coverage.html")
 def html(
     *,
     rcfile: str | None = None,
@@ -305,7 +305,7 @@ def html(
     _run(cli_args)
 
 
-@lazy("coverage.json")
+@lazy(name="coverage.json")
 def json(
     *,
     rcfile: str | None = None,
@@ -389,7 +389,7 @@ def json(
     _run(cli_args)
 
 
-@lazy("coverage.lcov")
+@lazy(name="coverage.lcov")
 def lcov(
     *,
     rcfile: str | None = None,
@@ -456,7 +456,7 @@ def lcov(
     _run(cli_args)
 
 
-@lazy("coverage.report")
+@lazy(name="coverage.report")
 def report(
     *,
     rcfile: str | None = None,
@@ -553,7 +553,7 @@ def report(
     _run(cli_args)
 
 
-@lazy("coverage.run")
+@lazy(name="coverage.run")
 def run(
     pyfile: str,
     *,
@@ -650,7 +650,7 @@ def run(
     _run(cli_args)
 
 
-@lazy("coverage.xml")
+@lazy(name="coverage.xml")
 def xml(
     *,
     rcfile: str | None = None,

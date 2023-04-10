@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 
-@lazy("black")
+@lazy(name="black")
 def run(
     *src: str,
     config: str | None = None,

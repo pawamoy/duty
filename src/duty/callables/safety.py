@@ -7,7 +7,7 @@ import sys
 from io import StringIO
 from typing import Sequence, cast
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -16,7 +16,7 @@ else:
     from typing import Literal
 
 
-@lazy("safety.check")
+@lazy(name="safety.check")
 def check(
     requirements: str | Sequence[str],
     *,

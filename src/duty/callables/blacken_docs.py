@@ -6,10 +6,10 @@ import re
 from pathlib import Path
 from typing import Pattern, Sequence
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 
-@lazy("blacken_docs")
+@lazy(name="blacken_docs")
 def run(
     *paths: str | Path,
     exts: Sequence[str] | None = None,

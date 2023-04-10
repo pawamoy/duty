@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -40,7 +40,7 @@ Multiline = Literal[
 ]
 
 
-@lazy("isort")
+@lazy(name="isort")
 def run(
     *files: str,
     settings: str | None = None,

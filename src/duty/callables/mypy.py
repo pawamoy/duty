@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import sys
 
-from duty.callables import lazy
+from failprint.lazy import lazy
+
 from duty.callables._io import _LazyStderr, _LazyStdout
 
 # TODO: remove once support for Python 3.7 is dropped
@@ -14,7 +15,7 @@ else:
     from typing import Literal
 
 
-@lazy("mypy")
+@lazy(name="mypy")
 def run(
     *paths: str,
     config_file: str | None = None,

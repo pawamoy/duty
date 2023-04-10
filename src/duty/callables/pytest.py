@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -13,7 +13,7 @@ else:
     from typing import Literal
 
 
-@lazy("pytest")
+@lazy(name="pytest")
 def run(
     *paths: str,
     config_file: str | None = None,

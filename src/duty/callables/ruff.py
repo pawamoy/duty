@@ -7,7 +7,7 @@ import subprocess
 import sys
 from functools import lru_cache
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 
 @lru_cache(maxsize=None)
@@ -52,7 +52,7 @@ def _run(
     return process.returncode
 
 
-@lazy("ruff.check")
+@lazy(name="ruff.check")
 def check(
     *files: str,
     config: str | None = None,
@@ -225,7 +225,7 @@ def check(
     return _run("check", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
 
 
-@lazy("ruff.rule")
+@lazy(name="ruff.rule")
 def rule(
     *,
     output_format: str | None = None,
@@ -250,7 +250,7 @@ def rule(
     return _run("rule", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
 
 
-@lazy("ruff.config")
+@lazy(name="ruff.config")
 def config(
     *,
     verbose: bool = False,
@@ -267,7 +267,7 @@ def config(
     return _run("config", verbose=verbose, quiet=quiet, silent=silent)
 
 
-@lazy("ruff.linter")
+@lazy(name="ruff.linter")
 def linter(
     *,
     output_format: str | None = None,
@@ -292,7 +292,7 @@ def linter(
     return _run("linter", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
 
 
-@lazy("ruff.clean")
+@lazy(name="ruff.clean")
 def clean(
     *,
     verbose: bool = False,

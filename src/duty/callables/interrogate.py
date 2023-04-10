@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 # TODO: remove once support for Python 3.7 is dropped
 if sys.version_info < (3, 8):
@@ -15,7 +15,7 @@ else:
 _BADGE_STYLE = Literal["flat", "flat-square", "flat-square-modified", "for-the-badge", "plastic", "social"]
 
 
-@lazy("interrogate")
+@lazy(name="interrogate")
 def run(
     *src: str,
     verbose: int | None = None,

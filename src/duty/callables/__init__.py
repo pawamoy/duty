@@ -28,31 +28,6 @@ Tip: Call to developers!
 
 from __future__ import annotations
 
-from functools import wraps
-from typing import Callable
+from failprint.lazy import lazy
 
-from failprint.lazy import lazy as failprint_lazy
-
-
-def lazy(name: str | None = None) -> Callable:
-    """Transform a callable into a lazy callable.
-
-    Also assign the given name to the callable, for better display.
-
-    Parameters:
-        name: The name to assign to the callable.
-
-    Returns:
-        A lazy callable.
-    """
-
-    def decorator(func: Callable) -> Callable:
-        @wraps(func)
-        def inner(*args, **kwargs):  # noqa: ANN002,ANN003,ANN202
-            return func(*args, **kwargs)
-
-        if name:
-            inner.__name__ = name
-        return failprint_lazy(inner)
-
-    return decorator
+__all__ = ["lazy"]

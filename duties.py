@@ -39,7 +39,7 @@ def changelog(ctx: Context) -> None:
     """
     from git_changelog.cli import build_and_render
 
-    git_changelog = lazy("git_changelog")(build_and_render)
+    git_changelog = lazy(build_and_render, name="git_changelog")
     ctx.run(
         git_changelog(
             repository=".",
@@ -48,7 +48,7 @@ def changelog(ctx: Context) -> None:
             template="keepachangelog",
             parse_trailers=True,
             parse_refs=False,
-            sections=("build", "deps", "feat", "fix", "refactor"),
+            sections=["build", "deps", "feat", "fix", "refactor"],
             bump_latest=True,
             in_place=True,
         ),

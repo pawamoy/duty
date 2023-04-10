@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from duty.callables import lazy
+from failprint.lazy import lazy
 
 
 def run(*args: str, quiet: bool = False, verbose: bool = False) -> None:
@@ -26,7 +26,7 @@ def run(*args: str, quiet: bool = False, verbose: bool = False) -> None:
     mkdocs(cli_args)
 
 
-@lazy("mkdocs.build")
+@lazy(name="mkdocs.build")
 def build(
     *,
     config_file: str | None = None,
@@ -80,7 +80,7 @@ def build(
     run("build", *cli_args, quiet=quiet, verbose=verbose)
 
 
-@lazy("mkdocs.gh_deploy")
+@lazy(name="mkdocs.gh_deploy")
 def gh_deploy(
     *,
     config_file: str | None = None,
@@ -173,7 +173,7 @@ def gh_deploy(
     run("gh-deploy", *cli_args, quiet=quiet, verbose=verbose)
 
 
-@lazy("mkdocs.new")
+@lazy(name="mkdocs.new")
 def new(project_directory: str, *, quiet: bool = False, verbose: bool = False) -> None:
     """Create a new MkDocs project.
 
@@ -185,7 +185,7 @@ def new(project_directory: str, *, quiet: bool = False, verbose: bool = False) -
     run("new", project_directory, quiet=quiet, verbose=verbose)
 
 
-@lazy("mkdocs.serve")
+@lazy(name="mkdocs.serve")
 def serve(
     *,
     config_file: str | None = None,
