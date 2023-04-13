@@ -1,5 +1,8 @@
 """Tests about running duties."""
 
+from __future__ import annotations
+
+from typing import NoReturn
 from unittest.mock import NonCallableMock
 
 import pytest
@@ -11,14 +14,14 @@ from duty.exceptions import DutyFailure
 INTERRUPT_CODE = 130
 
 
-def test_run_duty():
+def test_run_duty() -> None:
     """Run a duty."""
-    duty = Duty("name", "description", lambda ctx: None)
-    assert duty.run() is None
-    assert duty(duty.context) is None
+    duty = Duty("name", "description", lambda ctx: 1)
+    assert duty.run() is None  # type: ignore[func-returns-value]
+    assert duty(duty.context) is None  # type: ignore[func-returns-value]
 
 
-def test_run_pre_post_duties_lambdas():
+def test_run_pre_post_duties_lambdas() -> None:
     """Run pre- and post- duties as lambdas."""
     pre_calls = []
     post_calls = []
@@ -37,7 +40,7 @@ def test_run_pre_post_duties_lambdas():
     assert post_calls[0] is True
 
 
-def test_run_pre_post_duties_instances():
+def test_run_pre_post_duties_instances() -> None:
     """Run pre- and post- duties as duties."""
     pre_calls = []
     post_calls = []
@@ -59,14 +62,14 @@ def test_run_pre_post_duties_instances():
     assert post_calls[0] is True
 
 
-def test_run_pre_post_duties_refs():
+def test_run_pre_post_duties_refs() -> None:
     """Run pre- and post- duties as duties references."""
     pre_calls = []
     post_calls = []
 
     collection = Collection()
-    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))  # noqa: FBT003
-    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))  # noqa: FBT003
+    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))  # type: ignore[call-overload]  # noqa: FBT003
+    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))  # type: ignore[call-overload]  # noqa: FBT003
 
     duty = Duty("name", "description", lambda ctx: None, collection=collection, pre=["pre"], post=["post"])
     duty.run()
@@ -75,7 +78,7 @@ def test_run_pre_post_duties_refs():
     assert post_calls[0] is True
 
 
-def test_dont_run_other_pre_post_duties():
+def test_dont_run_other_pre_post_duties() -> None:
     """Don't run other types of pre- and post- duties."""
     pre_duty = NonCallableMock()
     post_duty = NonCallableMock()
@@ -87,10 +90,10 @@ def test_dont_run_other_pre_post_duties():
     assert not post_duty.called
 
 
-def test_code_when_keyboard_interrupt():
+def test_code_when_keyboard_interrupt() -> None:
     """Return a code 130 on keyboard interruption."""
 
-    def interrupt():
+    def interrupt() -> NoReturn:
         raise KeyboardInterrupt
 
     with pytest.raises(DutyFailure) as excinfo:
@@ -98,14 +101,14 @@ def test_code_when_keyboard_interrupt():
     assert excinfo.value.code == INTERRUPT_CODE
 
 
-def test_dont_raise_duty_failure():
+def test_dont_raise_duty_failure() -> None:
     """Don't raise a duty failure on success."""
     duty = Duty("n", "d", lambda ctx: ctx.run(lambda: 0))
-    assert not duty.run()
+    assert not duty.run()  # type: ignore[func-returns-value]
 
 
-def test_cant_find_duty_without_collection():
+def test_cant_find_duty_without_collection() -> None:
     """Check that we can't find a duty with its name without a collection."""
-    duty = decorate(lambda ctx: None, name="duty1", post=["duty2"])
+    duty = decorate(lambda ctx: None, name="duty1", post=["duty2"])  # type: ignore[call-overload]
     with pytest.raises(RuntimeError):
         duty.run()

@@ -1,7 +1,10 @@
 """Tests for the `validation` module."""
 
+from __future__ import annotations
+
 import sys
 from inspect import Parameter
+from typing import Any, Callable
 
 import pytest
 
@@ -37,7 +40,7 @@ if sys.version_info >= (3, 8, 0):
         ("OFF", False),
     ],
 )
-def test_bool_casting(value, expected):
+def test_bool_casting(value: str, expected: bool) -> None:
     """Check that we correctly cast string values to booleans.
 
     Parameters:
@@ -50,17 +53,17 @@ def test_bool_casting(value, expected):
 class CustomType1:
     """Dummy type to test type-casting."""
 
-    def __init__(self, value):  # noqa: D107
+    def __init__(self, value: str):  # noqa: D107
         self.value = value
 
-    def __eq__(self, other):
-        return self.value == other.value
+    def __eq__(self, other: object):
+        return self.value == other.value  # type: ignore[attr-defined]
 
 
 class CustomType2:
     """Dummy type to test type-casting."""
 
-    def __init__(self, value, extra):  # noqa: D107
+    def __init__(self, value, extra):  # noqa: ANN001,D107
         ...  # pragma: no cover
 
 
@@ -77,7 +80,7 @@ class CustomType2:
         ("foh", CustomType2, "foh"),
     ],
 )
-def test_cast_arg(arg, annotation, expected):
+def test_cast_arg(arg: str, annotation: Any, expected: Any) -> None:
     """Check that arguments are properly casted given an annotation.
 
     Parameters:
@@ -150,7 +153,7 @@ if sys.version_info >= (3, 8, 0):
     ("func", "args", "kwargs", "expected_args", "expected_kwargs"),
     _parametrization,
 )
-def test_params_caster(func, args, kwargs, expected_args, expected_kwargs):
+def test_params_caster(func: Callable, args: tuple, kwargs: dict, expected_args: tuple, expected_kwargs: dict) -> None:
     """Test the whole parameters casting helper class.
 
     Parameters:

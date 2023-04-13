@@ -63,7 +63,7 @@ def get_parser() -> ArgParser:
     add_flags(parser, set_defaults=False)
     parser.add_argument("remainder", nargs=argparse.REMAINDER)
 
-    parser._optionals.title = "Global options"  # noqa: SLF001
+    parser._optionals.title = "Global options"
 
     return parser
 

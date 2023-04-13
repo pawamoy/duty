@@ -1,5 +1,7 @@
 """Tests for the `context` module."""
 
+from __future__ import annotations
+
 from collections import namedtuple
 from pathlib import Path
 
@@ -11,7 +13,7 @@ from duty.exceptions import DutyFailure
 RunResult = namedtuple("RunResult", "code output")
 
 
-def test_allow_overrides(monkeypatch):
+def test_allow_overrides(monkeypatch: pytest.MonkeyPatch) -> None:
     """Test the `allow_overrides` option.
 
     Parameters:
@@ -19,7 +21,7 @@ def test_allow_overrides(monkeypatch):
     """
     ctx = context.Context({"a": 1}, {"a": 2})
     records = []
-    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))
+    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))  # type: ignore[func-returns-value]
     ctx.run("")
     ctx.run("", allow_overrides=False)
     ctx.run("", allow_overrides=True)
@@ -30,7 +32,7 @@ def test_allow_overrides(monkeypatch):
     assert records[3]["a"] == 3
 
 
-def test_options_context_manager(monkeypatch):
+def test_options_context_manager(monkeypatch: pytest.MonkeyPatch) -> None:
     """Test changing options using the context manager.
 
     Parameters:
@@ -38,7 +40,7 @@ def test_options_context_manager(monkeypatch):
     """
     ctx = context.Context({"a": 1}, {"a": 2})
     records = []
-    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))
+    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))  # type: ignore[func-returns-value]
 
     with ctx.options(a=3):
         ctx.run("")  # should be overridden by 2
@@ -53,7 +55,7 @@ def test_options_context_manager(monkeypatch):
     assert records[3]["a"] == 3
 
 
-def test_workdir(monkeypatch):
+def test_workdir(monkeypatch: pytest.MonkeyPatch) -> None:
     """Test the `workdir` option.
 
     Parameters:
@@ -71,7 +73,7 @@ def test_workdir(monkeypatch):
     assert records[0] == records[1] + 1
 
 
-def test_workdir_as_context_manager(monkeypatch):
+def test_workdir_as_context_manager(monkeypatch: pytest.MonkeyPatch) -> None:
     """Test the `workdir` option as a context manager, and the `cd` context manager.
 
     Parameters:

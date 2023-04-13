@@ -127,6 +127,6 @@ def run(
 
     return autoflake(
         cli_args,
-        standard_out=_io._LazyStdout(),  # noqa: SLF001
-        standard_error=_io._LazyStderr(),  # noqa: SLF001
+        standard_out=_io._LazyStdout(),
+        standard_error=_io._LazyStderr(),
     )

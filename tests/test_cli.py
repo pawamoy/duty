@@ -29,7 +29,7 @@ def test_show_help(capsys: pytest.CaptureFixture) -> None:
     assert "duty" in captured.out
 
 
-def test_show_help_for_given_duties(capsys):
+def test_show_help_for_given_duties(capsys: pytest.CaptureFixture) -> None:
     """Show help for given duties.
 
     Parameters:
@@ -40,7 +40,7 @@ def test_show_help_for_given_duties(capsys):
     assert "hello" in captured.out
 
 
-def test_show_help_unknown_duty(capsys):
+def test_show_help_unknown_duty(capsys: pytest.CaptureFixture) -> None:
     """Show help for an unknown duty.
 
     Parameters:
@@ -51,24 +51,24 @@ def test_show_help_unknown_duty(capsys):
     assert "Unknown duty" in captured.out
 
 
-def test_select_duties():
+def test_select_duties() -> None:
     """Run a duty."""
     assert cli.main(["-d", "tests/fixtures/basic.py", "hello"]) == 0
 
 
-def test_unknown_duty():
+def test_unknown_duty() -> None:
     """Don't run an unknown duty."""
     assert cli.main(["-d", "tests/fixtures/basic.py", "byebye"]) == 1
 
 
-def test_incorrect_arguments():
+def test_incorrect_arguments() -> None:
     """Use incorrect arguments."""
     assert cli.main(["-d", "tests/fixtures/basic.py", "hello=1"]) == 1
 
 
 # we use 300 because it's slightly above the valid maximum 255
 @pytest.mark.parametrize("code", range(-100, 300, 7))
-def test_duty_failure(code):
+def test_duty_failure(code: int) -> None:
     """Check exit code.
 
     Parameters:
@@ -77,7 +77,7 @@ def test_duty_failure(code):
     assert cli.main(["-d", "tests/fixtures/code.py", "exit_with", f"code={code}"]) == code
 
 
-def test_multiple_duties(capsys):
+def test_multiple_duties(capsys: pytest.CaptureFixture) -> None:
     """Run multiple duties.
 
     Parameters:
@@ -89,7 +89,7 @@ def test_multiple_duties(capsys):
     assert "second" in captured.out
 
 
-def test_duty_arguments(capsys):
+def test_duty_arguments(capsys: pytest.CaptureFixture) -> None:
     """Run duty with arguments.
 
     Parameters:
@@ -106,7 +106,7 @@ def test_duty_arguments(capsys):
     assert "dog paramiko" in captured.out
 
 
-def test_list_duties(capsys):
+def test_list_duties(capsys: pytest.CaptureFixture) -> None:
     """List duties.
 
     Parameters:
@@ -118,17 +118,17 @@ def test_list_duties(capsys):
     assert "DEUM!" in captured.out
 
 
-def test_global_options():
+def test_global_options() -> None:
     """Test global options."""
     assert cli.main(["-d", "tests/fixtures/code.py", "-z", "exit_with", "1"]) == 0
 
 
-def test_global_and_local_options():
+def test_global_and_local_options() -> None:
     """Test global and local options."""
     assert cli.main(["-d", "tests/fixtures/code.py", "-z", "exit_with", "-Z", "1"]) == 1
 
 
-def test_options_precedence():
+def test_options_precedence() -> None:
     """Test options precedence."""
     # @duty(nofail=True) is overridden by ctx.run(nofail=False)
     assert cli.main(["-d", "tests/fixtures/precedence.py", "precedence"]) == 1
@@ -195,7 +195,7 @@ def test_options_precedence():
         ("zero=1", 0),
     ],
 )
-def test_cast_bool_parameter(param, expected):
+def test_cast_bool_parameter(param: str, expected: int) -> None:
     """Test parameters casting as boolean.
 
     Parameters:
@@ -205,7 +205,7 @@ def test_cast_bool_parameter(param, expected):
     assert cli.main(["-d", "tests/fixtures/booleans.py", "boolean", param]) == expected
 
 
-def test_invalid_params(capsys):
+def test_invalid_params(capsys: pytest.CaptureFixture) -> None:
     """Check that invalid parameters are early and correctly detected.
 
     Parameters:
