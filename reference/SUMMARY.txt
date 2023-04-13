@@ -12,6 +12,7 @@
         * [pytest](duty/callables/pytest.md)
         * [ruff](duty/callables/ruff.md)
         * [safety](duty/callables/safety.md)
+        * [ssort](duty/callables/ssort.md)
     * [cli](duty/cli.md)
     * [collection](duty/collection.md)
     * [context](duty/context.md)

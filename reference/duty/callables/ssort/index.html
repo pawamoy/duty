@@ -10,27 +10,27 @@
       
       
       
-        <link rel="canonical" href="https://pawamoy.github.io/duty/contributing/">
+        <link rel="canonical" href="https://pawamoy.github.io/duty/reference/duty/callables/ssort/">
       
       
-        <link rel="prev" href="../reference/duty/validation/">
+        <link rel="prev" href="../safety/">
       
       
-        <link rel="next" href="../code_of_conduct/">
+        <link rel="next" href="../../cli/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.6">
     
     
       
-        <title>Contributing - duty</title>
+        <title>ssort - duty</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ded33207.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ded33207.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -46,15 +46,15 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_markdown_exec_ansi.css">
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_ansi.css">
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../css/material.css">
+      <link rel="stylesheet" href="../../../../css/material.css">
     
-      <link rel="stylesheet" href="../css/mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../css/mkdocstrings.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contributing" class="md-skip">
+        <a href="#duty.callables.ssort" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="duty" class="md-header__button md-logo" aria-label="duty" data-md-component="logo">
+    <a href="../../../.." title="duty" class="md-header__button md-logo" aria-label="duty" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.41 3 3 4.41 5.69 7.1A7.924 7.924 0 0 0 4 12c0 1.85.63 3.55 1.69 4.9L3 19.59 4.41 21l2.69-2.69A7.924 7.924 0 0 0 12 20c1.85 0 3.55-.63 4.9-1.69L19.59 21 21 19.59l-2.69-2.69A7.924 7.924 0 0 0 20 12c0-1.85-.63-3.55-1.69-4.9L21 4.41 19.59 3 16.9 5.69A7.924 7.924 0 0 0 12 4c-1.85 0-3.55.63-4.9 1.69L4.41 3M12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6Z"/></svg>
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contributing
+              ssort
             
           </span>
         </div>
@@ -212,7 +212,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         Home
       </a>
     </li>
@@ -225,26 +225,10 @@
 
 
   <li class="md-tabs__item">
-    <a href="../usage/" class="md-tabs__link">
+    <a href="../../../../usage/" class="md-tabs__link">
       Usage
     </a>
   </li>
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../reference/duty/" class="md-tabs__link">
-        Code Reference
-      </a>
-    </li>
-  
 
       
         
@@ -258,7 +242,23 @@
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Code Reference
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../contributing/" class="md-tabs__link">
         Development
       </a>
     </li>
@@ -304,7 +304,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="duty" class="md-nav__button md-logo" aria-label="duty" data-md-component="logo">
+    <a href="../../../.." title="duty" class="md-nav__button md-logo" aria-label="duty" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.41 3 3 4.41 5.69 7.1A7.924 7.924 0 0 0 4 12c0 1.85.63 3.55 1.69 4.9L3 19.59 4.41 21l2.69-2.69A7.924 7.924 0 0 0 12 20c1.85 0 3.55-.63 4.9-1.69L19.59 21 21 19.59l-2.69-2.69A7.924 7.924 0 0 0 20 12c0-1.85-.63-3.55-1.69-4.9L21 4.41 19.59 3 16.9 5.69A7.924 7.924 0 0 0 12 4c-1.85 0-3.55.63-4.9 1.69L4.41 3M12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6 2.69-6 6-6Z"/></svg>
@@ -362,7 +362,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Overview
       </a>
     </li>
@@ -376,7 +376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
+      <a href="../../../../changelog/" class="md-nav__link">
         Changelog
       </a>
     </li>
@@ -390,7 +390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../credits/" class="md-nav__link">
+      <a href="../../../../credits/" class="md-nav__link">
         Credits
       </a>
     </li>
@@ -404,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../license/" class="md-nav__link">
+      <a href="../../../../license/" class="md-nav__link">
         License
       </a>
     </li>
@@ -426,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../usage/" class="md-nav__link">
+      <a href="../../../../usage/" class="md-nav__link">
         Usage
       </a>
     </li>
@@ -439,14 +439,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
@@ -455,7 +457,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Code Reference
@@ -466,21 +468,23 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
       
       
       
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../reference/duty/">duty</a>
+          <a href="../../">duty</a>
           
             <label for="__nav_3_1">
               <span class="md-nav__icon md-icon"></span>
@@ -488,7 +492,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_1">
           <span class="md-nav__icon md-icon"></span>
           duty
@@ -499,21 +503,23 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" checked>
       
       
       
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../reference/duty/callables/">callables</a>
+          <a href="../">callables</a>
           
             <label for="__nav_3_1_1">
               <span class="md-nav__icon md-icon"></span>
@@ -521,7 +527,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_1_1">
           <span class="md-nav__icon md-icon"></span>
           callables
@@ -534,7 +540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/autoflake/" class="md-nav__link">
+      <a href="../autoflake/" class="md-nav__link">
         autoflake
       </a>
     </li>
@@ -548,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/black/" class="md-nav__link">
+      <a href="../black/" class="md-nav__link">
         black
       </a>
     </li>
@@ -562,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/blacken_docs/" class="md-nav__link">
+      <a href="../blacken_docs/" class="md-nav__link">
         blacken_docs
       </a>
     </li>
@@ -576,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/coverage/" class="md-nav__link">
+      <a href="../coverage/" class="md-nav__link">
         coverage
       </a>
     </li>
@@ -590,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/flake8/" class="md-nav__link">
+      <a href="../flake8/" class="md-nav__link">
         flake8
       </a>
     </li>
@@ -604,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/interrogate/" class="md-nav__link">
+      <a href="../interrogate/" class="md-nav__link">
         interrogate
       </a>
     </li>
@@ -618,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/isort/" class="md-nav__link">
+      <a href="../isort/" class="md-nav__link">
         isort
       </a>
     </li>
@@ -632,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/mkdocs/" class="md-nav__link">
+      <a href="../mkdocs/" class="md-nav__link">
         mkdocs
       </a>
     </li>
@@ -646,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/mypy/" class="md-nav__link">
+      <a href="../mypy/" class="md-nav__link">
         mypy
       </a>
     </li>
@@ -660,7 +666,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/pytest/" class="md-nav__link">
+      <a href="../pytest/" class="md-nav__link">
         pytest
       </a>
     </li>
@@ -674,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/ruff/" class="md-nav__link">
+      <a href="../ruff/" class="md-nav__link">
         ruff
       </a>
     </li>
@@ -688,7 +694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/callables/safety/" class="md-nav__link">
+      <a href="../safety/" class="md-nav__link">
         safety
       </a>
     </li>
@@ -700,11 +706,55 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../reference/duty/callables/ssort/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          ssort
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         ssort
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#duty.callables.ssort" class="md-nav__link">
+    duty.callables.ssort
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duty.callables.ssort.run" class="md-nav__link">
+    run()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -723,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/cli/" class="md-nav__link">
+      <a href="../../cli/" class="md-nav__link">
         cli
       </a>
     </li>
@@ -737,7 +787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/collection/" class="md-nav__link">
+      <a href="../../collection/" class="md-nav__link">
         collection
       </a>
     </li>
@@ -751,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/context/" class="md-nav__link">
+      <a href="../../context/" class="md-nav__link">
         context
       </a>
     </li>
@@ -765,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/decorator/" class="md-nav__link">
+      <a href="../../decorator/" class="md-nav__link">
         decorator
       </a>
     </li>
@@ -779,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/exceptions/" class="md-nav__link">
+      <a href="../../exceptions/" class="md-nav__link">
         exceptions
       </a>
     </li>
@@ -793,7 +843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/duty/validation/" class="md-nav__link">
+      <a href="../../validation/" class="md-nav__link">
         validation
       </a>
     </li>
@@ -820,16 +870,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -838,7 +886,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Development
@@ -849,80 +897,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Contributing
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../contributing/" class="md-nav__link">
         Contributing
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#environment-setup" class="md-nav__link">
-    Environment setup
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tasks" class="md-nav__link">
-    Tasks
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    Development
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commit-message-convention" class="md-nav__link">
-    Commit message convention
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pull-requests-guidelines" class="md-nav__link">
-    Pull requests guidelines
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -934,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../code_of_conduct/" class="md-nav__link">
+      <a href="../../../../code_of_conduct/" class="md-nav__link">
         Code of Conduct
       </a>
     </li>
@@ -948,7 +927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../coverage/" class="md-nav__link">
+      <a href="../../../../coverage/" class="md-nav__link">
         Coverage report
       </a>
     </li>
@@ -994,8 +973,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1004,36 +981,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#environment-setup" class="md-nav__link">
-    Environment setup
+  <a href="#duty.callables.ssort" class="md-nav__link">
+    duty.callables.ssort
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tasks" class="md-nav__link">
-    Tasks
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#development" class="md-nav__link">
-    Development
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commit-message-convention" class="md-nav__link">
-    Commit message convention
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pull-requests-guidelines" class="md-nav__link">
-    Pull requests guidelines
+  <a href="#duty.callables.ssort.run" class="md-nav__link">
+    run()
   </a>
   
 </li>
@@ -1056,123 +1012,160 @@
   
 
 
-<h1 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">¤</a></h1>
-<p>Contributions are welcome, and they are greatly appreciated!
-Every little bit helps, and credit will always be given.</p>
-<h2 id="environment-setup">Environment setup<a class="headerlink" href="#environment-setup" title="Permanent link">¤</a></h2>
-<p>Nothing easier!</p>
-<p>Fork and clone the repository, then:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>duty
-make<span class="w"> </span>setup
+  <h1>ssort</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="duty.callables.ssort"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Callable for <a href="https://github.com/bwhmather/ssort">ssort</a>.</p>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="duty.callables.ssort.run" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">run</span>
+
+
+<a href="#duty.callables.ssort.run" class="headerlink" title="Permanent link">¤</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">files</span><span class="p">,</span> <span class="n">diff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>
-If it fails for some reason,
-you'll need to install
-<a href="https://github.com/pdm-project/pdm">PDM</a>
-manually.</p>
-<p>You can install it with:</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>pipx
-pipx<span class="w"> </span>install<span class="w"> </span>pdm
-</code></pre></div>
-<p>Now you can try running <code>make setup</code> again,
-or simply <code>pdm install</code>.</p>
+
+  <div class="doc doc-contents ">
+  
+      <p>Run <code>ssort</code>.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>*files</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></code>
+          </td>
+          <td><p>Files to format.</p></td>
+          <td>
+                <code>()</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>diff</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Prints a diff of all changes ssort would make to a file.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>check</code></td>
+          <td>
+                <code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#bool">bool</a> | None</code>
+          </td>
+          <td><p>Check the file for unsorted statements. Returns 0 if nothing needs to be changed. Otherwise returns 1.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <details class="quote">
+        <summary>Source code in <code>src/duty/callables/ssort.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@lazy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ssort&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">files</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">diff</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">check</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Run `ssort`.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        *files: Files to format.</span>
+<span class="sd">        diff: Prints a diff of all changes ssort would make to a file.</span>
+<span class="sd">        check: Check the file for unsorted statements. Returns 0 if nothing needs to be changed. Otherwise returns 1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">ssort._main</span> <span class="kn">import</span> <span class="n">main</span> <span class="k">as</span> <span class="n">ssort</span>
+
+    <span class="n">cli_args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">diff</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--diff&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">check</span><span class="p">:</span>
+        <span class="n">cli_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--check&quot;</span><span class="p">)</span>
+
+    <span class="n">old_sys_argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ssort*&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">cli_args</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ssort</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="n">old_sys_argv</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
 </div>
-<p>You now have the dependencies installed.</p>
-<p>You can run the application with <code>pdm run duty [ARGS...]</code>.</p>
-<p>Run <code>make help</code> to see all the available actions!</p>
-<h2 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">¤</a></h2>
-<p>This project uses <a href="https://github.com/pawamoy/duty">duty</a> to run tasks.
-A Makefile is also provided. The Makefile will try to run certain tasks
-on multiple Python versions. If for some reason you don't want to run the task
-on multiple Python versions, you can do one of the following:</p>
-<ol>
-<li><code>export PYTHON_VERSIONS=</code>: this will run the task
-   with only the current Python version</li>
-<li>run the task directly with <code>pdm run duty TASK</code></li>
-</ol>
-<p>The Makefile detects if a virtual environment is activated,
-so <code>make</code> will work the same with the virtualenv activated or not.</p>
-<h2 id="development">Development<a class="headerlink" href="#development" title="Permanent link">¤</a></h2>
-<p>As usual:</p>
-<ol>
-<li>create a new branch: <code>git checkout -b feature-or-bugfix-name</code></li>
-<li>edit the code and/or the documentation</li>
-</ol>
-<p><strong>Before committing:</strong></p>
-<ol>
-<li>run <code>make format</code> to auto-format the code</li>
-<li>run <code>make check</code> to check everything (fix any warning)</li>
-<li>run <code>make test</code> to run the tests (fix any issue)</li>
-<li>if you updated the documentation or the project dependencies:<ol>
-<li>run <code>make docs</code></li>
-<li>go to <a href="http://localhost:8000">http://localhost:8000</a> and check that everything looks good</li>
-</ol>
-</li>
-<li>follow our <a href="#commit-message-convention">commit message convention</a></li>
-</ol>
-<p>If you are unsure about how to fix or ignore a warning,
-just let the continuous integration fail,
-and we will help you during review.</p>
-<p>Don't bother updating the changelog, we will take care of this.</p>
-<h2 id="commit-message-convention">Commit message convention<a class="headerlink" href="#commit-message-convention" title="Permanent link">¤</a></h2>
-<p>Commit messages must follow our convention based on the
-<a href="https://gist.github.com/stephenparish/9941e89d80e2bc58a153#format-of-the-commit-message">Angular style</a>
-or the <a href="https://karma-runner.github.io/4.0/dev/git-commit-msg.html">Karma convention</a>:</p>
-<div class="highlight"><pre><span></span><code>&lt;type&gt;[(scope)]: Subject
 
-[Body]
-</code></pre></div>
-<p><strong>Subject and body must be valid Markdown.</strong>
-Subject must have proper casing (uppercase for first letter
-if it makes sense), but no dot at the end, and no punctuation
-in general.</p>
-<p>Scope and body are optional. Type can be:</p>
-<ul>
-<li><code>build</code>: About packaging, building wheels, etc.</li>
-<li><code>chore</code>: About packaging or repo/files management.</li>
-<li><code>ci</code>: About Continuous Integration.</li>
-<li><code>deps</code>: Dependencies update.</li>
-<li><code>docs</code>: About documentation.</li>
-<li><code>feat</code>: New feature.</li>
-<li><code>fix</code>: Bug fix.</li>
-<li><code>perf</code>: About performance.</li>
-<li><code>refactor</code>: Changes that are not features or bug fixes.</li>
-<li><code>style</code>: A change in code style/format.</li>
-<li><code>tests</code>: About tests.</li>
-</ul>
-<p>If you write a body, please add trailers at the end
-(for example issues and PR references, or co-authors),
-without relying on GitHub's flavored Markdown:</p>
-<div class="highlight"><pre><span></span><code>Body.
 
-Issue #10: https://github.com/namespace/project/issues/10
-Related to PR namespace/other-project#15: https://github.com/namespace/other-project/pull/15
-</code></pre></div>
-<p>These "trailers" must appear at the end of the body,
-without any blank lines between them. The trailer title
-can contain any character except colons <code>:</code>.
-We expect a full URI for each trailer, not just GitHub autolinks
-(for example, full GitHub URLs for commits and issues,
-not the hash or the #issue-number).</p>
-<p>We do not enforce a line length on commit messages summary and body,
-but please avoid very long summaries, and very long lines in the body,
-unless they are part of code blocks that must not be wrapped.</p>
-<h2 id="pull-requests-guidelines">Pull requests guidelines<a class="headerlink" href="#pull-requests-guidelines" title="Permanent link">¤</a></h2>
-<p>Link to any related issue in the Pull Request message.</p>
-<p>During the review, we recommend using fixups:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># SHA is the SHA of the commit you want to fix</span>
-git<span class="w"> </span>commit<span class="w"> </span>--fixup<span class="o">=</span>SHA
-</code></pre></div>
-<p>Once all the changes are approved, you can squash your commits:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>--autosquash<span class="w"> </span>master
-</code></pre></div>
-<p>And force-push:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>-f
-</code></pre></div>
-<p>If this seems all too complicated, you can push or force-push each new commit,
-and we will squash them ourselves if needed, before merging.</p>
+
+  </div>
+
+  </div>
+
+</div>
 
 
 
@@ -1254,10 +1247,10 @@ and we will squash them ourselves if needed, before merging.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.suggest"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.suggest"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.51198bba.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.51198bba.min.js"></script>
       
     
   </body>
