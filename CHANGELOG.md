@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.11.0](https://github.com/pawamoy/duty/releases/tag/0.11.0) - 2023-04-13
+
+<small>[Compare with 0.10.0](https://github.com/pawamoy/duty/compare/0.10.0...0.11.0)</small>
+
+### Features
+
+- Add callable for `ssort` ([11b54da](https://github.com/pawamoy/duty/commit/11b54dab2f36efbac0650b825ed2e3ce73e9afac) by Timothée Mazzucotelli).
+
 ## [0.10.0](https://github.com/pawamoy/duty/releases/tag/0.10.0) - 2023-04-10
 
 <small>[Compare with 0.9.0](https://github.com/pawamoy/duty/compare/0.9.0...0.10.0)</small>
