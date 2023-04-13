@@ -56,7 +56,7 @@ def changelog(ctx: Context) -> None:
     )
 
 
-@duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies"])
+@duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies", "check-api"])
 def check(ctx: Context) -> None:  # noqa: ARG001
     """Check it all!
 
@@ -125,6 +125,25 @@ def check_types(ctx: Context) -> None:
     )
 
 
+@duty
+def check_api(ctx: Context) -> None:
+    """Check for API breaking changes.
+
+    Parameters:
+        ctx: The context instance (passed automatically).
+    """
+    from griffe.cli import check
+
+    griffe_check = lazy(check, name="griffe.check")
+    for pkg in Path("src").glob("*"):
+        if pkg.is_dir():
+            ctx.run(
+                griffe_check(pkg.name, search_paths=["src"]),
+                title=f"Checking {pkg.name} for API breaking changes",
+                nofail=True,
+            )
+
+
 @duty(silent=True)
 def clean(ctx: Context) -> None:
     """Delete temporary files.
@@ -146,17 +165,7 @@ def clean(ctx: Context) -> None:
 
 
 @duty
-def docs(ctx: Context) -> None:
-    """Build the documentation locally.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
-    ctx.run(mkdocs.build, title="Building documentation")
-
-
-@duty
-def docs_serve(ctx: Context, host: str = "127.0.0.1", port: int = 8000) -> None:
+def docs(ctx: Context, host: str = "127.0.0.1", port: int = 8000) -> None:
     """Serve the documentation (localhost:8000).
 
     Parameters:

@@ -1,11 +1,13 @@
 """Tests for the `cli` module."""
 
+from __future__ import annotations
+
 import pytest
 
 from duty import cli
 
 
-def test_no_duty(capsys):
+def test_no_duty(capsys: pytest.CaptureFixture) -> None:
     """Run no duties.
 
     Parameters:
@@ -16,7 +18,7 @@ def test_no_duty(capsys):
     assert "choose at least one duty" in captured.err
 
 
-def test_show_help(capsys):
+def test_show_help(capsys: pytest.CaptureFixture) -> None:
     """Show help.
 
     Parameters:
