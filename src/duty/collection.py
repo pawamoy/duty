@@ -145,18 +145,6 @@ class Duty:
         if collection:
             collection.add(self)
 
-    def __call__(self, context: Context, *args: Any, **kwargs: Any) -> None:
-        """Run the duty function.
-
-        Parameters:
-            context: The context to use.
-            args: Positional arguments passed to the function.
-            kwargs: Keyword arguments passed to the function.
-        """
-        self.run_duties(context, self.pre)
-        self.function(context, *args, **kwargs)
-        self.run_duties(context, self.post)
-
     @property
     def context(self) -> Context:
         """Return a new context instance.
@@ -199,3 +187,15 @@ class Duty:
                     raise RuntimeError(f"Can't find duty by name without a collection ({duty_item})")
                 # Get the duty and run it.
                 self.collection.get(duty_item)(context)
+
+    def __call__(self, context: Context, *args: Any, **kwargs: Any) -> None:
+        """Run the duty function.
+
+        Parameters:
+            context: The context to use.
+            args: Positional arguments passed to the function.
+            kwargs: Keyword arguments passed to the function.
+        """
+        self.run_duties(context, self.pre)
+        self.function(context, *args, **kwargs)
+        self.run_duties(context, self.post)
