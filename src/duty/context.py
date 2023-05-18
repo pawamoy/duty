@@ -30,6 +30,26 @@ class Context:
         self._option_stack: list[dict[str, Any]] = []
         self._options_override = options_override or {}
 
+    @contextmanager
+    def cd(self, directory: str) -> Iterator:
+        """Change working directory as a context manager.
+
+        Parameters:
+            directory: The directory to go into.
+
+        Yields:
+            Nothing.
+        """
+        if not directory:
+            yield
+            return
+        old_wd = os.getcwd()
+        os.chdir(directory)
+        try:
+            yield
+        finally:
+            os.chdir(old_wd)
+
     def run(self, cmd: CmdType, **options: Any) -> str:
         """Run a command in a subprocess or a Python callable.
 
@@ -81,23 +101,3 @@ class Context:
             yield
         finally:
             self._options = self._option_stack.pop()
-
-    @contextmanager
-    def cd(self, directory: str) -> Iterator:
-        """Change working directory as a context manager.
-
-        Parameters:
-            directory: The directory to go into.
-
-        Yields:
-            Nothing.
-        """
-        if not directory:
-            yield
-            return
-        old_wd = os.getcwd()
-        os.chdir(directory)
-        try:
-            yield
-        finally:
-            os.chdir(old_wd)

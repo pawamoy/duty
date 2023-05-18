@@ -47,7 +47,7 @@ def _run(
     if silent:
         cli_args.append("--silent")
 
-    process = subprocess.run([_find_ruff(), *cli_args], capture_output=True, text=True)
+    process = subprocess.run([_find_ruff(), *cli_args], capture_output=True, text=True)  # noqa: S603
     print(process.stdout)  # noqa: T201
     return process.returncode
 

@@ -30,8 +30,8 @@ def test_run_pre_post_duties_lambdas() -> None:
         "name",
         "description",
         lambda ctx: None,
-        pre=[lambda ctx: pre_calls.append(True)],  # noqa: FBT003
-        post=[lambda ctx: post_calls.append(True)],  # noqa: FBT003
+        pre=[lambda ctx: pre_calls.append(True)],
+        post=[lambda ctx: post_calls.append(True)],
     )
 
     duty.run()
@@ -45,8 +45,8 @@ def test_run_pre_post_duties_instances() -> None:
     pre_calls = []
     post_calls = []
 
-    pre_duty = Duty("pre", "", lambda ctx: pre_calls.append(True))  # noqa: FBT003
-    post_duty = Duty("post", "", lambda ctx: post_calls.append(True))  # noqa: FBT003
+    pre_duty = Duty("pre", "", lambda ctx: pre_calls.append(True))
+    post_duty = Duty("post", "", lambda ctx: post_calls.append(True))
 
     duty = Duty(
         name="name",
@@ -68,8 +68,8 @@ def test_run_pre_post_duties_refs() -> None:
     post_calls = []
 
     collection = Collection()
-    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))  # type: ignore[call-overload]  # noqa: FBT003
-    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))  # type: ignore[call-overload]  # noqa: FBT003
+    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))  # type: ignore[call-overload]
+    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))  # type: ignore[call-overload]
 
     duty = Duty("name", "description", lambda ctx: None, collection=collection, pre=["pre"], post=["post"])
     duty.run()

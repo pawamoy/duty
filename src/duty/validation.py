@@ -65,15 +65,6 @@ class ParamsCaster:
         self.params_list = list(self.params_dict.values())[1:]
 
     @cached_property
-    def has_var_positional(self) -> bool:
-        """Tell if there is a variable positional parameter.
-
-        Returns:
-            True or False.
-        """
-        return self.var_positional_position >= 0
-
-    @cached_property
     def var_positional_position(self) -> int:
         """Give the position of the variable positional parameter in the signature.
 
@@ -86,6 +77,15 @@ class ParamsCaster:
                 return pos
             pos += 1
         return -1
+
+    @cached_property
+    def has_var_positional(self) -> bool:
+        """Tell if there is a variable positional parameter.
+
+        Returns:
+            True or False.
+        """
+        return self.var_positional_position >= 0
 
     @cached_property
     def var_positional_annotation(self) -> Any:
