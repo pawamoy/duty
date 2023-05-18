@@ -68,26 +68,46 @@ def docs(ctx):
     ctx.run(mkdocs.build, kwargs={"strict": True}, title="Building documentation")
 ```
 
-> TIP: **Our callables are lazy!**  
-> Not only imports to third-party modules are deferred when the callables run,
-> but the callables themselves are lazy, meaning you can call them directly,
-> without passing arguments and keyword arguments
-> with the `args` and `kwargs` parameters of `ctx.run()`:
->
-> ```python
-> from duty import duty
-> from duty.callables import mkdocs
->
->
-> @duty
-> def docs(ctx):
->     ctx.run(mkdocs.build(strict=True), title="Building documentation")
-> ```
->
-> The main benefit is that it enables IDE features like help tooltips and auto-completion,
-> as well as improving readability and writability.
+### Lazy callables
+
+> TIP: **Our callables are lazy!**
+
+Not only imports to third-party modules are deferred when our callables run,
+but the callables themselves are lazy, meaning you can call them directly,
+without passing arguments and keyword arguments
+with the `args` and `kwargs` parameters of `ctx.run()`:
+
+```python
+from duty import duty
+from duty.callables import mkdocs
+
+
+@duty
+def docs(ctx):
+    ctx.run(mkdocs.build(strict=True), title="Building documentation")
+```
+
+The main benefit is that it enables IDE features like help tooltips and auto-completion,
+as well as improving readability and writability.
 
 **[See all our callables in the Code reference][duty.callables].**
+
+You can also create your own lazy callables with [`duty.callables.lazy`][failprint.lazy.lazy].
+The `lazy` function (which can also be used as a decorator)
+takes any other callable and makes it lazy:
+
+```python
+from duty import duty
+from duty.callables import lazy
+
+from griffe.cli import check
+
+
+@duty
+def check_api(ctx):
+    griffe_check = lazy(check, name="griffe.check")
+    ctx.run(griffe_check("pkg"))
+```
 
 ### `ctx.run()` options
 
@@ -478,6 +498,64 @@ def docs(ctx):
 
 By default, `skip_reason` will be "duty: skipped" where "duty" is replaced
 by the name of the duty.
+
+## Listing duties
+
+Once you have defined some duties, you can list them from the CLI
+with the `-l`, `--list` option. Example:
+
+```console
+$ duty --list
+  changelog             Update the changelog in-place with latest commits.
+  check                 Check it all!
+  check-api             Check for API breaking changes.
+  check-dependencies    Check for vulnerabilities in dependencies.
+  check-docs            Check if the documentation builds correctly.
+  check-quality         Check the code quality.
+  check-types           Check that the code is correctly typed.
+  clean                 Delete temporary files.
+  cov                   Report coverage as text and HTML.
+  docs                  Serve the documentation (localhost:8000).
+  docs-deploy           Deploy the documentation on GitHub pages.
+  format                Run formatting tools on the code.
+  release               Release a new Python package.
+  test                  Run the test suite.
+```
+
+You can also show help for given duties with the `-h`, `--help` option:
+
+```console
+$ duty --help release
+usage: duty release [-c {stdout,stderr,both,none}] [-f {pretty,tap}] [-y | -Y] [-p | -P] [-q | -Q] [-s | -S] [-z | -Z]
+
+Release a new Python package.
+
+Parameters:
+    ctx: The context instance (passed automatically).
+    version: The new version number to use.
+
+options:
+  -c {stdout,stderr,both,none}, --capture {stdout,stderr,both,none}
+                        Which output to capture. Colors are supported with 'both' only, unless the command has a 'force color' option.
+  -f {pretty,tap}, --fmt {pretty,tap}, --format {pretty,tap}
+                        Output format. Pass your own Jinja2 template as a string with '-f custom=TEMPLATE'. Available variables: command, title (command or title passed with -t), code (exit
+                        status), success (boolean), failure (boolean), number (command number passed with -n), output (command output), nofail (boolean), quiet (boolean), silent (boolean).
+                        Available filters: indent (textwrap.indent).
+  -y, --pty             Enable the use of a pseudo-terminal. PTY doesn't allow programs to use standard input.
+  -Y, --no-pty          Disable the use of a pseudo-terminal. PTY doesn't allow programs to use standard input.
+  -p, --progress        Print progress while running a command.
+  -P, --no-progress     Don't print progress while running a command.
+  -q, --quiet           Don't print the command output, even if it failed.
+  -Q, --no-quiet        Print the command output when it fails.
+  -s, --silent          Don't print anything.
+  -S, --no-silent       Print output as usual.
+  -z, --zero, --nofail  Don't fail. Always return a success (0) exit code.
+  -Z, --no-zero, --strict
+                        Return the original exit code.
+```
+
+It prints the docstring of the corresponding function
+as well as all the duty options you can use (same options for every duties).
 
 ## Running duties
 

@@ -45,3 +45,5 @@ duty docs
 
 See the [Usage](https://pawamoy.github.io/duty/usage/)
 section in the documentation for more examples.
+
+Also see ["Why choosing duty over..."](https://pawamoy.github.io/duty/#why-duty-over).
