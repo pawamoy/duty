@@ -191,7 +191,7 @@
         <span class=k>return</span> <span class=mi>1</span>
 
     <span class=k>if</span> <span class=ow>not</span> <span class=n>arg_lists</span><span class=p>:</span>
-        <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;&gt; Please choose at least one duty&quot;</span><span class=p>,</span> <span class=n>file</span><span class=o>=</span><span class=n>sys</span><span class=o>.</span><span class=n>stderr</span><span class=p>)</span>
+        <span class=n>print_help</span><span class=p>(</span><span class=n>parser</span><span class=p>,</span> <span class=n>opts</span><span class=p>,</span> <span class=n>collection</span><span class=p>)</span>
         <span class=k>return</span> <span class=mi>1</span>
 
     <span class=n>global_opts</span> <span class=o>=</span> <span class=n>specified_options</span><span class=p>(</span><span class=n>opts</span><span class=p>,</span> <span class=n>exclude</span><span class=o>=</span><span class=p>{</span><span class=s2>&quot;duties_file&quot;</span><span class=p>,</span> <span class=s2>&quot;list&quot;</span><span class=p>,</span> <span class=s2>&quot;help&quot;</span><span class=p>,</span> <span class=s2>&quot;remainder&quot;</span><span class=p>})</span>
