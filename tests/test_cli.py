@@ -15,7 +15,7 @@ def test_no_duty(capsys: pytest.CaptureFixture) -> None:
     """
     assert cli.main([]) == 1
     captured = capsys.readouterr()
-    assert "choose at least one duty" in captured.err
+    assert "Available duties" in captured.out
 
 
 def test_show_help(capsys: pytest.CaptureFixture) -> None:

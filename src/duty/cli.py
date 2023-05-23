@@ -262,7 +262,7 @@ def main(args: list[str] | None = None) -> int:
         return 1
 
     if not arg_lists:
-        print("> Please choose at least one duty", file=sys.stderr)
+        print_help(parser, opts, collection)
         return 1
 
     global_opts = specified_options(opts, exclude={"duties_file", "list", "help", "remainder"})
