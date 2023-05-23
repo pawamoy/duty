@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.11.1](https://github.com/pawamoy/duty/releases/tag/0.11.1) - 2023-05-23
+
+<small>[Compare with 0.11.0](https://github.com/pawamoy/duty/compare/0.11.0...0.11.1)</small>
+
+### Code Refactoring
+
+- Print help and duties when no arguments are given ([eaab432](https://github.com/pawamoy/duty/commit/eaab4324b8581fbd9ef2208ab3b0ecb625adb8bd) by Timothée Mazzucotelli). [Issue #11](https://github.com/pawamoy/duty/issues/11)
+
 ## [0.11.0](https://github.com/pawamoy/duty/releases/tag/0.11.0) - 2023-04-13
 
 <small>[Compare with 0.10.0](https://github.com/pawamoy/duty/compare/0.10.0...0.11.0)</small>
