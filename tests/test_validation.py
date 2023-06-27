@@ -134,3 +134,14 @@ def test_params_caster(func: Callable, args: tuple, kwargs: dict, expected_args:
     new_args, new_kwargs = caster.cast(*args, **kwargs)
     assert new_args == expected_args
     assert new_kwargs == expected_kwargs
+
+
+def test_casting_based_on_default_value_type() -> None:
+    """Test that we cast according to the default value type when there is no annotation."""
+
+    def func(ctx, a=0):  # noqa: ANN202,ARG001,ANN001
+        ...
+
+    caster = _get_params_caster(func, a="1")
+    _, kwargs = caster.cast(a="1")
+    assert kwargs == {"a": 1}

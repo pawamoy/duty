@@ -592,7 +592,9 @@ def docs(ctx, serve: bool = False):
 
 When passing the argument from the command line,
 it will be type-casted using the parameter annotation
-in the duty's signature.
+in the duty's signature. If there is no annotation
+but a default value, it will be type-casted using
+the type of the default value.
 
 We only support types that are callable and accept
 one positional argument: a string.
