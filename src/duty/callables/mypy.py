@@ -2,17 +2,11 @@
 
 from __future__ import annotations
 
-import sys
+from typing import Literal
 
 from failprint.lazy import lazy
 
 from duty.callables._io import _LazyStderr, _LazyStdout
-
-# TODO: remove once support for Python 3.7 is dropped
-if sys.version_info < (3, 8):
-    from typing_extensions import Literal
-else:
-    from typing import Literal
 
 
 @lazy(name="mypy")

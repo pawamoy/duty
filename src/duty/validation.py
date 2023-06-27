@@ -8,14 +8,9 @@ if they are incorrect.
 from __future__ import annotations
 
 import sys
+from functools import cached_property
 from inspect import Parameter, Signature, signature
 from typing import Any, Callable, Sequence
-
-# TODO: remove once support for Python 3.7 is dropped
-if sys.version_info < (3, 8):
-    from cached_property import cached_property
-else:
-    from functools import cached_property
 
 
 def to_bool(value: str) -> bool:

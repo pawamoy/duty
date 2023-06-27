@@ -5,15 +5,9 @@ from __future__ import annotations
 import importlib
 import sys
 from io import StringIO
-from typing import Sequence, cast
+from typing import Literal, Sequence, cast
 
 from failprint.lazy import lazy
-
-# TODO: remove once support for Python 3.7 is dropped
-if sys.version_info < (3, 8):
-    from typing_extensions import Literal
-else:
-    from typing import Literal
 
 
 @lazy(name="safety.check")

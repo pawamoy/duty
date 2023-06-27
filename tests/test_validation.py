@@ -2,17 +2,13 @@
 
 from __future__ import annotations
 
-import sys
 from inspect import Parameter
 from typing import Any, Callable
 
 import pytest
 
 from duty.validation import ParamsCaster, cast_arg, to_bool
-from tests.fixtures import validation as validation_fixture
-
-if sys.version_info >= (3, 8, 0):
-    from tests.fixtures import validation_38 as validation_fixture_38
+from tests.fixtures import validation as valfix
 
 
 @pytest.mark.parametrize(
@@ -92,61 +88,32 @@ def test_cast_arg(arg: str, annotation: Any, expected: Any) -> None:
 
 
 _parametrization = [
-    (validation_fixture.no_params, (), {}, (), {}),
-    (validation_fixture.pos_or_kw_param, ("1",), {}, (1,), {}),
-    (validation_fixture.pos_or_kw_param, (), {"a": "1"}, (), {"a": 1}),
-    (validation_fixture.pos_or_kw_params, ("1", "2"), {}, (1, 2), {}),
-    (validation_fixture.pos_or_kw_params, ("1",), {"b": "2"}, (1,), {"b": 2}),
-    (validation_fixture.pos_or_kw_params, (), {"a": "1", "b": "2"}, (), {"a": 1, "b": 2}),
-    (validation_fixture.varpos_param, (), {}, (), {}),
-    (validation_fixture.varpos_param, ("1", "2"), {}, (1, 2), {}),
-    (validation_fixture.pos_and_varpos_param, ("1",), {}, (1,), {}),
-    (validation_fixture.pos_and_varpos_param, ("1", "2"), {}, (1, 2), {}),
-    (validation_fixture.pos_and_varpos_param, ("1", "2", "3"), {}, (1, 2, 3), {}),
-    (validation_fixture.kwonly_param, (), {"b": "1"}, (), {"b": 1}),
-    (validation_fixture.kwonly_param, ("2",), {"b": "1"}, (2,), {"b": 1}),
-    (
-        validation_fixture.kwonly_param,
-        (
-            "2",
-            "3",
-        ),
-        {"b": "1"},
-        (2, 3),
-        {"b": 1},
-    ),
-    (validation_fixture.varkw_param, ("1",), {}, (1,), {}),
-    (validation_fixture.varkw_param, ("1",), {"b": "2"}, (1,), {"b": 2}),
-    (validation_fixture.varkw_param, ("1",), {"b": "2", "c": "3"}, (1,), {"b": 2, "c": 3}),
-    (validation_fixture.varkw_no_annotation, (), {"a": "1"}, (), {"a": "1"}),
-    (validation_fixture.no_params, (), {"a": "1"}, (), {"a": "1"}),
+    (valfix.no_params, (), {}, (), {}),
+    (valfix.pos_or_kw_param, ("1",), {}, (1,), {}),
+    (valfix.pos_or_kw_param, (), {"a": "1"}, (), {"a": 1}),
+    (valfix.pos_or_kw_params, ("1", "2"), {}, (1, 2), {}),
+    (valfix.pos_or_kw_params, ("1",), {"b": "2"}, (1,), {"b": 2}),
+    (valfix.pos_or_kw_params, (), {"a": "1", "b": "2"}, (), {"a": 1, "b": 2}),
+    (valfix.varpos_param, (), {}, (), {}),
+    (valfix.varpos_param, ("1", "2"), {}, (1, 2), {}),
+    (valfix.pos_and_varpos_param, ("1",), {}, (1,), {}),
+    (valfix.pos_and_varpos_param, ("1", "2"), {}, (1, 2), {}),
+    (valfix.pos_and_varpos_param, ("1", "2", "3"), {}, (1, 2, 3), {}),
+    (valfix.kwonly_param, (), {"b": "1"}, (), {"b": 1}),
+    (valfix.kwonly_param, ("2",), {"b": "1"}, (2,), {"b": 1}),
+    (valfix.kwonly_param, ("2", "3"), {"b": "1"}, (2, 3), {"b": 1}),
+    (valfix.varkw_param, ("1",), {}, (1,), {}),
+    (valfix.varkw_param, ("1",), {"b": "2"}, (1,), {"b": 2}),
+    (valfix.varkw_param, ("1",), {"b": "2", "c": "3"}, (1,), {"b": 2, "c": 3}),
+    (valfix.varkw_no_annotation, (), {"a": "1"}, (), {"a": "1"}),
+    (valfix.posonly_marker, ("1", "2"), {}, (1, 2), {}),
+    (valfix.posonly_marker, ("1",), {"b": "2"}, (1,), {"b": 2}),
+    (valfix.kwonly_marker, ("1",), {"b": "2"}, (1,), {"b": 2}),
+    (valfix.kwonly_marker, (), {"a": "1", "b": "2"}, (), {"a": 1, "b": 2}),
+    (valfix.only_markers, ("1",), {"b": "2", "c": "3"}, (1,), {"b": 2, "c": 3}),
+    (valfix.only_markers, ("1", "2"), {"c": "3"}, (1, 2), {"c": 3}),
+    (valfix.full, ("1", "2", "3", "4"), {"d": "5", "e": "6", "f": "7"}, (1, 2, 3, 4), {"d": 5, "e": 6, "f": 7}),
 ]
-
-if sys.version_info >= (3, 8, 0):
-    _parametrization.extend(
-        [
-            (validation_fixture_38.posonly_marker, ("1", "2"), {}, (1, 2), {}),
-            (validation_fixture_38.posonly_marker, ("1",), {"b": "2"}, (1,), {"b": 2}),
-            (validation_fixture_38.kwonly_marker, ("1",), {"b": "2"}, (1,), {"b": 2}),
-            (validation_fixture_38.kwonly_marker, (), {"a": "1", "b": "2"}, (), {"a": 1, "b": 2}),
-            (validation_fixture_38.only_markers, ("1",), {"b": "2", "c": "3"}, (1,), {"b": 2, "c": 3}),
-            (validation_fixture_38.only_markers, ("1", "2"), {"c": "3"}, (1, 2), {"c": 3}),
-            (
-                validation_fixture_38.full,
-                ("1", "2", "3", "4"),
-                {"d": "5", "e": "6", "f": "7"},
-                (1, 2, 3, 4),
-                {"d": 5, "e": 6, "f": 7},
-            ),
-            (
-                validation_fixture_38.full,
-                ("1", "3", "4"),
-                {"b": "2", "d": "5"},
-                (1, 3, 4),
-                {"b": 2, "d": 5},
-            ),
-        ],
-    )
 
 
 @pytest.mark.parametrize(
