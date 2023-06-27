@@ -5,7 +5,7 @@ import inspect
 import sys
 from copy import deepcopy
 from importlib import util as importlib_util
-from typing import Any, Callable, List, Union
+from typing import Any, Callable, ClassVar, List, Union
 
 from duty.context import Context
 
@@ -16,7 +16,7 @@ default_duties_file = "duties.py"
 class Duty:
     """The main duty class."""
 
-    default_options: dict[str, Any] = {}
+    default_options: ClassVar[dict[str, Any]] = {}
 
     def __init__(
         self,
