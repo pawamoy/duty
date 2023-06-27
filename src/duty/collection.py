@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import inspect
+import sys
 from copy import deepcopy
 from importlib import util as importlib_util
 from typing import Any, Callable, List, Union
@@ -195,6 +196,7 @@ class Collection:
         spec = importlib_util.spec_from_file_location("duty.duties", path)
         if spec:
             duties = importlib_util.module_from_spec(spec)
+            sys.modules["duty.duties"] = duties
             spec.loader.exec_module(duties)  # type: ignore[union-attr]
             declared_duties = inspect.getmembers(duties, lambda member: isinstance(member, Duty))
             for _, duty in declared_duties:
