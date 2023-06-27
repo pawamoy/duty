@@ -5,6 +5,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.0](https://github.com/pawamoy/duty/releases/tag/1.0.0) - 2023-06-27
+
+<small>[Compare with 0.11.1](https://github.com/pawamoy/duty/compare/0.11.1...1.0.0)</small>
+
+### Breaking Changes
+
+- Drop support for Python 3.7
+
+### Dependencies
+
+- Remove dependencies for Python 3.7 ([a1d2629](https://github.com/pawamoy/duty/commit/a1d262978d1294c421874152d26ad5f1bfdc67c2) by Timothée Mazzucotelli).
+
+### Features
+
+- Cast parameters using default values' type when there's no annotation ([c93db55](https://github.com/pawamoy/duty/commit/c93db55126cf2463401deeb07c0a475f052066d3) by Timothée Mazzucotelli). [Issue #10](https://github.com/pawamoy/duty/issues/10)
+
+### Bug Fixes
+
+- Fix parameter casting for stringified annotations ([56090e5](https://github.com/pawamoy/duty/commit/56090e59034302fd5b91047ebfa37228b206a32d) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Remove Python 3.7 related code ([b412f29](https://github.com/pawamoy/duty/commit/b412f292a9a2b81d44a5e1bcba5a4aa3211d329c) by Timothée Mazzucotelli).
+- Add duties module to `sys.modules` after loading it ([5730f5f](https://github.com/pawamoy/duty/commit/5730f5f4c921b3694f0d6e48af3d54e049648f3e) by Timothée Mazzucotelli).
+
 ## [0.11.1](https://github.com/pawamoy/duty/releases/tag/0.11.1) - 2023-05-23
 
 <small>[Compare with 0.11.0](https://github.com/pawamoy/duty/compare/0.11.0...0.11.1)</small>
