@@ -7,7 +7,7 @@ from typing import Any, Callable
 
 import pytest
 
-from duty.validation import ParamsCaster, cast_arg, to_bool
+from duty.validation import _get_params_caster, cast_arg, to_bool
 from tests.fixtures import validation as valfix
 
 
@@ -130,7 +130,7 @@ def test_params_caster(func: Callable, args: tuple, kwargs: dict, expected_args:
         expected_args: The expected positional arguments result.
         expected_kwargs: The expected keyword arguments result.
     """
-    caster = ParamsCaster(func)
+    caster = _get_params_caster(func, *args, **kwargs)
     new_args, new_kwargs = caster.cast(*args, **kwargs)
     assert new_args == expected_args
     assert new_kwargs == expected_kwargs
