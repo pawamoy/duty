@@ -57,7 +57,7 @@ clean:
 	@$(DUTY) clean
 ```
 
-See [our Makefile](https://github.com/pawamoy/duty/blob/master/Makefile)
+See [our Makefile](https://github.com/pawamoy/duty/blob/main/Makefile)
 for inspiration. 
 
 ### [Task](https://taskfile.dev/)?
