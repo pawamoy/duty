@@ -53,10 +53,10 @@ def merge(d1: Any, d2: Any) -> Any:  # noqa: D103
 
 
 def mkdocs_config() -> str:  # noqa: D103
-    from mkdocs import utils
+    import mergedeep
 
-    # patch YAML loader to merge arrays
-    utils.merge = merge
+    # force YAML loader to merge arrays
+    mergedeep.merge = merge
 
     if "+insiders" in pkgversion("mkdocs-material"):
         return "mkdocs.insiders.yml"
@@ -108,6 +108,7 @@ def check_quality(ctx: Context) -> None:
     ctx.run(
         ruff.check(*PY_SRC_LIST, config="config/ruff.toml"),
         title=pyprefix("Checking code quality"),
+        command=f"ruff check --config config/ruff.toml {PY_SRC}",
     )
 
 
@@ -125,7 +126,11 @@ def check_dependencies(ctx: Context) -> None:
         allow_overrides=False,
     )
 
-    ctx.run(safety.check(requirements), title="Checking dependencies")
+    ctx.run(
+        safety.check(requirements),
+        title="Checking dependencies",
+        command="pdm export -f requirements --without-hashes | safety check --stdin",
+    )
 
 
 @duty
@@ -137,15 +142,14 @@ def check_docs(ctx: Context) -> None:
     """
     Path("htmlcov").mkdir(parents=True, exist_ok=True)
     Path("htmlcov/index.html").touch(exist_ok=True)
-    ctx.run(mkdocs.build(strict=True, config_file=mkdocs_config()), title=pyprefix("Building documentation"))
+    config = mkdocs_config()
+    ctx.run(
+        mkdocs.build(strict=True, config_file=config, verbose=True),
+        title=pyprefix("Building documentation"),
+        command=f"mkdocs build -vsf {config}",
+    )
 
 
-@duty(
-    skip_if=sys.version_info < (3, 8),
-    skip_reason=pyprefix(
-        "Type-checking: skipped: not supported on Python 3.7, see https://github.com/python/mypy/issues/14670",
-    ),
-)
 def check_types(ctx: Context) -> None:
     """Check that the code is correctly typed.
 
@@ -155,6 +159,7 @@ def check_types(ctx: Context) -> None:
     ctx.run(
         mypy.run(*PY_SRC_LIST, config_file="config/mypy.ini"),
         title=pyprefix("Type-checking"),
+        command=f"mypy --config-file config/mypy.ini {PY_SRC}",
     )
 
 
@@ -169,8 +174,9 @@ def check_api(ctx: Context) -> None:
 
     griffe_check = lazy(g_check, name="griffe.check")
     ctx.run(
-        griffe_check("duty", search_paths=["src"]),
+        griffe_check("duty", search_paths=["src"], color=True),
         title="Checking for API breaking changes",
+        command="griffe check -ssrc duty",
         nofail=True,
     )
 
@@ -287,4 +293,5 @@ def test(ctx: Context, match: str = "") -> None:
     ctx.run(
         pytest.run("-n", "auto", "tests", config_file="config/pytest.ini", select=match, color="yes"),
         title=pyprefix("Running tests"),
+        command=f"pytest -c config/pytest.ini -n auto -k{match!r} --color=yes tests",
     )
