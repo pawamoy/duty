@@ -150,6 +150,7 @@ def check_docs(ctx: Context) -> None:
     )
 
 
+@duty
 def check_types(ctx: Context) -> None:
     """Check that the code is correctly typed.
 
