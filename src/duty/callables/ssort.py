@@ -13,7 +13,7 @@ def run(
     diff: bool | None = None,
     check: bool | None = None,
 ) -> int:
-    r"""Run `ssort`.
+    """Run `ssort`.
 
     Parameters:
         *files: Files to format.

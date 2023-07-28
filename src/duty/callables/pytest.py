@@ -122,7 +122,7 @@ def run(
         no_summary: Disable summary
         quiet: Decrease verbosity
         verbosity: Set verbosity. Default: 0.
-        show_extra_summary chars: Show extra test summary info as specified by chars: (f)ailed, (E)rror, (s)kipped, (x)failed, (X)passed, (p)assed, (P)assed with output, (a)ll except passed (p/P), or (A)ll. (w)arnings are enabled by default (see --disable-warnings), 'N' can be used to reset the list. (default: 'fE').
+        show_extra_summary: Show extra test summary info as specified by chars: (f)ailed, (E)rror, (s)kipped, (x)failed, (X)passed, (p)assed, (P)assed with output, (a)ll except passed (p/P), or (A)ll. (w)arnings are enabled by default (see --disable-warnings), 'N' can be used to reset the list. (default: 'fE').
         disable_pytest_warnings: Disable warnings summary
         showlocals: Show locals in tracebacks (disabled by default)
         no_showlocals: Hide locals in tracebacks (negate --showlocals passed through addopts)
@@ -130,11 +130,11 @@ def run(
         show_capture: Controls how captured stdout/stderr/log is shown on failed tests. Default: all.
         full_trace: Don't cut any tracebacks (default is to cut)
         color: Color terminal output (yes/no/auto)
-        code_highlight {yes,no: Whether code should be highlighted (only if --color is also enabled). Default: yes.
+        code_highlight: {yes,no} Whether code should be highlighted (only if --color is also enabled). Default: yes.
         pastebin: Send failed|all info to bpaste.net pastebin service
         junit_xml: Create junit-xml style report file at given path
         junit_prefix: Prepend prefix to classnames in junit-xml output
-        pythonwarnings PYTHONWARNINGS: Set which warnings to report, see -W option of Python itself
+        pythonwarnings: Set which warnings to report, see -W option of Python itself
         maxfail: Exit after first num failures or errors
         strict_config: Any warnings encountered while parsing the `pytest` section of the configuration file raise errors
         strict_markers: Markers not registered in the `markers` section of the configuration file raise errors
@@ -156,11 +156,11 @@ def run(
         doctest_glob pat: Doctests file matching pattern, default: test*.txt
         doctest_ignore_import_errors: Ignore doctest ImportErrors
         doctest_continue_on_failure: For a given doctest, continue to run after the first failure
-        basetemp dir: Base temporary directory for this test run. (Warning: this directory is removed if it exists.)
-        plugins name: Early-load given plugin module name or entry point (multi-allowed). To avoid loading of plugins, use the `no:` prefix, e.g. `no:doctest`.
-        no_plugins name: Early-load given plugin module name or entry point (multi-allowed). To avoid loading of plugins, use the `no:` prefix, e.g. `no:doctest`.
+        basetemp: Base temporary directory for this test run. (Warning: this directory is removed if it exists.)
+        plugins: Early-load given plugin module name or entry point (multi-allowed). To avoid loading of plugins, use the `no:` prefix, e.g. `no:doctest`.
+        no_plugins: Early-load given plugin module name or entry point (multi-allowed). To avoid loading of plugins, use the `no:` prefix, e.g. `no:doctest`.
         trace_config: Trace considerations of conftest.py files
-        debug : Store internal tracing debug information in this log file. This file is opened with 'w' and truncated as a result, care advised. Default: pytestdebug.log.
+        debug: Store internal tracing debug information in this log file. This file is opened with 'w' and truncated as a result, care advised. Default: pytestdebug.log.
         override_ini: Override ini option with "option value" style, e.g. `-o xfail_strict True -o cache_dir cache`.
         assert_mode: Control assertion debugging tools. 'plain' performs no assertion debugging. 'rewrite' (the default) rewrites assert statements in test modules on import to provide assert expression information.
         setup_only: Only setup fixtures, do not execute tests

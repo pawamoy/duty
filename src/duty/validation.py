@@ -187,7 +187,7 @@ def _get_params_caster(func: Callable, *args: Any, **kwargs: Any) -> ParamsCaste
                 param.name,
                 param.kind,
                 default=param.default,
-                annotation=eval(  # noqa: PGH001
+                annotation=eval(  # noqa: PGH001,S307
                     param.annotation,
                     exec_globals,
                 )

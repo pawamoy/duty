@@ -236,7 +236,7 @@ def rule(
     """Explain a rule.
 
     Parameters:
-        output_format: Output format [default: pretty] [possible values: text, json, pretty].
+        output_format: Output format (default: pretty, possible values: text, json, pretty).
         verbose: Enable verbose logging.
         quiet: Print lint violations, but nothing else.
         silent: Disable all logging (but still exit with status code "1" upon detecting lint violations).

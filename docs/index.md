@@ -16,7 +16,7 @@ not just (sub)processes. Using Python callables brings three advantages:
     as you configured it.
 - **extensibility**: get the full power of Python! You can define
     functions dynamically in your tasks and run them through duty.
-    We actually provide a set of ready-to-use callables.
+    We actually provide a set of [ready-to-use callables][duty.callables].
 
 Notable differences with Invoke:
 

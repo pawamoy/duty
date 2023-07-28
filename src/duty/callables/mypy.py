@@ -96,7 +96,7 @@ def run(
     package: str | None = None,
     command: str | None = None,
 ) -> None:
-    r"""Run mypy.
+    """Run mypy.
 
     Parameters:
         *paths: Path to scan.
@@ -198,12 +198,12 @@ def run(
         explicit_package_bases: Use current directory and MYPYPATH to determine module names of files passed
             (inverse: --no-explicit-package-bases).
         exclude: Regular expression to match file names, directory names or paths which mypy should ignore while
-            recursively discovering files to check, e.g. --exclude '/setup\.py$'.
+            recursively discovering files to check, e.g. --exclude '/setup\\.py$'.
             May be specified more than once, eg. --exclude a --exclude b.
         module: Type-check module; can repeat for more modules.
         package: Type-check package recursively; can be repeated.
         command: Type-check program passed in as string.
-    """
+    """  # noqa: D301
     from mypy.main import main as mypy
 
     cli_args = list(paths)
