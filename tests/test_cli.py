@@ -77,31 +77,31 @@ def test_duty_failure(code: int) -> None:
     assert cli.main(["-d", "tests/fixtures/code.py", "exit_with", f"code={code}"]) == code
 
 
-def test_multiple_duties(capsys: pytest.CaptureFixture) -> None:
+def test_multiple_duties(capfd: pytest.CaptureFixture) -> None:
     """Run multiple duties.
 
     Parameters:
-        capsys: Pytest fixture to capture output.
+        capfd: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/multiple.py", "first_duty", "second_duty"]) == 0
-    captured = capsys.readouterr()
+    captured = capfd.readouterr()
     assert "first" in captured.out
     assert "second" in captured.out
 
 
-def test_duty_arguments(capsys: pytest.CaptureFixture) -> None:
+def test_duty_arguments(capfd: pytest.CaptureFixture) -> None:
     """Run duty with arguments.
 
     Parameters:
-        capsys: Pytest fixture to capture output.
+        capfd: Pytest fixture to capture output.
     """
     assert cli.main(["-d", "tests/fixtures/arguments.py", "say_hello", "cat=fabric"]) == 0
-    captured = capsys.readouterr()
+    captured = capfd.readouterr()
     assert "cat fabric" in captured.out
     assert "dog dog" in captured.out
 
     assert cli.main(["-d", "tests/fixtures/arguments.py", "say_hello", "dog=paramiko", "cat=invoke"]) == 0
-    captured = capsys.readouterr()
+    captured = capfd.readouterr()
     assert "cat invoke" in captured.out
     assert "dog paramiko" in captured.out
 
