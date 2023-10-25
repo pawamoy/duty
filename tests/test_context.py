@@ -10,7 +10,7 @@ import pytest
 from duty import context
 from duty.exceptions import DutyFailure
 
-RunResult = namedtuple("RunResult", "code output")
+RunResult = namedtuple("RunResult", "code output")  # noqa: PYI024
 
 
 def test_allow_overrides(monkeypatch: pytest.MonkeyPatch) -> None:

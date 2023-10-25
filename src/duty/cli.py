@@ -21,11 +21,21 @@ from typing import Any
 
 from failprint.cli import ArgParser, add_flags
 
+from duty import debug
 from duty.collection import Collection, Duty
 from duty.exceptions import DutyFailure
 from duty.validation import validate
 
 empty = inspect.Signature.empty
+
+
+class _DebugInfo(argparse.Action):
+    def __init__(self, nargs: int | str | None = 0, **kwargs: Any) -> None:
+        super().__init__(nargs=nargs, **kwargs)
+
+    def __call__(self, *args: Any, **kwargs: Any) -> None:  # noqa: ARG002
+        debug.print_debug_info()
+        sys.exit(0)
 
 
 def get_parser() -> ArgParser:
@@ -59,6 +69,8 @@ def get_parser() -> ArgParser:
         metavar="DUTY",
         help="Show this help message and exit. Pass duties names to print their help.",
     )
+    parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug.get_version()}")
+    parser.add_argument("--debug-info", action=_DebugInfo, help="Print debug information.")
 
     add_flags(parser, set_defaults=False)
     parser.add_argument("remainder", nargs=argparse.REMAINDER)

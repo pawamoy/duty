@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from duty import cli
+from duty import cli, debug
 
 
 def test_no_duty(capsys: pytest.CaptureFixture) -> None:
@@ -218,3 +218,30 @@ def test_invalid_params(capsys: pytest.CaptureFixture) -> None:
     assert cli.main(["-d", "tests/fixtures/code.py", "exit_with"]) == 1
     captured = capsys.readouterr()
     assert "missing 1 required positional argument: 'code'" in captured.err
+
+
+def test_show_version(capsys: pytest.CaptureFixture) -> None:
+    """Show version.
+
+    Parameters:
+        capsys: Pytest fixture to capture output.
+    """
+    with pytest.raises(SystemExit):
+        cli.main(["-V"])
+    captured = capsys.readouterr()
+    assert debug.get_version() in captured.out
+
+
+def test_show_debug_info(capsys: pytest.CaptureFixture) -> None:
+    """Show debug information.
+
+    Parameters:
+        capsys: Pytest fixture to capture output.
+    """
+    with pytest.raises(SystemExit):
+        cli.main(["--debug-info"])
+    captured = capsys.readouterr().out.lower()
+    assert "python" in captured
+    assert "system" in captured
+    assert "environment" in captured
+    assert "packages" in captured

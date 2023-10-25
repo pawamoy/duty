@@ -15,11 +15,13 @@ Inspired by [Invoke](https://github.com/pyinvoke/invoke).
 ## Installation
 
 With `pip`:
+
 ```bash
 pip install duty
 ```
 
 With [`pipx`](https://github.com/pipxproject/pipx):
+
 ```bash
 python3.8 -m pip install --user pipx
 pipx install duty
