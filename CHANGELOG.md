@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.1.0](https://github.com/pawamoy/duty/releases/tag/1.1.0) - 2023-10-25
+
+<small>[Compare with 1.0.0](https://github.com/pawamoy/duty/compare/1.0.0...1.1.0)</small>
+
+### Dependencies
+
+- Exclude failprint 1.0 from accepted versions ([25f088a](https://github.com/pawamoy/duty/commit/25f088a0dddc69002fd8da195c4ab4884aacf004) by Timothée Mazzucotelli).
+
+### Features
+
+- Add `format` command to Ruff callable ([d462425](https://github.com/pawamoy/duty/commit/d4624251cc0a8332d0c931d374caab47f0e05ac0) by Kyle Wigley). [PR #16](https://github.com/pawamoy/duty/pull/16)
+
 ## [1.0.0](https://github.com/pawamoy/duty/releases/tag/1.0.0) - 2023-06-27
 
 <small>[Compare with 0.11.1](https://github.com/pawamoy/duty/compare/0.11.1...1.0.0)</small>
