@@ -225,6 +225,96 @@ def check(
     return _run("check", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
 
 
+@lazy(name="ruff.format")
+def format(
+    *files: str,
+    config: str | None = None,
+    check: bool | None = None,
+    diff: bool | None = None,
+    target_version: str | None = None,
+    preview: bool | None = None,
+    exclude: list[str] | None = None,
+    extend_exclude: list[str] | None = None,
+    respect_gitignore: bool | None = None,
+    force_exclude: bool | None = None,
+    no_cache: bool | None = None,
+    isolated: bool | None = None,
+    cache_dir: str | None = None,
+    stdin_filename: str | None = None,
+    verbose: bool = False,
+    quiet: bool = False,
+    silent: bool = False,
+) -> int:
+    """Run Ruff formatter on the given files or directories.
+
+    Parameters:
+        check: Avoid writing any formatted files back; instead, exit with a non-zero status code if any files would have been modified, and zero otherwise
+        config: Path to the `pyproject.toml` or `ruff.toml` file to use for configuration
+        diff: Avoid writing any fixed files back; instead, output a diff for each changed file to stdout
+        target_version: The minimum Python version that should be supported [possible values: py37, py38, py39, py310, py311, py312]
+        preview: Enable preview mode; enables unstable formatting
+        exclude: List of paths, used to omit files and/or directories from analysis
+        extend_exclude: Like --exclude, but adds additional files and directories on top of those already excluded
+        respect_gitignore: Respect file exclusions via `.gitignore` and other standard ignore files
+        force_exclude: Enforce exclusions, even for paths passed to Ruff directly on the command-line
+        no_cache: Disable cache reads
+        isolated: Ignore all configuration files
+        cache_dir: Path to the cache directory [env: RUFF_CACHE_DIR=]
+        stdin_filename: The name of the file when passing it through stdin
+        verbose: Enable verbose logging.
+        quiet: Print lint violations, but nothing else.
+        silent: Disable all logging (but still exit with status code "1" upon detecting lint violations).
+    """
+    cli_args = list(files)
+
+    if check:
+        cli_args.append("--check")
+
+    if diff:
+        cli_args.append("--diff")
+
+    if config:
+        cli_args.append("--config")
+        cli_args.append(config)
+
+    if target_version:
+        cli_args.append("--target-version")
+        cli_args.append(target_version)
+
+    if preview:
+        cli_args.append("--preview")
+
+    if exclude:
+        cli_args.append("--exclude")
+        cli_args.append(",".join(exclude))
+
+    if extend_exclude:
+        cli_args.append("--extend-exclude")
+        cli_args.append(",".join(extend_exclude))
+
+    if respect_gitignore:
+        cli_args.append("--respect-gitignore")
+
+    if force_exclude:
+        cli_args.append("--force-exclude")
+
+    if no_cache:
+        cli_args.append("--no-cache")
+
+    if isolated:
+        cli_args.append("--isolated")
+
+    if cache_dir:
+        cli_args.append("--cache-dir")
+        cli_args.append(cache_dir)
+
+    if stdin_filename:
+        cli_args.append("--stdin-filename")
+        cli_args.append(stdin_filename)
+
+    return _run("format", *cli_args, verbose=verbose, quiet=quiet, silent=silent)
+
+
 @lazy(name="ruff.rule")
 def rule(
     *,
