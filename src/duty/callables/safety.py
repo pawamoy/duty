@@ -51,7 +51,18 @@ def check(
     if isinstance(requirements, (list, tuple, set)):
         requirements = "\n".join(requirements)
     packages = list(read_requirements(StringIO(cast(str, requirements))))
-    vulns, db_full = check(packages=packages, ignore_vulns=ignore_vulns)
+
+    # TODO: Safety 3 support, merge once support for v2 is dropped.
+    check_kwargs = {"packages": packages, "ignore_vulns": ignore_vulns}
+    try:
+        from safety.auth.cli_utils import build_client_session
+
+        client_session, _ = build_client_session()
+        check_kwargs["session"] = client_session
+    except ImportError:
+        pass
+
+    vulns, db_full = check(**check_kwargs)
     remediations = calculate_remediations(vulns, db_full)
     output_report = SafetyFormatter(formatter).render_vulnerabilities(
         announcements=[],
