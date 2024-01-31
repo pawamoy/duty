@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.2.0](https://github.com/pawamoy/duty/releases/tag/1.2.0) - 2024-01-31
+
+<small>[Compare with 1.1.0](https://github.com/pawamoy/duty/compare/1.1.0...1.2.0)</small>
+
+### Features
+
+- Support safety v3 in safety callable ([5f832b1](https://github.com/pawamoy/duty/commit/5f832b1bc57163db2d1458d79554239588ea5348) by Timothée Mazzucotelli).
+
 ## [1.1.0](https://github.com/pawamoy/duty/releases/tag/1.1.0) - 2023-10-25
 
 <small>[Compare with 1.0.0](https://github.com/pawamoy/duty/compare/1.0.0...1.1.0)</small>
