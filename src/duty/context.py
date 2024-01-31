@@ -1,4 +1,5 @@
 """Module containing the context definition."""
+
 from __future__ import annotations
 
 import os

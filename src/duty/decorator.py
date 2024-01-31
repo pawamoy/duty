@@ -1,4 +1,5 @@
 """Module containing the decorator provided to users."""
+
 from __future__ import annotations
 
 import inspect
@@ -62,13 +63,11 @@ def create_duty(
 
 
 @overload
-def duty(**kwargs: Any) -> Callable[[Callable], Duty]:  # type: ignore[misc]
-    ...  # pragma: no cover
+def duty(**kwargs: Any) -> Callable[[Callable], Duty]: ...  # type: ignore[overload-overlap]
 
 
 @overload
-def duty(func: Callable) -> Duty:
-    ...  # pragma: no cover
+def duty(func: Callable) -> Duty: ...
 
 
 def duty(*args: Any, **kwargs: Any) -> Callable | Duty:

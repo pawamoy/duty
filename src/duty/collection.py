@@ -1,4 +1,5 @@
 """Module containing all the logic."""
+
 from __future__ import annotations
 
 import inspect

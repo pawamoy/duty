@@ -187,12 +187,14 @@ def _get_params_caster(func: Callable, *args: Any, **kwargs: Any) -> ParamsCaste
                 param.name,
                 param.kind,
                 default=param.default,
-                annotation=eval(  # noqa: PGH001,S307
-                    param.annotation,
-                    exec_globals,
-                )
-                if param.annotation is not Parameter.empty
-                else type(param.default),
+                annotation=(
+                    eval(  # noqa: PGH001,S307
+                        param.annotation,
+                        exec_globals,
+                    )
+                    if param.annotation is not Parameter.empty
+                    else type(param.default)
+                ),
             )
             for param in params
         ]
