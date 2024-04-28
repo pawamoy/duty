@@ -145,3 +145,20 @@ def test_casting_based_on_default_value_type() -> None:
     caster = _get_params_caster(func, a="1")
     _, kwargs = caster.cast(a="1")
     assert kwargs == {"a": 1}
+
+
+def test_validating_modern_annotations() -> None:
+    """Test modern type annotations in function signatures."""
+
+    def func(ctx, a: int | None = None):  # noqa: ANN202,ARG001,ANN001
+        ...
+
+    caster = _get_params_caster(func, a=1)
+    _, kwargs = caster.cast(a="1")
+    assert kwargs == {"a": 1}
+    caster = _get_params_caster(func, a=None)
+    _, kwargs = caster.cast(a=None)
+    assert kwargs == {"a": None}
+    caster = _get_params_caster(func)
+    _, kwargs = caster.cast()
+    assert kwargs == {}

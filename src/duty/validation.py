@@ -9,9 +9,21 @@ from __future__ import annotations
 
 import sys
 import textwrap
+from contextlib import suppress
 from functools import cached_property
 from inspect import Parameter, Signature, signature
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, ForwardRef, Sequence, Union, get_args, get_origin
+
+# TODO: Update once support for Python 3.9 is dropped.
+if sys.version_info < (3, 10):
+    from eval_type_backport import eval_type_backport as eval_type
+
+    union_types = (Union,)
+else:
+    from types import UnionType
+    from typing import _eval_type as eval_type  # type: ignore[attr-defined]
+
+    union_types = (Union, UnionType)
 
 
 def to_bool(value: str) -> bool:
@@ -40,6 +52,12 @@ def cast_arg(arg: Any, annotation: Any) -> Any:
         return arg
     if annotation is bool:
         annotation = to_bool
+    if get_origin(annotation) in union_types:
+        for sub_annotation in get_args(annotation):
+            if sub_annotation is type(None):
+                continue
+            with suppress(Exception):
+                return cast_arg(arg, sub_annotation)
     try:
         return annotation(arg)
     except Exception:  # noqa: BLE001
@@ -187,9 +205,10 @@ def _get_params_caster(func: Callable, *args: Any, **kwargs: Any) -> ParamsCaste
                 param.kind,
                 default=param.default,
                 annotation=(
-                    eval(  # noqa: PGH001,S307
-                        param.annotation,
+                    eval_type(
+                        ForwardRef(param.annotation) if isinstance(param.annotation, str) else param.annotation,
                         exec_globals,
+                        {},
                     )
                     if param.annotation is not Parameter.empty
                     else type(param.default)
