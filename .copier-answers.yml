@@ -1,12 +1,12 @@
 # Changes here will be overwritten by Copier
-_commit: 1.2.6
-_src_path: https://github.com/pawamoy/copier-pdm.git
-author_email: pawamoy@pm.me
+_commit: 1.2.4
+_src_path: https://github.com/pawamoy/copier-uv.git
+author_email: dev@pawamoy.fr
 author_fullname: Timothée Mazzucotelli
 author_username: pawamoy
 copyright_date: '2020'
 copyright_holder: Timothée Mazzucotelli
-copyright_holder_email: pawamoy@pm.me
+copyright_holder_email: dev@pawamoy.fr
 copyright_license: ISC License
 insiders: false
 project_description: A simple task runner.
