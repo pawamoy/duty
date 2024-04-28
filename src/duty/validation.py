@@ -65,11 +65,9 @@ class ParamsCaster:
         Returns:
             The position of the variable positional parameter.
         """
-        pos = 0
-        for param in self.params_list:
+        for pos, param in enumerate(self.params_list):
             if param.kind is Parameter.VAR_POSITIONAL:
                 return pos
-            pos += 1
         return -1
 
     @cached_property
@@ -175,6 +173,7 @@ def _get_params_caster(func: Callable, *args: Any, **kwargs: Any) -> ParamsCaste
         if exec_globals[name] is annotations:
             eval_str = True
             del exec_globals[name]
+            break
     exec_globals["__context_above"] = {}
 
     # Don't keep first parameter: context.
