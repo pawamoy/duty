@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage report</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <script type="text/javascript" src="coverage_html.js" defer></script>
+    <script src="coverage_html.js" defer></script>
 </head>
 <body class="indexfile">
 <header>
     <div class="content">
         <h1>Coverage report:
-            <span class="pc_cov">99.55%</span>
+            <span class="pc_cov">98.46%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
-                <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts" />
+                <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts">
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
                 <div class="keyhelp">
                     <p>
-                        <kbd>n</kbd>
+                        <kbd>f</kbd>
                         <kbd>s</kbd>
                         <kbd>m</kbd>
                         <kbd>x</kbd>
@@ -43,11 +43,20 @@
             </div>
         </aside>
         <form id="filter_container">
-            <input id="filter" type="text" value="" placeholder="filter..." />
+            <input id="filter" type="text" value="" placeholder="filter...">
+            <div>
+                <input id="hide100" type="checkbox" >
+                <label for="hide100">hide covered</label>
+            </div>
         </form>
+        <h2>
+                <a class="button current">Files</a>
+                <a class="button" href="function_index.html">Functions</a>
+                <a class="button" href="class_index.html">Classes</a>
+        </h2>
         <p class="text">
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-07-29 16:48 +0200
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.5.0">coverage.py v7.5.0</a>,
+            created at 2024-04-28 13:25 +0200
         </p>
     </div>
 </header>
@@ -55,27 +64,27 @@
     <table class="index" data-sortable>
         <thead>
             <tr class="tablehead" title="Click to sort">
-                <th class="name left" aria-sort="none" data-shortcut="n">Module</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="s">statements</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="m">missing</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="x">excluded</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="b">branches</th>
-                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="p">partial</th>
-                <th class="right" aria-sort="none" data-shortcut="c">coverage</th>
+                <th class="name left" aria-sort="none" data-shortcut="f">File<span class="arrows"></span></th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="s">statements<span class="arrows"></span></th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="m">missing<span class="arrows"></span></th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="x">excluded<span class="arrows"></span></th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="b">branches<span class="arrows"></span></th>
+                <th aria-sort="none" data-default-sort-order="descending" data-shortcut="p">partial<span class="arrows"></span></th>
+                <th class="right" aria-sort="none" data-shortcut="c">coverage<span class="arrows"></span></th>
             </tr>
         </thead>
         <tbody>
-            <tr class="file">
-                <td class="name left"><a href="d_2817508a90a01518_cli_py.html">src/duty/cli.py</a></td>
-                <td>109</td>
+            <tr class="region">
+                <td class="name left"><a href="z_2817508a90a01518_cli_py.html">src/duty/cli.py</a></td>
+                <td>118</td>
                 <td>0</td>
                 <td>0</td>
                 <td>30</td>
                 <td>0</td>
-                <td class="right" data-ratio="139 139">100.00%</td>
+                <td class="right" data-ratio="148 148">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_2817508a90a01518_collection_py.html">src/duty/collection.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_2817508a90a01518_collection_py.html">src/duty/collection.py</a></td>
                 <td>79</td>
                 <td>0</td>
                 <td>0</td>
@@ -83,8 +92,8 @@
                 <td>1</td>
                 <td class="right" data-ratio="104 105">99.05%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_2817508a90a01518_context_py.html">src/duty/context.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_2817508a90a01518_context_py.html">src/duty/context.py</a></td>
                 <td>44</td>
                 <td>0</td>
                 <td>0</td>
@@ -92,17 +101,26 @@
                 <td>0</td>
                 <td class="right" data-ratio="56 56">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_2817508a90a01518_decorator_py.html">src/duty/decorator.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_2817508a90a01518_debug_py.html">src/duty/debug.py</a></td>
+                <td>63</td>
+                <td>4</td>
+                <td>0</td>
+                <td>20</td>
+                <td>2</td>
+                <td class="right" data-ratio="77 83">92.77%</td>
+            </tr>
+            <tr class="region">
+                <td class="name left"><a href="z_2817508a90a01518_decorator_py.html">src/duty/decorator.py</a></td>
                 <td>37</td>
                 <td>0</td>
-                <td>4</td>
-                <td>16</td>
-                <td>0</td>
-                <td class="right" data-ratio="53 53">100.00%</td>
+                <td>2</td>
+                <td>18</td>
+                <td>2</td>
+                <td class="right" data-ratio="53 55">96.36%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_2817508a90a01518_exceptions_py.html">src/duty/exceptions.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_2817508a90a01518_exceptions_py.html">src/duty/exceptions.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -110,17 +128,17 @@
                 <td>0</td>
                 <td class="right" data-ratio="4 4">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_2817508a90a01518_validation_py.html">src/duty/validation.py</a></td>
-                <td>80</td>
-                <td>1</td>
+            <tr class="region">
+                <td class="name left"><a href="z_2817508a90a01518_validation_py.html">src/duty/validation.py</a></td>
+                <td>92</td>
+                <td>2</td>
                 <td>0</td>
-                <td>38</td>
-                <td>1</td>
-                <td class="right" data-ratio="116 118">98.31%</td>
+                <td>48</td>
+                <td>3</td>
+                <td class="right" data-ratio="135 140">96.43%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_a44f0ac069e85531_conftest_py.html">tests/conftest.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_a44f0ac069e85531_conftest_py.html">tests/conftest.py</a></td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -128,8 +146,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="0 0">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_arguments_py.html">tests/fixtures/arguments.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_arguments_py.html">tests/fixtures/arguments.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -137,8 +155,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="8 8">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_basic_py.html">tests/fixtures/basic.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_basic_py.html">tests/fixtures/basic.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -146,8 +164,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="6 6">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_booleans_py.html">tests/fixtures/booleans.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_booleans_py.html">tests/fixtures/booleans.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -155,8 +173,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="8 8">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_code_py.html">tests/fixtures/code.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_code_py.html">tests/fixtures/code.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -164,8 +182,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="8 8">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_list_py.html">tests/fixtures/list.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_list_py.html">tests/fixtures/list.py</a></td>
                 <td>5</td>
                 <td>0</td>
                 <td>0</td>
@@ -173,8 +191,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="9 9">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_multiple_py.html">tests/fixtures/multiple.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_multiple_py.html">tests/fixtures/multiple.py</a></td>
                 <td>7</td>
                 <td>0</td>
                 <td>0</td>
@@ -182,8 +200,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="15 15">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_precedence_py.html">tests/fixtures/precedence.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_precedence_py.html">tests/fixtures/precedence.py</a></td>
                 <td>4</td>
                 <td>0</td>
                 <td>0</td>
@@ -191,8 +209,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="8 8">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_002c493ad4b8202f_validation_py.html">tests/fixtures/validation.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_002c493ad4b8202f_validation_py.html">tests/fixtures/validation.py</a></td>
                 <td>12</td>
                 <td>0</td>
                 <td>12</td>
@@ -200,17 +218,17 @@
                 <td>0</td>
                 <td class="right" data-ratio="12 12">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_a44f0ac069e85531_test_cli_py.html">tests/test_cli.py</a></td>
-                <td>66</td>
+            <tr class="region">
+                <td class="name left"><a href="z_a44f0ac069e85531_test_cli_py.html">tests/test_cli.py</a></td>
+                <td>79</td>
                 <td>0</td>
                 <td>0</td>
-                <td>4</td>
+                <td>8</td>
                 <td>0</td>
-                <td class="right" data-ratio="70 70">100.00%</td>
+                <td class="right" data-ratio="87 87">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_a44f0ac069e85531_test_collection_py.html">tests/test_collection.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_a44f0ac069e85531_test_collection_py.html">tests/test_collection.py</a></td>
                 <td>41</td>
                 <td>0</td>
                 <td>1</td>
@@ -218,8 +236,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="45 45">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_a44f0ac069e85531_test_context_py.html">tests/test_context.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_a44f0ac069e85531_test_context_py.html">tests/test_context.py</a></td>
                 <td>62</td>
                 <td>0</td>
                 <td>0</td>
@@ -227,8 +245,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="86 86">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_a44f0ac069e85531_test_decorator_py.html">tests/test_decorator.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_a44f0ac069e85531_test_decorator_py.html">tests/test_decorator.py</a></td>
                 <td>14</td>
                 <td>0</td>
                 <td>0</td>
@@ -236,8 +254,8 @@
                 <td>0</td>
                 <td class="right" data-ratio="20 20">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_a44f0ac069e85531_test_running_py.html">tests/test_running.py</a></td>
+            <tr class="region">
+                <td class="name left"><a href="z_a44f0ac069e85531_test_running_py.html">tests/test_running.py</a></td>
                 <td>58</td>
                 <td>0</td>
                 <td>0</td>
@@ -245,25 +263,25 @@
                 <td>0</td>
                 <td class="right" data-ratio="86 86">100.00%</td>
             </tr>
-            <tr class="file">
-                <td class="name left"><a href="d_a44f0ac069e85531_test_validation_py.html">tests/test_validation.py</a></td>
-                <td>32</td>
-                <td>1</td>
+            <tr class="region">
+                <td class="name left"><a href="z_a44f0ac069e85531_test_validation_py.html">tests/test_validation.py</a></td>
+                <td>44</td>
+                <td>2</td>
                 <td>1</td>
                 <td>6</td>
                 <td>0</td>
-                <td class="right" data-ratio="37 38">97.37%</td>
+                <td class="right" data-ratio="48 50">96.00%</td>
             </tr>
         </tbody>
         <tfoot>
             <tr class="total">
                 <td class="name left">Total</td>
-                <td>670</td>
-                <td>2</td>
-                <td>18</td>
-                <td>224</td>
-                <td>2</td>
-                <td class="right" data-ratio="890 894">99.55%</td>
+                <td>779</td>
+                <td>8</td>
+                <td>16</td>
+                <td>260</td>
+                <td>8</td>
+                <td class="right" data-ratio="1023 1039">98.46%</td>
             </tr>
         </tfoot>
     </table>
@@ -274,16 +292,16 @@
 <footer>
     <div class="content">
         <p>
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.2.7">coverage.py v7.2.7</a>,
-            created at 2023-07-29 16:48 +0200
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.5.0">coverage.py v7.5.0</a>,
+            created at 2024-04-28 13:25 +0200
         </p>
     </div>
     <aside class="hidden">
-        <a id="prevFileLink" class="nav" href="d_a44f0ac069e85531_test_validation_py.html"/>
-        <a id="nextFileLink" class="nav" href="d_2817508a90a01518_cli_py.html"/>
-        <button type="button" class="button_prev_file" data-shortcut="["/>
-        <button type="button" class="button_next_file" data-shortcut="]"/>
-        <button type="button" class="button_show_hide_help" data-shortcut="?"/>
+        <a id="prevFileLink" class="nav" href="z_a44f0ac069e85531_test_validation_py.html"></a>
+        <a id="nextFileLink" class="nav" href="z_2817508a90a01518_cli_py.html"></a>
+        <button type="button" class="button_prev_file" data-shortcut="["></button>
+        <button type="button" class="button_next_file" data-shortcut="]"></button>
+        <button type="button" class="button_show_hide_help" data-shortcut="?"></button>
     </aside>
 </footer>
 </body>
