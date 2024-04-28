@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.3.0](https://github.com/pawamoy/duty/releases/tag/1.3.0) - 2024-04-28
+
+<small>[Compare with 1.2.0](https://github.com/pawamoy/duty/compare/1.2.0...1.3.0)</small>
+
+### Features
+
+- Support duty parameters annotated as type unions, with both old and modern syntax, even on Python 3.8 and 3.9 ([e8ca7c1](https://github.com/pawamoy/duty/commit/e8ca7c1fb453a6f0b3de3268e2cea3434985c428) by Timothée Mazzucotelli).
+
 ## [1.2.0](https://github.com/pawamoy/duty/releases/tag/1.2.0) - 2024-01-31
 
 <small>[Compare with 1.1.0](https://github.com/pawamoy/duty/compare/1.1.0...1.2.0)</small>
