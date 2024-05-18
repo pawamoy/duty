@@ -90,22 +90,24 @@ def docs(ctx):
 The main benefit is that it enables IDE features like help tooltips and auto-completion,
 as well as improving readability and writability.
 
-**[See all our callables in the Code reference][duty.callables].**
+**[See all our callables in the Code reference][duty.tools].**
 
-You can also create your own lazy callables with [`duty.callables.lazy`][failprint.lazy.lazy].
-The `lazy` function (which can also be used as a decorator)
-takes any other callable and makes it lazy:
+You can also create your own lazy callables with [`duty.tools.Tool`][]
+and [`duty.tools.lazy`][failprint.lazy.lazy].
+Check out our tools to see how to create your own.
+
+The `lazy` function/decorator is a quicker way
+to create a lazy callable:
 
 ```python
-from duty import duty
-from duty.callables import lazy
+from duty import duty, tools
 
 from griffe.cli import check
 
 
 @duty
 def check_api(ctx):
-    griffe_check = lazy(check, name="griffe.check")
+    griffe_check = tools.lazy(check, name="griffe.check")
     ctx.run(griffe_check("pkg"))
 ```
 

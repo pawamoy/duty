@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import os
-from contextlib import contextmanager
+from contextlib import contextmanager, suppress
 from typing import Any, Callable, Iterator, List, Union
 
 from failprint.runners import run as failprint_run
 
 from duty.exceptions import DutyFailure
+from duty.tools import Tool
 
 CmdType = Union[str, List[str], Callable]
 
@@ -66,6 +67,10 @@ class Context:
         """
         final_options = dict(self._options)
         final_options.update(options)
+
+        if "command" not in final_options and isinstance(cmd, Tool):
+            with suppress(ValueError):
+                final_options["command"] = cmd.cli_command
 
         allow_overrides = final_options.pop("allow_overrides", True)
         workdir = final_options.pop("workdir", None)
