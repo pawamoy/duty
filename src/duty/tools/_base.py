@@ -7,6 +7,11 @@ import sys
 from io import StringIO
 from typing import Any
 
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
+
 
 class LazyStdout(StringIO):
     """Lazy stdout buffer.
@@ -41,9 +46,18 @@ class Tool:
 
     cli_name: str = ""
 
-    def __init__(self, cli_args: list[str] | None = None, py_args: dict[str, Any] | None = None) -> None:
+    def __init__(
+        self,
+        cli_args: list[str] | None = None,
+        py_args: dict[str, Any] | None = None,
+    ) -> None:
         self.cli_args: list[str] = cli_args or []
         self.py_args: dict[str, Any] = py_args or {}
+
+    def add_args(self, *args: str) -> Self:
+        """Add arguments."""
+        self.cli_args.extend(args)
+        return self
 
     @property
     def cli_command(self) -> str:

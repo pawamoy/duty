@@ -598,9 +598,10 @@ in the duty's signature. If there is no annotation
 but a default value, it will be type-casted using
 the type of the default value.
 
-We only support types that are callable and accept
-one positional argument: a string.
-Examples of supported builtin types: `int`, `str`, `float`, `bool`, `list`, etc.
+We support any type that is callable and accepts
+one positional argument (a string), as well as
+optional types (`Optional[...]`, `... | None`)
+and union types (`Union[..., ...]`, `... | ...`).
 
 The `bool` type uses a special conversion table:
 
@@ -651,6 +652,35 @@ When passing positional arguments,
 make sure there is no overlap between other duties' names
 and the argument value, otherwise `duty` will not be able
 to parse the command correctly.
+
+If your duty accepts variadic positional arguments,
+those can be passed too from the command line:
+
+```python
+@duty
+def shout(ctx, *names):
+    ctx.run(print, args=[f"{name.upper()}!" for name in names])
+```
+
+```bash
+duty shout herbert marvin
+```
+
+This can also be used to pass additional CLI flags
+to commands or duty tools. If the flags clash with
+duty's own options, add `--` first:
+
+```python
+from duty import duty, tools
+
+@duty
+def docs(ctx, *cli_args) -> None:
+    ctx.run(tools.mkdocs.serve().add_args(*cli_args), capture=False)
+```
+
+```bash
+duty docs -- -vs -f mkdocs.yml
+```
 
 ### Passing options
 

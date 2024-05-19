@@ -214,6 +214,8 @@ def parse_commands(arg_lists: list[list[str]], global_opts: dict[str, Any], coll
     for arg_list in arg_lists:
         duty = collection.get(arg_list[0])
         opts, remainder = parse_options(duty, arg_list[1:])
+        if remainder and remainder[0] == "--":
+            remainder = remainder[1:]
         duty.options_override = {**global_opts, **opts}
         commands.append((duty, *parse_args(duty, remainder)))
     return commands
