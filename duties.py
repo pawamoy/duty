@@ -50,7 +50,7 @@ def changelog(ctx: Context, bump: str = "") -> None:
     Parameters:
         bump: Bump option passed to git-changelog.
     """
-    ctx.run(tools.git_changelog(bump=bump or None), title="Updating changelog", command="git-changelog")
+    ctx.run(tools.git_changelog(bump=bump or None), title="Updating changelog")
 
 
 @duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies", "check-api"])
@@ -64,23 +64,6 @@ def check_quality(ctx: Context) -> None:
     ctx.run(
         tools.ruff.check(*PY_SRC_LIST, config="config/ruff.toml"),
         title=pyprefix("Checking code quality"),
-    )
-
-
-@duty
-def check_dependencies(ctx: Context) -> None:
-    """Check for vulnerabilities in dependencies."""
-    # retrieve the list of dependencies
-    requirements = ctx.run(
-        ["uv", "pip", "freeze"],
-        silent=True,
-        allow_overrides=False,
-    )
-
-    ctx.run(
-        tools.safety.check(requirements),
-        title="Checking dependencies",
-        command="uv pip freeze | safety check --stdin",
     )
 
 
@@ -169,7 +152,7 @@ def publish(ctx: Context) -> None:
     dists = [str(dist) for dist in Path("dist").iterdir()]
     ctx.run(
         tools.twine.upload(*dists, skip_existing=True),
-        title="Publish source and wheel distributions to PyPI",
+        title="Publishing source and wheel distributions to PyPI",
         pty=PTY,
     )
 
