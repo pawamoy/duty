@@ -5,6 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.0](https://github.com/pawamoy/duty/releases/tag/1.4.0) - 2024-05-19
+
+<small>[Compare with 1.3.0](https://github.com/pawamoy/duty/compare/1.3.0...1.4.0)</small>
+
+### Features
+
+- Allow passing additional arguments, preventing their interpretation by delimitating them with `--` if needed ([9df0437](https://github.com/pawamoy/duty/commit/9df0437969a476073fd1e71b3d6cdce7f80e113f) by Timothée Mazzucotelli). [Issue-15](https://github.com/pawamoy/duty/issues/15)
+- Rewrite callables as "tools", to allow building the `command` value automatically ([55c9b9f](https://github.com/pawamoy/duty/commit/55c9b9ff117d7f36a07268689707a9d72cad82b9) by Timothée Mazzucotelli). [Issue-21](https://github.com/pawamoy/duty/issues/21)
+- Expose all callables in their parent module ([e3357b9](https://github.com/pawamoy/duty/commit/e3357b965e4c0829a368a5b146af4fec056cc93d) by Timothée Mazzucotelli).
+- Add callable for Griffe ([36644c4](https://github.com/pawamoy/duty/commit/36644c4ea15afc11114fbdb6c4db4a7ad9c7252a) by Timothée Mazzucotelli).
+- Add callable for git-changelog ([c236b43](https://github.com/pawamoy/duty/commit/c236b4377ed3a5c11f4af518e0a8e433fdec242c) by Timothée Mazzucotelli).
+- Add callable for build ([efbe66e](https://github.com/pawamoy/duty/commit/efbe66e80fedbf44dbf13d167919d9370ea4767f) by Timothée Mazzucotelli). [Issue-18](https://github.com/pawamoy/duty/issues/18)
+- Add callable for Twine ([608c1c2](https://github.com/pawamoy/duty/commit/608c1c27e38b63485b8ca010ca4c797c42e561c1) by Timothée Mazzucotelli). [Issue-19](https://github.com/pawamoy/duty/issues/19)
+
 ## [1.3.0](https://github.com/pawamoy/duty/releases/tag/1.3.0) - 2024-04-28
 
 <small>[Compare with 1.2.0](https://github.com/pawamoy/duty/compare/1.2.0...1.3.0)</small>
