@@ -106,17 +106,17 @@ def check_types(ctx: Context) -> None:
 
 
 @duty
-def check_api(ctx: Context) -> None:
+def check_api(ctx: Context, *cli_args: str) -> None:
     """Check for API breaking changes."""
     ctx.run(
-        tools.griffe.check("duty", search=["src"], color=True),
+        tools.griffe.check("duty", search=["src"], color=True).add_args(*cli_args),
         title="Checking for API breaking changes",
         nofail=True,
     )
 
 
 @duty
-def docs(ctx: Context, host: str = "127.0.0.1", port: int = 8000) -> None:
+def docs(ctx: Context, *cli_args: str, host: str = "127.0.0.1", port: int = 8000) -> None:
     """Serve the documentation (localhost:8000).
 
     Parameters:
@@ -125,7 +125,7 @@ def docs(ctx: Context, host: str = "127.0.0.1", port: int = 8000) -> None:
     """
     with material_insiders():
         ctx.run(
-            tools.mkdocs.serve(dev_addr=f"{host}:{port}"),
+            tools.mkdocs.serve(dev_addr=f"{host}:{port}").add_args(*cli_args),
             title="Serving documentation",
             capture=False,
         )
@@ -199,7 +199,7 @@ def cov(ctx: Context) -> None:
 
 
 @duty
-def test(ctx: Context, match: str = "") -> None:
+def test(ctx: Context, *cli_args: str, match: str = "") -> None:
     """Run the test suite.
 
     Parameters:
@@ -208,6 +208,11 @@ def test(ctx: Context, match: str = "") -> None:
     py_version = f"{sys.version_info.major}{sys.version_info.minor}"
     os.environ["COVERAGE_FILE"] = f".coverage.{py_version}"
     ctx.run(
-        tools.pytest("-n", "auto", "tests", config_file="config/pytest.ini", select=match, color="yes"),
+        tools.pytest(
+            "tests",
+            config_file="config/pytest.ini",
+            select=match,
+            color="yes",
+        ).add_args("-n", "auto", *cli_args),
         title=pyprefix("Running tests"),
     )
