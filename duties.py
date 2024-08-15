@@ -116,7 +116,7 @@ def docs(ctx: Context, *cli_args: str, host: str = "127.0.0.1", port: int = 8000
 
 @duty
 def docs_deploy(ctx: Context) -> None:
-    """Deploy the documentation on GitHub pages."""
+    """Deploy the documentation to GitHub pages."""
     os.environ["DEPLOY"] = "true"
     with material_insiders() as insiders:
         if not insiders:
@@ -173,8 +173,8 @@ def release(ctx: Context, version: str = "") -> None:
     ctx.run("git push --tags", title="Pushing tags", pty=False)
 
 
-@duty(silent=True, aliases=["coverage"])
-def cov(ctx: Context) -> None:
+@duty(silent=True, aliases=["cov"])
+def coverage(ctx: Context) -> None:
     """Report coverage as text and HTML."""
     ctx.run(tools.coverage.combine(), nofail=True)
     ctx.run(tools.coverage.report(rcfile="config/coverage.ini"), capture=False)

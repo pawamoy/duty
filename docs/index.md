@@ -1,3 +1,8 @@
+---
+hide:
+- feedback
+---
+
 --8<-- "README.md"
 
 ## Why duty over...
