@@ -10,7 +10,7 @@ from __future__ import annotations
 import sys
 import textwrap
 from contextlib import suppress
-from functools import cached_property
+from functools import cached_property, partial
 from inspect import Parameter, Signature, signature
 from typing import Any, Callable, ForwardRef, Sequence, Union, get_args, get_origin
 
@@ -21,8 +21,12 @@ if sys.version_info < (3, 10):
     union_types = (Union,)
 else:
     from types import UnionType
-    from typing import _eval_type as eval_type  # type: ignore[attr-defined]
+    from typing import _eval_type  # type: ignore[attr-defined]
 
+    if sys.version_info >= (3, 13):
+        eval_type = partial(_eval_type, type_params=None)
+    else:
+        eval_type = _eval_type
     union_types = (Union, UnionType)
 
 
