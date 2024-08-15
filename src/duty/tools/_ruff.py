@@ -441,8 +441,8 @@ class ruff(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int:
-        process = subprocess.run(
-            [_find_ruff(), *self.cli_args],  # noqa: S603
+        process = subprocess.run(  # noqa: S603
+            [_find_ruff(), *self.cli_args],
             capture_output=True,
             text=True,
             check=False,

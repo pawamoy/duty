@@ -63,7 +63,7 @@ def create_duty(
 
 
 @overload
-def duty(**kwargs: Any) -> Callable[[Callable], Duty]: ...  # type: ignore[overload-overlap]
+def duty(**kwargs: Any) -> Callable[[Callable], Duty]: ...
 
 
 @overload
