@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.1](https://github.com/pawamoy/duty/releases/tag/1.4.1) - 2024-08-15
+
+<small>[Compare with 1.4.0](https://github.com/pawamoy/duty/compare/1.4.0...1.4.1)</small>
+
+### Bug Fixes
+
+- Fix call to `eval_type` (missing `type_params` argument on Python 3.13) ([eae6c85](https://github.com/pawamoy/duty/commit/eae6c85b26ee5c95739d3d108460d2145c18fc26) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Update Griffe tool ([3f69fa0](https://github.com/pawamoy/duty/commit/3f69fa0d027468315f82e96d417d6681a4a061f0) by Timothée Mazzucotelli).
+
 ## [1.4.0](https://github.com/pawamoy/duty/releases/tag/1.4.0) - 2024-05-19
 
 <small>[Compare with 1.3.0](https://github.com/pawamoy/duty/compare/1.3.0...1.4.0)</small>
