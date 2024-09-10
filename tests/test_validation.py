@@ -139,7 +139,7 @@ def test_params_caster(func: Callable, args: tuple, kwargs: dict, expected_args:
 def test_casting_based_on_default_value_type() -> None:
     """Test that we cast according to the default value type when there is no annotation."""
 
-    def func(ctx, a=0):  # noqa: ANN202,ARG001,ANN001
+    def func(ctx, a=0):  # noqa: ANN202, ANN001
         ...
 
     caster = _get_params_caster(func, a="1")
@@ -150,7 +150,7 @@ def test_casting_based_on_default_value_type() -> None:
 def test_validating_modern_annotations() -> None:
     """Test modern type annotations in function signatures."""
 
-    def func(ctx, a: int | None = None):  # noqa: ANN202,ARG001,ANN001
+    def func(ctx, a: int | None = None):  # noqa: ANN202, ANN001
         ...
 
     caster = _get_params_caster(func, a=1)
