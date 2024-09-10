@@ -24,6 +24,7 @@ def run(
     magic_trailing_comma: bool = True,
     python_cell_magics: set[str] | None = None,
     preview: bool = False,
+    check_only: bool = False,
 ) -> int:
     """Run `blacken-docs`.
 
@@ -44,6 +45,8 @@ def run(
             Useful for formatting cells with custom python magics.
         preview: Enable potentially disruptive style changes that may be added
             to Black's main functionality in the next major release.
+        check_only: Don't modify files but indicate when changes are necessary
+            with a message and non-zero return code.
 
     Returns:
         Success/failure.
@@ -80,5 +83,6 @@ def run(
             black_mode,
             skip_errors=skip_errors,
             rst_literal_blocks=rst_literal_blocks,
+            check_only=check_only,
         )
     return retv

@@ -29,6 +29,7 @@ class blacken_docs(Tool):  # noqa: N801
         magic_trailing_comma: bool = True,
         python_cell_magics: set[str] | None = None,
         preview: bool = False,
+        check_only: bool = False,
     ) -> None:
         """Run `blacken-docs`.
 
@@ -49,6 +50,8 @@ class blacken_docs(Tool):  # noqa: N801
                 Useful for formatting cells with custom python magics.
             preview: Enable potentially disruptive style changes that may be added
                 to Black's main functionality in the next major release.
+            check_only: Don't modify files but indicate when changes are necessary
+                with a message and non-zero return code.
 
         Returns:
             Success/failure.
@@ -77,6 +80,7 @@ class blacken_docs(Tool):  # noqa: N801
         preview = self.py_args["preview"]
         skip_errors = self.py_args["skip_errors"]
         rst_literal_blocks = self.py_args["rst_literal_blocks"]
+        check_only = self.py_args["check_only"]
 
         # Build filepaths.
         exts = ("md", "py") if exts is None else tuple(ext.lstrip(".") for ext in exts)
@@ -111,5 +115,6 @@ class blacken_docs(Tool):  # noqa: N801
                 black_mode,
                 skip_errors=skip_errors,
                 rst_literal_blocks=rst_literal_blocks,
+                check_only=check_only,
             )
         return retv
