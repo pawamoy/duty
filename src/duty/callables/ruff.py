@@ -1,4 +1,4 @@
-"""Callable for [Ruff](https://github.com/charliermarsh/ruff)."""
+"""Callable for [Ruff](https://github.com/astral-sh/ruff)."""
 
 from __future__ import annotations
 

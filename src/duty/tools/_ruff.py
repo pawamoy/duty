@@ -1,4 +1,4 @@
-"""Callable for [Ruff](https://github.com/charliermarsh/ruff)."""
+"""Callable for [Ruff](https://github.com/astral-sh/ruff)."""
 
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ def _find_ruff() -> str:
 
 
 class ruff(Tool):  # noqa: N801
-    """Call [Ruff](https://github.com/charliermarsh/ruff)."""
+    """Call [Ruff](https://github.com/astral-sh/ruff)."""
 
     cli_name = "ruff"
 
