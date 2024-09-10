@@ -90,34 +90,34 @@ def check(
     """Run Ruff on the given files or directories.
 
     Parameters:
-        fix: Attempt to automatically fix lint violations
-        config: Path to the `pyproject.toml` or `ruff.toml` file to use for configuration
-        show_source: Show violations with source code
-        show_fixes: Show an enumeration of all autofixed lint violations
-        diff: Avoid writing any fixed files back; instead, output a diff for each changed file to stdout
-        watch: Run in watch mode by re-running whenever files change
-        fix_only: Fix any fixable lint violations, but don't report on leftover violations. Implies `--fix`
-        output_format: Output serialization format for violations [env: RUFF_FORMAT=] [possible values: text, json, junit, grouped, github, gitlab, pylint]
-        statistics: Show counts for every rule with at least one violation
-        add_noqa: Enable automatic additions of `noqa` directives to failing lines
-        show_files: See the files Ruff will be run against with the current settings
-        show_settings: See the settings Ruff will use to lint a given Python file
-        select: Comma-separated list of rule codes to enable (or ALL, to enable all rules)
-        ignore: Comma-separated list of rule codes to disable
-        extend_select: Like --select, but adds additional rule codes on top of the selected ones
-        per_file_ignores: List of mappings from file pattern to code to exclude
-        fixable: List of rule codes to treat as eligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`)
-        unfixable: List of rule codes to treat as ineligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`)
-        exclude: List of paths, used to omit files and/or directories from analysis
-        extend_exclude: Like --exclude, but adds additional files and directories on top of those already excluded
-        respect_gitignore: Respect file exclusions via `.gitignore` and other standard ignore files
-        force_exclude: Enforce exclusions, even for paths passed to Ruff directly on the command-line
-        no_cache: Disable cache reads
-        isolated: Ignore all configuration files
-        cache_dir: Path to the cache directory [env: RUFF_CACHE_DIR=]
-        stdin_filename: The name of the file when passing it through stdin
-        exit_zero: Exit with status code "0", even upon detecting lint violations
-        exit_non_zero_on_fix: Exit with a non-zero status code if any files were modified via autofix, even if no lint violations remain
+        fix: Attempt to automatically fix lint violations.
+        config: Path to the `pyproject.toml` or `ruff.toml` file to use for configuration.
+        show_source: Show violations with source code.
+        show_fixes: Show an enumeration of all autofixed lint violations.
+        diff: Avoid writing any fixed files back; instead, output a diff for each changed file to stdout.
+        watch: Run in watch mode by re-running whenever files change.
+        fix_only: Fix any fixable lint violations, but don't report on leftover violations. Implies `--fix`.
+        output_format: Output serialization format for violations (env: RUFF_FORMAT=) (possible values: text, json, junit, grouped, github, gitlab, pylint).
+        statistics: Show counts for every rule with at least one violation.
+        add_noqa: Enable automatic additions of `noqa` directives to failing lines.
+        show_files: See the files Ruff will be run against with the current settings.
+        show_settings: See the settings Ruff will use to lint a given Python file.
+        select: Comma-separated list of rule codes to enable (or ALL, to enable all rules).
+        ignore: Comma-separated list of rule codes to disable.
+        extend_select: Like --select, but adds additional rule codes on top of the selected ones.
+        per_file_ignores: List of mappings from file pattern to code to exclude.
+        fixable: List of rule codes to treat as eligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`).
+        unfixable: List of rule codes to treat as ineligible for autofix. Only applicable when autofix itself is enabled (e.g., via `--fix`).
+        exclude: List of paths, used to omit files and/or directories from analysis.
+        extend_exclude: Like --exclude, but adds additional files and directories on top of those already excluded.
+        respect_gitignore: Respect file exclusions via `.gitignore` and other standard ignore files.
+        force_exclude: Enforce exclusions, even for paths passed to Ruff directly on the command-line.
+        no_cache: Disable cache reads.
+        isolated: Ignore all configuration files.
+        cache_dir: Path to the cache directory (env: RUFF_CACHE_DIR=).
+        stdin_filename: The name of the file when passing it through stdin.
+        exit_zero: Exit with status code "0", even upon detecting lint violations.
+        exit_non_zero_on_fix: Exit with a non-zero status code if any files were modified via autofix, even if no lint violations remain.
         verbose: Enable verbose logging.
         quiet: Print lint violations, but nothing else.
         silent: Disable all logging (but still exit with status code "1" upon detecting lint violations).
@@ -368,7 +368,7 @@ def linter(
     """List all supported upstream linters.
 
     Parameters:
-        output_format: Output format [default: pretty] [possible values: text, json, pretty].
+        output_format: Output format (default: pretty) (possible values: text, json, pretty).
         verbose: Enable verbose logging.
         quiet: Print lint violations, but nothing else.
         silent: Disable all logging (but still exit with status code "1" upon detecting lint violations).
