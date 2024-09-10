@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.2](https://github.com/pawamoy/duty/releases/tag/1.4.2) - 2024-09-10
+
+<small>[Compare with 1.4.1](https://github.com/pawamoy/duty/compare/1.4.1...1.4.2)</small>
+
+### Bug Fixes
+
+- Add missing (new) `check_only` argument to blacken-docs ([1a6dc99](https://github.com/pawamoy/duty/commit/1a6dc995dc0caa47d8734a9feb54eb766652cadc) by Timothée Mazzucotelli). [Issue-22](https://github.com/pawamoy/duty/issues/22)
+
 ## [1.4.1](https://github.com/pawamoy/duty/releases/tag/1.4.1) - 2024-08-15
 
 <small>[Compare with 1.4.0](https://github.com/pawamoy/duty/compare/1.4.0...1.4.1)</small>
