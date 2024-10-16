@@ -96,4 +96,8 @@ def test_workdir_as_context_manager(monkeypatch: pytest.MonkeyPatch) -> None:
     records.append(failure.value.code)
 
     base = records[0]
-    assert records == [base, base - 1, base - 2, base - 3]
+
+    # If the repository is checked out near the root of the filesystem, the working directory will
+    # eventually be the root, so cap the lowest depth at 1.
+    expected_depths = [max(1, base - offset) for offset in range(len(records))]
+    assert records == expected_depths
