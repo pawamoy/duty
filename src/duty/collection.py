@@ -6,11 +6,11 @@ import inspect
 import sys
 from copy import deepcopy
 from importlib import util as importlib_util
-from typing import Any, Callable, ClassVar, List, Union
+from typing import Any, Callable, ClassVar, Union
 
 from duty.context import Context
 
-DutyListType = List[Union[str, Callable, "Duty"]]
+DutyListType = list[Union[str, Callable, "Duty"]]
 default_duties_file = "duties.py"
 
 

@@ -5,12 +5,12 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
-from functools import lru_cache
+from functools import cache
 
 from failprint.lazy import lazy
 
 
-@lru_cache(maxsize=None)
+@cache
 def _find_ruff() -> str:
     from ruff.__main__ import find_ruff_bin
 

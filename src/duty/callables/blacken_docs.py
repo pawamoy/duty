@@ -4,9 +4,13 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
-from typing import Pattern, Sequence
+from re import Pattern
+from typing import TYPE_CHECKING
 
 from failprint.lazy import lazy
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 
 @lazy(name="blacken_docs")

@@ -4,14 +4,17 @@ from __future__ import annotations
 
 import os
 from contextlib import contextmanager, suppress
-from typing import Any, Callable, Iterator, List, Union
+from typing import TYPE_CHECKING, Any, Callable, Union
 
 from failprint.runners import run as failprint_run
 
 from duty.exceptions import DutyFailure
 from duty.tools import Tool
 
-CmdType = Union[str, List[str], Callable]
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
+CmdType = Union[str, list[str], Callable]
 
 
 class Context:

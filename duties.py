@@ -117,12 +117,8 @@ def docs(ctx: Context, *cli_args: str, host: str = "127.0.0.1", port: int = 8000
 
 
 @duty
-def docs_deploy(ctx: Context, *, force: bool = False) -> None:
-    """Deploy the documentation to GitHub pages.
-
-    Parameters:
-        force: Whether to force deployment, even from non-Insiders version.
-    """
+def docs_deploy(ctx: Context) -> None:
+    """Deploy the documentation to GitHub pages."""
     os.environ["DEPLOY"] = "true"
     with material_insiders() as insiders:
         if not insiders:

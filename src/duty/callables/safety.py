@@ -5,9 +5,12 @@ from __future__ import annotations
 import importlib
 import sys
 from io import StringIO
-from typing import Literal, Sequence, cast
+from typing import TYPE_CHECKING, Literal, cast
 
 from failprint.lazy import lazy
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 
 @lazy(name="safety.check")

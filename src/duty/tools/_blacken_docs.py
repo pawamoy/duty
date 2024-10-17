@@ -4,9 +4,13 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
-from typing import Pattern, Sequence
+from re import Pattern
+from typing import TYPE_CHECKING
 
 from duty.tools._base import Tool
+
+if TYPE_CHECKING:
+    from collections.abc import Sequence
 
 
 class blacken_docs(Tool):  # noqa: N801

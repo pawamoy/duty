@@ -4,11 +4,13 @@ from __future__ import annotations
 
 import inspect
 from functools import wraps
-from typing import TYPE_CHECKING, Any, Callable, Iterable, overload
+from typing import TYPE_CHECKING, Any, Callable, overload
 
 from duty.collection import Duty, DutyListType
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from duty.context import Context
 
 

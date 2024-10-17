@@ -12,9 +12,12 @@ import textwrap
 from contextlib import suppress
 from functools import cached_property, partial
 from inspect import Parameter, Signature, signature
-from typing import Any, Callable, ForwardRef, Sequence, Union, get_args, get_origin
+from typing import TYPE_CHECKING, Any, Callable, ForwardRef, Union, get_args, get_origin
 
-# TODO: Update once support for Python 3.9 is dropped.
+if TYPE_CHECKING:
+    from collections.abc import Sequence
+
+# YORE: EOL 3.9: Replace block with lines 6-13.
 if sys.version_info < (3, 10):
     from eval_type_backport import eval_type_backport as eval_type
 
