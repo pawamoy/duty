@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.3](https://github.com/pawamoy/duty/releases/tag/1.4.3) - 2024-10-17
+
+<small>[Compare with 1.4.2](https://github.com/pawamoy/duty/compare/1.4.2...1.4.3)</small>
+
+### Build
+
+- Drop support for Python 3.8 ([4f5d6ec](https://github.com/pawamoy/duty/commit/4f5d6ecbb0a84e5c42cab4d584239f16e8397d86) by Timothée Mazzucotelli).
+
 ## [1.4.2](https://github.com/pawamoy/duty/releases/tag/1.4.2) - 2024-09-10
 
 <small>[Compare with 1.4.1](https://github.com/pawamoy/duty/compare/1.4.1...1.4.2)</small>
