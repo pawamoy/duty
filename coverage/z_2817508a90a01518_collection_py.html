@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src/duty/collection.py: 99.05%</title>
-    <link rel="icon" sizes="32x32" href="favicon_32.png">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <script src="coverage_html.js" defer></script>
+    <title>Coverage for src/duty/collection.py: 98.99%</title>
+    <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
+    <link rel="stylesheet" href="style_cb_8e611ae1.css" type="text/css">
+    <script src="coverage_html_cb_6fb7b396.js" defer></script>
 </head>
 <body class="pyfile">
 <header>
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>src/duty/collection.py</b>:
-            <span class="pc_cov">99.05%</span>
+            <span class="pc_cov">98.99%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
-                <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts">
+                <img id="keyboard_icon" src="keybd_closed_cb_ce680311.png" alt="Show/hide keyboard shortcuts">
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
@@ -66,8 +66,8 @@
             <a id="indexLink" class="nav" href="covindex.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="z_2817508a90a01518_context_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.5.0">coverage.py v7.5.0</a>,
-            created at 2024-05-18 15:34 +0200
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.6.3">coverage.py v7.6.3</a>,
+            created at 2024-10-17 17:18 +0200
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -90,11 +90,11 @@
     <p class="run"><span class="n"><a id="t6" href="#t6">6</a></span><span class="t"><span class="key">import</span> <span class="nam">sys</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t7" href="#t7">7</a></span><span class="t"><span class="key">from</span> <span class="nam">copy</span> <span class="key">import</span> <span class="nam">deepcopy</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t8" href="#t8">8</a></span><span class="t"><span class="key">from</span> <span class="nam">importlib</span> <span class="key">import</span> <span class="nam">util</span> <span class="key">as</span> <span class="nam">importlib_util</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t9" href="#t9">9</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Callable</span><span class="op">,</span> <span class="nam">ClassVar</span><span class="op">,</span> <span class="nam">List</span><span class="op">,</span> <span class="nam">Union</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t9" href="#t9">9</a></span><span class="t"><span class="key">from</span> <span class="nam">typing</span> <span class="key">import</span> <span class="nam">Any</span><span class="op">,</span> <span class="nam">Callable</span><span class="op">,</span> <span class="nam">ClassVar</span><span class="op">,</span> <span class="nam">Union</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t10" href="#t10">10</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t11" href="#t11">11</a></span><span class="t"><span class="key">from</span> <span class="nam">duty</span><span class="op">.</span><span class="nam">context</span> <span class="key">import</span> <span class="nam">Context</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t12" href="#t12">12</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="nam">DutyListType</span> <span class="op">=</span> <span class="nam">List</span><span class="op">[</span><span class="nam">Union</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">Callable</span><span class="op">,</span> <span class="str">"Duty"</span><span class="op">]</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t13" href="#t13">13</a></span><span class="t"><span class="nam">DutyListType</span> <span class="op">=</span> <span class="nam">list</span><span class="op">[</span><span class="nam">Union</span><span class="op">[</span><span class="nam">str</span><span class="op">,</span> <span class="nam">Callable</span><span class="op">,</span> <span class="str">"Duty"</span><span class="op">]</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t14" href="#t14">14</a></span><span class="t"><span class="nam">default_duties_file</span> <span class="op">=</span> <span class="str">"duties.py"</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t15" href="#t15">15</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t16" href="#t16">16</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
@@ -279,7 +279,7 @@
     <p class="pln"><span class="n"><a id="t195" href="#t195">195</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t196" href="#t196">196</a></span><span class="t">        <span class="nam">path</span> <span class="op">=</span> <span class="nam">path</span> <span class="key">or</span> <span class="nam">self</span><span class="op">.</span><span class="nam">path</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t197" href="#t197">197</a></span><span class="t">        <span class="nam">spec</span> <span class="op">=</span> <span class="nam">importlib_util</span><span class="op">.</span><span class="nam">spec_from_file_location</span><span class="op">(</span><span class="str">"duty.duties"</span><span class="op">,</span> <span class="nam">path</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par run show_par"><span class="n"><a id="t198" href="#t198">198</a></span><span class="t">        <span class="key">if</span> <span class="nam">spec</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">198&#x202F;&#x219B;&#x202F;exit</span><span class="annotate long">line 198 didn't return from function 'load', because the condition on line 198 was never false</span></span></p>
+    <p class="par run show_par"><span class="n"><a id="t198" href="#t198">198</a></span><span class="t">        <span class="key">if</span> <span class="nam">spec</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">198&#x202F;&#x219B;&#x202F;exit</span><span class="annotate long">line 198 didn't return from function 'load' because the condition on line 198 was always true</span></span></p>
     <p class="run"><span class="n"><a id="t199" href="#t199">199</a></span><span class="t">            <span class="nam">duties</span> <span class="op">=</span> <span class="nam">importlib_util</span><span class="op">.</span><span class="nam">module_from_spec</span><span class="op">(</span><span class="nam">spec</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t200" href="#t200">200</a></span><span class="t">            <span class="nam">sys</span><span class="op">.</span><span class="nam">modules</span><span class="op">[</span><span class="str">"duty.duties"</span><span class="op">]</span> <span class="op">=</span> <span class="nam">duties</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t201" href="#t201">201</a></span><span class="t">            <span class="nam">spec</span><span class="op">.</span><span class="nam">loader</span><span class="op">.</span><span class="nam">exec_module</span><span class="op">(</span><span class="nam">duties</span><span class="op">)</span>  <span class="com"># type: ignore[union-attr]</span>&nbsp;</span><span class="r"></span></p>
@@ -294,8 +294,8 @@
             <a class="nav" href="covindex.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="z_2817508a90a01518_context_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.5.0">coverage.py v7.5.0</a>,
-            created at 2024-05-18 15:34 +0200
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.6.3">coverage.py v7.6.3</a>,
+            created at 2024-10-17 17:18 +0200
         </p>
     </div>
 </footer>

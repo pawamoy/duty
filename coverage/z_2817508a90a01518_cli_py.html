@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src/duty/cli.py: 98.68%</title>
-    <link rel="icon" sizes="32x32" href="favicon_32.png">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <script src="coverage_html.js" defer></script>
+    <title>Coverage for src/duty/cli.py: 98.67%</title>
+    <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
+    <link rel="stylesheet" href="style_cb_8e611ae1.css" type="text/css">
+    <script src="coverage_html_cb_6fb7b396.js" defer></script>
 </head>
 <body class="pyfile">
 <header>
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>src/duty/cli.py</b>:
-            <span class="pc_cov">98.68%</span>
+            <span class="pc_cov">98.67%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
-                <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts">
+                <img id="keyboard_icon" src="keybd_closed_cb_ce680311.png" alt="Show/hide keyboard shortcuts">
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
@@ -66,8 +66,8 @@
             <a id="indexLink" class="nav" href="covindex.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="z_2817508a90a01518_collection_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.5.0">coverage.py v7.5.0</a>,
-            created at 2024-05-19 13:01 +0200
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.6.3">coverage.py v7.6.3</a>,
+            created at 2024-10-17 17:18 +0200
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -298,7 +298,7 @@
     <p class="run"><span class="n"><a id="t214" href="#t214">214</a></span><span class="t">    <span class="key">for</span> <span class="nam">arg_list</span> <span class="key">in</span> <span class="nam">arg_lists</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t215" href="#t215">215</a></span><span class="t">        <span class="nam">duty</span> <span class="op">=</span> <span class="nam">collection</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="nam">arg_list</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t216" href="#t216">216</a></span><span class="t">        <span class="nam">opts</span><span class="op">,</span> <span class="nam">remainder</span> <span class="op">=</span> <span class="nam">parse_options</span><span class="op">(</span><span class="nam">duty</span><span class="op">,</span> <span class="nam">arg_list</span><span class="op">[</span><span class="num">1</span><span class="op">:</span><span class="op">]</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par run show_par"><span class="n"><a id="t217" href="#t217">217</a></span><span class="t">        <span class="key">if</span> <span class="nam">remainder</span> <span class="key">and</span> <span class="nam">remainder</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">==</span> <span class="str">"--"</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">217&#x202F;&#x219B;&#x202F;218</span><span class="annotate long">line 217 didn't jump to line 218, because the condition on line 217 was never true</span></span></p>
+    <p class="par run show_par"><span class="n"><a id="t217" href="#t217">217</a></span><span class="t">        <span class="key">if</span> <span class="nam">remainder</span> <span class="key">and</span> <span class="nam">remainder</span><span class="op">[</span><span class="num">0</span><span class="op">]</span> <span class="op">==</span> <span class="str">"--"</span><span class="op">:</span>&nbsp;</span><span class="r"><span class="annotate short">217&#x202F;&#x219B;&#x202F;218</span><span class="annotate long">line 217 didn't jump to line 218 because the condition on line 217 was never true</span></span></p>
     <p class="mis show_mis"><span class="n"><a id="t218" href="#t218">218</a></span><span class="t">            <span class="nam">remainder</span> <span class="op">=</span> <span class="nam">remainder</span><span class="op">[</span><span class="num">1</span><span class="op">:</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t219" href="#t219">219</a></span><span class="t">        <span class="nam">duty</span><span class="op">.</span><span class="nam">options_override</span> <span class="op">=</span> <span class="op">{</span><span class="op">**</span><span class="nam">global_opts</span><span class="op">,</span> <span class="op">**</span><span class="nam">opts</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t220" href="#t220">220</a></span><span class="t">        <span class="nam">commands</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="op">(</span><span class="nam">duty</span><span class="op">,</span> <span class="op">*</span><span class="nam">parse_args</span><span class="op">(</span><span class="nam">duty</span><span class="op">,</span> <span class="nam">remainder</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -385,8 +385,8 @@
             <a class="nav" href="covindex.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="z_2817508a90a01518_collection_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.5.0">coverage.py v7.5.0</a>,
-            created at 2024-05-19 13:01 +0200
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.6.3">coverage.py v7.6.3</a>,
+            created at 2024-10-17 17:18 +0200
         </p>
     </div>
 </footer>
