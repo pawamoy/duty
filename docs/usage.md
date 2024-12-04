@@ -778,6 +778,8 @@ It is not possible to capture only stdout, or only stderr,
 and let the other one be printed to the console.
 Capturing one is capturing both, but discarding the other.
 
+WARNING: **Windows quirks.** On Windows you might need to set the following environment variables to allow proper output capture: `PYTHONLEGACYWINDOWSSTDIO=1`, `PYTHONUTF8=1`, `PYTHONIOENCODING=UTF8`. If the `✓` and `✗` characters are mangled, try changing them by [customizing the output format](#formatting-duty-output).
+
 ### Formatting duty output
 
 Thanks to its underlying [`failprint`](https://github.com/pawamoy/failprint) dependency,
