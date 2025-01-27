@@ -71,8 +71,8 @@ def get_parser() -> ArgParser:
         help="Show this help message and exit. Pass duties names to print their help.",
     )
     parser.add_argument(
-        "--completion",
-        dest="completion",
+        "--complete",
+        dest="complete",
         nargs="+",
         help=argparse.SUPPRESS,
     )
@@ -268,9 +268,9 @@ def main(args: list[str] | None = None) -> int:
     collection = Collection(opts.duties_file)
     collection.load()
 
-    if opts.completion:
+    if opts.complete:
         # TODO: Support `-`/`--` flag candidates.
-        # TODO: Add duty parameters based on current command line (list of strings in opts.completion).
+        # TODO: Add duty parameters based on current command line (list of strings in opts.complete).
         # -> Find right-most duty, output it's param names, suffixed with `=`.
         print(
             *collection.completion_candidates(
