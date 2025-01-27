@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import inspect
+import os
 import sys
 import textwrap
 from typing import Any
@@ -260,6 +261,16 @@ def main(args: list[str] | None = None) -> int:
 
     collection = Collection(opts.duties_file)
     collection.load()
+
+    if prompt := (os.environ.get("_DUTY_COMPLETE") or "").strip():
+        # TODO: support `-`/`--` flag candidates
+        print(
+            *collection.completion_candidates(
+                include_aliases=not os.environ.get("_DUTY_COMPLETE_NO_ALIASES"),
+            ),
+            sep="\n",
+        )
+        return 0
 
     if opts.help is not None:
         print_help(parser, opts, collection)

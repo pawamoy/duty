@@ -31,6 +31,7 @@ def create_duty(
     post: DutyListType | None = None,
     skip_if: bool = False,
     skip_reason: str | None = None,
+    shell_completions: bool = True,
     **opts: Any,
 ) -> Duty:
     """Register a duty in the collection.
@@ -43,6 +44,7 @@ def create_duty(
         post: Post-duties.
         skip_if: Skip running the duty if the given condition is met.
         skip_reason: Custom message when skipping.
+        shell_completions: Whether to show this duty name as a shell completion where appropriate.
         opts: Options passed to the context.
 
     Returns:
@@ -57,7 +59,16 @@ def create_duty(
     description = inspect.getdoc(func) or ""
     if skip_if:
         func = _skip(func, skip_reason or f"{dash_name}: skipped")
-    duty = Duty(name, description, func, aliases=aliases, pre=pre, post=post, opts=opts)
+    duty = Duty(
+        name,
+        description,
+        func,
+        aliases=aliases,
+        pre=pre,
+        post=post,
+        opts=opts,
+        shell_completions=shell_completions,
+    )
     duty.__name__ = name  # type: ignore[attr-defined]
     duty.__doc__ = description
     duty.__wrapped__ = func  # type: ignore[attr-defined]
