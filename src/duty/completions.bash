@@ -8,7 +8,7 @@ _complete_duty() {{
     # program name).
     # We hand it to Invoke so it can figure out the current context: spit back
     # core options, task names, the current task's options, or some combo.
-    _DUTY_COMPLETE=1 candidates=`{binary} ${{COMP_WORDS[*]}}`
+    candidates=$({binary} --completion "${{COMP_WORDS[@]}}")
 
     # `compgen -W` takes list of valid options & a partial word & spits back
     # possible matches. Necessary for any partial word completions (vs
@@ -19,6 +19,9 @@ _complete_duty() {{
     # our candidate list which actually matches.
     #
     # COMPREPLY is the list of valid completions handed back to `complete`.
+    # TODO: What's in $2? Do we need it?
+    # > compgen: compgen [...] [word]
+    # > If the optional WORD argument is supplied, matches against WORD are generated.
     COMPREPLY=( $(compgen -W "${{candidates}}" -- $2) )
 }}
 

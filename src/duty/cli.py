@@ -70,6 +70,12 @@ def get_parser() -> ArgParser:
         metavar="DUTY",
         help="Show this help message and exit. Pass duties names to print their help.",
     )
+    parser.add_argument(
+        "--completion",
+        dest="completion",
+        nargs="+",
+        help=argparse.SUPPRESS,
+    )
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug.get_version()}")
     parser.add_argument("--debug-info", action=_DebugInfo, help="Print debug information.")
 
@@ -262,8 +268,10 @@ def main(args: list[str] | None = None) -> int:
     collection = Collection(opts.duties_file)
     collection.load()
 
-    if prompt := (os.environ.get("_DUTY_COMPLETE") or "").strip():
-        # TODO: support `-`/`--` flag candidates
+    if opts.completion:
+        # TODO: Support `-`/`--` flag candidates.
+        # TODO: Add duty parameters based on current command line (list of strings in opts.completion).
+        # -> Find right-most duty, output it's param names, suffixed with `=`.
         print(
             *collection.completion_candidates(
                 include_aliases=not os.environ.get("_DUTY_COMPLETE_NO_ALIASES"),
