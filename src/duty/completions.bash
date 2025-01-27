@@ -19,9 +19,6 @@ _complete_duty() {{
     # our candidate list which actually matches.
     #
     # COMPREPLY is the list of valid completions handed back to `complete`.
-    # TODO: What's in $2? Do we need it?
-    # > compgen: compgen [...] [word]
-    # > If the optional WORD argument is supplied, matches against WORD are generated.
     COMPREPLY=( $(compgen -W "${{candidates}}" -- $2) )
 }}
 
