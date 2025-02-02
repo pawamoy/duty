@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.5.0](https://github.com/pawamoy/duty/releases/tag/1.5.0) - 2025-02-02
+
+<small>[Compare with 1.4.3](https://github.com/pawamoy/duty/compare/1.4.3...1.5.0)</small>
+
+### Features
+
+- Enable Bash completions ([9ed4400](https://github.com/pawamoy/duty/commit/9ed44002ff8e122ea6e5aaaf4a968e08d0dc83fd) by Bartosz Sławecki). [Issue-27](https://github.com/pawamoy/duty/issues/27), [PR-33](https://github.com/pawamoy/duty/pull/33), Co-authored-by: Timothée Mazzucotelli <dev@pawamoy.fr>
+
 ## [1.4.3](https://github.com/pawamoy/duty/releases/tag/1.4.3) - 2024-10-17
 
 <small>[Compare with 1.4.2](https://github.com/pawamoy/duty/compare/1.4.2...1.4.3)</small>
