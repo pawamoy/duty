@@ -18,7 +18,7 @@ import inspect
 import sys
 import textwrap
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
 from failprint.cli import ArgParser, add_flags
 
@@ -26,10 +26,6 @@ from duty import debug
 from duty.collection import Collection, Duty
 from duty.exceptions import DutyFailure
 from duty.validation import validate
-
-if TYPE_CHECKING:
-    from collections.abc import Iterator
-
 
 empty = inspect.Signature.empty
 
@@ -260,20 +256,6 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
-def _parser_completions(parser: ArgParser) -> Iterator[str]:
-    cli_opts: dict[str, list[str] | None] = {
-        opt: None for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
-    }
-    cli_opts["--capture"] = ["both", "none", "stdout", "stderr"]
-    cli_opts["--fmt"] = cli_opts["--format"] = ["pretty", "tap"]
-    for opt, choices in cli_opts.items():
-        if choices:
-            for choice in choices:
-                yield f"{opt}={choice}"
-        else:
-            yield opt
-
-
 def main(args: list[str] | None = None) -> int:
     """Run the main program.
 
@@ -298,7 +280,9 @@ def main(args: list[str] | None = None) -> int:
 
     if opts.complete:
         words = collection.completion_candidates(remainder)
-        words += sorted(_parser_completions(parser))
+        words += sorted(
+            opt for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
+        )
         print(*words, sep="\n")
         return 0
 
