@@ -647,7 +647,7 @@ You can also pass parameters as positional arguments:
 duty shoot 5,15
 ```
 
-WARNING: **Limitation with positional arguments.**  
+WARNING: **Limitation with positional arguments.**
 When passing positional arguments,
 make sure there is no overlap between other duties' names
 and the argument value, otherwise `duty` will not be able
@@ -713,7 +713,7 @@ def play(ctx, file):
 ```bash
 duty --capture=none --strict play this-file.mp4
 # or with the short options
-duty -Zc none play this-file.mp4 
+duty -Zc none play this-file.mp4
 ```
 
 #### Local options
@@ -724,7 +724,7 @@ you can pass them to a specific duty on the command line.
 If we use the previous example again:
 
 ```bash
-duty play -Zc none this-file.mp4 
+duty play -Zc none this-file.mp4
 ```
 
 It allows to use different options for different duties
@@ -791,7 +791,7 @@ For example, the two builtin `failprint` formats are:
   ```jinja
   {% if success %}<green>✓</green>
   {% elif nofail %}<yellow>✗</yellow>
-  {% else %}<red>✗</red>{% endif %} 
+  {% else %}<red>✗</red>{% endif %}
   <bold>{{ title or command }}</bold>
   {% if failure %} ({{ code }}){% endif %}
   {% if failure and output and not quiet %}\n

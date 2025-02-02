@@ -24,10 +24,9 @@ from duty.tools._ssort import ssort
 from duty.tools._twine import twine
 
 __all__ = [
-    "Tool",
-    "LazyStdout",
     "LazyStderr",
-    "lazy",
+    "LazyStdout",
+    "Tool",
     "autoflake",
     "black",
     "blacken_docs",
@@ -38,6 +37,7 @@ __all__ = [
     "griffe",
     "interrogate",
     "isort",
+    "lazy",
     "mkdocs",
     "mypy",
     "pytest",

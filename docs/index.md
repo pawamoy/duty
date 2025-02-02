@@ -63,7 +63,7 @@ clean:
 ```
 
 See [our Makefile](https://github.com/pawamoy/duty/blob/main/Makefile)
-for inspiration. 
+for inspiration.
 
 ### [Task](https://taskfile.dev/)?
 
