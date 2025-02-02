@@ -17,6 +17,7 @@ import argparse
 import inspect
 import sys
 import textwrap
+from pathlib import Path
 from typing import Any
 
 from failprint.cli import ArgParser, add_flags
@@ -68,6 +69,18 @@ def get_parser() -> ArgParser:
         nargs="*",
         metavar="DUTY",
         help="Show this help message and exit. Pass duties names to print their help.",
+    )
+    parser.add_argument(
+        "--completion",
+        dest="completion",
+        action="store_true",
+        help=argparse.SUPPRESS,
+    )
+    parser.add_argument(
+        "--complete",
+        dest="complete",
+        action="store_true",
+        help=argparse.SUPPRESS,
     )
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug.get_version()}")
     parser.add_argument("--debug-info", action=_DebugInfo, help="Print debug information.")
@@ -261,6 +274,18 @@ def main(args: list[str] | None = None) -> int:
     collection = Collection(opts.duties_file)
     collection.load()
 
+    if opts.completion:
+        print(Path(__file__).parent.joinpath("completions.bash").read_text())
+        return 0
+
+    if opts.complete:
+        words = collection.completion_candidates(remainder)
+        words += sorted(
+            opt for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
+        )
+        print(*words, sep="\n")
+        return 0
+
     if opts.help is not None:
         print_help(parser, opts, collection)
         return 0
@@ -279,7 +304,10 @@ def main(args: list[str] | None = None) -> int:
         print_help(parser, opts, collection)
         return 1
 
-    global_opts = specified_options(opts, exclude={"duties_file", "list", "help", "remainder"})
+    global_opts = specified_options(
+        opts,
+        exclude={"duties_file", "list", "help", "remainder", "complete", "completion"},
+    )
     try:
         commands = parse_commands(arg_lists, global_opts, collection)
     except TypeError as error:

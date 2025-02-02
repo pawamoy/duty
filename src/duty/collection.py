@@ -143,6 +143,35 @@ class Collection:
         """
         return list(self.duties.keys()) + list(self.aliases.keys())
 
+    def completion_candidates(self, args: tuple[str, ...]) -> list[str]:
+        """Find shell completion candidates within this collection.
+
+        Returns:
+            The list of shell completion candidates, sorted alphabetically.
+        """
+        # Find last duty name in args.
+        name = None
+        names = set(self.names())
+        for arg in reversed(args):
+            if arg in names:
+                name = arg
+                break
+
+        completion_names = sorted(names)
+
+        # If no duty found, return names.
+        if name is None:
+            return completion_names
+
+        params = [
+            f"{param.name}="
+            for param in inspect.signature(self.get(name).function).parameters.values()
+            if param.kind is not param.VAR_POSITIONAL
+        ][1:]
+
+        # If duty found, return names *and* duty parameters.
+        return completion_names + sorted(params)
+
     def get(self, name_or_alias: str) -> Duty:
         """Get a duty by its name or alias.
 

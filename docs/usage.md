@@ -874,3 +874,15 @@ export FAILPRINT_FORMAT="custom={{output}}"
 
 duty task1 task2
 ```
+
+### Shell completions
+
+You can enable auto-completion in Bash with these commands:
+
+```bash
+completions_dir="${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions"
+mkdir -p "${completions_dir}"
+duty --completion > "${completions_dir}/duty"
+```
+
+Only Bash is supported for now.

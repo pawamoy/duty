@@ -68,3 +68,19 @@ def test_add_duty_to_multiple_collections() -> None:
     assert duty1 is not duty2
     assert duty1.collection is collection1
     assert duty2.collection is collection2
+
+
+def test_completion_candidates() -> None:
+    """Check whether proper completion candidates are returned from collections."""
+    collection = Collection()
+
+    collection.add(decorate(none, name="duty_1"))  # type: ignore[call-overload]
+    collection.add(decorate(none, name="duty_2", aliases=["alias_2"]))  # type: ignore[call-overload]
+
+    assert collection.completion_candidates(("duty",)) == [
+        "alias_2",
+        "duty-1",
+        "duty-2",
+        "duty_1",
+        "duty_2",
+    ]
