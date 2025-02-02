@@ -15,10 +15,10 @@ from __future__ import annotations
 
 import argparse
 import inspect
-import os
 import sys
 import textwrap
-from typing import Any
+from pathlib import Path
+from typing import TYPE_CHECKING, Any
 
 from failprint.cli import ArgParser, add_flags
 
@@ -26,6 +26,10 @@ from duty import debug
 from duty.collection import Collection, Duty
 from duty.exceptions import DutyFailure
 from duty.validation import validate
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
 
 empty = inspect.Signature.empty
 
@@ -71,9 +75,15 @@ def get_parser() -> ArgParser:
         help="Show this help message and exit. Pass duties names to print their help.",
     )
     parser.add_argument(
+        "--completion",
+        dest="completion",
+        action="store_true",
+        help=argparse.SUPPRESS,
+    )
+    parser.add_argument(
         "--complete",
         dest="complete",
-        nargs="+",
+        action="store_true",
         help=argparse.SUPPRESS,
     )
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug.get_version()}")
@@ -250,6 +260,20 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
+def _parser_completions(parser: ArgParser) -> Iterator[str]:
+    cli_opts: dict[str, list[str] | None] = {
+        opt: None for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
+    }
+    cli_opts["--capture"] = ["both", "none", "stdout", "stderr"]
+    cli_opts["--fmt"] = cli_opts["--format"] = ["pretty", "tap"]
+    for opt, choices in cli_opts.items():
+        if choices:
+            for choice in choices:
+                yield f"{opt}={choice}"
+        else:
+            yield opt
+
+
 def main(args: list[str] | None = None) -> int:
     """Run the main program.
 
@@ -268,16 +292,14 @@ def main(args: list[str] | None = None) -> int:
     collection = Collection(opts.duties_file)
     collection.load()
 
+    if opts.completion:
+        print(Path(__file__).parent.joinpath("completions.bash").read_text())
+        return 0
+
     if opts.complete:
-        # TODO: Support `-`/`--` flag candidates.
-        # TODO: Add duty parameters based on current command line (list of strings in opts.complete).
-        # -> Find right-most duty, output it's param names, suffixed with `=`.
-        print(
-            *collection.completion_candidates(
-                include_aliases=not os.environ.get("_DUTY_COMPLETE_NO_ALIASES"),
-            ),
-            sep="\n",
-        )
+        words = collection.completion_candidates(remainder)
+        words += sorted(_parser_completions(parser))
+        print(*words, sep="\n")
         return 0
 
     if opts.help is not None:
@@ -298,7 +320,10 @@ def main(args: list[str] | None = None) -> int:
         print_help(parser, opts, collection)
         return 1
 
-    global_opts = specified_options(opts, exclude={"duties_file", "list", "help", "remainder"})
+    global_opts = specified_options(
+        opts,
+        exclude={"duties_file", "list", "help", "remainder", "complete", "completion"},
+    )
     try:
         commands = parse_commands(arg_lists, global_opts, collection)
     except TypeError as error:

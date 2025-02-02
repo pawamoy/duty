@@ -78,7 +78,7 @@ def test_completion_candidates() -> None:
     collection.add(decorate(none, name="duty_2", shell_completions=False))  # type: ignore[call-overload]
     collection.add(decorate(none, name="duty_3", aliases=["alias_3"]))  # type: ignore[call-overload]
 
-    assert collection.completion_candidates(include_aliases=True) == [
+    assert collection.completion_candidates(("duty",)) == [
         "alias_3",
         "duty-1",
         "duty-3",
@@ -86,7 +86,7 @@ def test_completion_candidates() -> None:
         "duty_3",
     ]
 
-    assert collection.completion_candidates(include_aliases=False) == [
+    assert collection.completion_candidates(("duty",)) == [
         "duty-1",
         "duty-3",
     ]

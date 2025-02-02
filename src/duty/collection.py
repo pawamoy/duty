@@ -6,7 +6,6 @@ import inspect
 import sys
 from copy import deepcopy
 from importlib import util as importlib_util
-from itertools import chain
 from typing import Any, Callable, ClassVar, Union
 
 from duty.context import Context
@@ -29,7 +28,6 @@ class Duty:
         aliases: set | None = None,
         pre: DutyListType | None = None,
         post: DutyListType | None = None,
-        shell_completions: bool = True,
         opts: dict[str, Any] | None = None,
     ) -> None:
         """Initialize the duty.
@@ -42,7 +40,6 @@ class Duty:
             aliases: A list of aliases for this duty.
             pre: A list of duties to run before this one.
             post: A list of duties to run after this one.
-            shell_completions: Whether to regard this duty in shell completions.
             opts: Options used to create the context instance.
         """
         self.name = name
@@ -53,7 +50,6 @@ class Duty:
         self.post = post or []
         self.options = opts or self.default_options
         self.options_override: dict = {}
-        self.shell_completions = shell_completions
 
         self.collection: Collection | None = None
         if collection:
@@ -147,23 +143,34 @@ class Collection:
         """
         return list(self.duties.keys()) + list(self.aliases.keys())
 
-    def completion_candidates(self, *, include_aliases: bool = True) -> list[str]:
-        """
-        Find shell completion candidates within this collection.
-
-        Parameters:
-            include_aliases: Whether to count aliases as valid completion candidates.
+    def completion_candidates(self, args: tuple[str, ...]) -> list[str]:
+        """Find shell completion candidates within this collection.
 
         Returns:
             The list of shell completion candidates, sorted alphabetically.
         """
-        return sorted(
-            chain.from_iterable(
-                (duty.name, *(duty.aliases if include_aliases else ()))
-                for duty in self.duties.values()
-                if duty.shell_completions
-            )
-        )
+        # Find last duty name in args.
+        name = None
+        names = set(self.names())
+        for arg in reversed(args):
+            if arg in names:
+                name = arg
+                break
+
+        completion_names = sorted(names)
+
+        # If no duty found, return names.
+        if name is None:
+            return completion_names
+
+        params = [
+            f"{param.name}="
+            for param in inspect.signature(self.get(name).function).parameters.values()
+            if param.kind is not param.VAR_POSITIONAL
+        ][1:]
+
+        # If duty found, return names *and* duty parameters.
+        return completion_names + sorted(params)
 
     def get(self, name_or_alias: str) -> Duty:
         """Get a duty by its name or alias.
