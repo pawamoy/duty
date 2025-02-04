@@ -885,4 +885,12 @@ mkdir -p "${completions_dir}"
 duty --completion > "${completions_dir}/duty"
 ```
 
-Only Bash is supported for now.
+Or in Zsh with:
+
+```zsh
+completions_dir="$HOME/.duty"
+mkdir -p "${completions_dir}"
+echo "source ${completions_dir}/completion" >> $HOME/.zshrc
+duty --completion > "${completions_dir}/completion"
+exec zsh
+```

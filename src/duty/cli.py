@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import inspect
 import sys
+import os
 import textwrap
 from pathlib import Path
 from typing import Any
@@ -275,7 +276,11 @@ def main(args: list[str] | None = None) -> int:
     collection.load()
 
     if opts.completion:
-        print(Path(__file__).parent.joinpath("completions.bash").read_text())
+        shell = os.path.basename(os.environ.get('SHELL'))
+        if shell == 'zsh':
+            print(Path(__file__).parent.joinpath("completions.zsh").read_text())
+        else:
+            print(Path(__file__).parent.joinpath("completions.bash").read_text())
         return 0
 
     if opts.complete:
