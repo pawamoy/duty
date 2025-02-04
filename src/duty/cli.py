@@ -74,8 +74,10 @@ def get_parser() -> ArgParser:
     parser.add_argument(
         "--completion",
         dest="completion",
-        action="store_true",
-        help=argparse.SUPPRESS,
+        nargs="?",
+        const=True,
+        metavar="SHELL",
+        help="Prints completion script for selected shell. If no value is provided, $SHELL is used.",
     )
     parser.add_argument(
         "--complete",
@@ -276,7 +278,11 @@ def main(args: list[str] | None = None) -> int:
     collection.load()
 
     if opts.completion:
-        shell = os.path.basename(os.environ.get('SHELL'))
+        if opts.completion is True:
+            shell = os.path.basename(os.environ.get('SHELL'))
+        else:
+            shell = opts.completion.lower()
+
         if shell == 'zsh':
             print(Path(__file__).parent.joinpath("completions.zsh").read_text())
         else:

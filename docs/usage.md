@@ -882,7 +882,7 @@ You can enable auto-completion in Bash with these commands:
 ```bash
 completions_dir="${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions"
 mkdir -p "${completions_dir}"
-duty --completion > "${completions_dir}/duty"
+duty --completion=bash > "${completions_dir}/duty"
 ```
 
 Or in Zsh with:
@@ -891,6 +891,6 @@ Or in Zsh with:
 completions_dir="$HOME/.duty"
 mkdir -p "${completions_dir}"
 echo "source ${completions_dir}/completion" >> $HOME/.zshrc
-duty --completion > "${completions_dir}/completion"
+duty --completion=zsh > "${completions_dir}/completion"
 exec zsh
 ```
