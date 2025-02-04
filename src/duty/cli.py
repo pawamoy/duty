@@ -285,8 +285,11 @@ def main(args: list[str] | None = None) -> int:
 
         if shell == 'zsh':
             print(Path(__file__).parent.joinpath("completions.zsh").read_text())
-        else:
+        elif shell == 'bash':
             print(Path(__file__).parent.joinpath("completions.bash").read_text())
+        else:
+            raise NotImplementedError(f"Completion is only supported on Bash and Zsh, got '{shell}'.")
+
         return 0
 
     if opts.complete:
