@@ -283,11 +283,10 @@ def main(args: list[str] | None = None) -> int:
         else:
             shell = opts.completion.lower()
 
-        COMPLETION_DIR = Path(__file__).parent
         try:
-            print((completion_dir / f"completions.{shell}").read_text())
+            print((Path(__file__).parent / f"completions.{shell}").read_text())
         except FileNotFoundError as exc:
-            msg = f"Completion script not found for {shell!r}, looked in {COMPLETION_DIR}"
+            msg = f"Completions for {shell!r} shell are not available, feature requests and PRs welcome!"
             raise NotImplementedError(msg) from exc
 
         return 0
