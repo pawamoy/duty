@@ -283,12 +283,12 @@ def main(args: list[str] | None = None) -> int:
         else:
             shell = opts.completion.lower()
 
-        if shell == 'zsh':
-            print(Path(__file__).parent.joinpath("completions.zsh").read_text())
-        elif shell == 'bash':
-            print(Path(__file__).parent.joinpath("completions.bash").read_text())
-        else:
-            raise NotImplementedError(f"Completion is only supported on Bash and Zsh, got '{shell}'.")
+        COMPLETION_DIR = Path(__file__).parent
+        try:
+            print((completion_dir / f"completions.{shell}").read_text())
+        except FileNotFoundError as exc:
+            msg = f"Completion script not found for {shell!r}, looked in {COMPLETION_DIR}"
+            raise NotImplementedError(msg) from exc
 
         return 0
 
