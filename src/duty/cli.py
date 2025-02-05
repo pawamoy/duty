@@ -15,8 +15,8 @@ from __future__ import annotations
 
 import argparse
 import inspect
-import sys
 import os
+import sys
 import textwrap
 from pathlib import Path
 from typing import Any
@@ -279,7 +279,7 @@ def main(args: list[str] | None = None) -> int:
 
     if opts.completion:
         if opts.completion is True:
-            shell = os.path.basename(os.environ.get('SHELL'))
+            shell = os.path.basename(os.environ.get("SHELL", "/bin/bash"))
         else:
             shell = opts.completion.lower()
 
@@ -296,7 +296,7 @@ def main(args: list[str] | None = None) -> int:
         words += sorted(
             opt for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
         )
-        print(*words, sep="\n")
+        print(*words, sep=" ")
         return 0
 
     if opts.help is not None:

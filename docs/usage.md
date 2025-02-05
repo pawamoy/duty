@@ -877,20 +877,45 @@ duty task1 task2
 
 ### Shell completions
 
-You can enable auto-completion in Bash with these commands:
+=== "Bash"
+    You can enable auto-completion in Bash with these commands:
+    ```bash
+    completions_dir="${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions"
+    mkdir -p "${completions_dir}"
+    duty --completion=bash > "${completions_dir}/duty"
+    ```
+=== "Zsh"
+    #### Using Zsh native completion
+    Since Zsh doesn't provide a default completion scripts directory, choosing it is up to user 
+    [(read more)](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org#telling-zsh-which-function-to-use-for-completing-a-command).
 
-```bash
-completions_dir="${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions"
-mkdir -p "${completions_dir}"
-duty --completion=bash > "${completions_dir}/duty"
-```
+    You can use `~/.oh-my-zsh/custom/completions` if you use [Oh My Zsh](https://ohmyz.sh):
+    ```zsh
+    duty --completion=zsh > "$HOME/.oh-my-zsh/custom/completions/_duty"
+    ```
 
-Or in Zsh with:
+    If you don't use Oh My Zsh, you can install completions globally under `/usr/local/share/zsh/site-functions`
+    or use a custom directory, for example `~/.duty`.
+    To do this, make sure that the following get called in your `.zshrc` in this order:
+    ```zsh
+    fpath=($HOME/.duty $fpath)
+    autoload -Uz compinit && compinit
+    ```
+    !!! Warning
+        Don't add `autoload -Uz compinit && compinit` when using Oh My Zsh.
+    
+    Then generate completion function and restart shell:
+    ```zsh
+    mkdir -p "$HOME/.duty"
+    duty --completion=zsh > "$HOME/.duty/_duty"
+    exec zsh
+    ```
+    The completion script file must start with an underscore.
 
-```zsh
-completions_dir="$HOME/.duty"
-mkdir -p "${completions_dir}"
-echo "source ${completions_dir}/completion" >> $HOME/.zshrc
-duty --completion=zsh > "${completions_dir}/completion"
-exec zsh
-```
+    #### Using Bash completion
+    It is recommended to use Zsh's native completion, as it is much richer.
+    If you decide to use Bash completion anyway, make sure that the following get called at the end of your `.zshrc`:
+    ```zsh
+    autoload -Uz bashcompinit && bashcompinit
+    ```
+    Then restart your shell and follow instructions for Bash.
