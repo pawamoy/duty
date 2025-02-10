@@ -877,8 +877,13 @@ duty task1 task2
 
 ### Shell completions
 
+Duty supports shell completions for Bash and Zsh, these can be automatically installed using:
+```shell
+duty --install-completion
+```
+Completions can also be installed manually:
+
 === "Bash"
-    You can enable auto-completion in Bash with these commands:
     ```bash
     completions_dir="${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions"
     mkdir -p "${completions_dir}"
@@ -895,19 +900,19 @@ duty task1 task2
     ```
 
     If you don't use Oh My Zsh, you can install completions globally under `/usr/local/share/zsh/site-functions`
-    or use a custom directory, for example `~/.duty`.
+    or use a custom directory, for example `~/.zfunc`.
     To do this, make sure that the following get called in your `.zshrc` in this order:
     ```zsh
-    fpath=($HOME/.duty $fpath)
+    fpath=($HOME/.zfunc $fpath)
     autoload -Uz compinit && compinit
     ```
     !!! Warning
         Don't add `autoload -Uz compinit && compinit` when using Oh My Zsh.
     
-    Then generate completion function and restart shell:
+    Then generate completion function and reload shell:
     ```zsh
-    mkdir -p "$HOME/.duty"
-    duty --completion=zsh > "$HOME/.duty/_duty"
+    mkdir -p "$HOME/.zfunc"
+    duty --completion=zsh > "$HOME/.zfunc/_duty"
     exec zsh
     ```
     The completion script file must start with an underscore.
@@ -918,4 +923,4 @@ duty task1 task2
     ```zsh
     autoload -Uz bashcompinit && bashcompinit
     ```
-    Then restart your shell and follow instructions for Bash.
+    Then reload your shell and follow instructions for Bash.

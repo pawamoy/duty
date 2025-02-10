@@ -18,14 +18,13 @@ import inspect
 import os
 import sys
 import textwrap
-from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from failprint.cli import ArgParser, add_flags
 
 from duty import debug
-from duty._completion import CompletionParser
 from duty.collection import Collection, Duty
+from duty.completion import CompletionInstaller, CompletionParser
 from duty.exceptions import DutyFailure
 from duty.validation import validate
 
@@ -73,12 +72,20 @@ def get_parser() -> ArgParser:
         help="Show this help message and exit. Pass duties names to print their help.",
     )
     parser.add_argument(
+        "--install-completion",
+        dest="install_completion",
+        nargs="?",
+        const=True,
+        metavar="SHELL",
+        help="Installs completion for the selected shell. If no value is provided, $SHELL is used.",
+    )
+    parser.add_argument(
         "--completion",
         dest="completion",
         nargs="?",
         const=True,
         metavar="SHELL",
-        help="Prints completion script for selected shell. If no value is provided, $SHELL is used.",
+        help="Prints completion script for the selected shell. If no value is provided, $SHELL is used.",
     )
     parser.add_argument(
         "--complete",
@@ -261,6 +268,13 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
+def get_shell(arg: str | Literal[True]) -> str:
+    """Get shell from passed arg, or try to guess based on `SHELL` environmental variable."""
+    if arg is True:
+        return os.path.basename(os.environ.get("SHELL", "/bin/bash"))
+    return arg.lower()
+
+
 def main(args: list[str] | None = None) -> int:
     """Run the main program.
 
@@ -279,18 +293,14 @@ def main(args: list[str] | None = None) -> int:
     collection = Collection(opts.duties_file)
     collection.load()
 
+    if opts.install_completion:
+        shell = get_shell(opts.install_completion)
+        CompletionInstaller.install(shell)
+        return 0
+
     if opts.completion:
-        if opts.completion is True:
-            shell = os.path.basename(os.environ.get("SHELL", "/bin/bash"))
-        else:
-            shell = opts.completion.lower()
-
-        try:
-            print((Path(__file__).parent / f"completions.{shell}").read_text())
-        except FileNotFoundError as exc:
-            msg = f"Completions for {shell!r} shell are not available, feature requests and PRs welcome!"
-            raise NotImplementedError(msg) from exc
-
+        shell = get_shell(opts.completion)
+        print(CompletionInstaller.get_completion_script_path(shell).read_text())
         return 0
 
     if opts.complete:

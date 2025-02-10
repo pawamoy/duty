@@ -12,7 +12,7 @@ from typing import Any, Callable, ClassVar, Union
 from duty.context import Context
 
 if typing.TYPE_CHECKING:
-    from duty._completion import CompletionCandidateType
+    from duty.completion import CompletionCandidateType
 
 DutyListType = list[Union[str, Callable, "Duty"]]
 default_duties_file = "duties.py"
