@@ -24,6 +24,7 @@ from typing import Any
 from failprint.cli import ArgParser, add_flags
 
 from duty import debug
+from duty._completion import CompletionParser
 from duty.collection import Collection, Duty
 from duty.exceptions import DutyFailure
 from duty.validation import validate
@@ -82,7 +83,8 @@ def get_parser() -> ArgParser:
     parser.add_argument(
         "--complete",
         dest="complete",
-        action="store_true",
+        nargs="?",
+        metavar="SHELL",
         help=argparse.SUPPRESS,
     )
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug.get_version()}")
@@ -292,11 +294,14 @@ def main(args: list[str] | None = None) -> int:
         return 0
 
     if opts.complete:
-        words = collection.completion_candidates(remainder)
-        words += sorted(
-            opt for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
+        candidates = collection.completion_candidates(remainder)
+        candidates += sorted(
+            (opt, action.help)
+            for opt, action in parser._option_string_actions.items()
+            if action.help != argparse.SUPPRESS
         )
-        print(*words, sep=" ")
+        # Default to bash for backwards compatibility with 1.5.0 (--complete used no parameters)
+        print(CompletionParser.parse(candidates, opts.complete or "bash"))
         return 0
 
     if opts.help is not None:

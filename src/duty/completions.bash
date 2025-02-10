@@ -8,7 +8,7 @@ _complete_duty() {
     # program name).
     # We hand it to Invoke so it can figure out the current context: spit back
     # core options, task names, the current task's options, or some combo.
-    candidates=$(duty --complete -- "${COMP_WORDS[@]}")
+    candidates=$(duty --complete=bash -- "${COMP_WORDS[@]}")
 
     # `compgen -W` takes list of valid options & a partial word & spits back
     # possible matches. Necessary for any partial word completions (vs
