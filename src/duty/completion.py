@@ -4,9 +4,13 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-from typing import Optional
 
-CompletionCandidateType = tuple[str, Optional[str]]
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
+    
+CompletionCandidateType: TypeAlias = "tuple[str, str | None]"
 
 
 class CompletionParser:
