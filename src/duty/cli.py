@@ -24,7 +24,7 @@ from failprint.cli import ArgParser, add_flags
 
 from duty import debug
 from duty.collection import Collection, Duty
-from duty.completion import CompletionInstaller, CompletionParser
+from duty.completion import Shell
 from duty.exceptions import DutyFailure
 from duty.validation import validate
 
@@ -91,6 +91,8 @@ def get_parser() -> ArgParser:
         "--complete",
         dest="complete",
         nargs="?",
+        # Default to bash for backwards compatibility with 1.5.0 (--complete used no parameters)
+        const="bash",
         metavar="SHELL",
         help=argparse.SUPPRESS,
     )
@@ -268,11 +270,9 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
-def get_shell(arg: str | Literal[True]) -> str:
-    """Get shell from passed arg, or try to guess based on `SHELL` environmental variable."""
-    if arg is True:
-        return os.path.basename(os.environ.get("SHELL", "/bin/bash"))
-    return arg.lower()
+def get_shell_name(arg: str | Literal[True]) -> str:
+    """Get shell name from passed arg, or try to guess based on `SHELL` environmental variable."""
+    return os.path.basename(os.environ.get("SHELL", "/bin/bash")) if arg is True else arg.lower()
 
 
 def main(args: list[str] | None = None) -> int:
@@ -294,24 +294,25 @@ def main(args: list[str] | None = None) -> int:
     collection.load()
 
     if opts.install_completion:
-        shell = get_shell(opts.install_completion)
-        CompletionInstaller.install(shell)
+        shell = Shell.create(get_shell_name(opts.install_completion))
+        shell.install_completion()
         return 0
 
     if opts.completion:
-        shell = get_shell(opts.completion)
-        print(CompletionInstaller.get_completion_script_path(shell).read_text())
+        shell = Shell.create(get_shell_name(opts.completion))
+        print(shell.completion_script_path.read_text())
         return 0
 
     if opts.complete:
+        shell = Shell.create(get_shell_name(opts.complete))
+
         candidates = collection.completion_candidates(remainder)
         candidates += sorted(
             (opt, action.help)
             for opt, action in parser._option_string_actions.items()
             if action.help != argparse.SUPPRESS
         )
-        # Default to bash for backwards compatibility with 1.5.0 (--complete used no parameters)
-        print(CompletionParser.parse(candidates, opts.complete or "bash"))
+        print(shell.parse_completion(candidates))
         return 0
 
     if opts.help is not None:

@@ -4,14 +4,13 @@ from __future__ import annotations
 
 import inspect
 import sys
-import typing
 from copy import deepcopy
 from importlib import util as importlib_util
-from typing import Any, Callable, ClassVar, Union
+from typing import TYPE_CHECKING, Any, Callable, ClassVar, Union
 
 from duty.context import Context
 
-if typing.TYPE_CHECKING:
+if TYPE_CHECKING:
     from duty.completion import CompletionCandidateType
 
 DutyListType = list[Union[str, Callable, "Duty"]]
