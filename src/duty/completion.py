@@ -96,8 +96,6 @@ class Bash(Shell):
     def install_completion(self) -> None:  # noqa: D102
         self.install_dir.mkdir(parents=True, exist_ok=True)
         symlink_path = self.install_dir / "duty"
-        print(self.completion_script_path)
-        print(symlink_path)
         try:
             symlink_path.symlink_to(self.completion_script_path)
         except FileExistsError:
