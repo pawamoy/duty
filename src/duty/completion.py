@@ -85,14 +85,16 @@ class Bash(Shell):
     @cached_property
     def install_dir(self) -> Path:  # noqa: D102
         if self.bash_completion_user_dir:
-            directory =  Path(self.bash_completion_user_dir) / "completions"
+            directory = Path(self.bash_completion_user_dir) / "completions"
         elif self.xdg_data_home:
             directory = Path(self.xdg_data_home) / "bash-completion/completions"
         else:
             directory = Path.home() / ".local/share/bash-completion/completions"
         if not directory.is_dir():
-            msg = (f'Bash completions directory not found. Searched in: {str(directory)!r}, '
-                   f'make sure you have bash-completion installed')
+            msg = (
+                f"Bash completions directory not found. Searched in: {str(directory)!r}, "
+                f"make sure you have bash-completion installed"
+            )
             raise OSError(msg)
         return directory
 
@@ -124,7 +126,7 @@ class Zsh(Shell):
         try:
             return next(d for d in self.site_functions_dirs if d.is_dir())
         except StopIteration as exc:
-            searched_in = ', '.join([repr(str(path)) for path in self.site_functions_dirs])
+            searched_in = ", ".join([repr(str(path)) for path in self.site_functions_dirs])
             msg = f"Zsh site-functions directory not found! Searched in: {searched_in}"
             raise OSError(msg) from exc
 
