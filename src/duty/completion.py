@@ -85,16 +85,21 @@ class Bash(Shell):
     @cached_property
     def install_dir(self) -> Path:  # noqa: D102
         if self.bash_completion_user_dir:
-            return Path(self.bash_completion_user_dir) / "completions"
-        if self.xdg_data_home:
-            return Path(self.xdg_data_home) / "bash-completion/completions"
-        return Path.home() / ".local/share/bash-completion/completions"
+            directory =  Path(self.bash_completion_user_dir) / "completions"
+        elif self.xdg_data_home:
+            directory = Path(self.xdg_data_home) / "bash-completion/completions"
+        else:
+            directory = Path.home() / ".local/share/bash-completion/completions"
+        if not directory.is_dir():
+            msg = (f'Bash completions directory not found. Searched in: {str(directory)!r}, '
+                   f'make sure you have bash-completion installed')
+            raise OSError(msg)
+        return directory
 
     def parse_completion(self, candidates: Sequence[CompletionCandidateType]) -> str:  # noqa: D102
         return "\n".join(completion for completion, _ in candidates)
 
     def install_completion(self) -> None:  # noqa: D102
-        self.install_dir.mkdir(parents=True, exist_ok=True)
         symlink_path = self.install_dir / "duty"
         try:
             symlink_path.symlink_to(self.completion_script_path)
@@ -102,7 +107,7 @@ class Bash(Shell):
             print("Bash completions already installed.", file=sys.stderr)
         else:
             print(
-                f"Bash completions successfully symlinked to {symlink_path!r}. "
+                f"Bash completions successfully symlinked to {str(symlink_path)!r}. "
                 f"Please reload Bash for changes to take effect.",
             )
 
@@ -119,7 +124,9 @@ class Zsh(Shell):
         try:
             return next(d for d in self.site_functions_dirs if d.is_dir())
         except StopIteration as exc:
-            raise OSError("Zsh site-functions directory not found!") from exc
+            searched_in = ', '.join([repr(str(path)) for path in self.site_functions_dirs])
+            msg = f"Zsh site-functions directory not found! Searched in: {searched_in}"
+            raise OSError(msg) from exc
 
     def parse_completion(self, candidates: Sequence[CompletionCandidateType]) -> str:  # noqa: D102
         def parse_candidate(item: CompletionCandidateType) -> str:
@@ -147,6 +154,6 @@ class Zsh(Shell):
             print("Zsh completions already installed.", file=sys.stderr)
         else:
             print(
-                f"Zsh completions successfully symlinked to {symlink_path}. "
+                f"Zsh completions successfully symlinked to {str(symlink_path)!r}. "
                 f"Please reload Zsh for changes to take effect.",
             )
