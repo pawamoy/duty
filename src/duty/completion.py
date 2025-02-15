@@ -107,7 +107,7 @@ class Bash(Shell):
             symlink_path.unlink()
         symlink_path.symlink_to(self.completion_script_path)
         print(
-            f"Bash completions successfully symlinked to {str(symlink_path)!r}. "
+            f"Bash completions successfully symlinked to {symlink_path}. "
             f"Please reload Bash for changes to take effect.",
         )
 
@@ -154,6 +154,6 @@ class Zsh(Shell):
             )
         else:
             print(
-                f"Zsh completions successfully symlinked to {str(symlink_path)!r}. "
+                f"Zsh completions successfully symlinked to {symlink_path}. "
                 f"Please reload Zsh for changes to take effect.",
             )
