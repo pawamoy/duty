@@ -53,9 +53,9 @@ class Shell(metaclass=abc.ABCMeta):
         return Path(__file__).parent / f"completions.{self.name}"
 
     @cached_property
-    def install_dir(self) -> Path:
-        """Returns a path to the directory in which a shell completion script should be installed."""
-        return Path.home() / ".duty"
+    def install_path(self) -> Path:
+        """Returns a path that should be symlinked to the shell completion script."""
+        return Path.home() / ".duty/completion"
 
     @classmethod
     def create(cls, shell_type: str) -> Self:
@@ -83,31 +83,29 @@ class Bash(Shell):
     xdg_data_home = os.environ.get("XDG_DATA_HOME")
 
     @cached_property
-    def install_dir(self) -> Path:  # noqa: D102
+    def install_path(self) -> Path:  # noqa: D102
         if self.bash_completion_user_dir:
-            directory = Path(self.bash_completion_user_dir) / "completions"
+            bash_completion_directory = Path(self.bash_completion_user_dir)
         elif self.xdg_data_home:
-            directory = Path(self.xdg_data_home) / "bash-completion/completions"
+            bash_completion_directory = Path(self.xdg_data_home) / "bash-completion"
         else:
-            directory = Path.home() / ".local/share/bash-completion/completions"
-        if not directory.is_dir():
+            bash_completion_directory = Path.home() / ".local/share/bash-completion"
+        if not bash_completion_directory.is_dir():
             msg = (
-                f"Bash completions directory not found. Searched in: {str(directory)!r}, "
+                f"Bash completion directory not found. Searched in: {bash_completion_directory}, "
                 f"make sure you have bash-completion installed"
             )
             raise OSError(msg)
-        return directory
+        return bash_completion_directory / "completions/duty"
 
     def parse_completion(self, candidates: Sequence[CompletionCandidateType]) -> str:  # noqa: D102
         return "\n".join(completion for completion, _ in candidates)
 
     def install_completion(self) -> None:  # noqa: D102
-        symlink_path = self.install_dir / "duty"
-        if symlink_path.is_symlink():
-            symlink_path.unlink()
-        symlink_path.symlink_to(self.completion_script_path)
+        self.install_path.unlink(missing_ok=True)
+        self.install_path.symlink_to(self.completion_script_path)
         print(
-            f"Bash completions successfully symlinked to {symlink_path}. "
+            f"Bash completions successfully symlinked to {self.install_path}. "
             f"Please reload Bash for changes to take effect.",
         )
 
@@ -120,11 +118,11 @@ class Zsh(Shell):
     site_functions_dirs = (Path("/usr/local/share/zsh/site-functions"), Path("/usr/share/zsh/site-functions"))
 
     @cached_property
-    def install_dir(self) -> Path:  # noqa: D102
+    def install_path(self) -> Path:  # noqa: D102
         try:
-            return next(d for d in self.site_functions_dirs if d.is_dir())
+            return next(d for d in self.site_functions_dirs if d.is_dir()) / "_duty"
         except StopIteration as exc:
-            searched_in = ", ".join([repr(str(path)) for path in self.site_functions_dirs])
+            searched_in = ", ".join(map(str, self.site_functions_dirs))
             msg = f"Zsh site-functions directory not found! Searched in: {searched_in}"
             raise OSError(msg) from exc
 
@@ -140,10 +138,8 @@ class Zsh(Shell):
 
     def install_completion(self) -> None:  # noqa: D102
         try:
-            symlink_path = self.install_dir / "_duty"
-            if symlink_path.is_symlink():
-                symlink_path.unlink()
-            symlink_path.symlink_to(self.completion_script_path)
+            self.install_path.unlink(missing_ok=True)
+            self.install_path.symlink_to(self.completion_script_path)
         except PermissionError:
             # retry as sudo
             if os.geteuid() == 0:
@@ -154,6 +150,6 @@ class Zsh(Shell):
             )
         else:
             print(
-                f"Zsh completions successfully symlinked to {symlink_path}. "
+                f"Zsh completions successfully symlinked to {self.install_path}. "
                 f"Please reload Zsh for changes to take effect.",
             )
