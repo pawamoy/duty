@@ -103,15 +103,13 @@ class Bash(Shell):
 
     def install_completion(self) -> None:  # noqa: D102
         symlink_path = self.install_dir / "duty"
-        try:
-            symlink_path.symlink_to(self.completion_script_path)
-        except FileExistsError:
-            print("Bash completions already installed.", file=sys.stderr)
-        else:
-            print(
-                f"Bash completions successfully symlinked to {str(symlink_path)!r}. "
-                f"Please reload Bash for changes to take effect.",
-            )
+        if symlink_path.is_symlink():
+            symlink_path.unlink()
+        symlink_path.symlink_to(self.completion_script_path)
+        print(
+            f"Bash completions successfully symlinked to {str(symlink_path)!r}. "
+            f"Please reload Bash for changes to take effect.",
+        )
 
 
 class Zsh(Shell):
@@ -143,6 +141,8 @@ class Zsh(Shell):
     def install_completion(self) -> None:  # noqa: D102
         try:
             symlink_path = self.install_dir / "_duty"
+            if symlink_path.is_symlink():
+                symlink_path.unlink()
             symlink_path.symlink_to(self.completion_script_path)
         except PermissionError:
             # retry as sudo
@@ -152,8 +152,6 @@ class Zsh(Shell):
                 ["sudo", sys.executable, sys.argv[0], "--install-completion=zsh"],  # noqa: S607
                 check=True,
             )
-        except FileExistsError:
-            print("Zsh completions already installed.", file=sys.stderr)
         else:
             print(
                 f"Zsh completions successfully symlinked to {str(symlink_path)!r}. "
