@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import os
 import sys
 from contextlib import contextmanager
@@ -185,7 +186,7 @@ def coverage(ctx: Context) -> None:
 
 
 @duty
-def test(ctx: Context, *cli_args: str, match: str = "") -> None:
+def test(ctx: Context, *cli_args: str, match: str = "", parallel: bool = True) -> None:
     """Run the test suite.
 
     Parameters:
@@ -193,12 +194,31 @@ def test(ctx: Context, *cli_args: str, match: str = "") -> None:
     """
     py_version = f"{sys.version_info.major}{sys.version_info.minor}"
     os.environ["COVERAGE_FILE"] = f".coverage.{py_version}"
+    xdist_args = ["-n", "auto"] if parallel else []
     ctx.run(
         tools.pytest(
             "tests",
             config_file="config/pytest.ini",
             select=match,
             color="yes",
-        ).add_args("-n", "auto", *cli_args),
+        ).add_args(*xdist_args, *cli_args),
         title=pyprefix("Running tests"),
     )
+
+
+@duty
+def collect_isolated_tests(ctx: Context) -> None:
+    """Collect tests marked with `isolate` tag."""
+    output = ctx.run(
+        tools.pytest(
+            "tests",
+            config_file="config/pytest.ini",
+            quiet=True,
+            collect_only=True,
+            select_markers="isolate",
+        ),
+    )
+
+    isolated_tests_json = json.dumps([line for line in output.split("\n") if "::" in line])
+    with open(os.environ["GITHUB_OUTPUT"], "a") as gh_output:
+        gh_output.write(f"isolated_tests={isolated_tests_json}")

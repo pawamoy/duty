@@ -11,6 +11,7 @@ actions = \
 	check-quality \
 	check-types \
 	clean \
+	collect-isolated-tests \
 	coverage \
 	docs \
 	docs-deploy \
