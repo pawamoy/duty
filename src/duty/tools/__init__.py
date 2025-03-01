@@ -22,6 +22,7 @@ from duty.tools._ruff import ruff
 from duty.tools._safety import safety
 from duty.tools._ssort import ssort
 from duty.tools._twine import twine
+from duty.tools._yore import yore
 
 __all__ = [
     "LazyStderr",
@@ -45,4 +46,5 @@ __all__ = [
     "safety",
     "ssort",
     "twine",
+    "yore",
 ]
