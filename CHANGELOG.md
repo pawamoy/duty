@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.6.0](https://github.com/pawamoy/duty/releases/tag/1.6.0) - 2025-03-01
+
+<small>[Compare with 1.5.0](https://github.com/pawamoy/duty/compare/1.5.0...1.6.0)</small>
+
+### Features
+
+- Add Yore tool ([5adf1a9](https://github.com/pawamoy/duty/commit/5adf1a9f6a303a6af03ce207e236a7b1824f52c9) by Timothée Mazzucotelli).
+
 ## [1.5.0](https://github.com/pawamoy/duty/releases/tag/1.5.0) - 2025-02-02
 
 <small>[Compare with 1.4.3](https://github.com/pawamoy/duty/compare/1.4.3...1.5.0)</small>
