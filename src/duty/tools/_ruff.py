@@ -319,6 +319,7 @@ class ruff(Tool):  # noqa: N801
     @classmethod
     def rule(
         cls,
+        rule: str,
         *,
         output_format: str | None = None,
         verbose: bool = False,
@@ -328,12 +329,13 @@ class ruff(Tool):  # noqa: N801
         """Explain a rule.
 
         Parameters:
+            rule: A rule code, or `--all`.
             output_format: Output format (default: pretty, possible values: text, json, pretty).
             verbose: Enable verbose logging.
             quiet: Print lint violations, but nothing else.
             silent: Disable all logging (but still exit with status code "1" upon detecting lint violations).
         """
-        cli_args = ["rule"]
+        cli_args = ["rule", rule]
 
         if output_format:
             cli_args.append("--format")
