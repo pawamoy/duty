@@ -15,15 +15,16 @@ from __future__ import annotations
 
 import argparse
 import inspect
+import os
 import sys
 import textwrap
-from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from failprint.cli import ArgParser, add_flags
 
 from duty import debug
 from duty.collection import Collection, Duty
+from duty.completion import Shell
 from duty.exceptions import DutyFailure
 from duty.validation import validate
 
@@ -71,15 +72,28 @@ def get_parser() -> ArgParser:
         help="Show this help message and exit. Pass duties names to print their help.",
     )
     parser.add_argument(
+        "--install-completion",
+        dest="install_completion",
+        nargs="?",
+        const=True,
+        metavar="SHELL",
+        help="Installs completion for the selected shell. If no value is provided, $SHELL is used.",
+    )
+    parser.add_argument(
         "--completion",
         dest="completion",
-        action="store_true",
-        help=argparse.SUPPRESS,
+        nargs="?",
+        const=True,
+        metavar="SHELL",
+        help="Prints completion script for the selected shell. If no value is provided, $SHELL is used.",
     )
     parser.add_argument(
         "--complete",
         dest="complete",
-        action="store_true",
+        nargs="?",
+        # Default to bash for backwards compatibility with 1.5.0 (--complete used no parameters)
+        const="bash",
+        metavar="SHELL",
         help=argparse.SUPPRESS,
     )
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug.get_version()}")
@@ -256,6 +270,11 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(textwrap.indent(collection.format_help(), prefix="  "))
 
 
+def get_shell_name(arg: str | Literal[True]) -> str:
+    """Get shell name from passed arg, or try to guess based on `SHELL` environmental variable."""
+    return os.path.basename(os.environ.get("SHELL", "/bin/bash")) if arg is True else arg.lower()
+
+
 def main(args: list[str] | None = None) -> int:
     """Run the main program.
 
@@ -274,16 +293,26 @@ def main(args: list[str] | None = None) -> int:
     collection = Collection(opts.duties_file)
     collection.load()
 
+    if opts.install_completion:
+        shell = Shell.create(get_shell_name(opts.install_completion))
+        shell.install_completion()
+        return 0
+
     if opts.completion:
-        print(Path(__file__).parent.joinpath("completions.bash").read_text())
+        shell = Shell.create(get_shell_name(opts.completion))
+        print(shell.completion_script_path.read_text())
         return 0
 
     if opts.complete:
-        words = collection.completion_candidates(remainder)
-        words += sorted(
-            opt for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
+        shell = Shell.create(get_shell_name(opts.complete))
+
+        candidates = collection.completion_candidates(remainder)
+        candidates += sorted(
+            (opt, action.help)
+            for opt, action in parser._option_string_actions.items()
+            if action.help != argparse.SUPPRESS
         )
-        print(*words, sep="\n")
+        print(shell.parse_completion(candidates))
         return 0
 
     if opts.help is not None:

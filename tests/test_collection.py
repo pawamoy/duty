@@ -74,13 +74,15 @@ def test_completion_candidates() -> None:
     """Check whether proper completion candidates are returned from collections."""
     collection = Collection()
 
-    collection.add(decorate(none, name="duty_1"))  # type: ignore[call-overload]
+    duty_with_docs = decorate(none, name="duty_1")  # type: ignore[call-overload]
+    duty_with_docs.description = "Some description"
+    collection.add(duty_with_docs)
     collection.add(decorate(none, name="duty_2", aliases=["alias_2"]))  # type: ignore[call-overload]
 
     assert collection.completion_candidates(("duty",)) == [
-        "alias_2",
-        "duty-1",
-        "duty-2",
-        "duty_1",
-        "duty_2",
+        ("alias_2", None),
+        ("duty-1", "Some description"),
+        ("duty-2", None),
+        ("duty_1", "Some description"),
+        ("duty_2", None),
     ]

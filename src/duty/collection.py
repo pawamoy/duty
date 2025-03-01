@@ -6,9 +6,12 @@ import inspect
 import sys
 from copy import deepcopy
 from importlib import util as importlib_util
-from typing import Any, Callable, ClassVar, Union
+from typing import TYPE_CHECKING, Any, Callable, ClassVar, Union
 
 from duty.context import Context
+
+if TYPE_CHECKING:
+    from duty.completion import CompletionCandidateType
 
 DutyListType = list[Union[str, Callable, "Duty"]]
 default_duties_file = "duties.py"
@@ -143,11 +146,11 @@ class Collection:
         """
         return list(self.duties.keys()) + list(self.aliases.keys())
 
-    def completion_candidates(self, args: tuple[str, ...]) -> list[str]:
+    def completion_candidates(self, args: tuple[str, ...]) -> list[CompletionCandidateType]:
         """Find shell completion candidates within this collection.
 
         Returns:
-            The list of shell completion candidates, sorted alphabetically.
+            The list of tuples containing shell completion candidates with help text, sorted alphabetically.
         """
         # Find last duty name in args.
         name = None
@@ -157,14 +160,16 @@ class Collection:
                 name = arg
                 break
 
-        completion_names = sorted(names)
+        completion_names: list[CompletionCandidateType] = sorted(
+            (name, self.get(name).description or None) for name in names
+        )
 
         # If no duty found, return names.
         if name is None:
             return completion_names
 
         params = [
-            f"{param.name}="
+            (f"{param.name}=", None)
             for param in inspect.signature(self.get(name).function).parameters.values()
             if param.kind is not param.VAR_POSITIONAL
         ][1:]

@@ -53,6 +53,9 @@ ignore = [
 "src/*/debug.py" = [
     "T201",  # Print statement
 ]
+"src/*/completion.py" = [
+    "T201",  # Print statement
+]
 "scripts/*.py" = [
     "INP001",  # File is part of an implicit namespace package
     "T201",  # Print statement

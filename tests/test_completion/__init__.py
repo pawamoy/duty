@@ -1,0 +1,1 @@
+"""Shell completion tests."""
