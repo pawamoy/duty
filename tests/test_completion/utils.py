@@ -27,9 +27,3 @@ def needs_shell(shell: type[Shell]) -> pytest.MarkDecorator:
         not (shell_environ and os.path.basename(shell_environ) == shell.name),
         reason=f"Test requires {shell.name} shell and SHELL environment variable set",
     )
-
-
-needs_isolated_container = pytest.mark.skipif(
-    not os.getenv("_DUTY_ISOLATED_TEST_CONTAINER"),
-    reason="Test requires to be run in an isolated container",
-)

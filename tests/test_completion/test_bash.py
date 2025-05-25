@@ -8,7 +8,7 @@ import pytest
 
 from duty import cli
 from duty.completion import Bash
-from tests.test_completion.utils import needs_isolated_container, needs_platform, needs_shell
+from tests.test_completion.utils import needs_platform, needs_shell
 
 completion_test_cases = (
     ("tests/fixtures/basic.py", "", "hello\n--"),
@@ -27,24 +27,24 @@ def assert_completion_loaded() -> None:
     """Asserts that bash has completions for duty."""
     result = subprocess.run(["/bin/bash", "-c", "complete -p duty"], capture_output=True, check=True, encoding="utf-8")  # noqa: S603
     assert "complete -o default -F _complete_duty duty" in result.stdout
+    # Cleanup
+    Bash().install_path.unlink(missing_ok=True)
 
 
 @needs_shell(Bash)
 @needs_platform("linux", "darwin")
-@needs_isolated_container
-@pytest.mark.isolate
 def test_install(capsys: pytest.CaptureFixture) -> None:
     """Test bash completion installation."""
     assert cli.main(["--install-completion", "bash"]) == 0
     captured = capsys.readouterr()
     assert "Bash completions successfully symlinked" in captured.out
     assert_completion_loaded()
+    # Cleanup
+    Bash().install_path.unlink(missing_ok=True)
 
 
 @needs_shell(Bash)
 @needs_platform("linux", "darwin")
-@needs_isolated_container
-@pytest.mark.isolate
 def test_install_no_param(capsys: pytest.CaptureFixture, monkeypatch: pytest.MonkeyPatch) -> None:
     """Test bash completion installation with no shell parameter provided."""
     monkeypatch.setenv("SHELL", "/bin/bash")
@@ -52,12 +52,12 @@ def test_install_no_param(capsys: pytest.CaptureFixture, monkeypatch: pytest.Mon
     captured = capsys.readouterr()
     assert "Bash completions successfully symlinked" in captured.out
     assert_completion_loaded()
+    # Cleanup
+    Bash().install_path.unlink(missing_ok=True)
 
 
 @needs_shell(Bash)
 @needs_platform("linux", "darwin")
-@needs_isolated_container
-@pytest.mark.isolate
 def test_install_path_exists(capsys: pytest.CaptureFixture) -> None:
     """Test bash completion installation with symlink/file already present."""
     Bash().install_path.touch()
@@ -65,6 +65,8 @@ def test_install_path_exists(capsys: pytest.CaptureFixture) -> None:
     captured = capsys.readouterr()
     assert "Bash completions successfully symlinked" in captured.out
     assert_completion_loaded()
+    # Cleanup
+    Bash().install_path.unlink(missing_ok=True)
 
 
 def test_completion(capsys: pytest.CaptureFixture) -> None:
@@ -111,8 +113,6 @@ def test_complete_no_param(
 @parametrize_completions
 @needs_shell(Bash)
 @needs_platform("linux", "darwin")
-@needs_isolated_container
-@pytest.mark.isolate
 def test_completion_function(duties_file: str, partial: str, expected: str) -> None:
     """Test bash `_complete_duty` function."""
     # TODO: Temporary hack, as for now completions don't respect the `-d` flag - to be fixed in another PR.
@@ -135,3 +135,5 @@ def test_completion_function(duties_file: str, partial: str, expected: str) -> N
     )
     # In this test case, output is a bash array, so we expect spaces instead of newlines.
     assert expected.replace("\n", " ") in result.stdout
+    # Cleanup
+    Bash().install_path.unlink(missing_ok=True)
