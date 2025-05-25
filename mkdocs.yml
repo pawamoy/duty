@@ -41,6 +41,7 @@ theme:
   - content.code.annotate
   - content.code.copy
   - content.tooltips
+  - content.tabs.link
   - navigation.footer
   - navigation.indexes
   - navigation.sections
