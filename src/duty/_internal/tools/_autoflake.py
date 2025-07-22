@@ -9,6 +9,7 @@ class autoflake(Tool):  # noqa: N801
     """Call [autoflake](https://github.com/PyCQA/autoflake)."""
 
     cli_name = "autoflake"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -129,6 +130,11 @@ class autoflake(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from autoflake import _main as run_autoflake  # noqa: PLC0415
 
         return run_autoflake(

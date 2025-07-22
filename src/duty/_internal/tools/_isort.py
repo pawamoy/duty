@@ -37,6 +37,9 @@ Multiline = Literal[
 class isort(Tool):  # noqa: N801
     """Call [isort](https://github.com/PyCQA/isort)."""
 
+    cli_name = "isort"
+    """The name of the executable on PATH."""
+
     def __init__(
         self,
         *files: str,
@@ -573,7 +576,8 @@ class isort(Tool):  # noqa: N801
 
         super().__init__(cli_args)
 
-    def __call__(self) -> int:
+    def __call__(self) -> None:
+        """Run the command."""
         from isort.main import main as run_isort  # noqa: PLC0415
 
-        return run_isort(self.cli_args)
+        run_isort(self.cli_args)

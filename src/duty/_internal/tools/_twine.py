@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from duty._internal.tools._base import Tool
 
 
@@ -9,6 +11,7 @@ class twine(Tool):  # noqa: N801
     """Call [Twine](https://github.com/pypa/twine)."""
 
     cli_name = "twine"
+    """The name of the executable on PATH."""
 
     @classmethod
     def check(
@@ -283,7 +286,12 @@ class twine(Tool):  # noqa: N801
 
         return cls(cli_args)
 
-    def __call__(self) -> None:
+    def __call__(self) -> Any:
+        """Run the command.
+
+        Returns:
+            The return value of the corresponding Twine command / entrypoint.
+        """
         from twine.cli import dispatch as run_twine  # noqa: PLC0415
 
         return run_twine(self.cli_args)

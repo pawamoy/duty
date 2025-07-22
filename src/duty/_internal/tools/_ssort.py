@@ -11,6 +11,7 @@ class ssort(Tool):  # noqa: N801
     """Call [ssort](https://github.com/bwhmather/ssort)."""
 
     cli_name = "ssort"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -33,12 +34,17 @@ class ssort(Tool):  # noqa: N801
         if check:
             cli_args.append("--check")
 
-    def __call__(self) -> int:
+    def __call__(self) -> None:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from ssort._main import main as run_ssort  # noqa: PLC0415
 
         old_sys_argv = sys.argv
         sys.argv = ["ssort", *self.cli_args]
         try:
-            return run_ssort()
+            run_ssort()
         finally:
             sys.argv = old_sys_argv

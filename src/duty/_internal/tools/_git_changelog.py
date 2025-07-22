@@ -11,6 +11,7 @@ class git_changelog(Tool):  # noqa: N801
     """Call [git-changelog](https://github.com/pawamoy/git-changelog)."""
 
     cli_name = "git-changelog"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -181,6 +182,11 @@ class git_changelog(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from git_changelog.cli import main as run_git_changelog  # noqa: PLC0415
 
         return run_git_changelog(self.cli_args)

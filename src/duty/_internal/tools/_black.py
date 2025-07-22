@@ -9,6 +9,7 @@ class black(Tool):  # noqa: N801
     """Call [Black](https://github.com/psf/black)."""
 
     cli_name = "black"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -179,6 +180,7 @@ class black(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> None:
+        """Run the command."""
         from black import main as run_black  # noqa: PLC0415
 
-        return run_black(self.cli_args, prog_name="black")
+        run_black(self.cli_args, prog_name="black")

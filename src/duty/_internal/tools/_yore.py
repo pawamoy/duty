@@ -9,6 +9,7 @@ class yore(Tool):  # noqa: N801
     """Call [Yore](https://github.com/pawamoy/yore)."""
 
     cli_name = "yore"
+    """The name of the executable on PATH."""
 
     @classmethod
     def check(
@@ -87,6 +88,11 @@ class yore(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from yore import main as run_yore  # noqa: PLC0415
 
         return run_yore(self.cli_args)

@@ -11,6 +11,7 @@ class build(Tool):  # noqa: N801
     """Call [build](https://github.com/pypa/build)."""
 
     cli_name = "pyproject-build"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -79,6 +80,7 @@ class build(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> None:
+        """Run the command."""
         from build.__main__ import main as run_build  # noqa: PLC0415
 
         run_build(self.cli_args)

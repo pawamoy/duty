@@ -9,6 +9,7 @@ class mkdocs(Tool):  # noqa: N801
     """Call [MkDocs](https://github.com/mkdocs/mkdocs)."""
 
     cli_name = "mkdocs"
+    """The name of the executable on PATH."""
 
     @classmethod
     def build(
@@ -266,6 +267,11 @@ class mkdocs(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from mkdocs.__main__ import cli as run_mkdocs  # noqa: PLC0415
 
         return run_mkdocs(self.cli_args)

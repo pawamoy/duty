@@ -11,6 +11,7 @@ class mypy(Tool):  # noqa: N801
     """Call [Mypy](https://github.com/python/mypy)."""
 
     cli_name = "mypy"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -492,9 +493,10 @@ class mypy(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> None:
+        """Run the command."""
         from mypy.main import main as run_mypy  # noqa: PLC0415
 
-        return run_mypy(
+        run_mypy(
             args=self.cli_args,
             stdout=LazyStdout(),
             stderr=LazyStderr(),

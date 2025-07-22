@@ -34,6 +34,7 @@ class ruff(Tool):  # noqa: N801
     """Call [Ruff](https://github.com/astral-sh/ruff)."""
 
     cli_name = "ruff"
+    """The name of the executable on PATH."""
 
     @classmethod
     def check(
@@ -443,6 +444,11 @@ class ruff(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         process = subprocess.run(  # noqa: S603
             [_find_ruff(), *self.cli_args],
             capture_output=True,

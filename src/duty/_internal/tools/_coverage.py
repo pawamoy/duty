@@ -11,6 +11,7 @@ class coverage(Tool):  # noqa: N801
     """Call [Coverage.py](https://github.com/nedbat/coveragepy)."""
 
     cli_name = "coverage"
+    """The name of the executable on PATH."""
 
     @classmethod
     def annotate(
@@ -716,6 +717,11 @@ class coverage(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int | None:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from coverage.cmdline import main as run_coverage  # noqa: PLC0415
 
         return run_coverage(self.cli_args)

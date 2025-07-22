@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import sys
 from typing import Literal
 
 from duty._internal.tools._base import Tool
@@ -12,6 +11,7 @@ class flake8(Tool):  # noqa: N801
     """Call [Flake8](https://github.com/PyCQA/flake8)."""
 
     cli_name = "flake8"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -220,11 +220,11 @@ class flake8(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
-        from flake8.main import main as run_flake8  # noqa: PLC0415
+        """Run the command.
 
-        old_sys_argv = sys.argv
-        sys.argv = ["flake8", *self.cli_args]
-        try:
-            return run_flake8()
-        finally:
-            sys.argv = old_sys_argv
+        Returns:
+            The exit code of the command.
+        """
+        from flake8.main.cli import main as run_flake8  # noqa: PLC0415
+
+        return run_flake8(self.cli_args)

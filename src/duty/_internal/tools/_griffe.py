@@ -11,6 +11,7 @@ class griffe(Tool):  # noqa: N801
     """Call [Griffe](https://github.com/mkdocstrings/griffe)."""
 
     cli_name = "griffe"
+    """The name of the executable on PATH."""
 
     @classmethod
     def check(
@@ -221,6 +222,11 @@ class griffe(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from griffe import main as run_griffe  # noqa: PLC0415
 
         return run_griffe(self.cli_args)

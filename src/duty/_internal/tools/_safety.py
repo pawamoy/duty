@@ -17,6 +17,7 @@ class safety(Tool):  # noqa: N801
     """Call [Safety](https://github.com/pyupio/safety)."""
 
     cli_name = "safety"
+    """The name of the executable on PATH."""
 
     @classmethod
     def check(
@@ -44,9 +45,15 @@ class safety(Tool):  # noqa: N801
 
     @property
     def cli_command(self) -> str:
+        """The equivalent CLI command."""
         raise ValueError("This command cannot be translated to a CLI command.")
 
     def __call__(self) -> bool:
+        """Run the command.
+
+        Returns:
+            False when vulnerabilities are found.
+        """
         requirements = self.py_args["requirements"]
         ignore_vulns = self.py_args["ignore_vulns"]
         formatter = self.py_args["formatter"]

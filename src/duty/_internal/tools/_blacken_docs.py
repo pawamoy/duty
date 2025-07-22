@@ -17,6 +17,7 @@ class blacken_docs(Tool):  # noqa: N801
     """Call [blacken-docs](https://github.com/adamchainz/blacken-docs)."""
 
     cli_name = "blacken-docs"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -64,9 +65,15 @@ class blacken_docs(Tool):  # noqa: N801
 
     @property
     def cli_command(self) -> str:
+        """The equivalent CLI command."""
         raise ValueError("This command cannot be translated to a CLI command.")
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         import black  # noqa: PLC0415
         from blacken_docs import format_file  # noqa: PLC0415
 

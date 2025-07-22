@@ -11,6 +11,7 @@ class pytest(Tool):  # noqa: N801
     """Call [pytest](https://github.com/pytest-dev/pytest)."""
 
     cli_name = "pytest"
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
@@ -478,6 +479,11 @@ class pytest(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
+        """Run the command.
+
+        Returns:
+            The exit code of the command.
+        """
         from pytest import main as run_pytest  # noqa: PT013,PLC0415
 
         return run_pytest(self.cli_args)

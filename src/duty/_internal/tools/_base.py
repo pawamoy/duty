@@ -45,14 +45,24 @@ class Tool:
     """Base class for tools."""
 
     cli_name: str = ""
+    """The name of the executable on PATH."""
 
     def __init__(
         self,
         cli_args: list[str] | None = None,
         py_args: dict[str, Any] | None = None,
     ) -> None:
+        """Initialize the tool.
+
+        Parameters:
+            cli_args: Initial command-line arguments. Use `add_args()` to add more.
+            py_args: Python arguments. Your `__call__` method will be able to access
+                these arguments as `self.py_args`.
+        """
         self.cli_args: list[str] = cli_args or []
+        """Registered command-line arguments."""
         self.py_args: dict[str, Any] = py_args or {}
+        """Registered Python arguments."""
 
     def add_args(self, *args: str) -> Self:
         """Add arguments."""
@@ -61,6 +71,7 @@ class Tool:
 
     @property
     def cli_command(self) -> str:
+        """The equivalent CLI command."""
         if not self.cli_name:
             raise ValueError("This tool does not provide a CLI.")
         return shlex.join([self.cli_name, *self.cli_args])
