@@ -1,0 +1,12 @@
+# duty
+
+> A simple task runner.
+
+## Usage
+
+- [Overview](https://pawamoy.github.io/duty/index.md)
+
+## API
+
+- [API reference](https://pawamoy.github.io/duty/reference/api/index.md)
+
