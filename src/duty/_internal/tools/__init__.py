@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from duty._internal.tools._autoflake import autoflake
-from duty._internal.tools._base import LazyStderr, LazyStdout, Tool
 from duty._internal.tools._black import black
 from duty._internal.tools._blacken_docs import blacken_docs
 from duty._internal.tools._build import build
@@ -21,9 +20,6 @@ from duty._internal.tools._twine import twine
 from duty._internal.tools._yore import yore
 
 __all__ = [
-    "LazyStderr",
-    "LazyStdout",
-    "Tool",
     "autoflake",
     "black",
     "blacken_docs",
@@ -34,7 +30,6 @@ __all__ = [
     "griffe",
     "interrogate",
     "isort",
-    "lazy",
     "mkdocs",
     "mypy",
     "pytest",

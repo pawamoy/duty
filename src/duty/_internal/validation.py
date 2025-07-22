@@ -18,18 +18,16 @@ if TYPE_CHECKING:
 
 # YORE: EOL 3.9: Replace block with lines 6-13.
 if sys.version_info < (3, 10):
-    from eval_type_backport import eval_type_backport as eval_type
+    from eval_type_backport import eval_type_backport as _eval_type
 
-    union_types = (Union,)
+    _union_types = (Union,)
 else:
     from types import UnionType
     from typing import _eval_type  # type: ignore[attr-defined]
 
     if sys.version_info >= (3, 13):
-        eval_type = partial(_eval_type, type_params=None)
-    else:
-        eval_type = _eval_type
-    union_types = (Union, UnionType)
+        _eval_type = partial(_eval_type, type_params=None)
+    _union_types = (Union, UnionType)
 
 
 def to_bool(value: str) -> bool:
@@ -58,7 +56,7 @@ def cast_arg(arg: Any, annotation: Any) -> Any:
         return arg
     if annotation is bool:
         annotation = to_bool
-    if get_origin(annotation) in union_types:
+    if get_origin(annotation) in _union_types:
         for sub_annotation in get_args(annotation):
             if sub_annotation is type(None):
                 continue
@@ -213,7 +211,7 @@ def _get_params_caster(func: Callable, *args: Any, **kwargs: Any) -> ParamsCaste
                 param.kind,
                 default=param.default,
                 annotation=(
-                    eval_type(
+                    _eval_type(
                         ForwardRef(param.annotation) if isinstance(param.annotation, str) else param.annotation,
                         exec_globals,
                         {},

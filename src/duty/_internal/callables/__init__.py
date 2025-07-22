@@ -4,8 +4,6 @@ from __future__ import annotations
 
 import warnings
 
-from failprint import lazy
-
 from duty._internal.callables import (
     autoflake,  # noqa: F401
     black,  # noqa: F401
@@ -25,8 +23,6 @@ from duty._internal.callables import (
     ssort,  # noqa: F401
     twine,  # noqa: F401
 )
-
-__all__ = ["lazy"]
 
 warnings.warn(
     "Callables are deprecated in favor of our new `duty.tools`. "

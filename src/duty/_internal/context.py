@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Any, Callable, Union
 from failprint import run as failprint_run
 
 from duty._internal.exceptions import DutyFailure
-from duty._internal.tools import Tool
+from duty._internal.tools._base import Tool
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
