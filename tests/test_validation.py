@@ -7,7 +7,7 @@ from typing import Any, Callable
 
 import pytest
 
-from duty.validation import _get_params_caster, cast_arg, to_bool
+from duty._internal.validation import _get_params_caster, cast_arg, to_bool
 from tests.fixtures import validation as valfix
 
 

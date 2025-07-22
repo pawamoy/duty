@@ -5,7 +5,7 @@ from __future__ import annotations
 import sys
 from typing import Literal
 
-from duty.tools._base import Tool
+from duty._internal.tools._base import Tool
 
 
 class flake8(Tool):  # noqa: N801

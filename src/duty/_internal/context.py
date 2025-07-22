@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING, Any, Callable, Union
 
 from failprint.runners import run as failprint_run
 
-from duty.exceptions import DutyFailure
-from duty.tools import Tool
+from duty._internal.exceptions import DutyFailure
+from duty._internal.tools import Tool
 
 if TYPE_CHECKING:
     from collections.abc import Iterator

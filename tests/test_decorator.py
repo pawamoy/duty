@@ -6,9 +6,9 @@ import inspect
 
 import pytest
 
-from duty.context import Context
-from duty.decorator import duty as decorate
-from duty.exceptions import DutyFailure
+from duty._internal.context import Context
+from duty._internal.decorator import duty as decorate
+from duty._internal.exceptions import DutyFailure
 
 
 def test_accept_one_posarg_when_decorating() -> None:

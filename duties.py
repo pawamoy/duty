@@ -10,12 +10,13 @@ from importlib.metadata import version as pkgversion
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from duty import duty, tools
+from duty import duty
+from duty._internal import tools
 
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
-    from duty.context import Context
+    from duty._internal.context import Context
 
 
 PY_SRC_PATHS = (Path(_) for _ in ("src", "tests", "duties.py", "scripts"))

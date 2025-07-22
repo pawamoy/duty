@@ -21,9 +21,9 @@ from typing import Any
 from failprint.cli import ArgParser, add_flags
 
 from duty._internal import debug
-from duty.collection import Collection, Duty
-from duty.exceptions import DutyFailure
-from duty.validation import validate
+from duty._internal.collection import Collection, Duty
+from duty._internal.exceptions import DutyFailure
+from duty._internal.validation import validate
 
 empty = inspect.Signature.empty
 

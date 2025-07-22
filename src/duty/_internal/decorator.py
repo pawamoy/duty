@@ -6,12 +6,12 @@ import inspect
 from functools import wraps
 from typing import TYPE_CHECKING, Any, Callable, overload
 
-from duty.collection import Duty, DutyListType
+from duty._internal.collection import Duty, DutyListType
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from duty.context import Context
+    from duty._internal.context import Context
 
 
 def _skip(func: Callable, reason: str) -> Callable:

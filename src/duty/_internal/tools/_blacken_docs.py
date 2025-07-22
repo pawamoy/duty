@@ -7,7 +7,7 @@ from pathlib import Path
 from re import Pattern
 from typing import TYPE_CHECKING
 
-from duty.tools._base import Tool
+from duty._internal.tools._base import Tool
 
 if TYPE_CHECKING:
     from collections.abc import Sequence

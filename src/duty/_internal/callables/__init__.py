@@ -9,7 +9,7 @@ import warnings
 
 from failprint.lazy import lazy
 
-from duty.callables import (
+from duty._internal.callables import (
     autoflake,  # noqa: F401
     black,  # noqa: F401
     blacken_docs,  # noqa: F401

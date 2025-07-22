@@ -8,7 +8,7 @@ from copy import deepcopy
 from importlib import util as importlib_util
 from typing import Any, Callable, ClassVar, Union
 
-from duty.context import Context
+from duty._internal.context import Context
 
 DutyListType = list[Union[str, Callable, "Duty"]]
 default_duties_file = "duties.py"

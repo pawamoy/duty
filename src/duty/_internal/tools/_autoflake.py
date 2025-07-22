@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from duty.tools._base import LazyStderr, LazyStdout, Tool
+from duty._internal.tools._base import LazyStderr, LazyStdout, Tool
 
 
 class autoflake(Tool):  # noqa: N801

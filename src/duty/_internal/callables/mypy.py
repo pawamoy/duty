@@ -6,7 +6,7 @@ from typing import Literal
 
 from failprint.lazy import lazy
 
-from duty.callables._io import _LazyStderr, _LazyStdout
+from duty._internal.callables._io import _LazyStderr, _LazyStdout
 
 
 @lazy(name="mypy")

@@ -7,8 +7,8 @@ from pathlib import Path
 
 import pytest
 
-from duty import context
-from duty.exceptions import DutyFailure
+from duty._internal import context
+from duty._internal.exceptions import DutyFailure
 
 RunResult = namedtuple("RunResult", "code output")  # noqa: PYI024
 

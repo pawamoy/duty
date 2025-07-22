@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from duty.tools._base import Tool
+from duty._internal.tools._base import Tool
 
 
 class mkdocs(Tool):  # noqa: N801

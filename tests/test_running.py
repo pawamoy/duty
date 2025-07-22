@@ -7,9 +7,9 @@ from unittest.mock import NonCallableMock
 
 import pytest
 
-from duty.collection import Collection, Duty
-from duty.decorator import duty as decorate
-from duty.exceptions import DutyFailure
+from duty._internal.collection import Collection, Duty
+from duty._internal.decorator import duty as decorate
+from duty._internal.exceptions import DutyFailure
 
 INTERRUPT_CODE = 130
 

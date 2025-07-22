@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from failprint.lazy import lazy
 
-from duty.callables import _io
+from duty._internal.callables import _io
 
 
 @lazy(name="autoflake")

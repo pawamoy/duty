@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from duty.tools._base import LazyStderr, LazyStdout, Tool
+from duty._internal.tools._base import LazyStderr, LazyStdout, Tool
 
 
 class mypy(Tool):  # noqa: N801

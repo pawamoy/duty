@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from duty.tools._base import Tool
+from duty._internal.tools._base import Tool
 
 _BADGE_STYLE = Literal["flat", "flat-square", "flat-square-modified", "for-the-badge", "plastic", "social"]
 

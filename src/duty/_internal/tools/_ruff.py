@@ -7,7 +7,7 @@ import subprocess
 import sys
 from functools import cache
 
-from duty.tools._base import Tool
+from duty._internal.tools._base import Tool
 
 
 @cache

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from duty.tools._base import Tool
+from duty._internal.tools._base import Tool
 
 
 class ssort(Tool):  # noqa: N801
