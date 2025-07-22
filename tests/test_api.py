@@ -20,6 +20,7 @@ if TYPE_CHECKING:
 def _fixture_loader() -> griffe.GriffeLoader:
     loader = griffe.GriffeLoader()
     loader.load("duty")
+    loader.load("failprint")
     loader.resolve_aliases()
     return loader
 
