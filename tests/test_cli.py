@@ -25,8 +25,7 @@ def test_show_help(capsys: pytest.CaptureFixture) -> None:
     Parameters:
         capsys: Pytest fixture to capture output.
     """
-    with pytest.raises(SystemExit):
-        main(["-h"])
+    assert main(["-h"]) == 0
     captured = capsys.readouterr()
     assert "duty" in captured.out
 

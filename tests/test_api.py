@@ -100,7 +100,11 @@ def _fixture_inventory() -> Inventory:
 def test_exposed_objects(modulelevel_internal_objects: list[griffe.Object | griffe.Alias]) -> None:
     """All public objects in the internal API are exposed under `duty`."""
     not_exposed = [
-        obj.path for obj in modulelevel_internal_objects if obj.name not in duty.__all__ or not hasattr(duty, obj.name)
+        obj.path
+        for obj in modulelevel_internal_objects
+        # YORE: Bump 2: Remove line.
+        if (".tools." not in obj.path and ".callables." not in obj.path)
+        and (obj.name not in duty.__all__ or not hasattr(duty, obj.name))
     ]
     assert not not_exposed, "Objects not exposed:\n" + "\n".join(sorted(not_exposed))
 
@@ -109,7 +113,9 @@ def test_unique_names(modulelevel_internal_objects: list[griffe.Object | griffe.
     """All internal objects have unique names."""
     names_to_paths = defaultdict(list)
     for obj in modulelevel_internal_objects:
-        names_to_paths[obj.name].append(obj.path)
+        # YORE: Bump 2: Remove line.
+        if ".tools." not in obj.path and ".callables." not in obj.path:
+            names_to_paths[obj.name].append(obj.path)
     non_unique = [paths for paths in names_to_paths.values() if len(paths) > 1]
     assert not non_unique, "Non-unique names:\n" + "\n".join(str(paths) for paths in non_unique)
 
@@ -154,8 +160,10 @@ def test_inventory_matches_api(
     for item in inventory.values():
         if item.domain == "py" and "(" not in item.name and (item.name == "duty" or item.name.startswith("duty.")):
             obj = loader.modules_collection[item.name]
-            if obj.path not in public_api_paths and not any(path in public_api_paths for path in obj.aliases):
-                not_in_api.append(item.name)
+            if obj.path not in public_api_paths and not any(path in public_api_paths for path in obj.aliases):  # noqa: SIM102
+                # YORE: Bump 2: Remove line.
+                if ".callables." not in obj.path and item.role != "module":
+                    not_in_api.append(item.name)
     msg = "Inventory objects not in public API (try running `make run mkdocs build`):\n{paths}"
     assert not not_in_api, msg.format(paths="\n".join(sorted(not_in_api)))
 
@@ -173,4 +181,6 @@ def test_no_module_docstrings_in_internal_api(internal_api: griffe.Module) -> No
             yield from _modules(member)
 
     for obj in _modules(internal_api):
-        assert not obj.docstring
+        # YORE: Bump 2: Remove line.
+        if not obj.path.endswith(".lazy"):
+            assert not obj.docstring, f"{obj.path} shouldn't have a docstring"
