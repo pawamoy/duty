@@ -7,7 +7,7 @@ from pathlib import Path
 from re import Pattern
 from typing import TYPE_CHECKING
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 if TYPE_CHECKING:
     from collections.abc import Sequence

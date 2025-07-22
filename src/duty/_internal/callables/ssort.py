@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sys
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 
 @lazy(name="ssort")

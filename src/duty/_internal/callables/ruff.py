@@ -7,7 +7,7 @@ import subprocess
 import sys
 from functools import cache
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 
 @cache

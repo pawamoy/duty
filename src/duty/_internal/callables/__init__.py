@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import warnings
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 from duty._internal.callables import (
     autoflake,  # noqa: F401

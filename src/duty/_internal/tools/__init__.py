@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 from duty._internal.tools._autoflake import autoflake
 from duty._internal.tools._base import LazyStderr, LazyStdout, Tool

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 
 def run(*args: str, version: bool = False, no_color: bool = False) -> None:

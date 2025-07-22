@@ -6,7 +6,7 @@ import os
 from contextlib import contextmanager, suppress
 from typing import TYPE_CHECKING, Any, Callable, Union
 
-from failprint.runners import run as failprint_run
+from failprint import run as failprint_run
 
 from duty._internal.exceptions import DutyFailure
 from duty._internal.tools import Tool

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 
 def run(*args: str, version: bool = False, debug_info: bool = False) -> None:

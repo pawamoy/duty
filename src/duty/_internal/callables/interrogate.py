@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Literal
 
-from failprint.lazy import lazy
+from failprint import lazy
 
 _BADGE_STYLE = Literal["flat", "flat-square", "flat-square-modified", "for-the-badge", "plastic", "social"]
 

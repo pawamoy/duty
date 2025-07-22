@@ -18,7 +18,7 @@ import textwrap
 from pathlib import Path
 from typing import Any
 
-from failprint.cli import ArgParser, add_flags
+from failprint import ArgParser, add_flags
 
 from duty._internal import debug
 from duty._internal.collection import Collection, Duty
