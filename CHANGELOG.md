@@ -5,6 +5,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.6.1](https://github.com/pawamoy/duty/releases/tag/1.6.1) - 2025-07-22
+
+<small>[Compare with 1.6.0](https://github.com/pawamoy/duty/compare/1.6.0...1.6.1)</small>
+
+### Deprecations
+
+- API is now exposed at the top-level, except for the `tools` (and deprecated `callables`) submodules.
+
+### Bug Fixes
+
+- Add missing `rule` parameter to `ruff rule` tool ([44e60f8](https://github.com/pawamoy/duty/commit/44e60f8719aac35d1841ab8865a6535826dd7281) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Re-add public (deprecated) modules ([f0920e8](https://github.com/pawamoy/duty/commit/f0920e83e9b9f89d8106072f8659c48163a611ef) by Timothée Mazzucotelli).
+- Import from failprint directly ([285a1f7](https://github.com/pawamoy/duty/commit/285a1f7653838d33b3b8715ddc920237b33ec2e6) by Timothée Mazzucotelli).
+- Re-export API ([c6ef6fe](https://github.com/pawamoy/duty/commit/c6ef6fe1dd7b04f518425d0fc901dacc3bf440fc) by Timothée Mazzucotelli).
+- Move modules into internal folder ([54c2879](https://github.com/pawamoy/duty/commit/54c2879f45aad3855407612970c69bdf0b7487a5) by Timothée Mazzucotelli).
+
 ## [1.6.0](https://github.com/pawamoy/duty/releases/tag/1.6.0) - 2025-03-01
 
 <small>[Compare with 1.5.0](https://github.com/pawamoy/duty/compare/1.5.0...1.6.0)</small>
