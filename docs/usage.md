@@ -90,8 +90,8 @@ as well as improving readability and writability.
 
 **[See all our tools in the Code reference][duty.tools].**
 
-You can also create your own lazy callables with [`duty.tools.Tool`][]
-and [`duty.tools.lazy`][failprint.lazy.lazy].
+You can also create your own lazy callables with [`duty.Tool`][]
+and [`duty.lazy`][].
 Check out our tools to see how to create your own.
 
 The `lazy` function/decorator is a quicker way

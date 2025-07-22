@@ -5,3 +5,5 @@ hide:
 ---
 
 # ::: duty
+    options:
+        show_submodules: true
