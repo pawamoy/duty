@@ -1,5 +1,3 @@
-"""Module that contains the command line application."""
-
 # Why does this file exist, and why not put this in `__main__`?
 #
 # You might be tempted to import things from `__main__` later,
@@ -22,7 +20,7 @@ from typing import Any
 
 from failprint.cli import ArgParser, add_flags
 
-from duty import debug
+from duty._internal import debug
 from duty.collection import Collection, Duty
 from duty.exceptions import DutyFailure
 from duty.validation import validate
@@ -35,7 +33,7 @@ class _DebugInfo(argparse.Action):
         super().__init__(nargs=nargs, **kwargs)
 
     def __call__(self, *args: Any, **kwargs: Any) -> None:  # noqa: ARG002
-        debug.print_debug_info()
+        debug._print_debug_info()
         sys.exit(0)
 
 
@@ -82,7 +80,7 @@ def get_parser() -> ArgParser:
         action="store_true",
         help=argparse.SUPPRESS,
     )
-    parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug.get_version()}")
+    parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug._get_version()}")
     parser.add_argument("--debug-info", action=_DebugInfo, help="Print debug information.")
 
     add_flags(parser, set_defaults=False)
