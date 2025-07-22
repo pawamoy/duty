@@ -55,8 +55,8 @@ def run(
     Returns:
         Success/failure.
     """
-    import black
-    from blacken_docs import format_file
+    import black  # noqa: PLC0415
+    from blacken_docs import format_file  # noqa: PLC0415
 
     exts = ("md", "py") if exts is None else tuple(ext.lstrip(".") for ext in exts)
     if exclude:

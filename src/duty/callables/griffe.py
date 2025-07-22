@@ -15,7 +15,7 @@ def run(*args: str, version: bool = False, debug_info: bool = False) -> None:
         version: Show program's version number and exit.
         debug_info: Print debug information.
     """
-    from griffe.cli import main as griffe
+    from griffe.cli import main as griffe  # noqa: PLC0415
 
     cli_args = []
 

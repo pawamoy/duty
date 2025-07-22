@@ -220,7 +220,7 @@ class flake8(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
-        from flake8.main import main as run_flake8
+        from flake8.main import main as run_flake8  # noqa: PLC0415
 
         old_sys_argv = sys.argv
         sys.argv = ["flake8", *self.cli_args]

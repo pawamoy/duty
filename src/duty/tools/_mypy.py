@@ -492,7 +492,7 @@ class mypy(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> None:
-        from mypy.main import main as run_mypy
+        from mypy.main import main as run_mypy  # noqa: PLC0415
 
         return run_mypy(
             args=self.cli_args,

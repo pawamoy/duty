@@ -716,6 +716,6 @@ class coverage(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int | None:
-        from coverage.cmdline import main as run_coverage
+        from coverage.cmdline import main as run_coverage  # noqa: PLC0415
 
         return run_coverage(self.cli_args)

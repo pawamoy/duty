@@ -8,7 +8,7 @@ from failprint.lazy import lazy
 
 
 def _run(args: list[str]) -> None:
-    from coverage.cmdline import main as coverage
+    from coverage.cmdline import main as coverage  # noqa: PLC0415
 
     coverage(args)
 

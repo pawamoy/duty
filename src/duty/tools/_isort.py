@@ -574,6 +574,6 @@ class isort(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
-        from isort.main import main as run_isort
+        from isort.main import main as run_isort  # noqa: PLC0415
 
         return run_isort(self.cli_args)

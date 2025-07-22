@@ -221,6 +221,6 @@ class griffe(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int:
-        from griffe import main as run_griffe
+        from griffe import main as run_griffe  # noqa: PLC0415
 
         return run_griffe(self.cli_args)

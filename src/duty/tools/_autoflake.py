@@ -129,7 +129,7 @@ class autoflake(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
-        from autoflake import _main as run_autoflake
+        from autoflake import _main as run_autoflake  # noqa: PLC0415
 
         return run_autoflake(
             self.cli_args,

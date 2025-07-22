@@ -239,7 +239,7 @@ def run(
         conda_env: Conda environment to use for determining whether a package is third-party
         python_version: Tells isort to set the known standard library based on the specified Python version. Default is to assume any Python 3 version could be the target, and use a union of all stdlib modules across versions. If auto is specified, the version of the interpreter used to run isort (currently: 311) will be used.
     """
-    from isort.main import main as isort
+    from isort.main import main as isort  # noqa: PLC0415
 
     cli_args = list(files)
 

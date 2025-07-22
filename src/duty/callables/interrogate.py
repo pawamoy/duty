@@ -64,7 +64,7 @@ def run(
         badge_format: File format for the generated badge.
         badge_style: Desired style of shields.io badge.
     """
-    from interrogate.cli import main as interrogate
+    from interrogate.cli import main as interrogate  # noqa: PLC0415
 
     cli_args: list[str] = list(src)
 

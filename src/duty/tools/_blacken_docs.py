@@ -67,8 +67,8 @@ class blacken_docs(Tool):  # noqa: N801
         raise ValueError("This command cannot be translated to a CLI command.")
 
     def __call__(self) -> int:
-        import black
-        from blacken_docs import format_file
+        import black  # noqa: PLC0415
+        from blacken_docs import format_file  # noqa: PLC0415
 
         # Restore locals.
         exts = self.py_args["exts"]

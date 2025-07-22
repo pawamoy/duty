@@ -12,7 +12,7 @@ from failprint.lazy import lazy
 
 @cache
 def _find_ruff() -> str:
-    from ruff.__main__ import find_ruff_bin
+    from ruff.__main__ import find_ruff_bin  # noqa: PLC0415
 
     try:
         return find_ruff_bin()

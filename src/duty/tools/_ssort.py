@@ -34,7 +34,7 @@ class ssort(Tool):  # noqa: N801
             cli_args.append("--check")
 
     def __call__(self) -> int:
-        from ssort._main import main as run_ssort
+        from ssort._main import main as run_ssort  # noqa: PLC0415
 
         old_sys_argv = sys.argv
         sys.argv = ["ssort", *self.cli_args]

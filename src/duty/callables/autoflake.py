@@ -56,7 +56,7 @@ def run(
         in_place: Make changes to files instead of printing diffs.
         stdout: Print changed text to stdout. defaults to true when formatting stdin, or to false otherwise.
     """
-    from autoflake import _main as autoflake
+    from autoflake import _main as autoflake  # noqa: PLC0415
 
     cli_args = list(files)
 

@@ -13,7 +13,7 @@ def run(*args: str, quiet: bool = False, verbose: bool = False) -> None:
         quiet: Silence warnings.
         verbose: Enable verbose output.
     """
-    from mkdocs.__main__ import cli as mkdocs
+    from mkdocs.__main__ import cli as mkdocs  # noqa: PLC0415
 
     cli_args = list(args)
 

@@ -79,6 +79,6 @@ class build(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> None:
-        from build.__main__ import main as run_build
+        from build.__main__ import main as run_build  # noqa: PLC0415
 
         run_build(self.cli_args)

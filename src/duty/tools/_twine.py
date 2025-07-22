@@ -284,6 +284,6 @@ class twine(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> None:
-        from twine.cli import dispatch as run_twine
+        from twine.cli import dispatch as run_twine  # noqa: PLC0415
 
         return run_twine(self.cli_args)

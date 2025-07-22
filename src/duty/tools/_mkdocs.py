@@ -266,6 +266,6 @@ class mkdocs(Tool):  # noqa: N801
         return cls(cli_args)
 
     def __call__(self) -> int:
-        from mkdocs.__main__ import cli as run_mkdocs
+        from mkdocs.__main__ import cli as run_mkdocs  # noqa: PLC0415
 
         return run_mkdocs(self.cli_args)

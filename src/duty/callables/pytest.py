@@ -178,7 +178,7 @@ def run(
         log_file_date_format: Log date format used by the logging module.
         log_auto_indent: Auto-indent multiline messages passed to the logging module. Accepts true|on, false|off or an integer.
     """
-    from pytest import main as pytest  # noqa: PT013
+    from pytest import main as pytest  # noqa: PT013,PLC0415
 
     cli_args = list(paths)
 

@@ -80,7 +80,7 @@ def run(
             --force-exclude option on some editors that rely on using stdin.
         workers: Number of parallel workers [default: number CPUs in the system].
     """
-    from black import main as black
+    from black import main as black  # noqa: PLC0415
 
     cli_args = list(src)
 

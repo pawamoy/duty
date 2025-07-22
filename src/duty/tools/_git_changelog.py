@@ -181,6 +181,6 @@ class git_changelog(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
-        from git_changelog.cli import main as run_git_changelog
+        from git_changelog.cli import main as run_git_changelog  # noqa: PLC0415
 
         return run_git_changelog(self.cli_args)

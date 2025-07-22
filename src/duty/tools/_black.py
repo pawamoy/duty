@@ -179,6 +179,6 @@ class black(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> None:
-        from black import main as run_black
+        from black import main as run_black  # noqa: PLC0415
 
         return run_black(self.cli_args, prog_name="black")

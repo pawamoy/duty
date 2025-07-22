@@ -13,7 +13,7 @@ def run(*args: str, version: bool = False, no_color: bool = False) -> None:
         version: Show program's version number and exit.
         no_color: Disable colored output.
     """
-    from twine.cli import dispatch as twine
+    from twine.cli import dispatch as twine  # noqa: PLC0415
 
     cli_args = []
 

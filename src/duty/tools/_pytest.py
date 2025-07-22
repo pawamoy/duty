@@ -478,6 +478,6 @@ class pytest(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> int:
-        from pytest import main as run_pytest  # noqa: PT013
+        from pytest import main as run_pytest  # noqa: PT013,PLC0415
 
         return run_pytest(self.cli_args)

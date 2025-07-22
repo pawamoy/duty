@@ -89,7 +89,7 @@ def run(
     Returns:
         Success/failure.
     """
-    from flake8.main import main as flake8
+    from flake8.main import main as flake8  # noqa: PLC0415
 
     cli_args = list(paths)
 

@@ -20,7 +20,7 @@ def run(
         diff: Prints a diff of all changes ssort would make to a file.
         check: Check the file for unsorted statements. Returns 0 if nothing needs to be changed. Otherwise returns 1.
     """
-    from ssort._main import main as ssort
+    from ssort._main import main as ssort  # noqa: PLC0415
 
     cli_args = list(files)
 

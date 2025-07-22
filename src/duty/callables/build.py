@@ -36,7 +36,7 @@ def run(
         installer: Python package installer to use (defaults to pip).
         config_setting: Settings to pass to the backend. Multiple settings can be provided.
     """
-    from build.__main__ import main as build
+    from build.__main__ import main as build  # noqa: PLC0415
 
     cli_args = []
 

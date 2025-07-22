@@ -91,7 +91,7 @@ def run(
         version: Show the current version of the program and exit.
         debug_info: Print debug information.
     """
-    from git_changelog.cli import main as git_changelog
+    from git_changelog.cli import main as git_changelog  # noqa: PLC0415
 
     cli_args = []
 

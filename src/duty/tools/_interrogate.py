@@ -155,6 +155,6 @@ class interrogate(Tool):  # noqa: N801
         super().__init__(cli_args)
 
     def __call__(self) -> None:
-        from interrogate.cli import main as run_interrogate
+        from interrogate.cli import main as run_interrogate  # noqa: PLC0415
 
         return run_interrogate(self.cli_args)
