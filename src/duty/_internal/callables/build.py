@@ -1,5 +1,7 @@
 """Callable for [build](https://github.com/pypa/build)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 from typing import Literal

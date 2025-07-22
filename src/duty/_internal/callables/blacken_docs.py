@@ -1,5 +1,7 @@
 """Callable for [blacken-docs](https://github.com/adamchainz/blacken-docs)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 import re

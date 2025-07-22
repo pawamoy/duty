@@ -1,5 +1,7 @@
 """Callable for [Twine](https://github.com/pypa/twine)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 from failprint import lazy

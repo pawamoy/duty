@@ -1,5 +1,7 @@
 """Callable for [Griffe](https://github.com/mkdocstrings/griffe)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 from typing import Literal

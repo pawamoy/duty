@@ -1,5 +1,7 @@
 """Callable for [autoflake](https://github.com/PyCQA/autoflake)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 from failprint import lazy

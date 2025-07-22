@@ -1,5 +1,7 @@
 """Callable for [pytest](https://github.com/pytest-dev/pytest)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 from typing import Literal

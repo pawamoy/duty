@@ -1,6 +1,8 @@
 import sys
 from io import StringIO
 
+# YORE: Bump 2: Remove file.
+
 
 class _LazyStdout(StringIO):
     def write(self, value: str) -> int:

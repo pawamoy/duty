@@ -1,5 +1,7 @@
 """Callable for [Ruff](https://github.com/astral-sh/ruff)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 import os

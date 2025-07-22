@@ -1,5 +1,7 @@
 """Callable for [Flake8](https://github.com/PyCQA/flake8)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 import sys

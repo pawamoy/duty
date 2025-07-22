@@ -1,5 +1,7 @@
 """Callable for [ssort](https://github.com/bwhmather/ssort)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 import sys

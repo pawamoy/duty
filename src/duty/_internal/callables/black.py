@@ -1,5 +1,7 @@
 """Callable for [Black](https://github.com/psf/black)."""
 
+# YORE: Bump 2: Remove file.
+
 from __future__ import annotations
 
 from failprint import lazy
