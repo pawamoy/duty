@@ -1,5 +1,3 @@
-"""Callable for [Twine](https://github.com/pypa/twine)."""
-
 from __future__ import annotations
 
 from typing import Any

@@ -1,5 +1,3 @@
-"""Module containing all the logic."""
-
 from __future__ import annotations
 
 import inspect
@@ -11,13 +9,16 @@ from typing import Any, Callable, ClassVar, Union
 from duty._internal.context import Context
 
 DutyListType = list[Union[str, Callable, "Duty"]]
+"""Type of a list of duties, which can be a list of strings, callables, or Duty instances."""
 default_duties_file = "duties.py"
+"""Default path to the duties file, relative to the current working directory."""
 
 
 class Duty:
     """The main duty class."""
 
     default_options: ClassVar[dict[str, Any]] = {}
+    """Default options used to create the context instance."""
 
     def __init__(
         self,
@@ -43,15 +44,24 @@ class Duty:
             opts: Options used to create the context instance.
         """
         self.name = name
+        """The duty name."""
         self.description = description
+        """The duty description."""
         self.function = function
+        """The duty function."""
         self.aliases = aliases or set()
+        """A set of aliases for this duty."""
         self.pre = pre or []
+        """A list of duties to run before this one."""
         self.post = post or []
+        """A list of duties to run after this one."""
         self.options = opts or self.default_options
+        """Options used to create the context instance."""
         self.options_override: dict = {}
+        """Options that override `run` and `@duty` options."""
 
         self.collection: Collection | None = None
+        """The collection on which this duty is attached."""
         if collection:
             collection.add(self)
 
@@ -127,8 +137,11 @@ class Collection:
             path: The path to the duties file.
         """
         self.path = path
+        """The path to the duties file."""
         self.duties: dict[str, Duty] = {}
+        """The list of duties."""
         self.aliases: dict[str, Duty] = {}
+        """A dictionary of aliases pointing to their respective duties."""
 
     def clear(self) -> None:
         """Clear the collection."""

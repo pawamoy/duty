@@ -1,5 +1,3 @@
-"""Callable for [pytest](https://github.com/pytest-dev/pytest)."""
-
 from __future__ import annotations
 
 from typing import Literal

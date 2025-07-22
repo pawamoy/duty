@@ -1,5 +1,3 @@
-"""Callable for [blacken-docs](https://github.com/adamchainz/blacken-docs)."""
-
 from __future__ import annotations
 
 import re

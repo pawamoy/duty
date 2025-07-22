@@ -1,5 +1,3 @@
-"""Module containing the decorator provided to users."""
-
 from __future__ import annotations
 
 import inspect

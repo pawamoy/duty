@@ -1,5 +1,3 @@
-"""Callable for [ssort](https://github.com/bwhmather/ssort)."""
-
 from __future__ import annotations
 
 import sys

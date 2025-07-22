@@ -1,5 +1,3 @@
-"""Module containing the context definition."""
-
 from __future__ import annotations
 
 import os
@@ -15,6 +13,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterator
 
 CmdType = Union[str, list[str], Callable]
+"""Type of a command that can be run in a subprocess or as a Python callable."""
 
 
 class Context:

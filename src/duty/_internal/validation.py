@@ -1,9 +1,8 @@
-"""This module contains logic used to validate parameters passed to duties.
-
-We validate the parameters before running the duties,
-effectively checking all CLI arguments and failing early
-if they are incorrect.
-"""
+# This module contains logic used to validate parameters passed to duties.
+#
+# We validate the parameters before running the duties,
+# effectively checking all CLI arguments and failing early
+# if they are incorrect.
 
 from __future__ import annotations
 
@@ -81,7 +80,9 @@ class ParamsCaster:
             signature: The signature to use to cast arguments.
         """
         self.params_dict = signature.parameters
+        """A dictionary of parameters, indexed by their name."""
         self.params_list = list(self.params_dict.values())
+        """A list of parameters, in the order they appear in the signature."""
 
     @cached_property
     def var_positional_position(self) -> int:

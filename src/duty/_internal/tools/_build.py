@@ -1,5 +1,3 @@
-"""Callable for [build](https://github.com/pypa/build)."""
-
 from __future__ import annotations
 
 from typing import Literal

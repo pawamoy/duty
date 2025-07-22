@@ -1,5 +1,3 @@
-"""Callable for [git-changelog](https://github.com/pawamoy/git-changelog)."""
-
 # YORE: Bump 2: Remove file.
 
 from __future__ import annotations

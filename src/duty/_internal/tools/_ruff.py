@@ -1,5 +1,3 @@
-"""Callable for [Ruff](https://github.com/astral-sh/ruff)."""
-
 from __future__ import annotations
 
 import os

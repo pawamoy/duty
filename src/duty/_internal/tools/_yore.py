@@ -1,5 +1,3 @@
-"""Callable for [Yore](https://github.com/pawamoy/yore)."""
-
 from __future__ import annotations
 
 from duty._internal.tools._base import Tool

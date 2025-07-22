@@ -1,5 +1,3 @@
-"""Callable for [Safety](https://github.com/pyupio/safety)."""
-
 from __future__ import annotations
 
 import importlib

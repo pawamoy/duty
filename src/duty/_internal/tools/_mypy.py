@@ -1,5 +1,3 @@
-"""Callable for [Mypy](https://github.com/python/mypy)."""
-
 from __future__ import annotations
 
 from typing import Literal

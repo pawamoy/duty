@@ -1,5 +1,3 @@
-"""Callable for [Interrogate](https://github.com/econchick/interrogate)."""
-
 from __future__ import annotations
 
 from typing import Literal

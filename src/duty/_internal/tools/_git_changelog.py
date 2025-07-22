@@ -1,5 +1,3 @@
-"""Callable for [git-changelog](https://github.com/pawamoy/git-changelog)."""
-
 from __future__ import annotations
 
 from typing import Literal

@@ -1,5 +1,3 @@
-"""Callable for [MkDocs](https://github.com/mkdocs/mkdocs)."""
-
 from __future__ import annotations
 
 from duty._internal.tools._base import Tool

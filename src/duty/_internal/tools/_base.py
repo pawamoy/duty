@@ -1,4 +1,4 @@
-"""Utilities for creating tools."""
+# Utilities for creating tools.
 
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ class LazyStdout(StringIO):
     """
 
     def write(self, value: str) -> int:
+        """Write a string to the stdout buffer."""
         return sys.stdout.write(value)
 
     def __repr__(self) -> str:
@@ -35,6 +36,7 @@ class LazyStderr(StringIO):
     """
 
     def write(self, value: str) -> int:
+        """Write a string to the stderr buffer."""
         return sys.stderr.write(value)
 
     def __repr__(self) -> str:
@@ -65,7 +67,7 @@ class Tool:
         """Registered Python arguments."""
 
     def add_args(self, *args: str) -> Self:
-        """Add arguments."""
+        """Append CLI arguments."""
         self.cli_args.extend(args)
         return self
 

@@ -1,5 +1,3 @@
-"""Callable for [isort](https://github.com/PyCQA/isort)."""
-
 # YORE: Bump 2: Remove file.
 
 from __future__ import annotations

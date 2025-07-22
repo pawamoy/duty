@@ -1,5 +1,3 @@
-"""Callable for [Coverage.py](https://github.com/nedbat/coveragepy)."""
-
 from __future__ import annotations
 
 from typing import Literal

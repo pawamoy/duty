@@ -1,6 +1,3 @@
-"""Module containing the project's exceptions."""
-
-
 class DutyFailure(Exception):  # noqa: N818
     """An exception raised when a duty fails."""
 
@@ -12,3 +9,4 @@ class DutyFailure(Exception):  # noqa: N818
         """
         super().__init__(self)
         self.code = code
+        """The exit code of the command that failed."""

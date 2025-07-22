@@ -1,5 +1,3 @@
-"""Callable for [isort](https://github.com/PyCQA/isort)."""
-
 from __future__ import annotations
 
 from typing import Literal

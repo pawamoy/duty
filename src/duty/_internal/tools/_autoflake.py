@@ -1,5 +1,3 @@
-"""Callable for [autoflake](https://github.com/PyCQA/autoflake)."""
-
 from __future__ import annotations
 
 from duty._internal.tools._base import LazyStderr, LazyStdout, Tool

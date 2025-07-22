@@ -1,5 +1,3 @@
-"""Callable for [Interrogate](https://github.com/econchick/interrogate)."""
-
 # YORE: Bump 2: Remove file.
 
 from __future__ import annotations

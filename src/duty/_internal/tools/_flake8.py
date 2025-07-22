@@ -1,5 +1,3 @@
-"""Callable for [Flake8](https://github.com/PyCQA/flake8)."""
-
 from __future__ import annotations
 
 from typing import Literal

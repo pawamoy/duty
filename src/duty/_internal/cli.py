@@ -26,6 +26,7 @@ from duty._internal.exceptions import DutyFailure
 from duty._internal.validation import validate
 
 empty = inspect.Signature.empty
+"""Empty value for a parameter's default value."""
 
 
 class _DebugInfo(argparse.Action):

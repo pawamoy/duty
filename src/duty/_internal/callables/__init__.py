@@ -1,8 +1,3 @@
-"""Module containing callables for many tools.
-
-These callables are **deprecated** in favor of our new [tools][duty.tools].
-"""
-
 # YORE: Bump 2: Remove file.
 
 from __future__ import annotations

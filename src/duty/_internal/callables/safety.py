@@ -1,5 +1,3 @@
-"""Callable for [Safety](https://github.com/pyupio/safety)."""
-
 # YORE: Bump 2: Remove file.
 
 from __future__ import annotations

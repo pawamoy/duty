@@ -1,5 +1,3 @@
-"""Callable for [Mypy](https://github.com/python/mypy)."""
-
 # YORE: Bump 2: Remove file.
 
 from __future__ import annotations

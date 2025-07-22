@@ -1,5 +1,3 @@
-"""Callable for [Griffe](https://github.com/mkdocstrings/griffe)."""
-
 from __future__ import annotations
 
 from typing import Literal
