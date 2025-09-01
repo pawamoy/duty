@@ -185,6 +185,6 @@ class git_changelog(Tool):  # noqa: N801
         Returns:
             The exit code of the command.
         """
-        from git_changelog.cli import main as run_git_changelog  # noqa: PLC0415
+        from git_changelog import main as run_git_changelog  # noqa: PLC0415
 
         return run_git_changelog(self.cli_args)
