@@ -8,14 +8,12 @@ Inspired by [Invoke](https://github.com/pyinvoke/invoke).
 
 ```
 pip install duty
-
 ```
 
 With [`uv`](https://docs.astral.sh/uv/):
 
 ```
 uv tool install duty
-
 ```
 
 ## Quick start
@@ -28,14 +26,12 @@ from duty import duty
 @duty
 def docs(ctx):
     ctx.run("mkdocs build", title="Building documentation")
-
 ```
 
 You can now use the command line tool to run it:
 
 ```
 duty docs
-
 ```
 
 See the [Usage](https://pawamoy.github.io/duty/usage/) section in the documentation for more examples.
@@ -80,7 +76,6 @@ DUTY := $(if $(VIRTUAL_ENV),,pdm run) duty
 
 clean:
     @$(DUTY) clean
-
 ```
 
 See [our Makefile](https://github.com/pawamoy/duty/blob/main/Makefile) for inspiration.

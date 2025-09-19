@@ -55,7 +55,6 @@ Attributes:
 
 ```
 CmdType = Union[str, list[str], Callable]
-
 ```
 
 Type of a command that can be run in a subprocess or as a Python callable.
@@ -64,7 +63,6 @@ Type of a command that can be run in a subprocess or as a Python callable.
 
 ```
 DutyListType = list[Union[str, Callable, 'Duty']]
-
 ```
 
 Type of a list of duties, which can be a list of strings, callables, or Duty instances.
@@ -73,7 +71,6 @@ Type of a list of duties, which can be a list of strings, callables, or Duty ins
 
 ```
 default_duties_file = 'duties.py'
-
 ```
 
 Default path to the duties file, relative to the current working directory.
@@ -82,7 +79,6 @@ Default path to the duties file, relative to the current working directory.
 
 ```
 empty = empty
-
 ```
 
 Empty value for a parameter's default value.
@@ -91,7 +87,6 @@ Empty value for a parameter's default value.
 
 ```
 Collection(path: str = default_duties_file)
-
 ```
 
 A collection of duties.
@@ -131,14 +126,12 @@ def __init__(self, path: str = default_duties_file) -> None:
     """The list of duties."""
     self.aliases: dict[str, Duty] = {}
     """A dictionary of aliases pointing to their respective duties."""
-
 ```
 
 ### aliases
 
 ```
 aliases: dict[str, Duty] = {}
-
 ```
 
 A dictionary of aliases pointing to their respective duties.
@@ -147,7 +140,6 @@ A dictionary of aliases pointing to their respective duties.
 
 ```
 duties: dict[str, Duty] = {}
-
 ```
 
 The list of duties.
@@ -156,7 +148,6 @@ The list of duties.
 
 ```
 path = path
-
 ```
 
 The path to the duties file.
@@ -165,7 +156,6 @@ The path to the duties file.
 
 ```
 add(duty: Duty) -> None
-
 ```
 
 Add a duty to the collection.
@@ -191,14 +181,12 @@ def add(self, duty: Duty) -> None:
     self.duties[duty.name] = duty
     for alias in duty.aliases:
         self.aliases[alias] = duty
-
 ```
 
 ### clear
 
 ```
 clear() -> None
-
 ```
 
 Clear the collection.
@@ -210,14 +198,12 @@ def clear(self) -> None:
     """Clear the collection."""
     self.duties.clear()
     self.aliases.clear()
-
 ```
 
 ### completion_candidates
 
 ```
 completion_candidates(args: tuple[str, ...]) -> list[str]
-
 ```
 
 Find shell completion candidates within this collection.
@@ -257,14 +243,12 @@ def completion_candidates(self, args: tuple[str, ...]) -> list[str]:
 
     # If duty found, return names *and* duty parameters.
     return completion_names + sorted(params)
-
 ```
 
 ### format_help
 
 ```
 format_help() -> str
-
 ```
 
 Format a message listing the duties.
@@ -289,14 +273,12 @@ def format_help(self) -> str:
         description = duty.description.split("\n")[0]
         lines.append(f"{name:{longest_name}}  {description}")
     return "\n".join(lines)
-
 ```
 
 ### get
 
 ```
 get(name_or_alias: str) -> Duty
-
 ```
 
 Get a duty by its name or alias.
@@ -325,14 +307,12 @@ def get(self, name_or_alias: str) -> Duty:
         return self.duties[name_or_alias]
     except KeyError:
         return self.aliases[name_or_alias]
-
 ```
 
 ### load
 
 ```
 load(path: str | None = None) -> None
-
 ```
 
 Load duties from a Python file.
@@ -360,14 +340,12 @@ def load(self, path: str | None = None) -> None:
         declared_duties = inspect.getmembers(duties, lambda member: isinstance(member, Duty))
         for _, duty in declared_duties:
             self.add(duty)
-
 ```
 
 ### names
 
 ```
 names() -> list[str]
-
 ```
 
 Return the list of duties names and aliases.
@@ -386,7 +364,6 @@ def names(self) -> list[str]:
         The list of duties names and aliases.
     """
     return list(self.duties.keys()) + list(self.aliases.keys())
-
 ```
 
 ## Context
@@ -396,7 +373,6 @@ Context(
     options: dict[str, Any],
     options_override: dict[str, Any] | None = None,
 )
-
 ```
 
 A simple context class.
@@ -428,14 +404,12 @@ def __init__(self, options: dict[str, Any], options_override: dict[str, Any] | N
     self._options = options
     self._option_stack: list[dict[str, Any]] = []
     self._options_override = options_override or {}
-
 ```
 
 ### cd
 
 ```
 cd(directory: str) -> Iterator
-
 ```
 
 Change working directory as a context manager.
@@ -470,14 +444,12 @@ def cd(self, directory: str) -> Iterator:
         yield
     finally:
         os.chdir(old_wd)
-
 ```
 
 ### options
 
 ```
 options(**opts: Any) -> Iterator
-
 ```
 
 Change options as a context manager.
@@ -513,14 +485,12 @@ def options(self, **opts: Any) -> Iterator:
         yield
     finally:
         self._options = self._option_stack.pop()
-
 ```
 
 ### run
 
 ```
 run(cmd: CmdType, **options: Any) -> str
-
 ```
 
 Run a command in a subprocess or a Python callable.
@@ -577,7 +547,6 @@ def run(self, cmd: CmdType, **options: Any) -> str:
         raise DutyFailure(result.code)
 
     return result.output
-
 ```
 
 ## Duty
@@ -593,7 +562,6 @@ Duty(
     post: DutyListType | None = None,
     opts: dict[str, Any] | None = None,
 )
-
 ```
 
 The main duty class.
@@ -676,14 +644,12 @@ def __init__(
     """The collection on which this duty is attached."""
     if collection:
         collection.add(self)
-
 ```
 
 ### aliases
 
 ```
 aliases = aliases or set()
-
 ```
 
 A set of aliases for this duty.
@@ -692,7 +658,6 @@ A set of aliases for this duty.
 
 ```
 collection: Collection | None = None
-
 ```
 
 The collection on which this duty is attached.
@@ -701,7 +666,6 @@ The collection on which this duty is attached.
 
 ```
 context: Context
-
 ```
 
 Return a new context instance.
@@ -714,7 +678,6 @@ Returns:
 
 ```
 default_options: dict[str, Any] = {}
-
 ```
 
 Default options used to create the context instance.
@@ -723,7 +686,6 @@ Default options used to create the context instance.
 
 ```
 description = description
-
 ```
 
 The duty description.
@@ -732,7 +694,6 @@ The duty description.
 
 ```
 function = function
-
 ```
 
 The duty function.
@@ -741,7 +702,6 @@ The duty function.
 
 ```
 name = name
-
 ```
 
 The duty name.
@@ -750,7 +710,6 @@ The duty name.
 
 ```
 options = opts or default_options
-
 ```
 
 Options used to create the context instance.
@@ -759,7 +718,6 @@ Options used to create the context instance.
 
 ```
 options_override: dict = {}
-
 ```
 
 Options that override `run` and `@duty` options.
@@ -768,7 +726,6 @@ Options that override `run` and `@duty` options.
 
 ```
 post = post or []
-
 ```
 
 A list of duties to run after this one.
@@ -777,7 +734,6 @@ A list of duties to run after this one.
 
 ```
 pre = pre or []
-
 ```
 
 A list of duties to run before this one.
@@ -788,7 +744,6 @@ A list of duties to run before this one.
 __call__(
     context: Context, *args: Any, **kwargs: Any
 ) -> None
-
 ```
 
 Run the duty function.
@@ -813,14 +768,12 @@ def __call__(self, context: Context, *args: Any, **kwargs: Any) -> None:
     self.run_duties(context, self.pre)
     self.function(context, *args, **kwargs)
     self.run_duties(context, self.post)
-
 ```
 
 ### run
 
 ```
 run(*args: Any, **kwargs: Any) -> None
-
 ```
 
 Run the duty.
@@ -845,7 +798,6 @@ def run(self, *args: Any, **kwargs: Any) -> None:
         kwargs: Keyword arguments passed to the function.
     """
     self(self.context, *args, **kwargs)
-
 ```
 
 ### run_duties
@@ -854,7 +806,6 @@ def run(self, *args: Any, **kwargs: Any) -> None:
 run_duties(
     context: Context, duties_list: DutyListType
 ) -> None
-
 ```
 
 Run a list of duties.
@@ -893,14 +844,12 @@ def run_duties(self, context: Context, duties_list: DutyListType) -> None:
                 raise RuntimeError(f"Can't find duty by name without a collection ({duty_item})")
             # Get the duty and run it.
             self.collection.get(duty_item)(context)
-
 ```
 
 ## DutyFailure
 
 ```
 DutyFailure(code: int)
-
 ```
 
 Bases: `Exception`
@@ -927,14 +876,12 @@ def __init__(self, code: int) -> None:
     super().__init__(self)
     self.code = code
     """The exit code of the command that failed."""
-
 ```
 
 ### code
 
 ```
 code = code
-
 ```
 
 The exit code of the command that failed.
@@ -955,7 +902,6 @@ Methods:
 
 ```
 write(value: str) -> int
-
 ```
 
 Write a string to the stderr buffer.
@@ -966,7 +912,6 @@ Source code in `src/duty/_internal/tools/_base.py`
 def write(self, value: str) -> int:
     """Write a string to the stderr buffer."""
     return sys.stderr.write(value)
-
 ```
 
 ## LazyStdout
@@ -985,7 +930,6 @@ Methods:
 
 ```
 write(value: str) -> int
-
 ```
 
 Write a string to the stdout buffer.
@@ -996,14 +940,12 @@ Source code in `src/duty/_internal/tools/_base.py`
 def write(self, value: str) -> int:
     """Write a string to the stdout buffer."""
     return sys.stdout.write(value)
-
 ```
 
 ## ParamsCaster
 
 ```
 ParamsCaster(signature: Signature)
-
 ```
 
 A helper class to cast parameters based on a function's signature annotations.
@@ -1042,14 +984,12 @@ def __init__(self, signature: Signature) -> None:
     """A dictionary of parameters, indexed by their name."""
     self.params_list = list(self.params_dict.values())
     """A list of parameters, in the order they appear in the signature."""
-
 ```
 
 ### has_var_positional
 
 ```
 has_var_positional: bool
-
 ```
 
 Tell if there is a variable positional parameter.
@@ -1062,7 +1002,6 @@ Returns:
 
 ```
 params_dict = parameters
-
 ```
 
 A dictionary of parameters, indexed by their name.
@@ -1071,7 +1010,6 @@ A dictionary of parameters, indexed by their name.
 
 ```
 params_list = list(values())
-
 ```
 
 A list of parameters, in the order they appear in the signature.
@@ -1080,7 +1018,6 @@ A list of parameters, in the order they appear in the signature.
 
 ```
 var_keyword_annotation: Any
-
 ```
 
 Give the variable keyword parameter (`**kwargs`) annotation if any.
@@ -1093,7 +1030,6 @@ Returns:
 
 ```
 var_positional_annotation: Any
-
 ```
 
 Give the variable positional parameter (`*args`) annotation if any.
@@ -1106,7 +1042,6 @@ Returns:
 
 ```
 var_positional_position: int
-
 ```
 
 Give the position of the variable positional parameter in the signature.
@@ -1119,7 +1054,6 @@ Returns:
 
 ```
 annotation_at_pos(pos: int) -> Any
-
 ```
 
 Give the annotation for the parameter at the given position.
@@ -1145,7 +1079,6 @@ def annotation_at_pos(self, pos: int) -> Any:
         The positional parameter annotation.
     """
     return self.params_list[pos].annotation
-
 ```
 
 ### cast
@@ -1154,7 +1087,6 @@ def annotation_at_pos(self, pos: int) -> Any:
 cast(
     *args: Any, **kwargs: Any
 ) -> tuple[Sequence, dict[str, Any]]
-
 ```
 
 Cast all positional and keyword arguments.
@@ -1184,14 +1116,12 @@ def cast(self, *args: Any, **kwargs: Any) -> tuple[Sequence, dict[str, Any]]:
     positional = tuple(self.cast_posarg(pos, arg) for pos, arg in enumerate(args))
     keyword = {name: self.cast_kwarg(name, value) for name, value in kwargs.items()}
     return positional, keyword
-
 ```
 
 ### cast_kwarg
 
 ```
 cast_kwarg(name: str, value: Any) -> Any
-
 ```
 
 Cast a keyword argument.
@@ -1221,14 +1151,12 @@ def cast_kwarg(self, name: str, value: Any) -> Any:
     if name in self.params_dict:
         return cast_arg(value, self.params_dict[name].annotation)
     return cast_arg(value, self.var_keyword_annotation)
-
 ```
 
 ### cast_posarg
 
 ```
 cast_posarg(pos: int, arg: Any) -> Any
-
 ```
 
 Cast a positional argument.
@@ -1258,14 +1186,12 @@ def cast_posarg(self, pos: int, arg: Any) -> Any:
     if self.eaten_by_var_positional(pos):
         return cast_arg(arg, self.var_positional_annotation)
     return cast_arg(arg, self.annotation_at_pos(pos))
-
 ```
 
 ### eaten_by_var_positional
 
 ```
 eaten_by_var_positional(pos: int) -> bool
-
 ```
 
 Tell if the parameter at this position is eaten by a variable positional parameter.
@@ -1291,7 +1217,6 @@ def eaten_by_var_positional(self, pos: int) -> bool:
         Whether the parameter is eaten.
     """
     return self.has_var_positional and pos >= self.var_positional_position
-
 ```
 
 ## Tool
@@ -1301,7 +1226,6 @@ Tool(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Base class for tools.
@@ -1341,14 +1265,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 ### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -1357,7 +1279,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -1366,7 +1287,6 @@ The equivalent CLI command.
 
 ```
 cli_name: str = ''
-
 ```
 
 The name of the executable on PATH.
@@ -1375,7 +1295,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -1384,7 +1303,6 @@ Registered Python arguments.
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -1396,14 +1314,12 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ## cast_arg
 
 ```
 cast_arg(arg: Any, annotation: Any) -> Any
-
 ```
 
 Cast an argument using a type annotation.
@@ -1444,7 +1360,6 @@ def cast_arg(arg: Any, annotation: Any) -> Any:
         return annotation(arg)
     except Exception:  # noqa: BLE001
         return arg
-
 ```
 
 ## create_duty
@@ -1461,7 +1376,6 @@ create_duty(
     skip_reason: str | None = None,
     **opts: Any,
 ) -> Duty
-
 ```
 
 Register a duty in the collection.
@@ -1524,24 +1438,20 @@ def create_duty(
     duty.__doc__ = description
     duty.__wrapped__ = func  # type: ignore[attr-defined]
     return duty
-
 ```
 
 ## duty
 
 ```
 duty(**kwargs: Any) -> Callable[[Callable], Duty]
-
 ```
 
 ```
 duty(func: Callable) -> Duty
-
 ```
 
 ```
 duty(*args: Any, **kwargs: Any) -> Callable | Duty
-
 ```
 
 Decorate a callable to transform it and register it as a duty.
@@ -1563,7 +1473,6 @@ Decorate a function:
 @duty
 def clean(ctx):
     ctx.run("rm -rf build", silent=True)
-
 ```
 
 Pass options to the context:
@@ -1572,7 +1481,6 @@ Pass options to the context:
 @duty(silent=True)
 def clean(ctx):
     ctx.run("rm -rf build")  # silent=True is implied
-
 ```
 
 Returns:
@@ -1621,14 +1529,12 @@ def duty(*args: Any, **kwargs: Any) -> Callable | Duty:
         return create_duty(func, **kwargs)
 
     return decorator
-
 ````
 
 ## get_duty_parser
 
 ```
 get_duty_parser(duty: Duty) -> ArgParser
-
 ```
 
 Get a duty-specific options parser.
@@ -1661,14 +1567,12 @@ def get_duty_parser(duty: Duty) -> ArgParser:
     )
     add_flags(parser, set_defaults=False)
     return parser
-
 ```
 
 ## get_parser
 
 ```
 get_parser() -> ArgParser
-
 ```
 
 Return the CLI argument parser.
@@ -1732,14 +1636,12 @@ def get_parser() -> ArgParser:
     parser._optionals.title = "Global options"
 
     return parser
-
 ```
 
 ## main
 
 ```
 main(args: list[str] | None = None) -> int
-
 ```
 
 Run the main program.
@@ -1822,14 +1724,12 @@ def main(args: list[str] | None = None) -> int:
             return failure.code
 
     return 0
-
 ```
 
 ## parse_args
 
 ```
 parse_args(duty: Duty, args: list[str]) -> tuple
-
 ```
 
 Parse the positional and keyword arguments of a duty.
@@ -1869,7 +1769,6 @@ def parse_args(duty: Duty, args: list[str]) -> tuple:
             posargs.append(arg)
 
     return validate(duty.function, *posargs, **kwargs)
-
 ```
 
 ## parse_commands
@@ -1880,7 +1779,6 @@ parse_commands(
     global_opts: dict[str, Any],
     collection: Collection,
 ) -> list[tuple]
-
 ```
 
 Parse argument lists into ready-to-run duties.
@@ -1922,7 +1820,6 @@ def parse_commands(arg_lists: list[list[str]], global_opts: dict[str, Any], coll
         duty.options_override = {**global_opts, **opts}
         commands.append((duty, *parse_args(duty, remainder)))
     return commands
-
 ```
 
 ## parse_options
@@ -1931,7 +1828,6 @@ def parse_commands(arg_lists: list[list[str]], global_opts: dict[str, Any], coll
 parse_options(
     duty: Duty, args: list[str]
 ) -> tuple[dict, list[str]]
-
 ```
 
 Parse options for a duty.
@@ -1961,7 +1857,6 @@ def parse_options(duty: Duty, args: list[str]) -> tuple[dict, list[str]]:
     parser = get_duty_parser(duty)
     opts, remainder = parser.parse_known_args(args)
     return specified_options(opts), remainder
-
 ```
 
 ## print_help
@@ -1972,7 +1867,6 @@ print_help(
     opts: Namespace,
     collection: Collection,
 ) -> None
-
 ```
 
 Print general help or duties help.
@@ -2006,7 +1900,6 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         print(parser.format_help())
         print("Available duties:")
         print(textwrap.indent(collection.format_help(), prefix="  "))
-
 ```
 
 ## specified_options
@@ -2015,7 +1908,6 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
 specified_options(
     opts: Namespace, exclude: set[str] | None = None
 ) -> dict
-
 ```
 
 Cast an argparse Namespace into a dictionary of options.
@@ -2049,7 +1941,6 @@ def specified_options(opts: argparse.Namespace, exclude: set[str] | None = None)
     exclude = exclude or set()
     options = opts.__dict__.items()
     return {opt: value for opt, value in options if value is not None and opt not in exclude}
-
 ```
 
 ## split_args
@@ -2058,7 +1949,6 @@ def specified_options(opts: argparse.Namespace, exclude: set[str] | None = None)
 split_args(
     args: list[str], names: list[str]
 ) -> list[list[str]]
-
 ```
 
 Split command line arguments into duty commands.
@@ -2116,14 +2006,12 @@ def split_args(args: list[str], names: list[str]) -> list[list[str]]:
         arg_lists.append(current_arg_list)
 
     return arg_lists
-
 ```
 
 ## to_bool
 
 ```
 to_bool(value: str) -> bool
-
 ```
 
 Convert a string to a boolean.
@@ -2149,7 +2037,6 @@ def to_bool(value: str) -> bool:
         True or False.
     """
     return value.lower() not in {"", "0", "no", "n", "false", "off"}
-
 ```
 
 ## validate
@@ -2158,7 +2045,6 @@ def to_bool(value: str) -> bool:
 validate(
     func: Callable, *args: Any, **kwargs: Any
 ) -> tuple[Sequence, dict[str, Any]]
-
 ```
 
 Validate positional and keyword arguments against a function.
@@ -2203,7 +2089,6 @@ def validate(
         The casted arguments.
     """
     return _get_params_caster(func, *args, **kwargs).cast(*args, **kwargs)
-
 ```
 
 ## callables
@@ -2375,7 +2260,6 @@ autoflake(
     in_place: bool | None = None,
     stdout: bool | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -2538,14 +2422,12 @@ def __init__(
         cli_args.append("--stdout")
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -2554,7 +2436,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -2563,7 +2444,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'autoflake'
-
 ```
 
 The name of the executable on PATH.
@@ -2572,7 +2452,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -2581,7 +2460,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -2606,14 +2484,12 @@ def __call__(self) -> int:
         standard_out=LazyStdout(),
         standard_error=LazyStderr(),
     )
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -2625,7 +2501,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### black
@@ -2659,7 +2534,6 @@ black(
     stdin_filename: str | None = None,
     workers: int | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -2876,14 +2750,12 @@ def __init__(
         cli_args.append(str(workers))
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -2892,7 +2764,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -2901,7 +2772,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'black'
-
 ```
 
 The name of the executable on PATH.
@@ -2910,7 +2780,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -2919,7 +2788,6 @@ Registered Python arguments.
 
 ```
 __call__() -> None
-
 ```
 
 Run the command.
@@ -2932,14 +2800,12 @@ def __call__(self) -> None:
     from black import main as run_black  # noqa: PLC0415
 
     run_black(self.cli_args, prog_name="black")
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -2951,7 +2817,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### blacken_docs
@@ -2973,7 +2838,6 @@ blacken_docs(
     preview: bool = False,
     check_only: bool = False,
 )
-
 ```
 
 Bases: `Tool`
@@ -3059,14 +2923,12 @@ def __init__(
         Success/failure.
     """
     super().__init__(py_args=dict(locals()))
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -3075,7 +2937,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -3084,7 +2945,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'blacken-docs'
-
 ```
 
 The name of the executable on PATH.
@@ -3093,7 +2953,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -3102,7 +2961,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -3175,14 +3033,12 @@ def __call__(self) -> int:
             check_only=check_only,
         )
     return retv
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -3194,7 +3050,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### build
@@ -3213,7 +3068,6 @@ build(
     installer: Literal["pip", "uv"] | None = None,
     config_setting: list[str] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -3313,14 +3167,12 @@ def __init__(
             cli_args.append(f"--config-setting={setting}")
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -3329,7 +3181,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -3338,7 +3189,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'pyproject-build'
-
 ```
 
 The name of the executable on PATH.
@@ -3347,7 +3197,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -3356,7 +3205,6 @@ Registered Python arguments.
 
 ```
 __call__() -> None
-
 ```
 
 Run the command.
@@ -3369,14 +3217,12 @@ def __call__(self) -> None:
     from build.__main__ import main as run_build  # noqa: PLC0415
 
     run_build(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -3388,7 +3234,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### coverage
@@ -3398,7 +3243,6 @@ coverage(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -3451,14 +3295,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -3467,7 +3309,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -3476,7 +3317,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'coverage'
-
 ```
 
 The name of the executable on PATH.
@@ -3485,7 +3325,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -3494,7 +3333,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int | None
-
 ```
 
 Run the command.
@@ -3515,14 +3353,12 @@ def __call__(self) -> int | None:
     from coverage.cmdline import main as run_coverage  # noqa: PLC0415
 
     return run_coverage(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -3534,7 +3370,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 #### annotate
@@ -3550,7 +3385,6 @@ annotate(
     omit: list[str] | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Annotate source files with execution information.
@@ -3628,7 +3462,6 @@ def annotate(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### combine
@@ -3643,7 +3476,6 @@ combine(
     quiet: bool | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Combine a number of data files.
@@ -3716,7 +3548,6 @@ def combine(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### debug
@@ -3730,7 +3561,6 @@ debug(
     rcfile: str | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Display information about the internals of coverage.py.
@@ -3779,7 +3609,6 @@ def debug(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### erase
@@ -3791,7 +3620,6 @@ erase(
     data_file: str | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Erase previously collected coverage data.
@@ -3837,7 +3665,6 @@ def erase(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### html
@@ -3861,7 +3688,6 @@ html(
     title: str | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Create an HTML report.
@@ -3994,7 +3820,6 @@ def html(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### json
@@ -4015,7 +3840,6 @@ json(
     show_contexts: bool | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Create a JSON report of coverage results.
@@ -4121,7 +3945,6 @@ def json(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### lcov
@@ -4139,7 +3962,6 @@ lcov(
     quiet: bool | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Create an LCOV report of coverage results.
@@ -4225,7 +4047,6 @@ def lcov(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### report
@@ -4252,7 +4073,6 @@ report(
     skip_empty: bool | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Report coverage statistics on modules.
@@ -4373,7 +4193,6 @@ def report(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### run
@@ -4397,7 +4216,6 @@ run(
     timid: bool | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Run a Python program and measure code execution.
@@ -4519,7 +4337,6 @@ def run(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 #### xml
@@ -4538,7 +4355,6 @@ xml(
     skip_empty: bool | None = None,
     debug_opts: list[str] | None = None,
 ) -> coverage
-
 ```
 
 Create an XML report of coverage results.
@@ -4630,7 +4446,6 @@ def xml(
         cli_args.append(rcfile)
 
     return cls(cli_args)
-
 ```
 
 ### flake8
@@ -4672,7 +4487,6 @@ flake8(
     benchmark: bool | None = None,
     bug_report: bool | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -4940,14 +4754,12 @@ def __init__(
         cli_args.append("--bug-report")
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -4956,7 +4768,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -4965,7 +4776,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'flake8'
-
 ```
 
 The name of the executable on PATH.
@@ -4974,7 +4784,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -4983,7 +4792,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -5004,14 +4812,12 @@ def __call__(self) -> int:
     from flake8.main.cli import main as run_flake8  # noqa: PLC0415
 
     return run_flake8(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -5023,7 +4829,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### git_changelog
@@ -5056,7 +4861,6 @@ git_changelog(
     version: bool = False,
     debug_info: bool = False,
 )
-
 ```
 
 Bases: `Tool`
@@ -5270,14 +5074,12 @@ def __init__(
         cli_args.append("--debug-info")
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -5286,7 +5088,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -5295,7 +5096,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'git-changelog'
-
 ```
 
 The name of the executable on PATH.
@@ -5304,7 +5104,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -5313,7 +5112,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -5331,17 +5129,15 @@ def __call__(self) -> int:
     Returns:
         The exit code of the command.
     """
-    from git_changelog.cli import main as run_git_changelog  # noqa: PLC0415
+    from git_changelog import main as run_git_changelog  # noqa: PLC0415
 
     return run_git_changelog(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -5353,7 +5149,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### griffe
@@ -5363,7 +5158,6 @@ griffe(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -5408,14 +5202,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -5424,7 +5216,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -5433,7 +5224,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'griffe'
-
 ```
 
 The name of the executable on PATH.
@@ -5442,7 +5232,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -5451,7 +5240,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -5472,14 +5260,12 @@ def __call__(self) -> int:
     from griffe import main as run_griffe  # noqa: PLC0415
 
     return run_griffe(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -5491,7 +5277,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 #### check
@@ -5520,7 +5305,6 @@ check(
     version: bool = False,
     debug_info: bool = False,
 ) -> griffe
-
 ```
 
 Check for API breakages or possible improvements.
@@ -5642,7 +5426,6 @@ def check(
         cli_args.append(log_level)
 
     return cls(cli_args)
-
 ```
 
 #### dump
@@ -5670,7 +5453,6 @@ dump(
     version: bool = False,
     debug_info: bool = False,
 ) -> griffe
-
 ```
 
 Load package-signatures and dump them as JSON.
@@ -5807,7 +5589,6 @@ def dump(
         cli_args.append(log_level)
 
     return cls(cli_args)
-
 ```
 
 ### interrogate
@@ -5839,7 +5620,6 @@ interrogate(
     badge_format: Literal["png", "svg"] | None = None,
     badge_style: _BADGE_STYLE | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -6027,14 +5807,12 @@ def __init__(
         cli_args.append("--no-color")
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -6043,7 +5821,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -6052,7 +5829,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'interrogate'
-
 ```
 
 The name of the executable on PATH.
@@ -6061,7 +5837,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -6070,7 +5845,6 @@ Registered Python arguments.
 
 ```
 __call__() -> None
-
 ```
 
 Run the command.
@@ -6083,14 +5857,12 @@ def __call__(self) -> None:
     from interrogate.cli import main as run_interrogate  # noqa: PLC0415
 
     return run_interrogate(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -6102,7 +5874,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### isort
@@ -6228,7 +5999,6 @@ isort(
     ]
     | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -6886,14 +6656,12 @@ def __init__(
         cli_args.append(python_version)
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -6902,7 +6670,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -6911,7 +6678,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'isort'
-
 ```
 
 The name of the executable on PATH.
@@ -6920,7 +6686,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -6929,7 +6694,6 @@ Registered Python arguments.
 
 ```
 __call__() -> None
-
 ```
 
 Run the command.
@@ -6942,14 +6706,12 @@ def __call__(self) -> None:
     from isort.main import main as run_isort  # noqa: PLC0415
 
     run_isort(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -6961,7 +6723,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### mkdocs
@@ -6971,7 +6732,6 @@ mkdocs(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -7018,14 +6778,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -7034,7 +6792,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -7043,7 +6800,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'mkdocs'
-
 ```
 
 The name of the executable on PATH.
@@ -7052,7 +6808,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -7061,7 +6816,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -7082,14 +6836,12 @@ def __call__(self) -> int:
     from mkdocs.__main__ import cli as run_mkdocs  # noqa: PLC0415
 
     return run_mkdocs(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -7101,7 +6853,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 #### build
@@ -7118,7 +6869,6 @@ build(
     quiet: bool = False,
     verbose: bool = False,
 ) -> mkdocs
-
 ```
 
 Build the MkDocs documentation.
@@ -7196,7 +6946,6 @@ def build(
         cli_args.append("--verbose")
 
     return cls(cli_args)
-
 ```
 
 #### gh_deploy
@@ -7220,7 +6969,6 @@ gh_deploy(
     quiet: bool = False,
     verbose: bool = False,
 ) -> mkdocs
-
 ```
 
 Deploy your documentation to GitHub Pages.
@@ -7344,7 +7092,6 @@ def gh_deploy(
         cli_args.append("--verbose")
 
     return cls(cli_args)
-
 ```
 
 #### new
@@ -7356,7 +7103,6 @@ new(
     quiet: bool = False,
     verbose: bool = False,
 ) -> mkdocs
-
 ```
 
 Create a new MkDocs project.
@@ -7388,7 +7134,6 @@ def new(cls, project_directory: str, *, quiet: bool = False, verbose: bool = Fal
         cli_args.append("--verbose")
 
     return cls(cli_args)
-
 ```
 
 #### serve
@@ -7408,7 +7153,6 @@ serve(
     quiet: bool = False,
     verbose: bool = False,
 ) -> mkdocs
-
 ```
 
 Run the builtin development server.
@@ -7506,7 +7250,6 @@ def serve(
         cli_args.append("--verbose")
 
     return cls(cli_args)
-
 ```
 
 ### mypy
@@ -7601,7 +7344,6 @@ mypy(
     package: str | None = None,
     command: str | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -8188,14 +7930,12 @@ def __init__(
         cli_args.append(command)
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -8204,7 +7944,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -8213,7 +7952,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'mypy'
-
 ```
 
 The name of the executable on PATH.
@@ -8222,7 +7960,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -8231,7 +7968,6 @@ Registered Python arguments.
 
 ```
 __call__() -> None
-
 ```
 
 Run the command.
@@ -8249,14 +7985,12 @@ def __call__(self) -> None:
         stderr=LazyStderr(),
         clean_exit=True,
     )
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -8268,7 +8002,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### pytest
@@ -8373,7 +8106,6 @@ pytest(
     log_file_date_format: str | None = None,
     log_auto_indent: str | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -8944,14 +8676,12 @@ def __init__(
         cli_args.append(log_auto_indent)
 
     super().__init__(cli_args)
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -8960,7 +8690,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -8969,7 +8698,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'pytest'
-
 ```
 
 The name of the executable on PATH.
@@ -8978,7 +8706,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -8987,7 +8714,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -9008,14 +8734,12 @@ def __call__(self) -> int:
     from pytest import main as run_pytest  # noqa: PT013,PLC0415
 
     return run_pytest(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -9027,7 +8751,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### ruff
@@ -9037,7 +8760,6 @@ ruff(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -9086,14 +8808,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -9102,7 +8822,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -9111,7 +8830,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'ruff'
-
 ```
 
 The name of the executable on PATH.
@@ -9120,7 +8838,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -9129,7 +8846,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -9155,14 +8871,12 @@ def __call__(self) -> int:
     )
     print(process.stdout)  # noqa: T201
     return process.returncode
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -9174,7 +8888,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 #### check
@@ -9214,7 +8927,6 @@ check(
     quiet: bool = False,
     silent: bool = False,
 ) -> ruff
-
 ```
 
 Run Ruff on the given files or directories.
@@ -9437,7 +9149,6 @@ def check(
         cli_args.append("--silent")
 
     return cls(cli_args)
-
 ```
 
 #### clean
@@ -9449,7 +9160,6 @@ clean(
     quiet: bool = False,
     silent: bool = False,
 ) -> ruff
-
 ```
 
 Clear any caches in the current directory and any subdirectories.
@@ -9490,7 +9200,6 @@ def clean(
         cli_args.append("--silent")
 
     return cls(cli_args)
-
 ```
 
 #### config
@@ -9502,7 +9211,6 @@ config(
     quiet: bool = False,
     silent: bool = False,
 ) -> ruff
-
 ```
 
 List or describe the available configuration options.
@@ -9543,7 +9251,6 @@ def config(
         cli_args.append("--silent")
 
     return cls(cli_args)
-
 ```
 
 #### format
@@ -9568,7 +9275,6 @@ format(
     quiet: bool = False,
     silent: bool = False,
 ) -> ruff
-
 ```
 
 Run Ruff formatter on the given files or directories.
@@ -9693,7 +9399,6 @@ def format(
         cli_args.append("--silent")
 
     return cls(cli_args)
-
 ```
 
 #### linter
@@ -9706,7 +9411,6 @@ linter(
     quiet: bool = False,
     silent: bool = False,
 ) -> ruff
-
 ```
 
 List all supported upstream linters.
@@ -9754,7 +9458,6 @@ def linter(
         cli_args.append("--silent")
 
     return cls(cli_args)
-
 ```
 
 #### rule
@@ -9768,7 +9471,6 @@ rule(
     quiet: bool = False,
     silent: bool = False,
 ) -> ruff
-
 ```
 
 Explain a rule.
@@ -9819,7 +9521,6 @@ def rule(
         cli_args.append("--silent")
 
     return cls(cli_args)
-
 ```
 
 ### safety
@@ -9829,7 +9530,6 @@ safety(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -9873,14 +9573,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -9889,7 +9587,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -9898,7 +9595,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'safety'
-
 ```
 
 The name of the executable on PATH.
@@ -9907,7 +9603,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -9916,7 +9611,6 @@ Registered Python arguments.
 
 ```
 __call__() -> bool
-
 ```
 
 Run the command.
@@ -9985,14 +9679,12 @@ def __call__(self) -> bool:
         print(output_report)  # noqa: T201
         return False
     return True
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -10004,7 +9696,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 #### check
@@ -10017,7 +9708,6 @@ check(
     formatter: Literal["json", "bare", "text"] = "text",
     full_report: bool = True,
 ) -> safety
-
 ```
 
 Run the safety check command.
@@ -10061,7 +9751,6 @@ def check(
         Success/failure.
     """
     return cls(py_args=dict(locals()))
-
 ```
 
 ### ssort
@@ -10072,7 +9761,6 @@ ssort(
     diff: bool | None = None,
     check: bool | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -10120,14 +9808,12 @@ def __init__(
 
     if check:
         cli_args.append("--check")
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -10136,7 +9822,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -10145,7 +9830,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'ssort'
-
 ```
 
 The name of the executable on PATH.
@@ -10154,7 +9838,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -10163,7 +9846,6 @@ Registered Python arguments.
 
 ```
 __call__() -> None
-
 ```
 
 Run the command.
@@ -10189,14 +9871,12 @@ def __call__(self) -> None:
         run_ssort()
     finally:
         sys.argv = old_sys_argv
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -10208,7 +9888,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 ### twine
@@ -10218,7 +9897,6 @@ twine(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -10264,14 +9942,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -10280,7 +9956,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -10289,7 +9964,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'twine'
-
 ```
 
 The name of the executable on PATH.
@@ -10298,7 +9972,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -10307,7 +9980,6 @@ Registered Python arguments.
 
 ```
 __call__() -> Any
-
 ```
 
 Run the command.
@@ -10328,14 +10000,12 @@ def __call__(self) -> Any:
     from twine.cli import dispatch as run_twine  # noqa: PLC0415
 
     return run_twine(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -10347,7 +10017,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 #### check
@@ -10359,7 +10028,6 @@ check(
     version: bool = False,
     no_color: bool = False,
 ) -> twine
-
 ```
 
 Checks whether your distribution's long description will render correctly on PyPI.
@@ -10402,7 +10070,6 @@ def check(
         cli_args.append("--strict")
 
     return cls(cli_args)
-
 ```
 
 #### register
@@ -10430,7 +10097,6 @@ register(
     version: bool = False,
     no_color: bool = False,
 ) -> twine
-
 ```
 
 Pre-register a name with a repository before uploading a distribution.
@@ -10585,7 +10251,6 @@ def register(
         cli_args.append("--disable-progress-bar")
 
     return cls(cli_args)
-
 ```
 
 #### upload
@@ -10612,7 +10277,6 @@ upload(
     version: bool = False,
     no_color: bool = False,
 ) -> twine
-
 ```
 
 Uploads one or more distributions to a repository.
@@ -10761,7 +10425,6 @@ def upload(
         cli_args.append("--disable-progress-bar")
 
     return cls(cli_args)
-
 ```
 
 ### yore
@@ -10771,7 +10434,6 @@ yore(
     cli_args: list[str] | None = None,
     py_args: dict[str, Any] | None = None,
 )
-
 ```
 
 Bases: `Tool`
@@ -10816,14 +10478,12 @@ def __init__(
     """Registered command-line arguments."""
     self.py_args: dict[str, Any] = py_args or {}
     """Registered Python arguments."""
-
 ```
 
 #### cli_args
 
 ```
 cli_args: list[str] = cli_args or []
-
 ```
 
 Registered command-line arguments.
@@ -10832,7 +10492,6 @@ Registered command-line arguments.
 
 ```
 cli_command: str
-
 ```
 
 The equivalent CLI command.
@@ -10841,7 +10500,6 @@ The equivalent CLI command.
 
 ```
 cli_name = 'yore'
-
 ```
 
 The name of the executable on PATH.
@@ -10850,7 +10508,6 @@ The name of the executable on PATH.
 
 ```
 py_args: dict[str, Any] = py_args or {}
-
 ```
 
 Registered Python arguments.
@@ -10859,7 +10516,6 @@ Registered Python arguments.
 
 ```
 __call__() -> int
-
 ```
 
 Run the command.
@@ -10880,14 +10536,12 @@ def __call__(self) -> int:
     from yore import main as run_yore  # noqa: PLC0415
 
     return run_yore(self.cli_args)
-
 ```
 
 #### add_args
 
 ```
 add_args(*args: str) -> Self
-
 ```
 
 Append CLI arguments.
@@ -10899,7 +10553,6 @@ def add_args(self, *args: str) -> Self:
     """Append CLI arguments."""
     self.cli_args.extend(args)
     return self
-
 ```
 
 #### check
@@ -10911,7 +10564,6 @@ check(
     eol_within: str | None = None,
     bol_within: str | None = None,
 ) -> yore
-
 ```
 
 Check Yore comments against Python EOL dates or the provided next version of your project.
@@ -10963,7 +10615,6 @@ def check(
         cli_args.append(bol_within)
 
     return cls(cli_args)
-
 ```
 
 #### fix
@@ -10975,7 +10626,6 @@ fix(
     eol_within: str | None = None,
     bol_within: str | None = None,
 ) -> yore
-
 ```
 
 Fix your code by transforming it according to the Yore comments.
@@ -11027,7 +10677,6 @@ def fix(
         cli_args.append(bol_within)
 
     return cls(cli_args)
-
 ```
 
 ## validation
