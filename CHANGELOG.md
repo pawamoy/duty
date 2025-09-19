@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.6.3](https://github.com/pawamoy/duty/releases/tag/1.6.3) - 2025-09-19
+
+<small>[Compare with 1.6.2](https://github.com/pawamoy/duty/compare/1.6.2...1.6.3)</small>
+
+### Code Refactoring
+
+- Update import from git-changelog to avoid deprecation warning ([5ddf3d6](https://github.com/pawamoy/duty/commit/5ddf3d619be1a36a6c77f69d37160e8de946d673) by Timothée Mazzucotelli).
+
 ## [1.6.2](https://github.com/pawamoy/duty/releases/tag/1.6.2) - 2025-07-22
 
 <small>[Compare with 1.6.1](https://github.com/pawamoy/duty/compare/1.6.1...1.6.2)</small>
