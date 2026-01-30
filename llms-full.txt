@@ -10684,7 +10684,7 @@ check(
     force_exclude: bool | None = None,
     exclude: list[str] | None = None,
     no_progress: bool | None = None,
-    color: str | None = None,
+    color: str | bool | None = None,
 ) -> ty
 ```
 
@@ -10715,7 +10715,7 @@ Parameters:
 - **`force_exclude`** (`bool | None`, default: `None` ) – Enforce exclusions, even for paths passed to ty directly on the command-line.
 - **`exclude`** (`list[str] | None`, default: `None` ) – Glob patterns for files to exclude from type checking.
 - **`no_progress`** (`bool | None`, default: `None` ) – Hide all progress outputs.
-- **`color`** (`str | None`, default: `None` ) – Control when colored output is used (possible values: auto, always, never).
+- **`color`** (`str | bool | None`, default: `None` ) – Control when colored output is used (possible values: auto, always/true, never/false).
 
 Source code in `src/duty/_internal/tools/_ty.py`
 
@@ -10746,7 +10746,7 @@ def check(
     force_exclude: bool | None = None,
     exclude: list[str] | None = None,
     no_progress: bool | None = None,
-    color: str | None = None,
+    color: str | bool | None = None,
 ) -> ty:
     """Run ty on the given files or directories.
 
@@ -10774,7 +10774,7 @@ def check(
         force_exclude: Enforce exclusions, even for paths passed to ty directly on the command-line.
         exclude: Glob patterns for files to exclude from type checking.
         no_progress: Hide all progress outputs.
-        color: Control when colored output is used (possible values: auto, always, never).
+        color: Control when colored output is used (possible values: auto, always/true, never/false).
     """
     cli_args = ["check", *paths]
 
