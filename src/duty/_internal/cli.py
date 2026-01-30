@@ -196,7 +196,7 @@ def parse_args(duty: Duty, args: list[str]) -> tuple:
     kwargs = {}
 
     for arg in args:
-        if "=" in arg:
+        if "=" in arg and not arg.startswith("-"):
             # we found a keyword argument
             arg_name, arg_value = arg.split("=", 1)
             kwargs[arg_name] = arg_value
