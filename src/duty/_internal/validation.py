@@ -11,23 +11,24 @@ import textwrap
 from contextlib import suppress
 from functools import cached_property, partial
 from inspect import Parameter, Signature, signature
-from typing import TYPE_CHECKING, Any, Callable, ForwardRef, Union, get_args, get_origin
+from types import UnionType
+from typing import (  # type: ignore[attr-defined]
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    ForwardRef,
+    Union,
+    _eval_type,
+    get_args,
+    get_origin,
+)
+
+if sys.version_info >= (3, 13):
+    _eval_type = partial(_eval_type, type_params=None)
+_union_types = (Union, UnionType)
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
-
-# YORE: EOL 3.9: Replace block with lines 6-13.
-if sys.version_info < (3, 10):
-    from eval_type_backport import eval_type_backport as _eval_type
-
-    _union_types = (Union,)
-else:
-    from types import UnionType
-    from typing import _eval_type  # type: ignore[attr-defined]
-
-    if sys.version_info >= (3, 13):
-        _eval_type = partial(_eval_type, type_params=None)
-    _union_types = (Union, UnionType)
 
 
 def to_bool(value: str) -> bool:
