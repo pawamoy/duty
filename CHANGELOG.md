@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.7.2](https://github.com/pawamoy/duty/releases/tag/1.7.2) - 2026-01-30
+
+<small>[Compare with 1.7.1](https://github.com/pawamoy/duty/compare/1.7.1...1.7.2)</small>
+
+### Code Refactoring
+
+- Fix typing for color parameter of ty.check tool ([a33eb2f](https://github.com/pawamoy/duty/commit/a33eb2ff908eadc969f37f5edca90d10b8369679) by Timothée Mazzucotelli).
+
 ## [1.7.1](https://github.com/pawamoy/duty/releases/tag/1.7.1) - 2026-01-30
 
 <small>[Compare with 1.7.0](https://github.com/pawamoy/duty/compare/1.7.0...1.7.1)</small>
