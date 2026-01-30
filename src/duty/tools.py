@@ -21,6 +21,7 @@ from duty._internal.tools import (
     safety,
     ssort,
     twine,
+    ty,
     yore,
 )
 
@@ -42,6 +43,7 @@ __all__ = [
     "safety",
     "ssort",
     "twine",
+    "ty",
     "yore",
 ]
 

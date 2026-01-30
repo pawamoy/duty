@@ -17,6 +17,7 @@ from duty._internal.tools._ruff import ruff
 from duty._internal.tools._safety import safety
 from duty._internal.tools._ssort import ssort
 from duty._internal.tools._twine import twine
+from duty._internal.tools._ty import ty
 from duty._internal.tools._yore import yore
 
 __all__ = [
@@ -37,5 +38,6 @@ __all__ = [
     "safety",
     "ssort",
     "twine",
+    "ty",
     "yore",
 ]
