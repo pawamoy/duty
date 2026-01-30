@@ -38,6 +38,8 @@ See the [Usage](https://pawamoy.github.io/duty/usage/) section in the documentat
 
 Also see ["Why choosing duty over..."](https://pawamoy.github.io/duty/#why-duty-over).
 
+## Sponsors
+
 ## Why duty over...
 
 ### [Invoke](https://www.pyinvoke.org/)?
