@@ -5,6 +5,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.7.0](https://github.com/pawamoy/duty/releases/tag/1.7.0) - 2026-01-30
+
+<small>[Compare with 1.6.3](https://github.com/pawamoy/duty/compare/1.6.3...1.7.0)</small>
+
+### Features
+
+- Add ty tool ([7113cdb](https://github.com/pawamoy/duty/commit/7113cdb23a84584296c169d1fdc119fa014f3647) by Timothée Mazzucotelli).
+
+### Bug Fixes
+
+- Don't interpret `--option=value` or `-o=value` as a duty parameter ([90ad896](https://github.com/pawamoy/duty/commit/90ad89637b08c0e6c3e9b28d33f98c4ba9c1571a) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Remove code for Python 3.9 ([2136af7](https://github.com/pawamoy/duty/commit/2136af7532c2adfa3f63f35d103fb26b2d02c040) by Timothée Mazzucotelli).
+
 ## [1.6.3](https://github.com/pawamoy/duty/releases/tag/1.6.3) - 2025-09-19
 
 <small>[Compare with 1.6.2](https://github.com/pawamoy/duty/compare/1.6.2...1.6.3)</small>
