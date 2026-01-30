@@ -171,9 +171,12 @@ class ty(Tool):  # noqa: N801
         if no_progress:
             cli_args.append("--no-progress")
 
-        if color:
+        if color is True:
             cli_args.append("--color")
-            cli_args.append(color)
+            cli_args.append("always")
+        elif color is False:
+            cli_args.append("--color")
+            cli_args.append("never")
 
         return cls(cli_args)
 
