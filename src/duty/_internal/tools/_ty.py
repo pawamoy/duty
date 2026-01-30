@@ -54,7 +54,7 @@ class ty(Tool):  # noqa: N801
         force_exclude: bool | None = None,
         exclude: list[str] | None = None,
         no_progress: bool | None = None,
-        color: str | None = None,
+        color: str | bool | None = None,
     ) -> ty:
         """Run ty on the given files or directories.
 
@@ -82,7 +82,7 @@ class ty(Tool):  # noqa: N801
             force_exclude: Enforce exclusions, even for paths passed to ty directly on the command-line.
             exclude: Glob patterns for files to exclude from type checking.
             no_progress: Hide all progress outputs.
-            color: Control when colored output is used (possible values: auto, always, never).
+            color: Control when colored output is used (possible values: auto, always/true, never/false).
         """
         cli_args = ["check", *paths]
 
