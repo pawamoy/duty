@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.7.3](https://github.com/pawamoy/duty/releases/tag/1.7.3) - 2026-02-02
+
+<small>[Compare with 1.7.2](https://github.com/pawamoy/duty/compare/1.7.2...1.7.3)</small>
+
+### Bug Fixes
+
+- Also print standard error of ruff and ty commands ([7d0b320](https://github.com/pawamoy/duty/commit/7d0b3203d183c4067e9deec8da64f754677a6987) by Timothée Mazzucotelli).
+
 ## [1.7.2](https://github.com/pawamoy/duty/releases/tag/1.7.2) - 2026-01-30
 
 <small>[Compare with 1.7.1](https://github.com/pawamoy/duty/compare/1.7.1...1.7.2)</small>
