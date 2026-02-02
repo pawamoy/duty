@@ -188,7 +188,8 @@ class ty(Tool):  # noqa: N801
         """
         process = subprocess.run(  # noqa: S603
             [_find_ty(), *self.cli_args],
-            capture_output=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
             text=True,
             check=False,
         )
