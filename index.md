@@ -40,6 +40,14 @@ Also see ["Why choosing duty over..."](https://pawamoy.github.io/duty/#why-duty-
 
 ## Sponsors
 
+**Silver sponsors**
+
+**Bronze sponsors**
+
+______________________________________________________________________
+
+*And 7 more private sponsor(s).*
+
 ## Why duty over...
 
 ### [Invoke](https://www.pyinvoke.org/)?

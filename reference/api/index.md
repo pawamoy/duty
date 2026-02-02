@@ -8866,7 +8866,8 @@ def __call__(self) -> int:
     """
     process = subprocess.run(  # noqa: S603
         [_find_ruff(), *self.cli_args],
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
         text=True,
         check=False,
     )
@@ -10535,7 +10536,8 @@ def __call__(self) -> int:
     """
     process = subprocess.run(  # noqa: S603
         [_find_ty(), *self.cli_args],
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
         text=True,
         check=False,
     )

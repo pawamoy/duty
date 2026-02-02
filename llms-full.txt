@@ -46,6 +46,14 @@ Also see ["Why choosing duty over..."](https://pawamoy.github.io/duty/#why-duty-
 
 ## Sponsors
 
+**Silver sponsors**
+
+**Bronze sponsors**
+
+______________________________________________________________________
+
+*And 7 more private sponsor(s).*
+
 ## Why duty over...
 
 ### [Invoke](https://www.pyinvoke.org/)?
@@ -8963,7 +8971,8 @@ def __call__(self) -> int:
     """
     process = subprocess.run(  # noqa: S603
         [_find_ruff(), *self.cli_args],
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
         text=True,
         check=False,
     )
@@ -10632,7 +10641,8 @@ def __call__(self) -> int:
     """
     process = subprocess.run(  # noqa: S603
         [_find_ty(), *self.cli_args],
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
         text=True,
         check=False,
     )
