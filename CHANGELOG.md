@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.0](https://github.com/pawamoy/duty/releases/tag/1.8.0) - 2026-02-05
+
+<small>[Compare with 1.7.3](https://github.com/pawamoy/duty/compare/1.7.3...1.8.0)</small>
+
+### Features
+
+- Add `zensical` tool ([9cee73d](https://github.com/pawamoy/duty/commit/9cee73d2fa0b51d267762b77e0fb8d15e671e0ee) by Timothée Mazzucotelli).
+
 ## [1.7.3](https://github.com/pawamoy/duty/releases/tag/1.7.3) - 2026-02-02
 
 <small>[Compare with 1.7.2](https://github.com/pawamoy/duty/compare/1.7.2...1.7.3)</small>
