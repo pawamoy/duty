@@ -23,6 +23,7 @@ from duty._internal.tools import (
     twine,
     ty,
     yore,
+    zensical,
 )
 
 __all__ = [
@@ -45,6 +46,7 @@ __all__ = [
     "twine",
     "ty",
     "yore",
+    "zensical",
 ]
 
 

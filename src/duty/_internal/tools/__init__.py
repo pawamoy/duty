@@ -19,6 +19,7 @@ from duty._internal.tools._ssort import ssort
 from duty._internal.tools._twine import twine
 from duty._internal.tools._ty import ty
 from duty._internal.tools._yore import yore
+from duty._internal.tools._zensical import zensical
 
 __all__ = [
     "autoflake",
@@ -40,4 +41,5 @@ __all__ = [
     "twine",
     "ty",
     "yore",
+    "zensical",
 ]
