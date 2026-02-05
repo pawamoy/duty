@@ -2234,6 +2234,7 @@ Classes:
 - **`twine`** – Call Twine.
 - **`ty`** – Call ty.
 - **`yore`** – Call Yore.
+- **`zensical`** – Call Zensical.
 
 ### autoflake
 
@@ -11026,6 +11027,275 @@ def fix(
     if bol_within:
         cli_args.append("--bol-within")
         cli_args.append(bol_within)
+
+    return cls(cli_args)
+```
+
+### zensical
+
+```
+zensical(
+    cli_args: list[str] | None = None,
+    py_args: dict[str, Any] | None = None,
+)
+```
+
+Bases: `Tool`
+
+Call [Zensical](https://zensical.org).
+
+Parameters:
+
+- **`cli_args`** (`list[str] | None`, default: `None` ) – Initial command-line arguments. Use add_args() to add more.
+- **`py_args`** (`dict[str, Any] | None`, default: `None` ) – Python arguments. Your __call__ method will be able to access these arguments as self.py_args.
+
+Methods:
+
+- **`__call__`** – Run the command.
+- **`add_args`** – Append CLI arguments.
+- **`build`** – Build the Zensical documentation.
+- **`new`** – Create a new Zensical project.
+- **`serve`** – Run the builtin development server.
+
+Attributes:
+
+- **`cli_args`** (`list[str]`) – Registered command-line arguments.
+- **`cli_command`** (`str`) – The equivalent CLI command.
+- **`cli_name`** – The name of the executable on PATH.
+- **`py_args`** (`dict[str, Any]`) – Registered Python arguments.
+
+Source code in `src/duty/_internal/tools/_base.py`
+
+```
+def __init__(
+    self,
+    cli_args: list[str] | None = None,
+    py_args: dict[str, Any] | None = None,
+) -> None:
+    """Initialize the tool.
+
+    Parameters:
+        cli_args: Initial command-line arguments. Use `add_args()` to add more.
+        py_args: Python arguments. Your `__call__` method will be able to access
+            these arguments as `self.py_args`.
+    """
+    self.cli_args: list[str] = cli_args or []
+    """Registered command-line arguments."""
+    self.py_args: dict[str, Any] = py_args or {}
+    """Registered Python arguments."""
+```
+
+#### cli_args
+
+```
+cli_args: list[str] = cli_args or []
+```
+
+Registered command-line arguments.
+
+#### cli_command
+
+```
+cli_command: str
+```
+
+The equivalent CLI command.
+
+#### cli_name
+
+```
+cli_name = 'zensical'
+```
+
+The name of the executable on PATH.
+
+#### py_args
+
+```
+py_args: dict[str, Any] = py_args or {}
+```
+
+Registered Python arguments.
+
+#### __call__
+
+```
+__call__() -> int
+```
+
+Run the command.
+
+Returns:
+
+- `int` – The exit code of the command.
+
+Source code in `src/duty/_internal/tools/_zensical.py`
+
+```
+def __call__(self) -> int:
+    """Run the command.
+
+    Returns:
+        The exit code of the command.
+    """
+    from zensical.main import cli as run_zensical  # noqa: PLC0415
+
+    return run_zensical(self.cli_args)
+```
+
+#### add_args
+
+```
+add_args(*args: str) -> Self
+```
+
+Append CLI arguments.
+
+Source code in `src/duty/_internal/tools/_base.py`
+
+```
+def add_args(self, *args: str) -> Self:
+    """Append CLI arguments."""
+    self.cli_args.extend(args)
+    return self
+```
+
+#### build
+
+```
+build(
+    *,
+    config_file: str | None = None,
+    clean: bool | None = None,
+    strict: bool | None = None,
+) -> zensical
+```
+
+Build the Zensical documentation.
+
+Parameters:
+
+- **`config_file`** (`str | None`, default: `None` ) – Provide a specific MkDocs config.
+- **`clean`** (`bool | None`, default: `None` ) – Remove old files from the site_dir before building (the default).
+- **`strict`** (`bool | None`, default: `None` ) – Enable strict mode. This will cause MkDocs to abort the build on any warnings.
+
+Source code in `src/duty/_internal/tools/_zensical.py`
+
+```
+@classmethod
+def build(
+    cls,
+    *,
+    config_file: str | None = None,
+    clean: bool | None = None,
+    strict: bool | None = None,
+) -> zensical:
+    """Build the Zensical documentation.
+
+    Parameters:
+        config_file: Provide a specific MkDocs config.
+        clean: Remove old files from the site_dir before building (the default).
+        strict: Enable strict mode. This will cause MkDocs to abort the build on any warnings.
+    """
+    cli_args = ["build"]
+
+    if clean is True:
+        cli_args.append("--clean")
+    elif clean is False:
+        cli_args.append("--dirty")
+
+    if config_file:
+        cli_args.append("--config-file")
+        cli_args.append(config_file)
+
+    if strict is True:
+        cli_args.append("--strict")
+
+    return cls(cli_args)
+```
+
+#### new
+
+```
+new(project_directory: str) -> zensical
+```
+
+Create a new Zensical project.
+
+Parameters:
+
+- **`project_directory`** (`str`) – Where to create the project.
+
+Source code in `src/duty/_internal/tools/_zensical.py`
+
+```
+@classmethod
+def new(cls, project_directory: str) -> zensical:
+    """Create a new Zensical project.
+
+    Parameters:
+        project_directory: Where to create the project.
+    """
+    cli_args = ["new", project_directory]
+    return cls(cli_args)
+```
+
+#### serve
+
+```
+serve(
+    *,
+    config_file: str | None = None,
+    dev_addr: str | None = None,
+    open_preview: bool | None = None,
+    strict: bool | None = None,
+) -> zensical
+```
+
+Run the builtin development server.
+
+Parameters:
+
+- **`config_file`** (`str | None`, default: `None` ) – Provide a specific Zensical config.
+- **`dev_addr`** (`str | None`, default: `None` ) – IP address and port to serve documentation locally (default: localhost:8000).
+- **`open_preview`** (`bool | None`, default: `None` ) – Open preview in default browser.
+- **`strict`** (`bool | None`, default: `None` ) – Enable strict mode. This will cause Zensical to abort the build on any warnings.
+
+Source code in `src/duty/_internal/tools/_zensical.py`
+
+```
+@classmethod
+def serve(
+    cls,
+    *,
+    config_file: str | None = None,
+    dev_addr: str | None = None,
+    open_preview: bool | None = None,
+    strict: bool | None = None,
+) -> zensical:
+    """Run the builtin development server.
+
+    Parameters:
+        config_file: Provide a specific Zensical config.
+        dev_addr: IP address and port to serve documentation locally (default: localhost:8000).
+        open_preview: Open preview in default browser.
+        strict: Enable strict mode. This will cause Zensical to abort the build on any warnings.
+    """
+    cli_args = ["serve"]
+
+    if dev_addr:
+        cli_args.append("--dev-addr")
+        cli_args.append(dev_addr)
+
+    if open_preview is True:
+        cli_args.append("--open")
+
+    if config_file:
+        cli_args.append("--config-file")
+        cli_args.append(config_file)
+
+    if strict is True:
+        cli_args.append("--strict")
 
     return cls(cli_args)
 ```
