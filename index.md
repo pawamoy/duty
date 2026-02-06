@@ -95,3 +95,15 @@ See [our Makefile](https://github.com/pawamoy/duty/blob/main/Makefile) for inspi
 Task is based on a Taskfile written in YAML. Declarative languages are nice, but quickly get limited when you have complex things to run.
 
 Also Task is written in Go so you won't be able to specify it in your Python dev-dependencies.
+
+### [Poe the Poet](https://github.com/nat-n/poethepoet)
+
+Poe the Poet, or `poe`, lets you declare tasks in pyproject.toml. The comparison is similar to [Task's](#task): declarative language only gets you so far. duty is fully based on Python, and provides you with batteries to control the output, the exit code, etc. While Poe the Poet lets you call Python functions, the user would have to re-implement these batteries themselves.
+
+Poe the Poet and duty can be used together though, with Poe tasks calling duty. But that feels like an additional complexity layer for the single benefit of declaring your task directly in pyproject.toml.
+
+```
+[tool.poe.tasks]
+test = "duty test"
+docs = "duty docs"
+```
