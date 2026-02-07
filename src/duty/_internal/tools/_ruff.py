@@ -69,6 +69,7 @@ class ruff(Tool):  # noqa: N801
         verbose: bool = False,
         quiet: bool = False,
         silent: bool = False,
+        color: str | bool | None = None,
     ) -> ruff:
         """Run Ruff on the given files or directories.
 
@@ -104,6 +105,7 @@ class ruff(Tool):  # noqa: N801
             verbose: Enable verbose logging.
             quiet: Print lint violations, but nothing else.
             silent: Disable all logging (but still exit with status code "1" upon detecting lint violations).
+            color: Control when colored output is used (possible values: auto, always/true, never/false).
         """
         cli_args = ["check", *files]
 
@@ -213,6 +215,16 @@ class ruff(Tool):  # noqa: N801
 
         if silent:
             cli_args.append("--silent")
+
+        if color is True:
+            cli_args.append("--color")
+            cli_args.append("always")
+        elif color is False:
+            cli_args.append("--color")
+            cli_args.append("never")
+        elif color:
+            cli_args.append("--color")
+            cli_args.append(color)
 
         return cls(cli_args)
 

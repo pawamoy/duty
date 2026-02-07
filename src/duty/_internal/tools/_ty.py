@@ -177,6 +177,9 @@ class ty(Tool):  # noqa: N801
         elif color is False:
             cli_args.append("--color")
             cli_args.append("never")
+        elif color:
+            cli_args.append("--color")
+            cli_args.append(color)
 
         return cls(cli_args)
 
