@@ -8929,6 +8929,7 @@ check(
     verbose: bool = False,
     quiet: bool = False,
     silent: bool = False,
+    color: str | bool | None = None,
 ) -> ruff
 ```
 
@@ -8967,6 +8968,7 @@ Parameters:
 - **`verbose`** (`bool`, default: `False` ) – Enable verbose logging.
 - **`quiet`** (`bool`, default: `False` ) – Print lint violations, but nothing else.
 - **`silent`** (`bool`, default: `False` ) – Disable all logging (but still exit with status code "1" upon detecting lint violations).
+- **`color`** (`str | bool | None`, default: `None` ) – Control when colored output is used (possible values: auto, always/true, never/false).
 
 Source code in `src/duty/_internal/tools/_ruff.py`
 
@@ -9006,6 +9008,7 @@ def check(
     verbose: bool = False,
     quiet: bool = False,
     silent: bool = False,
+    color: str | bool | None = None,
 ) -> ruff:
     """Run Ruff on the given files or directories.
 
@@ -9041,6 +9044,7 @@ def check(
         verbose: Enable verbose logging.
         quiet: Print lint violations, but nothing else.
         silent: Disable all logging (but still exit with status code "1" upon detecting lint violations).
+        color: Control when colored output is used (possible values: auto, always/true, never/false).
     """
     cli_args = ["check", *files]
 
@@ -9150,6 +9154,16 @@ def check(
 
     if silent:
         cli_args.append("--silent")
+
+    if color is True:
+        cli_args.append("--color")
+        cli_args.append("always")
+    elif color is False:
+        cli_args.append("--color")
+        cli_args.append("never")
+    elif color:
+        cli_args.append("--color")
+        cli_args.append(color)
 
     return cls(cli_args)
 ```
@@ -10775,6 +10789,9 @@ def check(
     elif color is False:
         cli_args.append("--color")
         cli_args.append("never")
+    elif color:
+        cli_args.append("--color")
+        cli_args.append(color)
 
     return cls(cli_args)
 ```
