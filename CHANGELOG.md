@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.9.0](https://github.com/pawamoy/duty/releases/tag/1.9.0) - 2026-02-07
+
+<small>[Compare with 1.8.0](https://github.com/pawamoy/duty/compare/1.8.0...1.9.0)</small>
+
+### Features
+
+- Support `ruff check --color` flag ([03e20c3](https://github.com/pawamoy/duty/commit/03e20c3b28ac688ea400f609e7429f3d3f15d695) by Timothée Mazzucotelli).
+
 ## [1.8.0](https://github.com/pawamoy/duty/releases/tag/1.8.0) - 2026-02-05
 
 <small>[Compare with 1.7.3](https://github.com/pawamoy/duty/compare/1.7.3...1.8.0)</small>
