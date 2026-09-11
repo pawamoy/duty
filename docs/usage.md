@@ -91,7 +91,7 @@ as well as improving readability and writability.
 **[See all our tools in the Code reference][duty.tools].**
 
 You can also create your own lazy callables with [`duty.Tool`][]
-and [`duty.lazy`][].
+and `duty.lazy`.
 Check out our tools to see how to create your own.
 
 The `lazy` function/decorator is a quicker way
@@ -761,7 +761,7 @@ you can choose to capture its standard output,
 its standard error, both, or none.
 
 Captured output is then available as an `output`
-variable when [formatting duty's output](#formatting-duty-ouput).
+variable when [formatting duty's output](#formatting-duty-output).
 
 - `capture=stdout` will capture *both* stdout and stderr,
   but will only make *stdout* available while formatting
