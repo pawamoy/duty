@@ -307,7 +307,7 @@ def main(args: list[str] | None = None) -> int:
     if opts.completion:
         try:
             shell = Shell.create(shell_name(opts.completion))
-            print(shell.script_path.read_text())
+            print(shell.script_path.read_text(encoding="utf8"))
         except CompletionError as error:
             print(f"> {error}", file=sys.stderr)
             return 1
