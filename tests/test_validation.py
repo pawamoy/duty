@@ -74,7 +74,7 @@ class CustomType1:  # noqa: PLW1641
         self.value = value
 
     def __eq__(self, other: object):
-        return self.value == other.value  # type: ignore[attr-defined]
+        return self.value == other.value  # ty:ignore[unresolved-attribute]
 
 
 class CustomType2:

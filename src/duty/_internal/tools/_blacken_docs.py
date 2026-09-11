@@ -90,8 +90,8 @@ class blacken_docs(Tool):  # noqa: N801
         Returns:
             The exit code of the command.
         """
-        import black  # noqa: PLC0415
-        from blacken_docs import format_file  # noqa: PLC0415
+        import black  # noqa: PLC0415  # ty:ignore[unresolved-import]
+        from blacken_docs import format_file  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         # Restore locals.
         exts = self.py_args["exts"]

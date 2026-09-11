@@ -33,7 +33,7 @@ def run(*args: str, version: bool = False, debug_info: bool = False) -> None:
         version: Show program's version number and exit.
         debug_info: Print debug information.
     """
-    from griffe.cli import main as griffe  # noqa: PLC0415
+    from griffe.cli import main as griffe  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
     cli_args = []
 

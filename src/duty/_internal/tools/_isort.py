@@ -594,6 +594,6 @@ class isort(Tool):  # noqa: N801
 
     def __call__(self) -> None:
         """Run the command."""
-        from isort.main import main as run_isort  # noqa: PLC0415
+        from isort.main import main as run_isort  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         run_isort(self.cli_args)

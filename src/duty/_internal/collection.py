@@ -271,7 +271,7 @@ class Collection:
         if spec:
             duties = importlib_util.module_from_spec(spec)
             sys.modules["duty.duties"] = duties
-            spec.loader.exec_module(duties)  # type: ignore[union-attr]
+            spec.loader.exec_module(duties)  # ty:ignore[unresolved-attribute]
             declared_duties = inspect.getmembers(duties, lambda member: isinstance(member, Duty))
             for _, duty in declared_duties:
                 self.add(duty)

@@ -151,7 +151,7 @@ class autoflake(Tool):  # noqa: N801
         Returns:
             The exit code of the command.
         """
-        from autoflake import _main as run_autoflake  # noqa: PLC0415
+        from autoflake import _main as run_autoflake  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         return run_autoflake(
             self.cli_args,

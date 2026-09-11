@@ -97,6 +97,6 @@ class build(Tool):  # noqa: N801
 
     def __call__(self) -> None:
         """Run the command."""
-        from build.__main__ import main as run_build  # noqa: PLC0415
+        from build.__main__ import main as run_build  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         run_build(self.cli_args)

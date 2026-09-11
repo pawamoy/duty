@@ -197,6 +197,6 @@ class black(Tool):  # noqa: N801
 
     def __call__(self) -> None:
         """Run the command."""
-        from black import main as run_black  # noqa: PLC0415
+        from black import main as run_black  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         run_black(self.cli_args, prog_name="black")

@@ -30,12 +30,12 @@ from contextlib import suppress
 from functools import cached_property, partial
 from inspect import Parameter, Signature, signature
 from types import UnionType
-from typing import (  # type: ignore[attr-defined]
+from typing import (
     TYPE_CHECKING,
     Any,
     ForwardRef,
     Union,
-    _eval_type,
+    _eval_type,  # ty:ignore[unresolved-import]
     get_args,
     get_origin,
 )
@@ -248,7 +248,7 @@ def _get_params_caster(func: Callable, *args: Any, **kwargs: Any) -> ParamsCaste
         import inspect
         def {func.__name__}{code_sig}: ...
         __context_above['func'] = {func.__name__}
-    """
+    """  # ty:ignore[unresolved-attribute]
 
     exec(textwrap.dedent(code), exec_globals)  # noqa: S102
     func = exec_globals["__context_above"]["func"]

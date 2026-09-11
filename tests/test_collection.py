@@ -45,7 +45,7 @@ def test_dont_get_duty() -> None:
 
 def test_register_aliases() -> None:
     """Register a duty and its aliases."""
-    duty = decorate(none, name="hello", aliases=["HELLO", "_hello_", ".hello."])  # type: ignore[call-overload]
+    duty = decorate(none, name="hello", aliases=["HELLO", "_hello_", ".hello."])  # ty:ignore[no-matching-overload]
     collection = Collection()
     collection.add(duty)
     assert collection.get("hello")
@@ -57,14 +57,14 @@ def test_register_aliases() -> None:
 def test_replace_name_and_set_alias() -> None:
     """Replace underscores by dashes in duties names."""
     collection = Collection()
-    collection.add(decorate(none, name="snake_case"))  # type: ignore[call-overload]
+    collection.add(decorate(none, name="snake_case"))  # ty:ignore[no-matching-overload]
     assert collection.get("snake_case") is collection.get("snake-case")
 
 
 def test_clear_collection() -> None:
     """Check that duties and their aliases are correctly cleared from a collection."""
     collection = Collection()
-    collection.add(decorate(none, name="duty_1"))  # type: ignore[call-overload]
+    collection.add(decorate(none, name="duty_1"))  # ty:ignore[no-matching-overload]
     collection.clear()
     with pytest.raises(KeyError):
         collection.get("duty-1")
@@ -75,7 +75,7 @@ def test_add_duty_to_multiple_collections() -> None:
     collection1 = Collection()
     collection2 = Collection()
 
-    duty = decorate(none, name="duty")  # type: ignore[call-overload]
+    duty = decorate(none, name="duty")  # ty:ignore[no-matching-overload]
 
     collection1.add(duty)
     collection2.add(duty)
@@ -92,8 +92,8 @@ def test_completion_candidates() -> None:
     """Check whether proper completion candidates are returned from collections."""
     collection = Collection()
 
-    collection.add(decorate(none, name="duty_1"))  # type: ignore[call-overload]
-    collection.add(decorate(none, name="duty_2", aliases=["alias_2"]))  # type: ignore[call-overload]
+    collection.add(decorate(none, name="duty_1"))  # ty:ignore[no-matching-overload]
+    collection.add(decorate(none, name="duty_2", aliases=["alias_2"]))  # ty:ignore[no-matching-overload]
 
     assert collection.completion_candidates(("duty",)) == [
         "alias_2",
@@ -108,10 +108,10 @@ def test_described_completion_candidates() -> None:
     """Check whether completion candidates come with the description of their duty."""
     collection = Collection()
 
-    duty_1 = decorate(none, name="duty_1")  # type: ignore[call-overload]
+    duty_1 = decorate(none, name="duty_1")  # ty:ignore[no-matching-overload]
     duty_1.description = "Some description."
     collection.add(duty_1)
-    collection.add(decorate(none, name="duty_2", aliases=["alias_2"]))  # type: ignore[call-overload]
+    collection.add(decorate(none, name="duty_2", aliases=["alias_2"]))  # ty:ignore[no-matching-overload]
 
     assert collection._completion_candidates(("duty",)) == [
         ("alias_2", None),

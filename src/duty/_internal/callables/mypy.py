@@ -222,7 +222,7 @@ def run(
         package: Type-check package recursively; can be repeated.
         command: Type-check program passed in as string.
     """  # noqa: D301
-    from mypy.main import main as mypy  # noqa: PLC0415
+    from mypy.main import main as mypy  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
     cli_args = list(paths)
 

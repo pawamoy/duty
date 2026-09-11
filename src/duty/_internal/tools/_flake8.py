@@ -241,6 +241,6 @@ class flake8(Tool):  # noqa: N801
         Returns:
             The exit code of the command.
         """
-        from flake8.main.cli import main as run_flake8  # noqa: PLC0415
+        from flake8.main.cli import main as run_flake8  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         return run_flake8(self.cli_args)

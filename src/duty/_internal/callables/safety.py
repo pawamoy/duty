@@ -64,9 +64,9 @@ def check(
     importlib.invalidate_caches()
 
     # reload original, unpatched safety
-    from safety.formatter import SafetyFormatter  # noqa: PLC0415
-    from safety.safety import calculate_remediations, check  # noqa: PLC0415
-    from safety.util import read_requirements  # noqa: PLC0415
+    from safety.formatter import SafetyFormatter  # noqa: PLC0415  # ty:ignore[unresolved-import]
+    from safety.safety import calculate_remediations, check  # noqa: PLC0415  # ty:ignore[unresolved-import]
+    from safety.util import read_requirements  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
     # check using safety as a library
     if isinstance(requirements, (list, tuple, set)):
@@ -76,7 +76,7 @@ def check(
     # TODO: Safety 3 support, merge once support for v2 is dropped.
     check_kwargs = {"packages": packages, "ignore_vulns": ignore_vulns}
     try:
-        from safety.auth.cli_utils import build_client_session  # noqa: PLC0415
+        from safety.auth.cli_utils import build_client_session  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         client_session, _ = build_client_session()
         check_kwargs["session"] = client_session

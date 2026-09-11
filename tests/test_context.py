@@ -39,7 +39,7 @@ def test_allow_overrides(monkeypatch: pytest.MonkeyPatch) -> None:
     """
     ctx = context.Context({"a": 1}, {"a": 2})
     records = []
-    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))  # type: ignore[func-returns-value]
+    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))
     ctx.run("")
     ctx.run("", allow_overrides=False)
     ctx.run("", allow_overrides=True)
@@ -58,7 +58,7 @@ def test_options_context_manager(monkeypatch: pytest.MonkeyPatch) -> None:
     """
     ctx = context.Context({"a": 1}, {"a": 2})
     records = []
-    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))  # type: ignore[func-returns-value]
+    monkeypatch.setattr(context, "failprint_run", lambda _, **opts: RunResult(records.append(opts), ""))
 
     with ctx.options(a=3):
         ctx.run("")  # should be overridden by 2

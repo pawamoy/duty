@@ -35,8 +35,8 @@ INTERRUPT_CODE = 130
 def test_run_duty() -> None:
     """Run a duty."""
     duty = Duty("name", "description", lambda ctx: 1)
-    assert duty.run() is None  # type: ignore[func-returns-value]
-    assert duty(duty.context) is None  # type: ignore[func-returns-value]
+    assert duty.run() is None
+    assert duty(duty.context) is None
 
 
 def test_run_pre_post_duties_lambdas() -> None:
@@ -86,8 +86,8 @@ def test_run_pre_post_duties_refs() -> None:
     post_calls = []
 
     collection = Collection()
-    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))  # type: ignore[call-overload]
-    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))  # type: ignore[call-overload]
+    collection.add(decorate(lambda ctx: pre_calls.append(True), name="pre"))  # ty:ignore[no-matching-overload]
+    collection.add(decorate(lambda ctx: post_calls.append(True), name="post"))  # ty:ignore[no-matching-overload]
 
     duty = Duty("name", "description", lambda ctx: None, collection=collection, pre=["pre"], post=["post"])
     duty.run()
@@ -122,11 +122,11 @@ def test_code_when_keyboard_interrupt() -> None:
 def test_dont_raise_duty_failure() -> None:
     """Don't raise a duty failure on success."""
     duty = Duty("n", "d", lambda ctx: ctx.run(lambda: 0))
-    assert not duty.run()  # type: ignore[func-returns-value]
+    assert not duty.run()  # ty:ignore[redundant-condition]
 
 
 def test_cant_find_duty_without_collection() -> None:
     """Check that we can't find a duty with its name without a collection."""
-    duty = decorate(lambda ctx: None, name="duty1", post=["duty2"])  # type: ignore[call-overload]
+    duty = decorate(lambda ctx: None, name="duty1", post=["duty2"])  # ty:ignore[no-matching-overload]
     with pytest.raises(RuntimeError):
         duty.run()

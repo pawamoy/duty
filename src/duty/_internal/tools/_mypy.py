@@ -510,7 +510,7 @@ class mypy(Tool):  # noqa: N801
 
     def __call__(self) -> None:
         """Run the command."""
-        from mypy.main import main as run_mypy  # noqa: PLC0415
+        from mypy.main import main as run_mypy  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         run_mypy(
             args=self.cli_args,

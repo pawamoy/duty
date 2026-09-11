@@ -65,7 +65,7 @@ def create_duty(
         The registered duty.
     """
     aliases = set(aliases) if aliases else set()
-    name = name or func.__name__
+    name = name or func.__name__  # ty:ignore[unresolved-attribute]
     dash_name = name.replace("_", "-")
     if name != dash_name:
         aliases.add(name)
@@ -74,9 +74,9 @@ def create_duty(
     if skip_if:
         func = _skip(func, skip_reason or f"{dash_name}: skipped")
     duty = Duty(name, description, func, aliases=aliases, pre=pre, post=post, opts=opts)
-    duty.__name__ = name  # type: ignore[attr-defined]
+    duty.__name__ = name  # ty:ignore[unresolved-attribute]
     duty.__doc__ = description
-    duty.__wrapped__ = func  # type: ignore[attr-defined]
+    duty.__wrapped__ = func  # ty:ignore[unresolved-attribute]
     return duty
 
 

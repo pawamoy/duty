@@ -107,7 +107,7 @@ def run(
     Returns:
         Success/failure.
     """
-    from flake8.main import main as flake8  # noqa: PLC0415
+    from flake8.main import main as flake8  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
     cli_args = list(paths)
 

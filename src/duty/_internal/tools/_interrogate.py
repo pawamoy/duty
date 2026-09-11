@@ -173,6 +173,6 @@ class interrogate(Tool):  # noqa: N801
 
     def __call__(self) -> None:
         """Run the command."""
-        from interrogate.cli import main as run_interrogate  # noqa: PLC0415
+        from interrogate.cli import main as run_interrogate  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         return run_interrogate(self.cli_args)

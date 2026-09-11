@@ -56,7 +56,7 @@ class ssort(Tool):  # noqa: N801
         Returns:
             The exit code of the command.
         """
-        from ssort._main import main as run_ssort  # noqa: PLC0415
+        from ssort._main import main as run_ssort  # noqa: PLC0415  # ty:ignore[unresolved-import]
 
         old_sys_argv = sys.argv
         sys.argv = ["ssort", *self.cli_args]
