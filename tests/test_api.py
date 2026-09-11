@@ -180,7 +180,7 @@ def test_inventory_matches_api(
     for item in inventory.values():
         if item.domain == "py" and "(" not in item.name and (item.name == "duty" or item.name.startswith("duty.")):
             obj = loader.modules_collection[item.name]
-            if obj.path not in public_api_paths and not any(path in public_api_paths for path in obj.aliases):
+            if obj.path not in public_api_paths and not any(path in public_api_paths for path in obj.aliases):  # noqa: SIM102
                 # YORE: Bump 2: Remove line.
                 if ".callables." not in obj.path and item.role != "module":
                     not_in_api.append(item.name)
