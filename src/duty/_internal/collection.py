@@ -4,9 +4,12 @@ import inspect
 import sys
 from copy import deepcopy
 from importlib import util as importlib_util
-from typing import Any, Callable, ClassVar, Union
+from typing import TYPE_CHECKING, Any, Callable, ClassVar, Union
 
 from duty._internal.context import Context
+
+if TYPE_CHECKING:
+    from duty._internal._completion import CompletionCandidate
 
 DutyListType = list[Union[str, Callable, "Duty"]]
 """Type of a list of duties, which can be a list of strings, callables, or Duty instances."""
@@ -162,6 +165,12 @@ class Collection:
         Returns:
             The list of shell completion candidates, sorted alphabetically.
         """
+        return [word for word, _ in self._completion_candidates(args)]
+
+    def _completion_candidates(self, args: tuple[str, ...]) -> list[CompletionCandidate]:
+        # Same as `completion_candidates`, but each candidate comes with an optional description
+        # (some shells, like Zsh, are able to display them).
+
         # Find last duty name in args.
         name = None
         names = set(self.names())
@@ -170,20 +179,23 @@ class Collection:
                 name = arg
                 break
 
-        completion_names = sorted(names)
+        completion_names: list[CompletionCandidate] = sorted(
+            (candidate, self.get(candidate).description or None) for candidate in names
+        )
 
         # If no duty found, return names.
         if name is None:
             return completion_names
 
-        params = [
-            f"{param.name}="
+        # TODO: Parse docstrings (with Griffe?) to also describe parameters.
+        params: list[CompletionCandidate] = [
+            (f"{param.name}=", None)
             for param in inspect.signature(self.get(name).function).parameters.values()
             if param.kind is not param.VAR_POSITIONAL
-        ][1:]
+        ]
 
-        # If duty found, return names *and* duty parameters.
-        return completion_names + sorted(params)
+        # If duty found, return names *and* duty parameters (except the context one).
+        return completion_names + sorted(params[1:])
 
     def get(self, name_or_alias: str) -> Duty:
         """Get a duty by its name or alias.

@@ -15,12 +15,12 @@ import argparse
 import inspect
 import sys
 import textwrap
-from pathlib import Path
 from typing import Any
 
 from failprint import ArgParser, add_flags
 
 from duty._internal import debug
+from duty._internal._completion import CompletionError, Shell, shell_name
 from duty._internal.collection import Collection, Duty
 from duty._internal.exceptions import DutyFailure
 from duty._internal.validation import validate
@@ -72,13 +72,27 @@ def get_parser() -> ArgParser:
     parser.add_argument(
         "--completion",
         dest="completion",
-        action="store_true",
-        help=argparse.SUPPRESS,
+        nargs="?",
+        const=True,
+        metavar="SHELL",
+        help="Print the completion script for the given shell. Defaults to the shell in `SHELL`.",
+    )
+    parser.add_argument(
+        "--install-completion",
+        dest="install_completion",
+        nargs="?",
+        const=True,
+        metavar="SHELL",
+        help="Install the completion script for the given shell. Defaults to the shell in `SHELL`.",
     )
     parser.add_argument(
         "--complete",
         dest="complete",
-        action="store_true",
+        nargs="?",
+        # Default to Bash for backward-compatibility with completion scripts
+        # installed before we supported other shells.
+        const="bash",
+        metavar="SHELL",
         help=argparse.SUPPRESS,
     )
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug._get_version()}")
@@ -270,19 +284,48 @@ def main(args: list[str] | None = None) -> int:
     opts = parser.parse_args(args=args)
     remainder = opts.remainder
 
-    collection = Collection(opts.duties_file)
-    collection.load()
-
+    # Printing and installing completion scripts does not require any duty,
+    # and is typically done outside of a project directory.
     if opts.completion:
-        print(Path(__file__).parent.joinpath("completions.bash").read_text())
+        try:
+            shell = Shell.create(shell_name(opts.completion))
+            print(shell.script_path.read_text())
+        except CompletionError as error:
+            print(f"> {error}", file=sys.stderr)
+            return 1
         return 0
 
+    if opts.install_completion:
+        try:
+            shell = Shell.create(shell_name(opts.install_completion))
+            install_path = shell.install()
+        except CompletionError as error:
+            print(f"> {error}", file=sys.stderr)
+            return 1
+        print(f"Completions for {shell.name} installed in {install_path}. Restart your shell to enable them.")
+        return 0
+
+    collection = Collection(opts.duties_file)
+    try:
+        collection.load()
+    except Exception:
+        # Never crash while completing: without duties, we can still complete global options.
+        if not opts.complete:
+            raise
+
     if opts.complete:
-        words = collection.completion_candidates(remainder)
-        words += sorted(
-            opt for opt, action in parser._option_string_actions.items() if action.help != argparse.SUPPRESS
+        try:
+            shell = Shell.create(shell_name(opts.complete))
+        except CompletionError as error:
+            print(f"> {error}", file=sys.stderr)
+            return 1
+        candidates = collection._completion_candidates(remainder)
+        candidates += sorted(
+            (opt, action.help)
+            for opt, action in parser._option_string_actions.items()
+            if action.help != argparse.SUPPRESS
         )
-        print(*words, sep="\n")
+        print(shell.parse_candidates(candidates))
         return 0
 
     if opts.help is not None:
@@ -305,7 +348,7 @@ def main(args: list[str] | None = None) -> int:
 
     global_opts = specified_options(
         opts,
-        exclude={"duties_file", "list", "help", "remainder", "complete", "completion"},
+        exclude={"duties_file", "list", "help", "remainder", "complete", "completion", "install_completion"},
     )
     try:
         commands = parse_commands(arg_lists, global_opts, collection)

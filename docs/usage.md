@@ -875,12 +875,94 @@ duty task1 task2
 
 ### Shell completions
 
-You can enable auto-completion in Bash with these commands:
+Duty supports auto-completion in Bash and Zsh.
+Completions for other shells are welcome: feel free to request them, or to send a PR.
+
+The easiest way to enable them is to let duty install them for you:
 
 ```bash
-completions_dir="${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions"
-mkdir -p "${completions_dir}"
-duty --completion > "${completions_dir}/duty"
+duty --install-completion=bash
 ```
 
-Only Bash is supported for now.
+The shell can be omitted, in which case duty tries to guess it
+from the `SHELL` environment variable:
+
+```bash
+duty --install-completion
+```
+
+We recommend passing the shell explicitly: `SHELL` holds your *login* shell,
+which is not necessarily the shell you are currently running.
+
+The completion script is symlinked into a standard completion directory
+of the selected shell (see below), so it is automatically kept up-to-date
+when you update duty. Restart your shell for the completions to take effect.
+
+=== "Bash"
+    The script is installed as `duty` in the user completion directory,
+    which is `${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions`.
+    The `bash-completion` package must be installed for this directory to be loaded.
+
+=== "Zsh"
+    The script is installed as `_duty` in the first existing directory
+    among `/usr/local/share/zsh/site-functions` and `/usr/share/zsh/site-functions`.
+    Both are part of Zsh's `fpath` by default, so nothing else is required.
+    These directories generally belong to `root`, so the command likely has to run with `sudo`:
+
+    ```zsh
+    sudo duty --install-completion=zsh
+    ```
+
+    If you would rather not use `sudo`, install the completions manually
+    in a directory you own (see below).
+
+#### Manual installation
+
+If you prefer to install the completion script yourself,
+print it with `--completion` and write it wherever your shell expects it:
+
+=== "Bash"
+    ```bash
+    completions_dir="${BASH_COMPLETION_USER_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion}/completions"
+    mkdir -p "${completions_dir}"
+    duty --completion=bash > "${completions_dir}/duty"
+    ```
+
+=== "Zsh"
+    Zsh loads completion scripts from the directories listed in `fpath`,
+    and the file name must be the command name prefixed with an underscore
+    ([read more](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org#telling-zsh-which-function-to-use-for-completing-a-command)).
+
+    To use a custom directory such as `~/.zfunc`, make sure that it is added to `fpath`
+    *before* completions are initialized, in your `.zshrc`:
+
+    ```zsh
+    fpath=(~/.zfunc $fpath)
+    autoload -Uz compinit && compinit
+    ```
+
+    !!! warning "Oh My Zsh already calls `compinit` for you."
+        Don't call it again: write the script to `~/.oh-my-zsh/custom/completions`
+        instead (create the directory if it doesn't exist), as it is already in `fpath`.
+
+    Then write the completion script and reload your shell:
+
+    ```zsh
+    mkdir -p ~/.zfunc
+    duty --completion=zsh > ~/.zfunc/_duty
+    exec zsh
+    ```
+
+!!! warning "Manually installed completions must be updated manually."
+    Completion scripts installed manually are *copies*: they are not updated
+    when you update duty. If completions start misbehaving after an update,
+    run the command above again, or use `--install-completion`,
+    which symlinks the script instead of copying it.
+
+Duty also ships its completion scripts as data files (under `share/bash-completion/completions`
+and `share/zsh/site-functions`) in its wheels. If you install duty with
+[pipx](https://pipx.pypa.io/latest/how-to/shell-completions.html), pipx links them into
+its central completion directory as part of the installation. This avoids a separate
+completion-installation step for each package (and each upgrade): Bash loads the linked
+script automatically, while Zsh only needs pipx's completion directory added to `fpath`
+once.
