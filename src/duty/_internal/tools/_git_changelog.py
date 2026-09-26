@@ -34,6 +34,8 @@ class git_changelog(Tool):  # noqa: N801
         repository: str | None = None,
         *,
         config_file: str | None = None,
+        bumped_version: bool = False,
+        latest_version: bool = False,
         bump: str | None = None,
         versioning: Literal["semver", "pep440"] | None = None,
         in_place: bool = False,
@@ -46,6 +48,7 @@ class git_changelog(Tool):  # noqa: N801
         input: str | None = None,  # noqa: A002
         convention: Literal["basic", "angular", "conventional"] | None = None,
         sections: list[str] | None = None,
+        include_all: bool = False,
         template: str | None = None,
         git_trailers: bool = False,
         omit_empty_versions: bool = False,
@@ -60,6 +63,8 @@ class git_changelog(Tool):  # noqa: N801
         Parameters:
             repository: The repository path, relative or absolute. Default: current working directory.
             config_file: Configuration file(s).
+            bumped_version: Show the bumped version and exit.
+            latest_version: Show the latest version in the changelog and exit.
             bump: Specify the bump from latest version for the set of unreleased commits.
                 Can be one of `auto`, `major`, `minor`, `patch` or a valid SemVer version (eg. 1.2.3).
                 For both SemVer and PEP 440 versioning schemes (see -n), `auto` will bump the major number
@@ -99,6 +104,7 @@ class git_changelog(Tool):  # noqa: N801
             convention: The commit convention to match against. Default: `basic`.
             sections: A comma-separated list of sections to render.
                 See the available sections for each supported convention in the description. Default: unset (None).
+            include_all: Include commits without a recognized type in a `Misc` section.
             template: The Jinja2 template to use.
                 Prefix it with `path:` to specify the path to a Jinja templated file. Default: `keepachangelog`.
             git_trailers: Parse Git trailers in the commit message.
@@ -121,6 +127,12 @@ class git_changelog(Tool):  # noqa: N801
         if config_file:
             cli_args.append("--config-file")
             cli_args.append(config_file)
+
+        if bumped_version:
+            cli_args.append("--bumped-version")
+
+        if latest_version:
+            cli_args.append("--latest-version")
 
         if bump:
             cli_args.append("--bump")
@@ -166,6 +178,9 @@ class git_changelog(Tool):  # noqa: N801
         if sections:
             cli_args.append("--sections")
             cli_args.append(",".join(sections))
+
+        if include_all:
+            cli_args.append("--include-all")
 
         if template:
             cli_args.append("--template")
