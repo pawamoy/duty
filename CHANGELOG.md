@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.10.0](https://github.com/pawamoy/duty/releases/tag/1.10.0) - 2026-09-26
+
+<small>[Compare with 1.9.0](https://github.com/pawamoy/duty/compare/1.9.0...1.10.0)</small>
+
+### Features
+
+- Add latest options to git-changelog tool ([b8b49cd](https://github.com/pawamoy/duty/commit/b8b49cd4a8f7fd7dbc06febeeaaa66d31896fffe) by Timothée Mazzucotelli).
+- Add completions system, with Bash and Zsh support ([50e9cfc](https://github.com/pawamoy/duty/commit/50e9cfc34ed98b6143e9947af34b8690824e0cdb) by Timothée Mazzucotelli). Co-authored-by: Jagoda Estera Ślązak <jslazak@jslazak.com>, [Follow-up-of-PR-34](https://github.com/pawamoy/duty/pull/34)
+
 ## [1.9.0](https://github.com/pawamoy/duty/releases/tag/1.9.0) - 2026-02-07
 
 <small>[Compare with 1.8.0](https://github.com/pawamoy/duty/compare/1.8.0...1.9.0)</small>
