@@ -23,12 +23,7 @@ from __future__ import annotations
 import shlex
 import sys
 from io import StringIO
-from typing import Any
-
-if sys.version_info >= (3, 11):
-    from typing import Self
-else:
-    from typing_extensions import Self
+from typing import Any, Self
 
 
 class LazyStdout(StringIO):

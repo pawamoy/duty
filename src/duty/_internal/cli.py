@@ -277,7 +277,7 @@ def print_help(parser: ArgParser, opts: argparse.Namespace, collection: Collecti
         for duty_name in opts.help:
             try:
                 duty = collection.get(duty_name)
-            except KeyError:  # noqa: PERF203
+            except KeyError:
                 print(f"> Unknown duty '{duty_name}'")
             else:
                 print(get_duty_parser(duty).format_help())
@@ -377,7 +377,7 @@ def main(args: list[str] | None = None) -> int:
     for duty, posargs, kwargs in commands:
         try:
             duty.run(*posargs, **kwargs)
-        except DutyFailure as failure:  # noqa: PERF203
+        except DutyFailure as failure:
             return failure.code
 
     return 0
