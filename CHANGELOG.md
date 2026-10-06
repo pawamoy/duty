@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.10.1](https://github.com/pawamoy/duty/releases/tag/1.10.1) - 2026-10-06
+
+<small>[Compare with 1.10.0](https://github.com/pawamoy/duty/compare/1.10.0...1.10.1)</small>
+
+### Build
+
+- Drop support for Python 3.10 ([38f8909](https://github.com/pawamoy/duty/commit/38f89092cfdb27cce0754c05580b4cdbd69b063a) by Timothée Mazzucotelli).
+
 ## [1.10.0](https://github.com/pawamoy/duty/releases/tag/1.10.0) - 2026-09-26
 
 <small>[Compare with 1.9.0](https://github.com/pawamoy/duty/compare/1.9.0...1.10.0)</small>
