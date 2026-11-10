@@ -326,6 +326,12 @@ def main(args: list[str] | None = None) -> int:
     collection = Collection(opts.duties_file)
     try:
         collection.load()
+    except FileNotFoundError:
+        # A missing duties file is a usage error, not a crash:
+        # report it cleanly instead of dumping a traceback.
+        if not opts.complete:
+            print(f"> Duties file not found: {opts.duties_file}", file=sys.stderr)
+            return 1
     except Exception:
         # Never crash while completing: without duties, we can still complete global options.
         if not opts.complete:

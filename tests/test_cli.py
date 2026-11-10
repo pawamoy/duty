@@ -80,6 +80,17 @@ def test_unknown_duty() -> None:
     assert main(["-d", "tests/fixtures/basic.py", "byebye"]) == 1
 
 
+def test_missing_duties_file(capsys: pytest.CaptureFixture) -> None:
+    """Don't crash on a missing duties file.
+
+    Parameters:
+        capsys: Pytest fixture to capture output.
+    """
+    assert main(["-d", "tests/fixtures/not-here.py", "hello"]) == 1
+    captured = capsys.readouterr()
+    assert "Duties file not found" in captured.err
+
+
 def test_incorrect_arguments() -> None:
     """Use incorrect arguments."""
     assert main(["-d", "tests/fixtures/basic.py", "hello=1"]) == 1
